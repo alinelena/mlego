@@ -1,0 +1,90 @@
+site_name: mlego notes
+site_url: https://mlego.elena.re
+site_dir: public
+docs_dir: ./notes
+repo_url: https://gitlab.com/m-lego/m65
+copyright: Ⓒ 2017-2024 alin m elena
+site_author: alin m elena
+site_description: set of notes on mlego keyboards
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: teal
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  language: en
+  logo: pics/mlego.webp
+  features:
+    - content.tabs.link
+    - navigation.expand
+    - navigation.indexes
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.tracking
+
+
+# Extensions
+markdown_extensions:
+    - footnotes
+    - attr_list
+    - pymdownx.highlight
+    - pymdownx.superfences
+    - pymdownx.details
+    - pymdownx.magiclink
+    - pymdownx.emoji
+    - admonition
+    - md_in_html
+    - attr_list
+    - pymdownx.tabbed:
+        alternate_style: True
+    - pymdownx.tasklist:
+        custom_checkbox: True
+    - toc:
+        permalink: True
+
+plugins:
+  - search
+  - roamlinks
+  - glightbox
+
+nav:
+    - Home: index.md
+    - Keyboards:
+      - keyboards/index.md
+      - m65: m65.md
+      - m66: m66.md
+      - m60: m60.md
+      - 'm60 split': m60_split.md
+      - m48: m48.md
+      - m20: m20.md
+      - m8: m8.md
+      - m4: m4.md
+    - Mice:
+      - mice/index.md
+      - prime: prime.md
+    - Converted:
+      - converted/index.md
+      - 'tipro 8x16': tipro8x16.md
+      - 'tipro 8x12': tipro8x12.md
+      - 'tipro 8x4': tipro8x4.md
+      - 'tipro ansi-ortho': tiproansi-ortho.md
+      - 'tipro ortho-ansi': tiproortho-ansi.md
+    - 'Extra notes':
+      - extra/index.md
+      - "handwire helpers": hand5x5.md
+      - "assembly guide": assembly.md
+      - "not enough pins": notenoughpins.md
+      - "simple keyboard example": how_matrix_works_extra.md
+
