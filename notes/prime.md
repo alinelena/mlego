@@ -1,130 +1,108 @@
-## steelseries prime
+# SteelSeries Prime — QMK Mouse Liberation
 
+<div class="spec-badges">
+  <span class="spec-badge spec-badge--status">Difficulty: Medium (Soldering + SWD)</span>
+  <span class="spec-badge">STM32F103C8T6</span>
+  <span class="spec-badge">PixArt PMW3389 (TrueMove Pro)</span>
+  <span class="spec-badge">6 Buttons + RGB Wheel</span>
+  <span class="spec-badge">UF2 Bootloader + QMK</span>
+</div>
 
-![prime](pics/prime.webp){ loading=lazy }
+![SteelSeries Prime mouse](pics/prime.webp){ loading=lazy }
 
-this is a relatively [cheap mouse](https://steelseries.com/gaming-mice/prime), the wired version, got few of them from a discounter(B&M), for £15.
+The wired [SteelSeries Prime](https://steelseries.com/gaming-mice/prime) is an affordable, lightweight gaming mouse (picked up from a local discounter, B&M, for £15) built around an **`STM32F103C8T6`** microcontroller, a **TrueMove Pro** optical sensor (compatible with QMK's PixArt `PMW3389` driver), 6 buttons, and an RGB scroll wheel LED.
 
-It has stm32f103c8t6, truemove pro (works with pixart pmw3389 driver) sensor, 6 buttons and rgb light in the wheel. prime+ the fancier version shares same mcu and sensor
-and is already available in qmk, thank to Dasky. so my task was relatively trivial.
+Because the fancier **Prime+** shares the same MCU and optical sensor and was already ported to QMK by **Dasky**, adapting the standard Prime was straightforward. Converting it requires opening the shell, soldering a 5-pin SWD header, unlocking flash protection via `openocd`, and flashing a UF2 bootloader.
 
-converting it requires, some soldering, so I say is mediunm difficulty.
+## Internal PCBs { #pcbs }
 
-### pcbs
+<div class="image-grid" markdown>
+![SteelSeries Prime PCB front](pics/prime_front.webp){ loading=lazy }
+![SteelSeries Prime PCB back with lens removed](pics/prime_back.webp){ loading=lazy }
+</div>
 
-- front
+## Required Tools { #tools }
 
-![prime front](pics/prime_front.webp){ loading=lazy }
+* **Screwdrivers**: `PH0` (for internal PCB screws) and `TX6` Torx (for external case screws beneath the skates)
+* **SWD Programmer**: `ST-Link v2` (an inexpensive clone from RobotDyn/AliExpress works fine)
+* **Soldering Gear**: Soldering iron, 5-pin $2.54\text{ mm}$ pitch header strip, and 3–4 female-to-female DuPont jumper wires
 
-- back -- with lens removed
+## Teardown & Preparation { #prep }
 
-![prime back](pics/prime_back.webp){ loading=lazy }
+1. **Remove PTFE Skates**: Carefully peel back the glued PTFE feet covering the bottom screws so they can be reused after reassembly (or keep replacement skates on hand).
+2. **Open the Shell**: Unscrew the 4 external case screws using the `TX6` driver.
+3. **Disconnect Ribbon Cable**: Gently separate the top shell and release the internal ribbon cable using its zero-insertion-force latch lever.
+4. **Remove Internal PCB**: Unscrew the 2 main PCB screws plus the 2 additional screws next to the scroll wheel (`PH0`). Lift the PCB out of the lower housing (don't worry if the small plastic alignment prong on the side of the PCB snaps).
+5. **Solder SWD Header**: Clear any factory solder from the 5 through-holes on the SWD header footprint and solder the $2.54\text{ mm}$ pin header in place.
 
-### tools
+## Flashing the UF2 Bootloader { #bootloader }
 
-two screwdrivers, PH0( for screws inside) and TX6 (for case screws) and an stlink v2 (I have a cheap one I got it from robotdyn but
-plenty others are avaiable on aliexpress). you will also need a soldering iron, a set of pins (5 at 2.54 spacing) and at least 3
-du pont female-female wires.
+1. **Wire ST-Link to the Mouse PCB**:
+    * If powering the mouse via its USB cable, connect 3 DuPont wires: `GND`, `SWCLK`, and `SWDIO`.
+    * If powering directly from the ST-Link, connect a 4th wire for `VCC` ($3.3\text{ V}$).
+2. **Download or Build the Bootloader**:
+    * **Prebuilt Binary**: [:material-download: `firmware/uf2boot_prime.bin`](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/uf2boot_prime.bin)
+    * **Build from Source**: Clone [`daskygit/uf2-prime-plus`](https://github.com/daskygit/uf2-prime-plus), apply the patch below to rename the USB volume/product labels for the standard Prime, and build target `PRIME_PLUS`:
 
-### prep
+    ```diff
+    diff --git a/libopencm3/Makefile b/libopencm3/Makefile
+    index d93efeac..d5c2e4d6 100644
+    --- a/libopencm3/Makefile
+    +++ b/libopencm3/Makefile
+    @@ -59,7 +59,7 @@ build: lib
+      LIB_DIRS:=$(wildcard $(addprefix lib/,$(TARGETS)))
+      $(LIB_DIRS): $(IRQ_DEFN_FILES:=.genhdr)
+             @printf "  BUILD   $@\n";
+    -       $(Q)$(MAKE) --directory=$@ SRCLIBDIR="$(SRCLIBDIR)"
+    +       $(Q)$(MAKE) --directory=$@ SRCLIBDIR=$(SRCLIBDIR)
 
-- remove the glued protection over the screws. if you do it with care you can reuse them after... if not you can buy new ones
-- remove the 4 screws with tx6 screwdriver
-- open the case with care, and remove the ribon... there is an easy realease lever on it.
-- remove the 2 screws from the pcb and case, and the extra 2 screws from close to the wheel.
-- separate the pcb from the case, be careful when you dislodge it, do not worry if you break the platic prong on the side of the
-  pcb.
-- now you are ready to solder the pins.
-- solder the pins, note that on some the through holes may be filled, so you make have to remove the solder.
+      lib: $(LIB_DIRS)
+             $(Q)true
+    diff --git a/src/stm32f103/prime_plus/config.h b/src/stm32f103/prime_plus/config.h
+    index d7c2b50..6fe0eb7 100644
+    --- a/src/stm32f103/prime_plus/config.h
+    +++ b/src/stm32f103/prime_plus/config.h
+    @@ -49,11 +49,11 @@
+      #define UF2_FAMILY 0x5ee21072
 
-once soldered shall look like this..
+      #undef VOLUME_LABEL
+    -#define VOLUME_LABEL "PRIMEPLUS"
+    +#define VOLUME_LABEL "PRIME"
+      #undef PRODUCT_NAME
+    -#define PRODUCT_NAME "SteelSeries Prime+"
+    +#define PRODUCT_NAME "SteelSeries Prime"
+      #undef BOARD_ID
+    -#define BOARD_ID "steelseries-prime-plus"
+    +#define BOARD_ID "steelseries-prime"
+    ```
 
-!(pcb with headers)[]
+3. **Remove `STM32F103` Write Protection**:
+    Using `openocd` (or STM32CubeProgrammer):
 
-### bootloader
+    ```sh
+    openocd -f interface/stlink.cfg -f target/stm32f1x.cfg \
+      -c "init; reset halt; stm32f1x unlock 0; flash protect 0 0 last off; reset halt; exit"
+    ```
 
-- connect the stlink to the pcb(target). you need to connect only 3 wires if you power the mouse via the usb cable GND, SWCLK and
-SWDIO or 4 add VCC (3.3V) with the du pont wires.
+4. **Flash the UF2 Bootloader**:
 
-- insert the stlink into the usb.
+    ```sh
+    openocd -f interface/stlink.cfg -f target/stm32f1x.cfg \
+      -c "program uf2boot.bin verify reset exit 0x8000000"
+    ```
 
-now we assume you use openocd in command line, but you ca achieve the same with STM32CubeProgrammer.
+5. **Reassemble**: Disconnect power and remove the ST-Link jumper wires, then reassemble the PCB, ribbon cable, shell, and skates.
 
-- get the new bootloader from
+## QMK Firmware { #firmware }
 
-[firmware/uf2boot_prime.bin](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/uf2boot_prime.bin)
+1. **Enter UF2 Bootloader Mode**: Hold down the **underside CPI button** while plugging in the USB cable. A removable USB mass-storage drive (`PRIME`) will mount on your computer.
+2. **Flash QMK**:
+    * **Prebuilt UF2**: Download [:material-download: `firmware/steelseries_prime_default.uf2`](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/steelseries_prime_default.uf2) and copy it onto the mounted drive.
+    * **Compile from Source**:
 
-you can also build it from source using this [repo](https://github.com/daskygit/uf2-prime-plus), clone the repo, go to source and
-build target PRIME_PLUS
-
-you may want to edit the source code (the submodule to make it build, the config.h to have the proper name)
-
-```diff
-
-Submodule libopencm3 contains modified content
-diff --git a/libopencm3/Makefile b/libopencm3/Makefile
-index d93efeac..d5c2e4d6 100644
---- a/libopencm3/Makefile
-+++ b/libopencm3/Makefile
-@@ -59,7 +59,7 @@ build: lib
- LIB_DIRS:=$(wildcard $(addprefix lib/,$(TARGETS)))
- $(LIB_DIRS): $(IRQ_DEFN_FILES:=.genhdr)
-        @printf "  BUILD   $@\n";
--       $(Q)$(MAKE) --directory=$@ SRCLIBDIR="$(SRCLIBDIR)"
-+       $(Q)$(MAKE) --directory=$@ SRCLIBDIR=$(SRCLIBDIR)
-
- lib: $(LIB_DIRS)
-        $(Q)true
-diff --git a/src/stm32f103/prime_plus/config.h b/src/stm32f103/prime_plus/config.h
-index d7c2b50..6fe0eb7 100644
---- a/src/stm32f103/prime_plus/config.h
-+++ b/src/stm32f103/prime_plus/config.h
-@@ -49,11 +49,11 @@
- #define UF2_FAMILY 0x5ee21072
-
- #undef VOLUME_LABEL
--#define VOLUME_LABEL "PRIMEPLUS"
-+#define VOLUME_LABEL "PRIME"
- #undef PRODUCT_NAME
--#define PRODUCT_NAME "SteelSeries Prime+"
-+#define PRODUCT_NAME "SteelSeries Prime"
- #undef BOARD_ID
--#define BOARD_ID "steelseries-prime-plus"
-+#define BOARD_ID "steelseries-prime"
-
-```
-
-- remove write protection on the mcu
-
-```sh
-openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "init; reset halt; stm32f1x unlock 0; flash protect 0 0 last off; reset halt; exit"
-
-```
-
-- flash the bootloader
-
-```sh
-openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program uf2boot.bin  verify reset exit 0x8000000"
-```
-
-- unpower and remove the stlink cables at this stage.
-
-- you can reassembla the mouse at this stage.
-
-### firmware
-
-- power the mouse via usb, keeping the button underside pressed. you shall get a mounting notification of a new device
-
-- copy or flash the firmware on it.
-
-you can download the firmware from [firmware/steelseries_prime_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/steelseries_prime_default.uf2) and copy on device.
-
-or build your own
-
-
-```bash
-  git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
-  cd qmk-alin
-  qmk compile -kb steelseries/prime -km default
-  qmk flash -kb steelseries/prime -km default
-```
+    ```bash
+    git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb steelseries/prime -km default
+    qmk flash -kb steelseries/prime -km default
+    ```

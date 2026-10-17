@@ -3,88 +3,139 @@ site_url: https://mlego.elena.re
 site_dir: public
 docs_dir: ./notes
 repo_url: https://gitlab.com/m-lego/m65
-copyright: Ⓒ 2017-2024 alin m elena
-site_author: alin m elena
-site_description: set of notes on mlego keyboards
+repo_name: m-lego/m65
+copyright: Ⓒ 2017–2026 Alin M. Elena
+site_author: Alin M. Elena
+site_description: Modular LEGO-mounted ortholinear mechanical keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes
 
 theme:
   name: material
+  language: en
+  logo: pics/mlego.webp
+  favicon: pics/mlego.webp
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/gitlab
   palette:
-    # Palette toggle for light mode
-    - scheme: default
+    # Palette toggle for automatic / light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     # Palette toggle for dark mode
-    - scheme: slate
-      primary: teal
-      accent: lime
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  language: en
-  logo: pics/mlego.webp
   features:
+    - content.code.annotate
+    - content.code.copy
     - content.tabs.link
     - navigation.expand
+    - navigation.footer
     - navigation.indexes
     - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
     - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.top
     - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
 
+extra_css:
+  - stylesheets/extra.css
 
-# Extensions
+extra:
+  social:
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/m-lego
+      name: m-lego on GitLab
+    - icon: fontawesome/brands/github
+      link: https://github.com/alinelena
+      name: Alin M. Elena on GitHub
+    - icon: material/web
+      link: https://alin.elena.space
+      name: Personal Website & Blog
+
 markdown_extensions:
-    - footnotes
-    - attr_list
-    - pymdownx.highlight
-    - pymdownx.superfences
-    - pymdownx.details
-    - pymdownx.magiclink
-    - pymdownx.emoji
-    - admonition
-    - md_in_html
-    - attr_list
-    - pymdownx.tabbed:
-        alternate_style: True
-    - pymdownx.tasklist:
-        custom_checkbox: True
-    - toc:
-        permalink: True
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
 
 plugins:
   - search
-  - roamlinks
-  - glightbox
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: true
+      caption_position: bottom
 
 nav:
-    - Home: index.md
-    - Keyboards:
-      - keyboards/index.md
-      - m65: m65.md
-      - m66: m66.md
-      - m60: m60.md
-      - 'm60 split': m60_split.md
-      - m48: m48.md
-      - m20: m20.md
-      - m8: m8.md
-      - m4: m4.md
-    - Mice:
-      - mice/index.md
-      - prime: prime.md
-    - Converted:
-      - converted/index.md
-      - 'tipro 8x16': tipro8x16.md
-      - 'tipro 8x12': tipro8x12.md
-      - 'tipro 8x4': tipro8x4.md
-      - 'tipro ansi-ortho': tiproansi-ortho.md
-      - 'tipro ortho-ansi': tiproortho-ansi.md
-    - 'Extra notes':
-      - extra/index.md
-      - "handwire helpers": hand5x5.md
-      - "assembly guide": assembly.md
-      - "not enough pins": notenoughpins.md
-      - "simple keyboard example": how_matrix_works_extra.md
-
+  - Home: index.md
+  - Keyboards:
+    - keyboards/index.md
+    - m66 (5×14 Ortho): m66.md
+    - m65 (5×13 Ortho): m65.md
+    - m60 (5×12 Ortho): m60.md
+    - m60 Split (5×12 Split): m60_split.md
+    - m48 (4×12 Ortho): m48.md
+    - m20 (5×4 Pad): m20.md
+    - m8 (2×4 Pad): m8.md
+    - m4 (2×2 Pad): m4.md
+  - Mice:
+    - mice/index.md
+    - SteelSeries Prime: prime.md
+  - Converted:
+    - converted/index.md
+    - Tipro 8×16: tipro8x16.md
+    - Tipro 8×12: tipro8x12.md
+    - Tipro 8×4: tipro8x4.md
+    - Tipro ANSI-Ortho: tiproansi-ortho.md
+    - Tipro Ortho-ANSI: tiproortho-ansi.md
+  - Extra Notes:
+    - extra/index.md
+    - Assembly Guide: assembly.md
+    - Not Enough Pins: notenoughpins.md
+    - Matrix & Firmware Guide: how_matrix_works_extra.md
+    - Handwire Helpers (5×5): hand5x5.md

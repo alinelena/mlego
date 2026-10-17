@@ -1,154 +1,132 @@
-### m60 5x12 split in lego
+# m60 Split — 5×12 Split LEGO Keyboard
 
-  ![M60 split 5x12](pics/5x12s/m60_split.webp)
+<div class="spec-badges">
+  <span class="spec-badge spec-badge--status">Status: Tested &amp; Verified</span>
+  <span class="spec-badge">5×12 Split (2× 5×6)</span>
+  <span class="spec-badge">2× STM32F401 / F411 BlackPill</span>
+  <span class="spec-badge">Dual Encoders + RGB Underglow</span>
+  <span class="spec-badge">QMK</span>
+</div>
 
-  ![M60 split 5x12 leds](pics/5x12s/m60s-leds.webp)
+<div class="image-grid" markdown>
+![M60 split 5x12](pics/5x12s/m60_split.webp){ loading=lazy }
+![M60 split 5x12 with LEDs](pics/5x12s/m60s-leds.webp){ loading=lazy }
+</div>
 
-an ortholinear keyboard set in lego 5x12 split with optional encoders and leds
+An ergonomic **5×12 split ortholinear keyboard** mounted on two $16\times 16$ LEGO baseplates, featuring dual rotary encoders (one per half) and addressable RGB underglow.
 
-this is part of a bigger family of ortholinear keyboards in lego see for reference
-https://mlego.elena.space
+!!! success "Status: Tested All OK"
 
-status:  tested all ok
+    * [x] Gerbers designed
+    * [x] Firmware
+    * [x] Breadboard tested
+    * [x] Gerbers printed
+    * [x] Board tested
 
-* [x] gerbers designed
-* [x] firmware
-* [x] breadboard tested
-* [x] gerbers printed
-* [x] board tested
+## Features
 
-Features:
+* **Layout**: 5×12 split (two 5×6 halves, 60 keys total)
+* **Controllers**: 2× WeAct [`STM32F401` (Rev 1) or `STM32F411` (Rev 2) BlackPill](https://github.com/WeActTC/MiniSTM32F4x1)
+* **Peripherals**: 1× rotary encoder per half, RGB underglow strip, 4× status LEDs
+* **Interconnect**: Direct 3-wire serial cable via angled 3-pin JST XH $2.54\text{ mm}$ connectors
+* **Firmware**: QMK with TinyUF2 bootloader support
 
-* 5x12 split
-* 1 encoder each side
-* led strip
-* 5 pins
-* stm32f401 or 411 from we act https://github.com/WeActTC/MiniSTM32F4x1
-* firmware qmk
+## Renders & PCBs { #renders }
 
-#### renders
+=== "Left & Right Printed PCBs"
 
-left side
+    ![M60 split 5x12 left/right PCB](pics/5x12s/m60_split_pcb.webp){ loading=lazy }
 
+=== "KiCad Left & Right Layout"
 
-  ![M60 split 5x12](pics/5x12s/m60-split-3d.webp)
+    <div class="image-grid" markdown>
+    ![M60 split left PCB](pics/5x12s/m60-left.webp){ loading=lazy }
+    ![M60 split right PCB](pics/5x12s/m60-right.webp){ loading=lazy }
+    </div>
 
+=== "3D Render (Left Half)"
 
-#### pcb
+    ![M60 split 3D render](pics/5x12s/m60-split-3d.webp){ loading=lazy }
 
-printed one
+## BOM { #bom }
 
-  ![M60 split 5x12 left/right pcb](pics/5x12s/m60_split_pcb.webp)
+* 2× WeAct `STM32F401` (or `STM32F411`) BlackPill boards with headers
+* 2× 40-pin DIL/DIP sockets
+* 60× `1N4148` signal diodes (DO-35 through-hole)
+* 60× 5-pin Cherry MX–compatible switches
+* 2× EC11 rotary encoders
+* **Resistors**:
+    * 3× $4.7\text{ k}\Omega$ (`R1` and `R2` on left half; `R1` on right half)
+    * 2× $100\text{ k}\Omega$ (`R5` on left half; `R4` on right half)
+    * 4× $220\text{ }\Omega$ LED resistors (`R3`, `R4` on left half; `R2`, `R3` on right half — adjust to match LED color/brightness)
+* 4× status indicator LEDs
+* 2× angled 3-pin JST XH $2.54\text{ mm}$ connectors (plus matching direct, non-crossed interconnect cable)
+* Optional: 2× additional 3-pin JST connectors and 3-pin addressable LED strips
+* 2× LEGO $16\times 16$ baseplates and perimeter plates/bricks
 
-left side pcb
+## Case & Assembly { #case }
 
-  ![M60 split 5x12 left pcb](pics/5x12s/m60-left.webp)
+* **LEGO Enclosure**: See the [m65 Case & Thickness section](m65.md#case) for LEGO plate stacking details.
+* **Soldering & Build**: Follow the step-by-step [Assembly Guide](assembly.md).
 
-right side pcb
+## Gerbers & KiCad { #gerbers }
 
-  ![M60 split 5x12 left right](pics/5x12s/m60-right.webp)
+Production-ready Gerbers for JLCPCB:
 
-#### bom
+* [:material-folder-zip: **Rev 1 Left Half Gerbers**](https://gitlab.com/m-lego/m60_split/-/blob/main/m60-split-left/gerbers-left.zip)
+* [:material-folder-zip: **Rev 1 Right Half Gerbers**](https://gitlab.com/m-lego/m60_split/-/blob/main/m60-split-right/gerbers-right.zip)
 
-* 2xSTM32F401 we act pins
-* 60 signal diodes 1N4148 , do-35
-* 2 encoders
-* 3x4.7kΩ on left hand side R1 and R2 and on right hand side R1
-* 2x100kΩ on left hand side R5 and on right hand side R4
-* 4x220Ω - these are for leds so you may have to compute the R to match your colours and desired brightness. on left side that are
-  R3 and R4 on right side R2 and R3
-* 4 leds
-* 2 40 pin DIL/DIP sockets whatever you prefer
-* 2 JST XH 2.54 3P angle connectors, optionally another too for led strip
-* cable to work with the sockets, direct not crossed wires
-* led strip 3pins
-* 5 pin MX switches 60
-* lego 16x16 plates for bottom, and bricks as you please
+Full KiCad project files are available in [`m-lego/m60_split` on GitLab](https://gitlab.com/m-lego/m60_split/) (shared footprints in [`m-lego/m65`](https://gitlab.com/m-lego/m65/)).
 
-#### case
+## Firmware { #firmware }
 
-case information can be found [here](https://mlego.elena.space/m65/#case)
+Ensure both BlackPill boards are flashed with the [TinyUF2 bootloader](https://github.com/adafruit/tinyuf2).
 
-#### assembly
+=== "Rev 1 (`STM32F401`)"
 
-this is a very rushed [assembly guide](assembly.md) but shall give you the main idea.
+    Download prebuilt UF2: [mlego_m60_split_rev1_default.uf2](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev1_default.uf2)
 
-#### gerbers
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb mlego/m60_split/rev1 -km default
+    ```
 
- gerbers ready to be printed at jlcpcb are available
+=== "Rev 2 (`STM32F411`)"
 
- + [rev 1 left](https://gitlab.com/m-lego/m60_split/-/blob/main/m60-split-left/gerbers-left.zip)
- + [rev 1 right](https://gitlab.com/m-lego/m60_split/-/blob/main/m60-split-right/gerbers-right.zip)
+    Download prebuilt UF2: [mlego_m60_split_rev2_default.uf2](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev2_default.uf2)
 
-  full kicad project if you want to generate your own or modify is available [here](https://gitlab.com/m-lego/m60_split/)
-  kicad symbols/footprints are in the [m65 repo](https://gitlab.com/m-lego/m65/)
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb mlego/m60_split/rev2 -km default
+    ```
 
+## Pinout Reference { #pins }
 
+* **Left Half**:
+    * **Columns**: `B14`, `A10`, `A15`, `B3`, `B4`, `B5`
+    * **Rows**: `B0`, `A6`, `A7`, `B1`, `A5`
+* **Right Half**:
+    * **Columns**: `B0`, `A3`, `A2`, `A1`, `B7`, `B5`
+    * **Rows**: `B1`, `A4`, `A5`, `A6`, `A7`
+* **Encoders**: `Pad_A = A0`, `Pad_B = A8`
+* **Split Communication**: `SPLIT_HAND_PIN = B9`, `SERIAL_USART_TX_PIN = B6`
 
-#### firmware
+| Indicator / RGB | Pin |
+| :--- | :--- |
+| `NUM_LOCK` | `B12` |
+| `CAPS_LOCK` | `C13` |
+| `SCROLL_LOCK` | `B13` |
+| `RGB_DI` | `B15` |
 
-##### rev1
+## Community Builds { #other-builds }
 
-stm32f401 or simply use this [firmware](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev1_default.uf2) be sure tiny uf2 has the uf2 bootloader.
-to install it use https://github.com/adafruit/tinyuf2
+Builds by **Seth** (`u/modularsynth123456`):
 
-
-```bash
-   git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
-   cd qmk-alin
-
-   qmk compile -kb mlego/m60_split/rev1 -kb default
-   make mlego/m60_split/rev1:default
-```
-
-##### rev2
-
-stm32f411 or simply use this [firmware](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev2_default.uf2) be sure tiny uf2 has the uf2 bootloader.
-to install it use https://github.com/adafruit/tinyuf2
-
-```bash
-   git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
-   cd qmk-alin
-
-   qmk compile -kb mlego/m60_split/rev2 -kb default
-   make mlego/m60_split/rev2:default
-```
-
-#### pins
-
- - left:
-   - columns: "B14", "A10", "A15", "B3", "B4", "B5"
-   - rows: "B0", "A6", "A7", "B1", "A5"
- - right:
-   - columns: "B0", "A3", "A2", "A1", "B7", "B5"
-   - rows: "B1", "A4", "A5", "A6", "A7"
-
-**Encoders**
-
-  - Pad_A: A0
-  - Pad_B: A8
-
-**Leds**
-
-| Leds        | Pin |
-| ----------- | --- |
-| NUM_LOCK    | B12 |
-| CAPS_LOCK   | C13 |
-| SCROLL_LOCK | B13 |
-| RBG_DI      | B15 |
-
-- SPLIT_HAND_PIN B9
-= SERIAL_USART_TX_PIN B6
-
-
-#### other builds
-
-these are Seth's builds (u/modularsynth123456/)
-
-![M60 split 5x12 by Seth](pics/5x12s/m60s_4.webp)
-
-![M60 split 5x12 by Seth](pics/5x12s/m60s_3.webp)
-
-![M60 split 5x12 by Seth](pics/5x12s/m60s_1.webp)
-
-![M60 split 5x12 by Seth](pics/5x12s/m60s_2.webp)
+<div class="image-grid" markdown>
+![M60 split by Seth 4](pics/5x12s/m60s_4.webp){ loading=lazy }
+![M60 split by Seth 3](pics/5x12s/m60s_3.webp){ loading=lazy }
+![M60 split by Seth 1](pics/5x12s/m60s_1.webp){ loading=lazy }
+![M60 split by Seth 2](pics/5x12s/m60s_2.webp){ loading=lazy }
+</div>

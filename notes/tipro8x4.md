@@ -1,28 +1,28 @@
-## tipro 8x4
+# Tipro 8×4 — 32-Key POS Keypad Conversion
 
-  ![tipro 32 8x4](pics/tipro/tipro8x4.webp){ loading=lazy }
+<div class="spec-badges">
+  <span class="spec-badge spec-badge--status">Status: Completed</span>
+  <span class="spec-badge">8×4 Ortho (32 Keys)</span>
+  <span class="spec-badge">WeAct STM32G431 CoreBoard</span>
+  <span class="spec-badge">QMK</span>
+</div>
 
-### introduction
+![Tipro 32 8x4 converted](pics/tipro/tipro8x4.webp){ loading=lazy }
 
+## Introduction { #introduction }
 
-### wiring
+A 32-key **Tipro 8×4** mechanical keypad module converted to QMK using a direct-wired **WeAct `STM32G431`** controller board.
 
- ![tipro 32 8x16](pics/tipro/tipro8x4-pcb.webp)
+## Internal Wiring & MCU { #wiring }
 
+![Tipro 32 8x4 internal PCB wiring](pics/tipro/tipro8x4-pcb.webp){ loading=lazy }
 
-### mcu
+* **Microcontroller**: [WeAct `STM32G431` CoreBoard](https://github.com/WeActStudio/WeActStudio.STM32G431CoreBoard) ([AliExpress reference](https://www.aliexpress.com/item/1005005303669884.html))
 
-the mcu is stm32g431 from [weact](https://www.aliexpress.com/item/1005005303669884.html)
+## Firmware { #firmware }
 
+Prebuilt firmware can be downloaded from [GitHub Actions (`qmk_firmware`)](https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml) — navigate to the **build firmware for mlego** workflow, select the latest successful run, and download **`tipro32_default`** from the artifacts list.
 
-### firmware
+## Original Condition { #pictures }
 
-  ready made firmware can be downloaded from [github actiona](https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml)
-naaviate to **build firmware for mlego** and click onthe latest successful workflow and download **tipro32_default** from the list.
-
-
-### pictures
-
-original
-
- ![tipro 32 8x16](pics/tipro/tipro8x4-orig.jpeg)
+![Tipro 32 8x4 original POS module](pics/tipro/tipro8x4-orig.jpeg){ loading=lazy }

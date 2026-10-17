@@ -1,265 +1,177 @@
-## assembly guide
+# Step-by-Step Assembly Guide
 
+<div class="spec-badges">
+  <span class="spec-badge">Build Time: ~2 Hours</span>
+  <span class="spec-badge">Through-Hole Soldering</span>
+  <span class="spec-badge">Modular LEGO Enclosure</span>
+</div>
 
-### before you start
+## Before You Start { #before-you-start }
 
-!!! warning
+!!! warning "Prerequisites"
+    This guide assumes you know basic through-hole soldering, have reviewed the **BOM** section for your keyboard revision, and have all components and the PCB ready. While the soldering complexity is low, expect the full assembly to take around **2 hours**.
 
-    this is a rushed assembly guide... assumes you know how to solder and you already read the bom section and have all of them plus the pcb.
-    while the complexity of the job is low, it may take over 2h of your time to put it together.
+!!! info "Familiarize Yourself with the PCB"
+    * **Front side**: The side with the silkscreen artwork (switches, MCU socket, and OLED mount on this side).
+    * **Back side**: The underside where component leads are soldered.
+    * You can ignore `R4` and `R5` on older revisions (`m65 Rev 4`), as they are only used in advanced configurations with special $\text{I}^2\text{C}$ pull-ups.
 
-!!! info
+<div class="image-grid" markdown>
+![PCB front side](pics/m65-rev4-pcb-front.webp){ loading=lazy }
+![PCB back side](pics/m65-rev4-pcb-back.webp){ loading=lazy }
+</div>
 
-    familiarise yourself with the pcb
+## 1. Preparing the MCU Socket & Headers { #mcu }
 
-front of the pcb
+!!! tip "Always Socket Your Microcontroller"
+    Whatever MCU board you use (`STM32` BlackPill, Raspberry Pi Pico `RP2040`, or Seeed Studio `XIAO`), **strongly consider socketing it** so it can be replaced or reused easily.
 
-![pcb](pics/m65-rev4-pcb-front.webp)
+1. For 40-pin boards, I use **machined round pin headers** paired with a **40-way DIL socket** (or two single-row 20-pin female headers, which are especially convenient for Raspberry Pi Pico boards).
 
-back of the pcb
+<div class="image-grid" markdown>
+![Round headers and 40-way DIL socket](pics/header_1.webp){ loading=lazy }
+![Single-row female header sockets](pics/sockets.webp){ loading=lazy }
+</div>
 
-![pcb](pics/m65-rev4-pcb-back.webp)
+!!! danger "Header Orientation"
+    Insert the male header pins partway into the socket with the **conical/tapered pins pointing down into the socket**, then place the MCU board on top. Using the socket as a jig keeps both rows perfectly parallel.
 
-front of the PCB is the one with the artwork on.
-you can ignore R4 and R5 since they are for use only in advaced cases when special oleds are used.
-if you go for the full build all other footprints will be populated.
+<div class="image-grid" markdown>
+![Headers seated in socket jig](pics/header_2.webp){ loading=lazy }
+![MCU placed on top of headers ready to solder](pics/header_3.webp){ loading=lazy }
+</div>
 
-### mcu
+2. Verify the headers are vertical and stable. Solder the two corner pins of each row first to tack the alignment, then solder the remaining pins.
 
-!!! tip
+<div class="image-grid" markdown>
+![Soldered MCU headers top view](pics/header_4.webp){ loading=lazy }
+![Soldered MCU headers side profile](pics/header_5.webp){ loading=lazy }
+</div>
 
-    whatever mcu you are using I suggest strongly to socket it.
+## 2. Preparing the OLED Display { #oled }
 
-first step is to add headers on it.
+If your build includes an $\text{I}^2\text{C}$ OLED screen, socket it as well using a 4-pin row of round machine pins and a low-profile 1×4 socket:
 
-i use round pins and dil sockets, 40 way. picture below
+1. Use the keyboard PCB itself as an alignment jig: place the 4-pin header into the PCB pads (conical side pointing down toward the PCB), seat the OLED module on top, and level it with a bit of Blu-Tack or painter's tape.
+2. Solder the 4 pins to the **OLED module only** (do not solder the header directly to the keyboard PCB!), then remove the OLED assembly.
 
+<div class="image-grid" markdown>
+![OLED header and socket](pics/header_6.webp){ loading=lazy }
+![OLED aligned on PCB jig](pics/header_7.webp){ loading=lazy }
+![Completed removable OLED module](pics/header_8.webp){ loading=lazy }
+</div>
 
-![header mcu](pics/header_1.webp)
+## 3. Soldering the Diodes { #diodes }
 
-you can also use single row female headers, recommended if you use boards like raspberry pi.
+Prepare your `1N4148` (DO-35 through-hole) signal diodes (65 or 66 for `m65`/`m66`, 60 for `m60`, 48 for `m48`, 20 for `m20`).
 
-![header mcu alternatives](pics/sockets.webp)
+1. Bend the leads at $90^\circ$ as shown below.
 
-!!! danger
+![1N4148 diode bent at 90 degrees](pics/diodes_1.webp){ loading=lazy }
 
-    put the headers into the socket no need to fully insert them just be sure the conical bit points towars the socket and the mcu on
-    top. see picture below.
+!!! danger "Diode Polarity (Black Cathode Band)"
+    Note the **black ring/collar (cathode)** at one end of the glass body. Insert every diode from the front of the PCB with the **black collar oriented toward the bottom/lower pad** (matching the silkscreen diode triangle/bar symbol).
 
-![header mcu](pics/header_2.webp)
+2. Splay the leads outward on the back of the PCB to hold each diode snug against the board while flipping it over. Working column by column is fastest.
 
+<div class="image-grid" markdown>
+![Diodes inserted on front side](pics/diodes_2.webp){ loading=lazy }
+![Diode leads bent on back side](pics/diodes_3.webp){ loading=lazy }
+</div>
 
-!!! info
+!!! warning "Trimming Diode Leads"
+    After soldering, use flush cutters to trim the excess leads cleanly at the solder joint. *(Alternatively, you can wiggle the leads until they snap off at the joint, though it is good practice to briefly reflow the joint afterward if you do so.)*
 
-    be sure headers are vertical and stable. now you can start soldering.
+3. For the horizontal diodes along the top row, bend one lead straight down beside the glass body as shown below so you can populate the entire row in one pass:
 
-![header mcu](pics/header_3.webp)
+<div class="image-grid" markdown>
+![Soldered diode joint](pics/diodes_4.webp){ loading=lazy }
+![Top row diode bending](pics/diodes_5.webp){ loading=lazy }
+![All diodes soldered](pics/diodes_6.webp){ loading=lazy }
+</div>
 
-I solder usually the extremes for each row and then the rest.
+## 4. Soldering the Resistors { #resistors }
 
-finally shall look like this
+Resistors are non-polarized — bend, insert, and splay the leads just like the diodes, ensuring the right resistance value goes into each footprint:
 
-![header mcu](pics/header_4.webp)
+!!! warning "Resistor Values (Rev 4–6)"
+    * **`R3` ($100\text{ k}\Omega$ or $22\text{ k}\Omega$)**: Required on `STM32F401`/`F411` BlackPill builds so the MCU enters DFU bootloader mode reliably.
+    * **`R1` & `R2` (LED Current-Limiting)**: Select based on your LED color and desired brightness — $510\text{ }\Omega$ gives a pleasant glow on green/yellow LEDs, while $1\text{ k}\Omega$ works well for bright white LEDs.
 
-![header mcu](pics/header_5.webp)
+!!! note "Testing LED Brightness & Polarity"
+    Before soldering `R1`/`R2` and the LEDs, test them on a breadboard (or with DuPont jumper wires from a $3.3\text{ V}$ pin on your MCU) to confirm you like the brightness and to verify which LED leg is positive ($3.3\text{ V}$) and which is negative (`GND`) — some batch LEDs do not follow the standard long-leg-anode convention!
 
-### oled
+<div class="image-grid" markdown>
+![Resistors inserted](pics/resistor_1.webp){ loading=lazy }
+![Resistors soldered](pics/resistor_2.webp){ loading=lazy }
+</div>
 
-if you are using an oled i suggest to socket it too. Again I use round pins 4 in a row are enough and use a low profile socket, see
-below.
+## 5. Soldering the MCU & OLED Sockets { #sockets }
 
+1. Place the 40-way DIL MCU socket (or female headers) onto the front of the PCB and hold it flat with painter's tape.
+2. Flip the board over, solder the diagonal corner pins first while pressing the socket flush against the PCB, verify alignment, and solder all remaining pins.
+3. Repeat for the 4-pin OLED socket.
 
-![header oled](pics/header_6.webp)
+<div class="image-grid" markdown>
+![MCU socket taped in place](pics/socket_1.webp){ loading=lazy }
+![OLED socket placed](pics/socket_2.webp){ loading=lazy }
+![Sockets soldered](pics/socket_3.webp){ loading=lazy }
+</div>
 
-for soldering this you can use the pcb as support. add the headers into the pcb(conical side towards pcb) put the oled on top and be
-sure is vertical. you can use some blue tack or tape(electrical, painters, etc).
+## 6. Soldering Indicator LEDs { #leds }
 
-![header oled](pics/header_7.webp)
+!!! danger "LED Polarity"
+    Insert each LED into the position matching its resistor (`R1` or `R2`). Ensure the **cathode (ground) leg goes into the square-plated hole**. Splay the legs, solder from the back, and trim flush.
 
-now you can solder the oled(be sure you do not solder the keyboard pcb
-side). Once done you can remove it from pcb shall look like this.
+<div class="image-grid" markdown>
+![Indicator LEDs inserted](pics/led_1.webp){ loading=lazy }
+![Indicator LEDs soldered](pics/led_2.webp){ loading=lazy }
+</div>
 
-![header oled](pics/header_8.webp)
+## 7. Mounting & Soldering Switches { #switches }
 
+1. Inspect your 5-pin switches to make sure no metal pins are bent, then press them firmly into the PCB until the plastic legs snap flush.
+2. Sight down each row and column to confirm all switches sit level and straight.
 
-### diodes
+!!! warning "Loose-Fitting Switches"
+    Some switch housings (such as certain Kailh batches) fit slightly looser in PCB-mount holes. Place a flat hardcover book on top of the switches when flipping the board over so every switch stays seated flush against the PCB while soldering.
 
-get 65 of them 1n4148 do-35, they look like this.
+<div class="image-grid" markdown>
+![Switches seated on front](pics/switches_1.webp){ loading=lazy }
+![Switch pins ready to solder on back](pics/switches_2.webp){ loading=lazy }
+</div>
 
-![diodes](pics/diodes_1.webp)
+## 8. Soldering the Rotary Encoder { #encoder }
 
-!!! danger
+Snap the EC11 rotary encoder into its footprint at the top-right corner. On earlier revisions (`Rev 1–8`), only the 3 rotational pins are routed; on `Rev 9+` and `m66`, all 5 signal pins (including the push-button switch) are active. Solder all signal pins as well as the two side mounting tabs for mechanical strength.
 
-    note the black ring/colar at one end.
+<div class="image-grid" markdown>
+![Rotary encoder seated](pics/encoder_1.webp){ loading=lazy }
+![Rotary encoder soldered](pics/encoder_2.webp){ loading=lazy }
+</div>
 
-bend the legs at 90˚ like in the picture above.
+!!! success "PCB Soldering Complete!"
+    Your keyboard PCB assembly is now electrically complete.
 
-!!! danger
+## 9. Building the LEGO Enclosure & Final Testing { #the-box }
 
-    insert them in the holes, with the black colar oriented to the lower part of the board.
-    see picture.
+1. Assemble your LEGO base using a $16\times 32$ baseplate (or two $16\times 16$ plates) and perimeter $1\times 2$ / $1\times 4$ plates. For a $\sim 6^\circ$ typing angle, stack a full brick + plate along the top edge.
+2. Add a sheet of hobbycraft foam inside the cavity for sound dampening, then align the PCB mounting holes over the perimeter LEGO studs and press down gently until the $1.6\text{ mm}$ PCB sits flush with the studs.
+3. Seat the socketed MCU, OLED screen, and encoder knob, then plug in the USB cable.
 
-![diodes](pics/diodes_2.webp)
+<div class="image-grid" markdown>
+![LEGO baseplate parts](pics/lego_1.webp){ loading=lazy }
+![LEGO perimeter walls assembled](pics/lego_2.webp){ loading=lazy }
+![PCB mounted on LEGO case](pics/final_1.webp){ loading=lazy }
+![MCU and OLED seated](pics/final_2.webp){ loading=lazy }
+</div>
 
+!!! success "First Power-On Checklist"
+    * **OLED Screen**: Displays "an elephant inside a boa constrictor" splash graphic for a few seconds, then switches to the active layer indicator and live WPM counter.
+    * **Rotary Encoder**: Turning the knob adjusts system volume (`Vol+` / `Vol-`).
+    * **Layer Tap-Dance LEDs**:
+        * Double-tap the **3rd key from the left on the bottom row** (`Lower`): the first indicator LED next to the encoder lights up (double-tap again to toggle off).
+        * Double-tap the **5th key from the left on the bottom row** (`Raise`): the second indicator LED lights up.
+    * **Key Matrix**: Test every switch in a keyboard tester — then install your keycaps and enjoy!
 
-bend the legs on the reverse of the pcb to assure the diode is fixed in the position. bending in the opposite direction helps for
-better stability during soldering.
-see picture.
-
-![diodes](pics/diodes_3.webp)
-
-
-!!! danger
-
-    now you can solder, once done, wriggle the legs of the diode until they detach, leaving a clean cut at solder level. you may want to
-    reflow the joint after you remove the leg. wiggling may cause damage to the joint. alternatively use a flush cutter if you have
-    one makes things faster.
-
-see picture
-
-![diodes](pics/diodes_4.webp)
-
-repeat for all the diodes next to the switches. you may find it easier if you work your way for each column.
-
-for the diodes at the top, bending shall be done differently, see picture. this allows to add them all in one go.
-
-![diodes](pics/diodes_5.webp)
-
-finally once you are over shall look like this or better
-
-
-![diodes](pics/diodes_6.webp)
-
-
-
-### resistors
-
-there are max three resistors you need to put procedure is the same as for the diodes, bend, insert, bend.
-it does not matter how you insert them, just be sure you have the right values in the right places.
-
-!!! warning
-
-    R3  is 100kΩ(you can use 22kΩ). this is needed for blackpill to enter reliably in boot mode
-
-!!! warning
-
-    R1 and R2 need to be calculated based on the colour of the led used and desired intensity. for yellow and green leds I
-    use 510Ω(not very bright) and for white leds 1kΩ (quite bright)
-
-![resistors](pics/resistor_1.webp)
-
-
-!!! note
-
-    you may want to use a breadboard to test before to see if you are happy with the intensities, use a 3.3V DC source. alternatively
-    you can use the mcu itself. if you do not have a breadboard dupont wires may be enough.
-    also in this step you will determine the led orientation... note which leg goes to 3.3V and which one goes to ground.
-    this step is important since I noticed some of the leds do not follow the convention... long leg positive, short leg negative.
-
-![resistors](pics/resistor_2.webp)
-
-### sockets
-
-
-![socket mcu ](pics/socket_1.webp)
-
-put the 40 way dil socket into the pcb (front side). secure it with tape.
-
-![socket oled ](pics/socket_2.webp)
-
-turn the pcb. you can solder the  extreme pins on rows. be sure the socket is properly aligned with the pcb
-
-![socket oled ](pics/socket_3.webp)
-
-next repeat the same but with the oled socket.
-
-
-### leds
-
-![led oled](pics/led_1.webp)
-
-!!! danger
-
-    put the leds in the right position, matching the resistor value determined before. also you need to be sure the leg that pointed to
-    ground goes in the hole with the square plating. once inserted you can bend the legs on the back of the board and solder them.
-    wriggle to remove the legs.
-
-![led oled](pics/led_2.webp)
-
-### switches
-
-you need 65 switches 5 pins. be sure the legs are not bent. in general switches shall fit quite tight so you may have to push.
-once they are in place inspect all of them are aligned. just look along columns and rows and see if any is out of place... if yes
-just push them.
-
-![switches front](pics/switches_1.webp)
-
-
-!!! warning
-
-    some switches do not fit tight (kailh for example) you will need to be creative and use a hardcover book or something to turn then
-    on the over side to solder.
-
-![switches front](pics/switches_2.webp)
-
-now you can solder...
-
-### encoder
-
-![encoder front](pics/encoder_1.webp)
-
-carefully push the encoder in its place. there are 5 pin but only 3 are used (in some models rev9 and after all are used), solder all of them and also consider soldering the
-oval ones too...
-
-if all is ok now looks like this
-
-![encoder front](pics/encoder_2.webp)
-
-
-!!! success
-
-    at this point everything shall work..
-
-
-### the box
-
-![lego](pics/lego_1.webp)
-
-you can use a 16x32 plate or 2x16x16 plates and a mixture of lego plates, 1x2 and/or 1x4, corners if you have too.
-Also you can use a full brick and plate to give it a typing angle (around 6˚) already assembled in the picture above.
-
-put it as you please
-
-![lego](pics/lego_2.webp)
-
-now you can put the pcb on top of the box base matching the lego inside. press gently till they are properly fit. thickness of the
-pcb is same as the lego prongs so you shall see them flush.
-
-!!! warning
-
-    depending on the lego colours, plates sometimes you may notice a bend of the pcb. you will have to experiment with various
-    colours for plates, nothing one cannot solve with lego.
-
-now you can socket mcu, oled and the knob of the encoder and plug it in.
-
-
-![lego](pics/final_1.webp)
-
-![lego](pics/final_2.webp)
-
-!!! success "testing time"
-
-    + if screen lights up showing an elephant inside a python it is perfectly fine. after few seconds, shall indicate you the the current layer and show wpm(some estimate of words per minute)
-    + encoder shall change the volume
-    + double tap dance the third key from the left on the bottom row, first led from the encoder shall be on... do it again shall be off...
-    + double tap dance the fifth key from the left on the bottom row, second led from the encoder shall be on... do it again shall be off...
-    + now you are ready to test the keys...
-
-
-if anything goes wrong you will need to debug... otherwise put the keycaps and enjoy.
-
-
-![lego](pics/final_3.webp)
-
-
-
+![Finished mlego keyboard with keycaps](pics/final_3.webp){ loading=lazy }

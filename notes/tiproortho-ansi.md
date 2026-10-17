@@ -1,31 +1,31 @@
-## tipro ortho ansi
+# Tipro Ortho-ANSI — Hybrid POS Conversion
 
-  ![tipro 128 8x16](pics/tipro/tiproortho-ansi.webp)
+<div class="spec-badges">
+  <span class="spec-badge">Hybrid Ortholinear + ANSI</span>
+  <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+  <span class="spec-badge">QMK</span>
+</div>
 
-### introduction
+![Tipro Ortho-ANSI build](pics/tipro/tiproortho-ansi.webp){ loading=lazy }
 
-this is an ortho ansi combination from tipro that I have converted to use qmk using same pcb as [here](https://mlego.elena.space/tipro8x16/)
+## Introduction { #introduction }
 
-this is in working, page updated once finished.
+A hybrid **ortholinear + ANSI staggered** Tipro point-of-sale keyboard converted to **QMK Firmware** using the shared `hand8x16` daughterboard PCB from the [Tipro 8×16 conversion](tipro8x16.md).
 
+## Internal Wiring { #wiring }
 
-### wiring
+![Tipro Ortho-ANSI bottom wiring](pics/tipro/tipro_orthoansi_bottom.webp){ loading=lazy }
 
-![m128 ortho ansi ](pics/tipro/tipro_orthoansi_bottom.webp)
+## Restoration Progress Gallery { #other-pictures }
 
-### firmware
+=== "1. Original Terminal"
 
-### other pictures
+    ![Tipro Ortho-ANSI original](pics/tipro/tipro-ortho-ansi-original.webp){ loading=lazy }
 
-original
+=== "2. Stripped & Cleaned"
 
-![m128 ortho ansi ](pics/tipro/tipro-ortho-ansi-original.webp)
+    ![Tipro Ortho-ANSI cleaned plate](pics/tipro/tipro-ortho-ansi-v1.webp){ loading=lazy }
 
-cleaned
+=== "3. New Switches Mounted"
 
-![m128 ortho ansi ](pics/tipro/tipro-ortho-ansi-v1.webp)
-
-switches
-
-![m120 ortho ansi](pics/tipro/tipro-ortho-ansi-v2.webp)
-
+    ![Tipro Ortho-ANSI new switches](pics/tipro/tipro-ortho-ansi-v2.webp){ loading=lazy }

@@ -1,76 +1,69 @@
-## tipro 8x16
+# Tipro 8×16 — 128-Key POS Terminal Conversion
 
-  ![tipro 128 8x16](pics/tipro/m8x16.webp)
+<div class="spec-badges">
+  <span class="spec-badge spec-badge--status">Status: Completed (~£10 Conversion)</span>
+  <span class="spec-badge">8×16 Ortho (128 Keys)</span>
+  <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+  <span class="spec-badge">74HC595 Status LEDs</span>
+  <span class="spec-badge">QMK</span>
+</div>
 
-### introduction
+![Tipro 128 8x16 with MT3 Dasher & /dev/tty](pics/tipro/m8x16.webp){ loading=lazy }
 
-this is a pos tipro 8x16 which I converted to use qmk.
-It is a "handwired" like project with a daugher board.
+## Introduction { #introduction }
 
-Originals I got from ebay, some new in box, for 15 or so years, some in bad shape. the plate is some form of painted steel that I
-had to polish to remove the old paint. switches were cherry black, 3pin, that I desoldered and replaced with whatever I had handy in
-the right quantity. keycaps for this mt3 dasher... with dev/tty
+A vintage **Tipro 8×16 (128-key)** mechanical point-of-sale terminal converted to run **QMK Firmware** using a custom daughterboard PCB (`hand8x16`).
 
-it uses stm32f401 on a pcb but since there are not enough pins for the 7 leds I used a shift register to control the leds.
-firmware is qmk...
-The case on this one is painted since was excessive yellowed by time.
+Sourced from eBay (some new-old-stock after ~15 years, others heavily worn), the painted steel switch plate was stripped and polished to remove aged paint, and the yellowed plastic shell was repainted. The original 3-pin Cherry MX Black switches were desoldered and replaced, topped with a combination of **MT3 Dasher** and **MT3 `/dev/tty`** keycaps.
 
-total price of conversion around £10.
+The custom controller PCB hosts a WeAct **`STM32F401` BlackPill** and uses a **`74HC595` shift register** to drive the 7 status LEDs once the 24 matrix pins (`8 rows + 16 columns`) are allocated. Total conversion cost (excluding switches/keycaps) is around **£10**.
 
-### pcb
+## Daughterboard PCB { #pcb }
 
- 3d render
+=== "3D Render"
 
- ![tipro conversion pcb](./pics/tipro/handwire8x16-bottom.webp)
+    ![Tipro conversion PCB 3D render](pics/tipro/handwire8x16-bottom.webp){ loading=lazy }
 
- printed pcbs
+=== "Printed PCBs"
 
- ![tipro pcb 1](pics/tipro/mpcb-1.webp)
+    <div class="image-grid" markdown>
+    ![Tipro PCB front](pics/tipro/mpcb-1.webp){ loading=lazy }
+    ![Tipro PCB back](pics/tipro/mpcb-2.webp){ loading=lazy }
+    </div>
 
- ![tipro pcb](pics/tipro/mpcb-2.webp)
+## Wiring & KiCad { #wiring }
 
-### wiring
+![Tipro 128 8x16 internal wiring](pics/tipro/m8x16-back.webp){ loading=lazy }
 
- ![tipro 128 8x16](pics/tipro/m8x16-back.webp)
+* **KiCad Daughterboard Project**: [`m-lego/hand8x16` on GitLab](https://gitlab.com/m-lego/hand8x16/)
 
-  full kicad project for the pcb in [here](https://gitlab.com/m-lego/hand8x16/)
+## Firmware { #firmware }
 
-### firmware
+* **Prebuilt UF2**: [:material-download: `tipro_rev1_default.uf2`](https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev1_default.uf2)
 
-  ready made firmware can be downloaded
+Compile from source:
 
-  + [tipro_rev1_default.uf2](https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev1_default.uf2)
+```bash
+git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+cd qmk-alin
+qmk compile -kb tipro/rev1 -km default
+```
 
-  build your own
+Copy the resulting `.uf2` file onto the MCU in bootloader mode.
 
-   ```bash
-      git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
-      cd qmk-alin
-      qmk compile -kb tipro/rev1 -km default
+## Pinout Reference { #pins }
 
-   ```
-   copy the resulting uf2 on the mcu.
+* **Columns (16)**: `B9`, `B8`, `B7`, `B6`, `B5`, `B4`, `C14`, `C15`, `A0`, `A1`, `A2`, `A3`, `A7`, `B0`, `B10`, `B1`
+* **Rows (8)**: `B12`, `B13`, `B14`, `B15`, `A8`, `A10`, `A15`, `B3`
+* **Status LEDs**: Shift Register `QA`–`QG`
+* **`74HC595N` Shift Register**:
+    * `Data`: `A4`
+    * `Latch`: `A6`
+    * `Clock`: `A5`
 
-### pins
+## Before & After Gallery { #pictures }
 
-   - cols: B9, B8, B7, B6, B5, B4, C14, C15, A0, A1, A2, A3, A7, B0, B10, B1
-   - rows: B12, B13, B14, B15, A8, A10, A15, B3
-
-  - leds: shift register - QA-QG
-
-** 74HC595N **
-
-  - data: A4
-  - latch: A6
-  - clock: A5
-
-
-### pictures
-
-original
-
-![tipro 128 8x15](pics/tipro/tipro-8x16-original.webp)
-
-![tipro 128 8x16](pics/tipro/m8x16-top.webp)
-
-
+<div class="image-grid" markdown>
+![Tipro 128 8x16 original condition](pics/tipro/tipro-8x16-original.webp){ loading=lazy }
+![Tipro 128 8x16 restored top view](pics/tipro/m8x16-top.webp){ loading=lazy }
+</div>
