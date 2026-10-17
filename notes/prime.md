@@ -25,7 +25,7 @@ Because the fancier **Prime+** shares the same MCU and optical sensor and was al
 
 * **Screwdrivers**: `PH0` (for internal PCB screws) and `TX6` Torx (for external case screws beneath the skates)
 * **SWD Programmer**: `ST-Link v2` (an inexpensive clone from RobotDyn/AliExpress works fine)
-* **Soldering Gear**: Soldering iron, 5-pin $2.54\text{ mm}$ pitch header strip, and 3–4 female-to-female DuPont jumper wires
+* **Soldering Gear**: Soldering iron, 5-pin 2.54 mm pitch header strip, and 3–4 female-to-female DuPont jumper wires
 
 ## Teardown & Preparation { #prep }
 
@@ -33,13 +33,13 @@ Because the fancier **Prime+** shares the same MCU and optical sensor and was al
 2. **Open the Shell**: Unscrew the 4 external case screws using the `TX6` driver.
 3. **Disconnect Ribbon Cable**: Gently separate the top shell and release the internal ribbon cable using its zero-insertion-force latch lever.
 4. **Remove Internal PCB**: Unscrew the 2 main PCB screws plus the 2 additional screws next to the scroll wheel (`PH0`). Lift the PCB out of the lower housing (don't worry if the small plastic alignment prong on the side of the PCB snaps).
-5. **Solder SWD Header**: Clear any factory solder from the 5 through-holes on the SWD header footprint and solder the $2.54\text{ mm}$ pin header in place.
+5. **Solder SWD Header**: Clear any factory solder from the 5 through-holes on the SWD header footprint and solder the 2.54 mm pin header in place.
 
 ## Flashing the UF2 Bootloader { #bootloader }
 
 1. **Wire ST-Link to the Mouse PCB**:
     * If powering the mouse via its USB cable, connect 3 DuPont wires: `GND`, `SWCLK`, and `SWDIO`.
-    * If powering directly from the ST-Link, connect a 4th wire for `VCC` ($3.3\text{ V}$).
+    * If powering directly from the ST-Link, connect a 4th wire for `VCC` (3.3 V).
 2. **Download or Build the Bootloader**:
     * **Prebuilt Binary**: [:material-download: `firmware/uf2boot_prime.bin`](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/uf2boot_prime.bin)
     * **Build from Source**: Clone [`daskygit/uf2-prime-plus`](https://github.com/daskygit/uf2-prime-plus), apply the patch below to rename the USB volume/product labels for the standard Prime, and build target `PRIME_PLUS`:

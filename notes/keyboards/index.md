@@ -44,7 +44,7 @@ A family of custom ortholinear mechanical keyboards and macropads designed in Ki
 
     `2× (5×6) Split` · `Dual STM32F401/411` · `Dual Encoders`
 
-    Ergonomic split 5×12 ortholinear keyboard mounted on two $16\times 16$ LEGO plates, featuring dual rotary encoders and RGB underglow.
+    Ergonomic split 5×12 ortholinear keyboard mounted on two 16×16 LEGO plates, featuring dual rotary encoders and RGB underglow.
 
     [:octicons-arrow-right-24: m60 Split Documentation](../m60_split.md)
 
@@ -80,7 +80,7 @@ A family of custom ortholinear mechanical keyboards and macropads designed in Ki
 
     `2×4 Grid` · `74HC595 + 74HC589` · `E-Ink & OLED`
 
-    Compact 8-key engineering testbed demonstrating full SPI shift-register matrix scanning (`74HC595` + `74HC589`) alongside SPI e-ink, $\text{I}^2\text{C}$ OLED, and a clickable encoder.
+    Compact 8-key engineering testbed demonstrating full SPI shift-register matrix scanning (`74HC595` + `74HC589`) alongside SPI e-ink, I²C OLED, and a clickable encoder.
 
     [:octicons-arrow-right-24: m8 Documentation](../m8.md)
 

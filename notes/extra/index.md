@@ -20,7 +20,7 @@ Practical build guides, hardware design notes, and firmware tutorials covering k
 
     `74HC595` · `74HC165` · `74HC589` · `Matrix Remapping`
 
-    How to drive a 65+ key matrix, rotary encoder, and display from a low-pin-count MCU like the Seeed XIAO RP2040 using SPI shift registers or mathematical matrix restructuring (`5×13` $\to$ `8×9`).
+    How to drive a 65+ key matrix, rotary encoder, and display from a low-pin-count MCU like the Seeed XIAO RP2040 using SPI shift registers or mathematical matrix restructuring (`5×13` → `8×9`).
 
     [:octicons-arrow-right-24: Explore Pin Expansion Techniques](../notenoughpins.md)
 

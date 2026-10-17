@@ -88,10 +88,10 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 
 ## What Makes mlego Keyboards Special?
 
-* **Modular LEGO Case**: PCBs are drilled to official LEGO stud pitch and thickness ($1.6\text{ mm}$), snapping directly onto LEGO plates and bricks for customizable height, tilt angle, and colors.
+* **Modular LEGO Case**: PCBs are drilled to official LEGO stud pitch and thickness (1.6 mm), snapping directly onto LEGO plates and bricks for customizable height, tilt angle, and colors.
 * **Accessible Reference MCUs**: Built around off-the-shelf development boards — `STM32F103` / `GD32F303` BluePill, WeAct `STM32F401`/`F411` BlackPill, `STM32G431`, Raspberry Pi Pico (`RP2040`), Pro Micro `RP2040` (Splinky/Helios), `nice!nano`, and Seeed Studio `XIAO RP2040` / `XIAO nRF52840 BLE`.
 * **Shift-Register Matrix Scanning**: Later revisions pack full 65–66 key matrices + displays + encoders onto tiny 11-pin XIAO controllers using chained `74HC595`, `74HC165`, and buffered `74HC589` SPI shift registers.
-* **Rich Peripherals**: Clickable EC11 rotary encoders, per-key and underglow RGB LEDs, $128\times 32$ $\text{I}^2\text{C}$ OLEDs, WeAct SSD1680 e-ink displays, Sharp Memory displays, and ST7735 IPS LCDs.
+* **Rich Peripherals**: Clickable EC11 rotary encoders, per-key and underglow RGB LEDs, 128×32 I²C OLEDs, WeAct SSD1680 e-ink displays, Sharp Memory displays, and ST7735 IPS LCDs.
 
 ## Keyboard Lineup at a Glance
 
@@ -103,7 +103,7 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 | [**m60 Split**](m60_split.md) | 5×12 Split | 60 | 2× BlackPill STM32F401 / F411 | Dual Encoders, RGB Strip, TRS/JST Split | QMK |
 | [**m48**](m48.md) | 4×12 Ortho | 48 | BlackPill STM32F401 / F411 | Rotary Encoder, RGB Strip | QMK |
 | [**m20**](m20.md) | 5×4 Pad | 20 | RP2040 Pico / WeAct RP2040 | Rotary Encoder, OLED, MX & Choc v2 | QMK |
-| [**m8**](m8.md) | 2×4 Pad | 8 | XIAO RP2040 + Shift Registers | Clickable Encoder, SPI E-Ink & $\text{I}^2\text{C}$ OLED | QMK |
+| [**m8**](m8.md) | 2×4 Pad | 8 | XIAO RP2040 + Shift Registers | Clickable Encoder, SPI E-Ink & I²C OLED | QMK |
 | [**m4**](m4.md) | 2×2 Pad | 4 | XIAO nRF52840 BLE / XIAO RP2040 | Rotary Encoder, OLED, 2× `74HC595` | ZMK & QMK |
 
 ## Builder Tips & LEGO Tolerances
@@ -111,11 +111,11 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 !!! warning "LEGO Dimensional Tolerances"
     PCB mounting holes are drilled to official LEGO stud dimensions. However, both PCB CNC drills and LEGO injection molds have manufacturing tolerances — and **LEGO clutch power varies slightly by plastic color**.
 
-    * Use **$1\times 2$ and $1\times 4$ plates** along the perimeter for the best fit. Longer plates can exert surprising force and slightly bow the PCB.
-    * For the $16\times 32$ double-sided baseplate (or two $16\times 16$ plates), gray compatible baseplates tend to sit flattest without flexing the PCB.
+    * Use **1×2 and 1×4 plates** along the perimeter for the best fit. Longer plates can exert surprising force and slightly bow the PCB.
+    * For the 16×32 double-sided baseplate (or two 16×16 plates), gray compatible baseplates tend to sit flattest without flexing the PCB.
 
 !!! tip "Typing Angle vs. Low-Profile Flat Base"
-    If you prefer a zero-degree flat typing profile, use a single-sided baseplate with one intermediate plate layer (total thickness $\approx 8\text{ mm}$). For a $\sim 6^\circ$ typing angle, stack a full LEGO brick + plate along the rear edge.
+    If you prefer a zero-degree flat typing profile, use a single-sided baseplate with one intermediate plate layer (total thickness ≈ 8 mm). For a ~6° typing angle, stack a full LEGO brick + plate along the rear edge.
 
 !!! tip "Acoustic Foam Dampening"
     Lining the bottom cavity of the LEGO case with inexpensive A4 hobbycraft EVA/neoprene foam sheets makes a dramatic improvement to typing acoustics and eliminates hollow plastic resonance.

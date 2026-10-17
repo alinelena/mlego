@@ -14,7 +14,7 @@
 !!! info "Familiarize Yourself with the PCB"
     * **Front side**: The side with the silkscreen artwork (switches, MCU socket, and OLED mount on this side).
     * **Back side**: The underside where component leads are soldered.
-    * You can ignore `R4` and `R5` on older revisions (`m65 Rev 4`), as they are only used in advanced configurations with special $\text{I}^2\text{C}$ pull-ups.
+    * You can ignore `R4` and `R5` on older revisions (`m65 Rev 4`), as they are only used in advanced configurations with special I²C pull-ups.
 
 <div class="image-grid" markdown>
 ![PCB front side](pics/m65-rev4-pcb-front.webp){ loading=lazy }
@@ -50,7 +50,7 @@
 
 ## 2. Preparing the OLED Display { #oled }
 
-If your build includes an $\text{I}^2\text{C}$ OLED screen, socket it as well using a 4-pin row of round machine pins and a low-profile 1×4 socket:
+If your build includes an I²C OLED screen, socket it as well using a 4-pin row of round machine pins and a low-profile 1×4 socket:
 
 1. Use the keyboard PCB itself as an alignment jig: place the 4-pin header into the PCB pads (conical side pointing down toward the PCB), seat the OLED module on top, and level it with a bit of Blu-Tack or painter's tape.
 2. Solder the 4 pins to the **OLED module only** (do not solder the header directly to the keyboard PCB!), then remove the OLED assembly.
@@ -65,7 +65,7 @@ If your build includes an $\text{I}^2\text{C}$ OLED screen, socket it as well us
 
 Prepare your `1N4148` (DO-35 through-hole) signal diodes (65 or 66 for `m65`/`m66`, 60 for `m60`, 48 for `m48`, 20 for `m20`).
 
-1. Bend the leads at $90^\circ$ as shown below.
+1. Bend the leads at 90° as shown below.
 
 ![1N4148 diode bent at 90 degrees](pics/diodes_1.webp){ loading=lazy }
 
@@ -95,11 +95,11 @@ Prepare your `1N4148` (DO-35 through-hole) signal diodes (65 or 66 for `m65`/`m6
 Resistors are non-polarized — bend, insert, and splay the leads just like the diodes, ensuring the right resistance value goes into each footprint:
 
 !!! warning "Resistor Values (Rev 4–6)"
-    * **`R3` ($100\text{ k}\Omega$ or $22\text{ k}\Omega$)**: Required on `STM32F401`/`F411` BlackPill builds so the MCU enters DFU bootloader mode reliably.
-    * **`R1` & `R2` (LED Current-Limiting)**: Select based on your LED color and desired brightness — $510\text{ }\Omega$ gives a pleasant glow on green/yellow LEDs, while $1\text{ k}\Omega$ works well for bright white LEDs.
+    * **`R3` (100 kΩ or 22 kΩ)**: Required on `STM32F401`/`F411` BlackPill builds so the MCU enters DFU bootloader mode reliably.
+    * **`R1` & `R2` (LED Current-Limiting)**: Select based on your LED color and desired brightness — 510 Ω gives a pleasant glow on green/yellow LEDs, while 1 kΩ works well for bright white LEDs.
 
 !!! note "Testing LED Brightness & Polarity"
-    Before soldering `R1`/`R2` and the LEDs, test them on a breadboard (or with DuPont jumper wires from a $3.3\text{ V}$ pin on your MCU) to confirm you like the brightness and to verify which LED leg is positive ($3.3\text{ V}$) and which is negative (`GND`) — some batch LEDs do not follow the standard long-leg-anode convention!
+    Before soldering `R1`/`R2` and the LEDs, test them on a breadboard (or with DuPont jumper wires from a 3.3 V pin on your MCU) to confirm you like the brightness and to verify which LED leg is positive (3.3 V) and which is negative (`GND`) — some batch LEDs do not follow the standard long-leg-anode convention!
 
 <div class="image-grid" markdown>
 ![Resistors inserted](pics/resistor_1.webp){ loading=lazy }
@@ -155,8 +155,8 @@ Snap the EC11 rotary encoder into its footprint at the top-right corner. On earl
 
 ## 9. Building the LEGO Enclosure & Final Testing { #the-box }
 
-1. Assemble your LEGO base using a $16\times 32$ baseplate (or two $16\times 16$ plates) and perimeter $1\times 2$ / $1\times 4$ plates. For a $\sim 6^\circ$ typing angle, stack a full brick + plate along the top edge.
-2. Add a sheet of hobbycraft foam inside the cavity for sound dampening, then align the PCB mounting holes over the perimeter LEGO studs and press down gently until the $1.6\text{ mm}$ PCB sits flush with the studs.
+1. Assemble your LEGO base using a 16×32 baseplate (or two 16×16 plates) and perimeter 1×2 / 1×4 plates. For a ~6° typing angle, stack a full brick + plate along the top edge.
+2. Add a sheet of hobbycraft foam inside the cavity for sound dampening, then align the PCB mounting holes over the perimeter LEGO studs and press down gently until the 1.6 mm PCB sits flush with the studs.
 3. Seat the socketed MCU, OLED screen, and encoder knob, then plug in the USB cable.
 
 <div class="image-grid" markdown>

@@ -13,7 +13,7 @@
 ![M60 split 5x12 with LEDs](pics/5x12s/m60s-leds.webp){ loading=lazy }
 </div>
 
-An ergonomic **5×12 split ortholinear keyboard** mounted on two $16\times 16$ LEGO baseplates, featuring dual rotary encoders (one per half) and addressable RGB underglow.
+An ergonomic **5×12 split ortholinear keyboard** mounted on two 16×16 LEGO baseplates, featuring dual rotary encoders (one per half) and addressable RGB underglow.
 
 !!! success "Status: Tested All OK"
 
@@ -28,7 +28,7 @@ An ergonomic **5×12 split ortholinear keyboard** mounted on two $16\times 16$ L
 * **Layout**: 5×12 split (two 5×6 halves, 60 keys total)
 * **Controllers**: 2× WeAct [`STM32F401` (Rev 1) or `STM32F411` (Rev 2) BlackPill](https://github.com/WeActTC/MiniSTM32F4x1)
 * **Peripherals**: 1× rotary encoder per half, RGB underglow strip, 4× status LEDs
-* **Interconnect**: Direct 3-wire serial cable via angled 3-pin JST XH $2.54\text{ mm}$ connectors
+* **Interconnect**: Direct 3-wire serial cable via angled 3-pin JST XH 2.54 mm connectors
 * **Firmware**: QMK with TinyUF2 bootloader support
 
 ## Renders & PCBs { #renders }
@@ -56,13 +56,13 @@ An ergonomic **5×12 split ortholinear keyboard** mounted on two $16\times 16$ L
 * 60× 5-pin Cherry MX–compatible switches
 * 2× EC11 rotary encoders
 * **Resistors**:
-    * 3× $4.7\text{ k}\Omega$ (`R1` and `R2` on left half; `R1` on right half)
-    * 2× $100\text{ k}\Omega$ (`R5` on left half; `R4` on right half)
-    * 4× $220\text{ }\Omega$ LED resistors (`R3`, `R4` on left half; `R2`, `R3` on right half — adjust to match LED color/brightness)
+    * 3× 4.7 kΩ (`R1` and `R2` on left half; `R1` on right half)
+    * 2× 100 kΩ (`R5` on left half; `R4` on right half)
+    * 4× 220 Ω LED resistors (`R3`, `R4` on left half; `R2`, `R3` on right half — adjust to match LED color/brightness)
 * 4× status indicator LEDs
-* 2× angled 3-pin JST XH $2.54\text{ mm}$ connectors (plus matching direct, non-crossed interconnect cable)
+* 2× angled 3-pin JST XH 2.54 mm connectors (plus matching direct, non-crossed interconnect cable)
 * Optional: 2× additional 3-pin JST connectors and 3-pin addressable LED strips
-* 2× LEGO $16\times 16$ baseplates and perimeter plates/bricks
+* 2× LEGO 16×16 baseplates and perimeter plates/bricks
 
 ## Case & Assembly { #case }
 

@@ -15,7 +15,7 @@ Before settling on SPI shift registers, I surveyed the existing approaches used 
 
 * **Duplex Matrix**: Folds long rows/columns by wiring two switches per row/column intersection with opposing diodes. Effective, but makes schematic reading and routing more mentally taxing.
 * **Direct-Pin Shift Registers**: Used in boards like [tzarc's Ghoul](https://github.com/tzarc/ghoul) with chained `74HC589` shift registers (one bit per switch, no matrix). Great scan speed, but requires many ICs for 65+ keys.
-* **$\text{I}^2\text{C}$ IO Expanders & Demuxers**: Popular on split boards (e.g., [Ferris IO Expander guide](https://github.com/pierrechevalier83/ferris/wiki/Understanding-the-QMK-firmware-for-the-IO-Expander)) or `74HC138` 3-to-8 decoders in QMK.
+* **I²C IO Expanders & Demuxers**: Popular on split boards (e.g., [Ferris IO Expander guide](https://github.com/pierrechevalier83/ferris/wiki/Understanding-the-QMK-firmware-for-the-IO-Expander)) or `74HC138` 3-to-8 decoders in QMK.
 * **SPI Shift-Register Matrix Scanning**: Using inexpensive `74HC595` (serial-in, parallel-out) and `74HC165` / `74HC589` (parallel-in, serial-out) shift registers to drive columns and/or read rows over hardware SPI.
     * Background tutorials on shift registers: [Last Minute Engineers — `74HC595`](https://lastminuteengineers.com/74hc595-shift-register-arduino-tutorial/) and [DroneBot Workshop — `74HC595` & `74HC165`](https://dronebotworkshop.com/shift-registers/).
     * Initial keyboard inspiration: [mehmedbasic.dk — `74HC595` Keyboard](https://mehmedbasic.dk/post/74hc595-keyboard/).
@@ -80,12 +80,12 @@ Uses separate latch / chip-select lines for the `2× 74HC595` column driver and 
 
 ## Method 3: Mathematical Matrix Restructuring (Zero Extra Hardware) { #restructure-the-matrix }
 
-If you are only short by **1 or 2 GPIO pins**, you don't need any shift registers at all — simply **decouple the electrical matrix dimensions from the physical key layout** so the row and column counts are closer to a square ($\text{Rows} \approx \text{Cols}$ maximizes $\text{Rows} \times \text{Cols}$ for a fixed pin budget $\text{Rows} + \text{Cols}$).
+If you are only short by **1 or 2 GPIO pins**, you don't need any shift registers at all — simply **decouple the electrical matrix dimensions from the physical key layout** so the row and column counts are closer to a square (Rows ≈ Cols maximizes Rows × Cols for a fixed pin budget Rows + Cols).
 
-* **Example 1**: A physical **6×17** board (68 keys) normally requires $6 + 17 = 23\text{ pins}$. Electrically wiring it as a **10×7** or **9×8** matrix reduces the pin count to $17\text{ pins}$ — saving **6 pins**!
+* **Example 1**: A physical **6×17** board (68 keys) normally requires 6 + 17 = 23 pins. Electrically wiring it as a **10×7** or **9×8** matrix reduces the pin count to 17 pins — saving **6 pins**!
 * **Example 2 (`m65` 5×13 Ortho)**:
-    * **Standard 5×13 Matrix**: Uses $5 + 13 = \mathbf{18\text{ pins}}$ (`65` positions).
-    * **Restructured 8×9 Matrix**: Uses $8 + 9 = \mathbf{17\text{ pins}}$ (`72` positions, saving 1 pin with 7 spare switch slots!).
+    * **Standard 5×13 Matrix**: Uses 5 + 13 = **18 pins** (`65` positions).
+    * **Restructured 8×9 Matrix**: Uses 8 + 9 = **17 pins** (`72` positions, saving 1 pin with 7 spare switch slots!).
 
 Both QMK (via data-driven `info.json` `"matrix": [row, col]` coordinates) and ZMK (via `zmk,matrix-transform`) make this remapping trivial:
 

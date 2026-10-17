@@ -21,7 +21,7 @@ If you have read the official QMK guides — [How a Keyboard Matrix Works](https
 
 Adding a `1N4148` signal diode in series with each key switch prevents **ghosting** when multiple keys are pressed simultaneously. Because a diode conducts current in only one direction, there are two valid ways to orient the diodes across your matrix intersections:
 
-| `COL2ROW` (Column $\to$ Row) | `ROW2COL` (Row $\to$ Column) |
+| `COL2ROW` (Column → Row) | `ROW2COL` (Row → Column) |
 | :---: | :---: |
 | ![circuit schematic diode orientation columns to rows](pics/col2row/circuit-col2row.webp){ loading=lazy } | ![circuit schematic diode orientation rows to columns](pics/row2col/circuit-row2col.webp){ loading=lazy } |
 | Diode cathode (black band) points toward the **Row** line | Diode cathode (black band) points toward the **Column** line |
@@ -200,7 +200,7 @@ Once your firmware is tested, you can either [handwire the switches](hand5x5.md)
 
 ### Side-by-Side PCB Comparison (`COL2ROW` vs. `ROW2COL`)
 
-| View | `COL2ROW` (Column $\to$ Row) | `ROW2COL` (Row $\to$ Column) |
+| View | `COL2ROW` (Column → Row) | `ROW2COL` (Row → Column) |
 | :--- | :---: | :---: |
 | **KiCad Routed Tracks** | ![PCB tracks COL2ROW](pics/col2row/pcb-col2row.webp){ loading=lazy } | ![PCB tracks ROW2COL](pics/row2col/pcb-row2col.webp){ loading=lazy } |
 | **3D Render (Front)** | ![PCB 3D front COL2ROW](pics/col2row/pcb-3df-col2row.webp){ loading=lazy } | ![PCB 3D front ROW2COL](pics/row2col/pcb-3df-row2col.webp){ loading=lazy } |
