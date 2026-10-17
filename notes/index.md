@@ -82,7 +82,7 @@ Custom ISO-friendly ortholinear mechanical keyboards, macropads, POS terminal co
 
 ## Motivation & Background
 
-This project started as a fun exploration into building an **ISO-friendly ortholinear keyboard**. Initially conceived as a 6×13 grid, it settled into a **5×13** (and **5×14** with a dedicated rotary encoder column) layout as the sweet spot between compactness and standard ISO keycap compatibility. Read the original story on [Alin's blog](https://alin.elena.space/blog/keeblego/).
+This project started as a fun exploration into building an **ISO-friendly ortholinear keyboard**. Initially conceived as a 6×13 grid, it settled into a **5×13** (and **5×14** with a dedicated rotary encoder column) layout as the sweet spot between compactness and standard ISO keycap compatibility. Read the original story on [Alin's blog](https://alin.elena.re/#post/keeblego).
 
 If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-Tab](https://github.com/Kyrremann/index-tab), [4×13 Nack](https://github.com/farfalleflickan/nack), [mechkey.org](https://mechkey.org/), and [mechdb.net](https://mechdb.net/).
 
