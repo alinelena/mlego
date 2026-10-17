@@ -10,6 +10,8 @@
   --md-accent-fg-color: #0d9488;
   --md-accent-fg-color--transparent: rgba(13, 148, 136, 0.12);
 
+  --md-typeset-a-color: #0f766e;
+
   --mlego-surface: #f8fafc;
   --mlego-surface-elevated: #ffffff;
   --mlego-border: rgba(15, 23, 42, 0.1);
@@ -27,20 +29,27 @@
   --md-default-bg-color: #0d1117;
   --md-default-bg-color--light: #161b22;
   --md-default-bg-color--lighter: #21262d;
-  --md-primary-fg-color: #111827;
-  --md-primary-fg-color--light: #14b8a6;
-  --md-primary-fg-color--dark: #090d16;
+  --md-default-fg-color: #e6edf3;
+  --md-default-fg-color--light: #8b949e;
+  --md-default-fg-color--lighter: #6e7681;
+
+  --md-primary-fg-color: #2dd4bf;
+  --md-primary-fg-color--light: #5eead4;
+  --md-primary-fg-color--dark: #14b8a6;
   --md-accent-fg-color: #2dd4bf;
-  --md-accent-fg-color--transparent: rgba(45, 212, 191, 0.14);
+  --md-accent-fg-color--transparent: rgba(45, 212, 191, 0.15);
+
+  --md-typeset-color: #e6edf3;
+  --md-typeset-a-color: #2dd4bf;
 
   --mlego-surface: #161b22;
   --mlego-surface-elevated: #1c2128;
-  --mlego-border: rgba(240, 246, 252, 0.1);
+  --mlego-border: rgba(240, 246, 252, 0.12);
   --mlego-border-hover: rgba(45, 212, 191, 0.5);
   --mlego-text-muted: #9ca3af;
-  --mlego-badge-bg: rgba(45, 212, 191, 0.1);
+  --mlego-badge-bg: rgba(45, 212, 191, 0.12);
   --mlego-badge-fg: #5eead4;
-  --mlego-badge-border: rgba(45, 212, 191, 0.25);
+  --mlego-badge-border: rgba(45, 212, 191, 0.3);
   --mlego-hero-gradient: linear-gradient(135deg, rgba(20, 184, 166, 0.14) 0%, rgba(17, 24, 39, 0.6) 55%, rgba(132, 204, 22, 0.08) 100%);
   --mlego-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
   --mlego-shadow-hover: 0 14px 32px -4px rgba(0, 0, 0, 0.5), 0 0 16px -2px rgba(45, 212, 191, 0.15);
@@ -54,6 +63,50 @@
 
 .md-tabs {
   border-bottom: 1px solid var(--mlego-border);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #161b22;
+  color: #f0f6fc;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #161b22;
+  color: #f0f6fc;
+}
+
+/* Link Visibility & High Contrast in Dark Mode */
+.md-typeset a {
+  color: var(--md-typeset-a-color);
+  word-break: break-word;
+  transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+
+.md-typeset a:hover {
+  color: var(--md-accent-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset a {
+  color: #2dd4bf;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:visited {
+  color: #2dd4bf;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+  color: #5eead4;
+  text-decoration: underline;
+}
+
+/* Active navigation links in sidebar & TOC */
+[data-md-color-scheme="slate"] .md-nav__link--active {
+  color: #2dd4bf;
+  font-weight: 600;
+}
+
+[data-md-color-scheme="slate"] .md-nav__link:hover {
+  color: #5eead4;
 }
 
 /* Typography & Headings */
@@ -128,6 +181,19 @@
   font-weight: 600;
   font-size: 0.8rem;
   padding: 0.55em 1.25em;
+  transition: all 0.15s ease;
+}
+
+[data-md-color-scheme="slate"] .mlego-hero .md-button:not(.md-button--primary) {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f0f6fc;
+}
+
+[data-md-color-scheme="slate"] .mlego-hero .md-button:not(.md-button--primary):hover {
+  background-color: rgba(45, 212, 191, 0.15);
+  border-color: #2dd4bf;
+  color: #2dd4bf;
 }
 
 /* Hardware Spec Badges */
@@ -176,6 +242,20 @@
   transform: translateY(-2px);
   box-shadow: var(--mlego-shadow-hover);
   border-color: var(--mlego-border-hover);
+}
+
+.md-typeset .grid.cards a {
+  color: var(--md-typeset-a-color);
+  font-weight: 600;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a {
+  color: #2dd4bf;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards a:hover {
+  color: #5eead4;
+  text-decoration: underline;
 }
 
 .md-typeset .grid.cards > ul > li img {
@@ -255,4 +335,3 @@
 .md-typeset pre > code {
   border-radius: 0.5rem;
 }
-
