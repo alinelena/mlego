@@ -1,6 +1,5 @@
 title: mlego
-description: Modular LEGO-mounted ortholinear mechanical keyboards, QMK/ZMK firmware,
-  POS conversions, and hardware build notes
+description: Modular LEGO-mounted ortholinear mechanical keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes
 author: Alin M. Elena
 base_url: https://mlego.elena.re
 logo: pics/mlego.webp
@@ -8,80 +7,80 @@ logo_webp: pics/mlego.webp
 favicon: pics/mlego.webp
 banner:
   enable: true
-  bg_image_webp: images/backgrounds/exterior-stone-wall.webp
-  bg_image: images/backgrounds/exterior-stone-wall.jpg
+  bg_image_webp: pics/keybs.webp
+  bg_image: pics/keybs.webp
   title: mlego notes
   subtitle: Modular LEGO Ortholinear Keyboards • Hardware & QMK/ZMK Firmware
 menu:
-- name: Home
-  url: '#hero'
-  icon: bi-house-door
-  color: '#57cbcc'
-- name: About
-  url: '#about'
-  icon: bi-info-circle
-  color: '#2dd4bf'
-- name: Keyboards
-  url: '#keyboards'
-  icon: bi-keyboard
-  color: '#6cb670'
-- name: Converted
-  url: '#converted'
-  icon: bi-cpu
-  color: '#fbbf24'
-- name: Mice
-  url: '#mice'
-  icon: bi-mouse
-  color: '#818cf8'
-- name: Guides
-  url: '#guides'
-  icon: bi-journal-code
-  color: '#f472b6'
-- name: Specs
-  url: '#specs'
-  icon: bi-table
-  color: '#fb923c'
-- name: Classic Site
-  url: classic/
-  icon: bi-journal-text
-  color: '#38bdf8'
+  - name: Home
+    url: '#hero'
+    icon: bi-house-door
+    color: '#57cbcc'
+  - name: About
+    url: '#about'
+    icon: bi-info-circle
+    color: '#2dd4bf'
+  - name: Keyboards
+    url: '#keyboards'
+    icon: bi-keyboard
+    color: '#6cb670'
+  - name: Converted
+    url: '#converted'
+    icon: bi-cpu
+    color: '#fbbf24'
+  - name: Mice
+    url: '#mice'
+    icon: bi-mouse
+    color: '#818cf8'
+  - name: Guides
+    url: '#guides'
+    icon: bi-journal-code
+    color: '#f472b6'
+  - name: Specs
+    url: '#specs'
+    icon: bi-table
+    color: '#fb923c'
+  - name: Classic Site
+    url: classic/
+    icon: bi-journal-text
+    color: '#38bdf8'
 dividers:
   after_hero:
-    bg_image_webp: images/backgrounds/old-brick-wall.webp
-    bg_image: images/backgrounds/old-brick-wall.jpg
+    bg_image_webp: pics/m65-dasher.webp
+    bg_image: pics/m65-dasher.webp
   after_about:
-    bg_image_webp: images/backgrounds/old-brick-wall.webp
-    bg_image: images/backgrounds/old-brick-wall.jpg
+    bg_image_webp: pics/m65-dasher.webp
+    bg_image: pics/m65-dasher.webp
   after_keyboards:
-    bg_image_webp: images/backgrounds/stone-wall.webp
-    bg_image: images/backgrounds/stone-wall.jpg
+    bg_image_webp: pics/5x12s/m60_split.webp
+    bg_image: pics/5x12s/m60_split.webp
   after_converted:
-    bg_image_webp: images/backgrounds/old-wall.webp
-    bg_image: images/backgrounds/old-wall.jpg
+    bg_image_webp: pics/converted-all.webp
+    bg_image: pics/converted-all.webp
   after_mice:
-    bg_image_webp: images/backgrounds/stone-wall-2.webp
-    bg_image: images/backgrounds/stone-wall-2.jpg
+    bg_image_webp: pics/mlego_m65_rev11_eink.webp
+    bg_image: pics/mlego_m65_rev11_eink.webp
   after_guides:
-    bg_image_webp: images/backgrounds/stones.webp
-    bg_image: images/backgrounds/stones.jpg
+    bg_image_webp: pics/final_3.webp
+    bg_image: pics/final_3.webp
   after_specs:
-    bg_image_webp: images/backgrounds/brick-wall-2.webp
-    bg_image: images/backgrounds/brick-wall-2.jpg
+    bg_image_webp: pics/final_3.webp
+    bg_image: pics/final_3.webp
 social:
-- name: GitLab
-  icon: bi-git
-  url: https://gitlab.com/m-lego
-  color: '#fc6d26'
-- name: GitHub
-  icon: bi-github
-  url: https://github.com/alinelena
-  color: '#c9d1d9'
-- name: Website
-  icon: bi-globe
-  url: https://alin.elena.re
-  color: '#57cbcc'
-- name: DDMMS
-  icon: bi-building
-  url: https://ddmms.elena.re
-  color: '#48b2b3'
+  - name: GitLab
+    icon: bi-git
+    url: https://gitlab.com/m-lego
+    color: '#fc6d26'
+  - name: GitHub
+    icon: bi-github
+    url: https://github.com/alinelena
+    color: '#c9d1d9'
+  - name: Website
+    icon: bi-globe
+    url: https://alin.elena.re
+    color: '#57cbcc'
+  - name: DDMMS
+    icon: bi-building
+    url: https://ddmms.elena.re
+    color: '#48b2b3'
 copyright: Copyright © 2017–2026 Alin M. Elena. All rights reserved.

@@ -112,6 +112,7 @@ def main():
     guides_data = yaml.safe_load((DATA_DIR / "guides.yml").read_text(encoding="utf-8"))
     specs_data = yaml.safe_load((DATA_DIR / "specs.yml").read_text(encoding="utf-8"))
     about_data = yaml.safe_load((DATA_DIR / "about.yml").read_text(encoding="utf-8"))
+    site_data = yaml.safe_load((DATA_DIR / "site.yml").read_text(encoding="utf-8"))
 
     # 1. Render Landing Page
     index_tpl = env.get_template("index.html")
@@ -120,6 +121,7 @@ def main():
         description="Custom ISO-friendly ortholinear mechanical keyboards, macropads, vintage POS terminal conversions, and QMK/ZMK firmware — all mounted in modular LEGO cases.",
         active_page="home",
         active_group="home",
+        site=site_data,
         about=about_data,
         keyboards=keyboards_data,
         converted=converted_data,
