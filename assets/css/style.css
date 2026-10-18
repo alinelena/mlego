@@ -197,6 +197,9 @@ a:hover {
 }
 
 .corner-theme-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
   margin-top: 0.65rem;
   width: clamp(260px, 85vw, 300px);
   background: rgba(18, 23, 30, 0.96);
@@ -208,14 +211,17 @@ a:hover {
   box-shadow: var(--shadow-lg);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transform: translateY(-10px) scale(0.97);
   transform-origin: top right;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1065;
 }
 
 .corner-theme-panel.show {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: translateY(0) scale(1);
 }
 
@@ -389,6 +395,9 @@ a:hover {
 }
 
 .corner-menu-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
   margin-top: 0.65rem;
   width: clamp(310px, 92vw, 360px);
   max-width: calc(100vw - 2.5rem);
@@ -403,14 +412,17 @@ a:hover {
   box-shadow: var(--shadow-lg);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transform: translateY(-10px) scale(0.97);
   transform-origin: top right;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1065;
 }
 
 .corner-menu-panel.show {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: translateY(0) scale(1);
 }
 
