@@ -1,17 +1,17 @@
 enable: true
 title: Project Overview
-subtitle: Fun, modular, open-source electronics & mechanical keyboard playground
+subtitle: Fun, modular, functional, open-source electronics & mechanical keyboard playground
 file: index.md
 stats:
   - label: Keyboards Designed
     count: "8"
     icon: bi-keyboard
     color: "#57cbcc"
-  - label: m65 Hardware Revisions
-    count: "11"
+  - label: m65/m66 Hardware Revisions
+    count: "14"
     icon: bi-clock-history
     color: "#6cb670"
-  - label: POS Terminals Converted
+  - label: POS Terminals Conversions
     count: "5"
     icon: bi-cpu
     color: "#fbbf24"

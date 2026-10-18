@@ -34,7 +34,7 @@ Custom ISO-friendly ortholinear mechanical keyboards, macropads, POS terminal co
 
 </div>
 
-## Explore the Collection
+## Explore
 
 <div class="grid cards" markdown>
 
@@ -93,7 +93,7 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 * **Shift-Register Matrix Scanning**: Later revisions pack full 65–66 key matrices + displays + encoders onto tiny 11-pin XIAO controllers using chained `74HC595`, `74HC165`, and buffered `74HC589` SPI shift registers.
 * **Rich Peripherals**: Clickable EC11 rotary encoders, per-key and underglow RGB LEDs, 128×32 I²C OLEDs, WeAct SSD1680 e-ink displays, Sharp Memory displays, and ST7735 IPS LCDs.
 
-## Builder Tips & LEGO Tolerances
+## Builder Tips
 
 !!! warning "LEGO Dimensional Tolerances"
     PCB mounting holes are drilled to official LEGO stud dimensions. However, both PCB CNC drills and LEGO injection molds have manufacturing tolerances — and **LEGO clutch power varies slightly by plastic color**.
@@ -107,7 +107,7 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 !!! tip "Acoustic Foam Dampening"
     Lining the bottom cavity of the LEGO case with inexpensive A4 hobbycraft EVA/neoprene foam sheets makes a dramatic improvement to typing acoustics and eliminates hollow plastic resonance.
 
-## Keyboard Lineup at a Glance
+## Keyboards Summary
 
 | Model | Layout | Keys | MCU Platform | Peripherals | Firmware |
 | :--- | :--- | :--- | :--- | :--- | :--- |
