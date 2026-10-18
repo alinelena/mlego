@@ -22,6 +22,16 @@
 
   <!-- Custom Dark Theme Styles matching alin.elena.re -->
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Theme Initializer (prevents flash of default theme) -->
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem("mlego-theme") || "default";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } catch (e) {}
+    })();
+  </script>
   {% block extra_head %}{% endblock %}
 </head>
 <body>

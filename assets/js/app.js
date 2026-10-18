@@ -4,6 +4,7 @@
   "use strict";
 
   document.addEventListener("DOMContentLoaded", () => {
+    setupThemeSwitcher();
     setupFloatingMenu();
     setupParallax();
     setupScrollReveal();
@@ -13,11 +14,98 @@
   });
 
   /* ==========================================================================
+     Color Theme Switcher
+     ========================================================================== */
+  function setupThemeSwitcher() {
+    const themeToggleBtn = document.getElementById("corner-theme-toggle");
+    const themePanel = document.getElementById("corner-theme-panel");
+    const menuToggleBtn = document.getElementById("corner-menu-toggle");
+    const menuPanel = document.getElementById("corner-menu-panel");
+    const themeActiveBadge = document.getElementById("theme-active-name");
+
+    const themeNames = {
+      default: "Cyber Cyan",
+      nord: "Nord Frost",
+      dracula: "Dracula",
+      monokai: "Monokai Pro",
+      gruvbox: "Gruvbox Retro",
+      catppuccin: "Catppuccin",
+      solarized: "Solarized",
+    };
+
+    function applyTheme(themeId) {
+      if (!themeNames[themeId]) themeId = "default";
+      document.documentElement.setAttribute("data-theme", themeId);
+      try {
+        localStorage.setItem("mlego-theme", themeId);
+      } catch (e) {}
+
+      if (themeActiveBadge) {
+        themeActiveBadge.textContent = themeNames[themeId];
+      }
+
+      // Update active states on all theme buttons (both in popup and menu)
+      document.querySelectorAll(".theme-option-btn, .theme-swatch-pill").forEach((btn) => {
+        const id = btn.getAttribute("data-theme-id");
+        btn.classList.toggle("active", id === themeId);
+      });
+    }
+
+    // Initialize from storage or attribute
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "default";
+    applyTheme(currentTheme);
+
+    // Toggle theme panel
+    if (themeToggleBtn && themePanel) {
+      themeToggleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = themeToggleBtn.getAttribute("aria-expanded") === "true";
+        themeToggleBtn.setAttribute("aria-expanded", !expanded);
+        themePanel.classList.toggle("show", !expanded);
+
+        // Close menu panel if open
+        if (menuPanel && menuToggleBtn) {
+          menuToggleBtn.setAttribute("aria-expanded", "false");
+          menuPanel.classList.remove("show");
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!themePanel.contains(e.target) && !themeToggleBtn.contains(e.target)) {
+          themeToggleBtn.setAttribute("aria-expanded", "false");
+          themePanel.classList.remove("show");
+        }
+      });
+    }
+
+    // Close theme panel if menu is opened
+    if (menuToggleBtn && themePanel && themeToggleBtn) {
+      menuToggleBtn.addEventListener("click", () => {
+        themeToggleBtn.setAttribute("aria-expanded", "false");
+        themePanel.classList.remove("show");
+      });
+    }
+
+    // Click handler for all theme option buttons
+    document.querySelectorAll(".theme-option-btn, .theme-swatch-pill").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const themeId = btn.getAttribute("data-theme-id");
+        if (themeId) {
+          applyTheme(themeId);
+        }
+      });
+    });
+  }
+
+  /* ==========================================================================
      Floating Corner Navigation Menu
      ========================================================================== */
   function setupFloatingMenu() {
     const toggleBtn = document.getElementById("corner-menu-toggle");
     const panel = document.getElementById("corner-menu-panel");
+    const themeToggleBtn = document.getElementById("corner-theme-toggle");
+    const themePanel = document.getElementById("corner-theme-panel");
 
     if (!toggleBtn || !panel) return;
 
@@ -26,6 +114,12 @@
       const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
       toggleBtn.setAttribute("aria-expanded", !expanded);
       panel.classList.toggle("show", !expanded);
+
+      // Close theme panel if open
+      if (themePanel && themeToggleBtn) {
+        themeToggleBtn.setAttribute("aria-expanded", "false");
+        themePanel.classList.remove("show");
+      }
     });
 
     document.addEventListener("click", (e) => {
