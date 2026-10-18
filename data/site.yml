@@ -76,7 +76,8 @@ social:
     url: https://github.com/alinelena
     color: '#c9d1d9'
   - name: Website
-    icon: bi-globe
+    icon: pics/alin.webp
+    image: pics/alin.webp
     url: https://alin.elena.re
     color: '#57cbcc'
   - name: DDMMS
