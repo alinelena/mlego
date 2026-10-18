@@ -20,18 +20,6 @@
 
   <main class="py-5">
     <div class="container">
-      <div class="row g-4 mb-5">
-        {% for s in about.stats %}
-        <div class="col-6 col-lg-3">
-          <div class="stat-card">
-            <i class="bi {{ s.icon }} stat-icon" style="color: {{ s.color }};"></i>
-            <div class="stat-count">{{ s.count }}</div>
-            <div class="stat-label">{{ s.label }}</div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
       <div class="surface-card p-4 p-md-5">
         <div class="modal-article-body">
           {{ html_content|safe }}

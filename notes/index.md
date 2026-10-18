@@ -93,19 +93,6 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 * **Shift-Register Matrix Scanning**: Later revisions pack full 65–66 key matrices + displays + encoders onto tiny 11-pin XIAO controllers using chained `74HC595`, `74HC165`, and buffered `74HC589` SPI shift registers.
 * **Rich Peripherals**: Clickable EC11 rotary encoders, per-key and underglow RGB LEDs, 128×32 I²C OLEDs, WeAct SSD1680 e-ink displays, Sharp Memory displays, and ST7735 IPS LCDs.
 
-## Keyboard Lineup at a Glance
-
-| Model | Layout | Keys | MCU Platform | Peripherals | Firmware |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| [**m66**](m66.md) | 5×14 Ortho | 66 | Pro Micro RP2040 / nice!nano / XIAO | Clickable Encoder, Per-Key RGB, OLED / E-Ink / Sharp / LCD | QMK & ZMK |
-| [**m65**](m65.md) | 5×13 Ortho | 65–66 | XIAO RP2040 / BLE, Pico, BlackPill | Rotary Encoder, OLED / E-Ink, RGB Strip | QMK & ZMK |
-| [**m60**](m60.md) | 5×12 Ortho | 60 | BlackPill STM32F401 / RP2040 Pico | Rotary Encoder, OLED (Rev 2), RGB Strip | QMK |
-| [**m60 Split**](m60_split.md) | 5×12 Split | 60 | 2× BlackPill STM32F401 / F411 | Dual Encoders, RGB Strip, TRS/JST Split | QMK |
-| [**m48**](m48.md) | 4×12 Ortho | 48 | BlackPill STM32F401 / F411 | Rotary Encoder, RGB Strip | QMK |
-| [**m20**](m20.md) | 5×4 Pad | 20 | RP2040 Pico / WeAct RP2040 | Rotary Encoder, OLED, MX & Choc v2 | QMK |
-| [**m8**](m8.md) | 2×4 Pad | 8 | XIAO RP2040 + Shift Registers | Clickable Encoder, SPI E-Ink & I²C OLED | QMK |
-| [**m4**](m4.md) | 2×2 Pad | 4 | XIAO nRF52840 BLE / XIAO RP2040 | Rotary Encoder, OLED, 2× `74HC595` | ZMK & QMK |
-
 ## Builder Tips & LEGO Tolerances
 
 !!! warning "LEGO Dimensional Tolerances"
@@ -119,3 +106,17 @@ If you are exploring similar ortholinear ecosystems, check out the [6×13 Index-
 
 !!! tip "Acoustic Foam Dampening"
     Lining the bottom cavity of the LEGO case with inexpensive A4 hobbycraft EVA/neoprene foam sheets makes a dramatic improvement to typing acoustics and eliminates hollow plastic resonance.
+
+## Keyboard Lineup at a Glance
+
+| Model | Layout | Keys | MCU Platform | Peripherals | Firmware |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| [**m66**](m66.md) | 5×14 Ortho | 66 | Pro Micro RP2040 / nice!nano / XIAO | Clickable Encoder, Per-Key RGB, OLED / E-Ink / Sharp / LCD | QMK & ZMK |
+| [**m65**](m65.md) | 5×13 Ortho | 65–66 | XIAO RP2040 / BLE, Pico, BlackPill | Rotary Encoder, OLED / E-Ink, RGB Strip | QMK & ZMK |
+| [**m60**](m60.md) | 5×12 Ortho | 60 | BlackPill STM32F401 / RP2040 Pico | Rotary Encoder, OLED (Rev 2), RGB Strip | QMK |
+| [**m60 Split**](m60_split.md) | 5×12 Split | 60 | 2× BlackPill STM32F401 / F411 | Dual Encoders, RGB Strip, TRS/JST Split | QMK |
+| [**m48**](m48.md) | 4×12 Ortho | 48 | BlackPill STM32F401 / F411 | Rotary Encoder, RGB Strip | QMK |
+| [**m20**](m20.md) | 5×4 Pad | 20 | RP2040 Pico / WeAct RP2040 | Rotary Encoder, OLED, MX & Choc v2 | QMK |
+| [**m8**](m8.md) | 2×4 Pad | 8 | XIAO RP2040 + Shift Registers | Clickable Encoder, SPI E-Ink & I²C OLED | QMK |
+| [**m4**](m4.md) | 2×2 Pad | 4 | XIAO nRF52840 BLE / XIAO RP2040 | Rotary Encoder, OLED, 2× `74HC595` | ZMK & QMK |
+
