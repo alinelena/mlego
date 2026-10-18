@@ -18,8 +18,8 @@ A modern, responsive showcase and documentation site for **mlego**, styled to ma
   - Categorized grids for Designed Keyboards (m66, m65, m60, m60 Split, m48, m20, m8, m4), Converted POS Terminals (Tipro 8×16, 8×12, 8×4, ANSI-Ortho, Ortho-ANSI), Liberated Mice (SteelSeries Prime), and Hardware Guides.
   - Real-time search and category filtering.
   - Side-by-side hardware comparison specification matrix.
-- **Zero-Dependency & Offline Ready**:
-  - Pre-bundled data in `assets/js/content-data.js` allows browsing locally via `file://` or any static HTTP server with zero CORS restrictions.
+- **Modular YAML Data Architecture**:
+  - All site data and articles are organized into modular YAML files per section in `newsite/data/` (`site.yml`, `about.yml`, `keyboards.yml`, `converted.yml`, `mice.yml`, `guides.yml`, `specs.yml`), mirroring the architecture of `alin.elena.re` (`eu.git`).
 
 ## Local Preview
 

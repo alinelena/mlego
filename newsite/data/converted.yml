@@ -1,0 +1,280 @@
+enable: true
+title: Vintage POS Conversions
+subtitle: Rescued mechanical Tipro terminals restored and converted to QMK firmware
+items:
+- id: tipro8x16
+  title: Tipro 8×16 (128-Key)
+  category: converted
+  badge: 8×16 POS
+  keys: '128'
+  mcu: STM32F401 + 74HC595
+  firmware: QMK
+  image: pics/tipro/m8x16.webp
+  summary: Restored 128-key vintage mechanical terminal with polished steel plate,
+    custom daughterboard, 7 status LEDs, and MT3 Dasher keycaps.
+  content: |
+    # Tipro 8×16 — 128-Key POS Terminal Conversion
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Completed (~£10 Conversion)</span>
+      <span class="spec-badge">8×16 Ortho (128 Keys)</span>
+      <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+      <span class="spec-badge">74HC595 Status LEDs</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    ![Tipro 128 8x16 with MT3 Dasher & /dev/tty](pics/tipro/m8x16.webp){ loading=lazy }
+
+    ## Introduction { #introduction }
+
+    A vintage **Tipro 8×16 (128-key)** mechanical point-of-sale terminal converted to run **QMK Firmware** using a custom daughterboard PCB (`hand8x16`).
+
+    Sourced from eBay (some new-old-stock after ~15 years, others heavily worn), the painted steel switch plate was stripped and polished to remove aged paint, and the yellowed plastic shell was repainted. The original 3-pin Cherry MX Black switches were desoldered and replaced, topped with a combination of **MT3 Dasher** and **MT3 `/dev/tty`** keycaps.
+
+    The custom controller PCB hosts a WeAct **`STM32F401` BlackPill** and uses a **`74HC595` shift register** to drive the 7 status LEDs once the 24 matrix pins (`8 rows + 16 columns`) are allocated. Total conversion cost (excluding switches/keycaps) is around **£10**.
+
+    ## Daughterboard PCB { #pcb }
+
+    === "3D Render"
+
+        ![Tipro conversion PCB 3D render](pics/tipro/handwire8x16-bottom.webp){ loading=lazy }
+
+    === "Printed PCBs"
+
+        <div class="image-grid" markdown>
+        ![Tipro PCB front](pics/tipro/mpcb-1.webp){ loading=lazy }
+        ![Tipro PCB back](pics/tipro/mpcb-2.webp){ loading=lazy }
+        </div>
+
+    ## Wiring & KiCad { #wiring }
+
+    ![Tipro 128 8x16 internal wiring](pics/tipro/m8x16-back.webp){ loading=lazy }
+
+    * **KiCad Daughterboard Project**: [`m-lego/hand8x16` on GitLab](https://gitlab.com/m-lego/hand8x16/)
+
+    ## Firmware { #firmware }
+
+    * **Prebuilt UF2**: [ `tipro_rev1_default.uf2`](https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev1_default.uf2)
+
+    Compile from source:
+
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb tipro/rev1 -km default
+    ```
+
+    Copy the resulting `.uf2` file onto the MCU in bootloader mode.
+
+    ## Pinout Reference { #pins }
+
+    * **Columns (16)**: `B9`, `B8`, `B7`, `B6`, `B5`, `B4`, `C14`, `C15`, `A0`, `A1`, `A2`, `A3`, `A7`, `B0`, `B10`, `B1`
+    * **Rows (8)**: `B12`, `B13`, `B14`, `B15`, `A8`, `A10`, `A15`, `B3`
+    * **Status LEDs**: Shift Register `QA`–`QG`
+    * **`74HC595N` Shift Register**:
+        * `Data`: `A4`
+        * `Latch`: `A6`
+        * `Clock`: `A5`
+
+    ## Before & After Gallery { #pictures }
+
+    <div class="image-grid" markdown>
+    ![Tipro 128 8x16 original condition](pics/tipro/tipro-8x16-original.webp){ loading=lazy }
+    ![Tipro 128 8x16 restored top view](pics/tipro/m8x16-top.webp){ loading=lazy }
+    </div>
+- id: tipro8x12
+  title: Tipro 8×12 (96-Key)
+  category: converted
+  badge: 8×12 POS
+  keys: '96'
+  mcu: STM32F401 + 74HC595
+  firmware: QMK
+  image: pics/tipro/m8x12-final.webp
+  summary: Compact 96-key POS terminal converted to QMK using the shared hand8x16
+    daughterboard and shift register.
+  content: |
+    # Tipro 8×12 — 96-Key POS Terminal Conversion
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Completed</span>
+      <span class="spec-badge">8×12 Ortho (96 Keys)</span>
+      <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+      <span class="spec-badge">74HC595 Status LEDs</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    ![Tipro 96 8x12 final build](pics/tipro/m8x12-final.webp){ loading=lazy }
+
+    ## Introduction { #introduction }
+
+    A compact **96-key (8×12)** Tipro mechanical point-of-sale terminal converted to run **QMK Firmware**.
+
+    ## Daughterboard PCB { #pcb }
+
+    Uses the same custom `STM32F401` + `74HC595` daughterboard PCB designed for the [Tipro 8×16 conversion](tipro8x16.md#pcb).
+
+    ## Firmware { #firmware }
+
+    * **Prebuilt UF2**: [ `tipro_rev2_default_96.uf2`](https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev2_default_96.uf2)
+
+    Compile from source:
+
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb tipro/rev2 -km default_96
+    ```
+
+    Copy the resulting `.uf2` file onto the MCU in bootloader mode.
+
+    ## Pinout Reference { #pins }
+
+    * **Columns**: `B9`, `B8`, `B7`, `B6`, `B5`, `B4`, `C14`, `C15`, `A0`, `A1`, `A2`, `A3`, `A7`, `B0`, `B10`, `B1`
+    * **Rows**: `B12`, `B13`, `B14`, `B15`, `A8`, `A10`, `A15`, `B3`
+    * **Status LEDs**: Shift Register `QA`–`QG`
+    * **`74HC595N` Shift Register**:
+        * `Data`: `A4`
+        * `Latch`: `A6`
+        * `Clock`: `A5`
+
+    ## Before & Inside Gallery { #pictures }
+
+    <div class="image-grid" markdown>
+    ![Tipro 96 8x12 original](pics/tipro/m8x12-orig.webp){ loading=lazy }
+    ![Tipro 96 8x12 internal conversion wiring](pics/tipro/m8x12-inside.webp){ loading=lazy }
+    </div>
+- id: tipro8x4
+  title: Tipro 8×4 (32-Key)
+  category: converted
+  badge: 8×4 POS
+  keys: '32'
+  mcu: WeAct STM32G431
+  firmware: QMK
+  image: pics/tipro/tipro8x4.webp
+  summary: 32-key Tipro POS macropad module powered by a high-performance STM32G431
+    microcontroller.
+  content: |
+    # Tipro 8×4 — 32-Key POS Keypad Conversion
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Completed</span>
+      <span class="spec-badge">8×4 Ortho (32 Keys)</span>
+      <span class="spec-badge">WeAct STM32G431 CoreBoard</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    ![Tipro 32 8x4 converted](pics/tipro/tipro8x4.webp){ loading=lazy }
+
+    ## Introduction { #introduction }
+
+    A 32-key **Tipro 8×4** mechanical keypad module converted to QMK using a direct-wired **WeAct `STM32G431`** controller board.
+
+    ## Internal Wiring & MCU { #wiring }
+
+    ![Tipro 32 8x4 internal PCB wiring](pics/tipro/tipro8x4-pcb.webp){ loading=lazy }
+
+    * **Microcontroller**: [WeAct `STM32G431` CoreBoard](https://github.com/WeActStudio/WeActStudio.STM32G431CoreBoard) ([AliExpress reference](https://www.aliexpress.com/item/1005005303669884.html))
+
+    ## Firmware { #firmware }
+
+    Prebuilt firmware can be downloaded from [GitHub Actions (`qmk_firmware`)](https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml) — navigate to the **build firmware for mlego** workflow, select the latest successful run, and download **`tipro32_default`** from the artifacts list.
+
+    ## Original Condition { #pictures }
+
+    ![Tipro 32 8x4 original POS module](pics/tipro/tipro8x4-orig.jpeg){ loading=lazy }
+- id: tiproansi-ortho
+  title: Tipro ANSI-Ortho
+  category: converted
+  badge: ANSI + Ortho
+  keys: Hybrid
+  mcu: STM32F401
+  firmware: QMK
+  image: pics/tipro/tiproansi-ortho.webp
+  summary: Combination ANSI 60% layout with dedicated ortholinear macro bank converted
+    to QMK.
+  content: |
+    # Tipro ANSI-Ortho — Hybrid POS Conversion
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Completed</span>
+      <span class="spec-badge">Hybrid ANSI + Ortholinear</span>
+      <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![Tipro ANSI-Ortho completed](pics/tipro/tiproansi-ortho.webp){ loading=lazy }
+    ![Tipro ANSI-Ortho switches exposed](pics/tipro/tipro-ansiortho-nokeys.webp){ loading=lazy }
+    </div>
+
+    ## Introduction { #introduction }
+
+    A hybrid **ANSI staggered + ortholinear** Tipro terminal converted to run **QMK Firmware** using the same `STM32F401` + `74HC595` daughterboard technique described in the [Tipro 8×16 guide](#doc/tipro8x16).
+
+    ## Internal Wiring & KiCad { #wiring }
+
+    ![Tipro ANSI-Ortho internal wiring](pics/tipro/tiproansi-ortho-back.webp){ loading=lazy }
+
+    * **KiCad Daughterboard Project**: [`m-lego/hand8x16` on GitLab](https://gitlab.com/m-lego/hand8x16/)
+
+    ## Firmware { #firmware }
+
+    * **Prebuilt UF2**: [ `tipro_rev1_default_ansiortho.uf2`](https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev1_default_ansiortho.uf2)
+
+    Compile from source:
+
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb tipro/rev1 -km default_ansiortho
+    ```
+
+    ## Pinout Reference { #pins }
+
+    Identical to the [Tipro 8×16 pinout](tipro8x16.md#pins).
+
+    ## Original Condition { #photos }
+
+    ![Tipro ANSI-Ortho original condition](pics/tipro/tipro-ansi-ortho-orig.webp){ loading=lazy }
+- id: tiproortho-ansi
+  title: Tipro Ortho-ANSI
+  category: converted
+  badge: Ortho + ANSI
+  keys: Hybrid
+  mcu: STM32F401
+  firmware: QMK
+  image: pics/tipro/tiproortho-ansi.webp
+  summary: Left-hand ortholinear keypad paired with standard typewriter section, restored
+    and reswitched.
+  content: |
+    # Tipro Ortho-ANSI — Hybrid POS Conversion
+
+    <div class="spec-badges">
+      <span class="spec-badge">Hybrid Ortholinear + ANSI</span>
+      <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    ![Tipro Ortho-ANSI build](pics/tipro/tiproortho-ansi.webp){ loading=lazy }
+
+    ## Introduction { #introduction }
+
+    A hybrid **ortholinear + ANSI staggered** Tipro point-of-sale keyboard converted to **QMK Firmware** using the shared `hand8x16` daughterboard PCB from the [Tipro 8×16 conversion](#doc/tipro8x16).
+
+    ## Internal Wiring { #wiring }
+
+    ![Tipro Ortho-ANSI bottom wiring](pics/tipro/tipro_orthoansi_bottom.webp){ loading=lazy }
+
+    ## Restoration Progress Gallery { #other-pictures }
+
+    === "1. Original Terminal"
+
+        ![Tipro Ortho-ANSI original](pics/tipro/tipro-ortho-ansi-original.webp){ loading=lazy }
+
+    === "2. Stripped & Cleaned"
+
+        ![Tipro Ortho-ANSI cleaned plate](pics/tipro/tipro-ortho-ansi-v1.webp){ loading=lazy }
+
+    === "3. New Switches Mounted"
+
+        ![Tipro Ortho-ANSI new switches](pics/tipro/tipro-ortho-ansi-v2.webp){ loading=lazy }

@@ -1,0 +1,1988 @@
+enable: true
+title: Designed Keyboards
+subtitle: Custom ortholinear mechanical keyboards and macropads in modular LEGO cases
+items:
+- id: m66
+  title: m66 (5×14 Ortho)
+  category: keyboards
+  badge: 5×14 Ortho
+  keys: '66'
+  mcu: RP2040 / nice!nano / XIAO
+  firmware: QMK & ZMK
+  image: pics/m66/mlego_m66_rev4-lcd.webp
+  summary: Flagship 5×14 ortholinear keyboard with dedicated encoder column, per-key
+    RGB, and modular OLED, e-ink, Sharp Memory, or IPS LCD displays.
+  content: |
+    # m66 — 5×14 LEGO Ortholinear Keyboard
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Rev 4 Tested</span>
+      <span class="spec-badge">5×14 Ortho (66 Keys)</span>
+      <span class="spec-badge">RP2040 Pro Micro / nice!nano / XIAO</span>
+      <span class="spec-badge">Per-Key RGB + Underglow</span>
+      <span class="spec-badge">OLED / Sharp / E-Ink / LCD</span>
+      <span class="spec-badge">QMK &amp; ZMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![m66 rev 4 LCD](pics/m66/mlego_m66_rev4-lcd.webp){ loading=lazy }
+    ![m66 rev 4 Sharp Memory Display](pics/m66/mlego_m66_rev4-sharp.webp){ loading=lazy }
+    ![m66 rev 4 Sharp Display](pics/m66/mlege-m66-rev4-sharp.webp){ loading=lazy }
+    </div>
+
+    The **m66** is a 5-row, 13-column ortholinear keyboard plus a dedicated clickable rotary encoder column (technically a 5×14 matrix), designed to accommodate all standard keycaps from an ISO layout.
+
+    The current iteration (**Rev 4**) uses an **RP2040 Pro Micro–compatible footprint** (tested with Splinky, Helios, and `nice!nano` BLE boards), chained per-key RGB LEDs and underglow backlight, a clickable rotary encoder, and multi-display support for I²C OLED, Sharp Memory display, WeAct SSD1680 e-ink, and ST7735 IPS LCD screens.
+
+    > **Status: **Rev 4** Done and Tested**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware (QMK & ZMK)
+        * [ ] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    > **Revision History**
+    >
+
+        * **m66 Rev 4** *(formerly m65 Rev 12)*: RP2040 Pro Micro pinout with 2× `74HC595` shift registers, OLED / LCD (`ST7735` tested) / Sharp Memory / e-ink (`SSD1680` WeAct), clickable encoder, per-key RGB, and RGB backlight
+        * **m66 Rev 3** *(formerly m65 Rev 11)*: XIAO RP2040 with 3 shift registers (2× `74HC595` + 1× `74HC589`), OLED / e-ink (`SSD1680` WeAct), and push rotary encoder with QMK (ZMK support in progress for RP2040 and nRF52840)
+        * **m66 Rev 2** *(formerly m65 Rev 10)*: XIAO RP2040 with 3 shift registers (2× `74HC595` + 1× `74HC589`), OLED, and push rotary encoder with QMK
+        * **m66 Rev 1** *(formerly m65 Rev 9)*: XIAO RP2040 with 3 shift registers (2× `74HC595` + 1× `74HC165`), OLED, and push rotary encoder with QMK
+        * **m65 Rev 7/8**: XIAO RP2040 and nRF52840 with 2× `74HC595` shift registers, rotary encoder, no OLED (both QMK and ZMK firmware on RP2040)
+        * **m65 Rev 5/6**: RP2040 support (Raspberry Pi Pico, WeAct, and compatible clones), non-push encoder, OLED
+        * **m65 Rev 4**: `STM32F401`/`F411`, non-push encoder, OLED
+        * **m65 Rev 3**: `STM32F401`/`F411`, non-push encoder
+        * **m65 Rev 2**: `GD32F303` (BluePill Plus, USB-C F103 equivalent — <https://github.com/WeActStudio/BluePill-Plus>)
+        * **m65 Rev 1**: `STM32F103` / `APM32F103` or `STM32F303`
+
+    ## BOM { #bom }
+
+    > **Microcontroller Notes (MCUs)**
+    >
+
+        I have used several reference MCU boards over time. Reference boards simplify DIY keyboard design since all high-frequency crystal and power circuitry is already on the module. While I have done handwire projects with AVR (`ATmega32U4`), I strongly advise against using them for new builds.
+
+        * **m65 Rev 1**: `STM32F103` [BluePill](https://stm32-base.org/boards/STM32F103C8T6-Blue-Pill.html) or [RobotDyn `STM32F303CCT6` BlackPill](https://stm32-base.org/boards/STM32F303CCT6-RobotDyn-Black-Pill.html) *(do not confuse with the WeAct F401/F411 BlackPill)*. Micro-USB; requires flashing an `stm32duino` bootloader.
+        * **m65 Rev 2**: `GD32F303` [BluePill Plus](https://github.com/WeActStudio/BluePill-Plus) with USB Type-C.
+        * **m65 Rev 3/4**: WeAct [`STM32F401`/`F411` MiniF4x BlackPill](https://github.com/WeActStudio/WeActStudio.MiniSTM32F4x) with USB Type-C.
+        * **m65 Rev 5/6**: `RP2040` ([Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html), [Waveshare RP2040-Plus](https://www.waveshare.com/wiki/RP2040-Plus), or USB-C compatible clones with matching pinouts).
+        * **m65 Rev 7 / m66 Rev 1–3**: [Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/) and [XIAO BLE nRF52840](https://wiki.seeedstudio.com/XIAO_BLE/). Compact 14-pin footprint paired with SPI shift registers.
+        * **m66 Rev 4**: `RP2040` in Pro Micro footprint (tested with **Splinky** and **Helios** pinouts) as well as **`nice!nano`** BLE controllers and clones.
+        * **More pins**: If you need more direct GPIO pins in a compact package, check the [WeAct `STM32G431` CoreBoard](https://github.com/WeActStudio/WeActStudio.STM32G431CoreBoard) (supported in QMK).
+
+    ### Rev 4
+
+    > **Revision 4 BOM**
+    >
+
+        * **MCU**: `RP2040` Pro Micro–compatible pinout (tested with Splinky and Helios-like MCUs) or `nice!nano` BLE MCUs
+        * **Shift Registers**: 2× `74HC595` (SOIC-16 surface mount)
+        * **Diodes**: 66× `1N4148` signal diodes (DO-35 through-hole or SOD-123 SMD)
+        * **Display (optional)**: I²C OLED (128×32), Sharp Memory Display, ST7735 IPS LCD, or WeAct SSD1680 e-ink module
+        * **Encoder**: Clickable EC11 rotary encoder (e.g., Bourns 24-pulse incremental mechanical encoder with 6 mm flat shaft)
+        * **RGB (optional)**: Per-key SK6812 MINI-E LEDs and/or underglow RGB chain
+        * **LEGO Enclosure**: 16×32 double-sided baseplate (or 2× 16×16 plates) + ~46× 1×2 or 1×4 LEGO plates/bricks
+
+    ### Rev 3
+
+    ??? info "Revision 3 BOM (formerly m65 Rev 11)"
+
+        * **LEGO**: ~46× 1×2 or 1×4 plates (or bricks if housing a LiPo battery), 1× 16×32 double-sided baseplate (or 2× 16×16 plates; gray plates minimize PCB bow), optional 4× 1×1 tiles/eyes and 4× 2×2 corner plates
+        * **Diodes**: 66× `1N4148` signal diodes (DO-35 or SOD-123)
+        * **Resistors**: 5× 10 kΩ (THT or SMD 1206) and 1× 5.1 kΩ (THT or SMD 1206)
+        * **MCU**: Seeed Studio XIAO RP2040 (or XIAO nRF52840) with recommended female header sockets
+        * **Shift Registers**: 2× `74HC595` (SOIC-16 SMD) and 1× `74HC589` (SOIC-16 SMD)
+        * **Transistor**: 1× `2N7002` N-channel MOSFET (SOT-23 SMD)
+        * **Capacitors (optional)**: 3× 100 nF decoupling capacitors
+        * **Power / Battery (optional)**: Pogo pins, LiPo battery, 2-pin PH 2.0 battery connector, and 1P2T 4 mm micro slide switch
+        * **Encoder**: Clickable EC11 rotary encoder (Bourns 24-pulse, 6 mm flat shaft)
+        * **Display (optional)**: 128×32 I²C OLED (1×4 socket) or WeAct SSD1680 e-ink display (2×4 header/socket)
+
+    ### Rev 2
+
+    ??? warning "Revision 2 BOM — Superseded by Rev 3 (formerly m65 Rev 10)"
+
+        * Same component list as **Rev 3**, supporting I²C OLED (128×32) with 1×4 DIL socket (prior to the dedicated e-ink header addition in Rev 3).
+
+    ### Rev 1
+
+    ??? info "Revision 1 BOM (formerly m65 Rev 9)"
+
+        * **LEGO**: 16×32 double-sided plate (or 2× 16×16) + ~46× 1×2 or 1×4 plates
+        * **Diodes**: 66× `1N4148` signal diodes (DO-35 or SOD-123)
+        * **Resistors**: 5× 10 kΩ THT resistors
+        * **MCU**: Seeed Studio XIAO RP2040 (or XIAO nRF52840)
+        * **Shift Registers**: 2× `74HC595` (DIP-16 THT + sockets) and 1× `74HC165` (DIP-16 THT + socket)
+        * **Capacitors (optional)**: 3× 100 nF decoupling capacitors (or integrated capacitor DIP sockets)
+        * **Encoder & Battery**: EC11 clickable rotary encoder, optional LiPo battery + PH 2.0 socket + 1P2T switch
+
+    ## Case & Enclosure { #case }
+
+    <div class="image-grid" markdown>
+    ![Case 3D render](pics/m65-case.webp){ loading=lazy }
+    ![LEGO parts for case](pics/lego_1.webp){ loading=lazy }
+    ![Case front view](pics/lego_2.webp){ loading=lazy }
+    ![Case back view](pics/lego_3.webp){ loading=lazy }
+    ![Case side profile](pics/lego_4.webp){ loading=lazy }
+    </div>
+
+    ## Assembly { #assembly }
+
+    See the step-by-step [Assembly Guide](#doc/assembly) for soldering diodes, socketing the MCU and display, and mounting the PCB onto the LEGO baseplate.
+
+    ## Thickness Profiles { #thickness }
+
+    Depending on your LEGO plate stack, the enclosure can be built ultra-low-profile or tall enough to house underglow strips and batteries:
+
+    <div class="grid cards" markdown>
+
+    -   ![8 mm thickness profile](pics/thick-1.webp){ loading=lazy }
+
+        **8.0 mm — Ultra-Thin Profile**
+
+        1× double-sided baseplate + 1× intermediate plate (3.2 mm) + PCB (1.6 mm). Leaves room for a thin sheet of acoustic dampening foam.
+
+    -   ![11.2 mm thickness profile](pics/thick-2.webp){ loading=lazy }
+
+        **11.2 mm — Mid Profile**
+
+        1× double-sided baseplate + 2× intermediate plates + PCB. Fits thicker foam or a direct-wired LED strip without a JST connector.
+
+    -   ![14.4 mm thickness profile](pics/thick-3.webp){ loading=lazy }
+
+        **14.4 mm — Full Brick Profile**
+
+        1× double-sided baseplate + 1× full LEGO brick + PCB. Accommodates a 3-pin JST header or LiPo battery.
+
+    </div>
+
+    ## 3D Renders { #3d-render }
+
+    === "Rev 4"
+
+        <div class="image-grid" markdown>
+        ![m66 rev4 splinky rp2040 front](pics/m66/m66-rev4-front.webp){ loading=lazy }
+        ![m66 rev4 splinky rp2040 back](pics/m66/m66-rev4-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 3"
+
+        <div class="image-grid" markdown>
+        ![m66 rev3 xiao rp2040 front](pics/m65-rev11-3d-front.webp){ loading=lazy }
+        ![m66 rev3 xiao rp2040 back](pics/m65-rev11-3d-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 2"
+
+        <div class="image-grid" markdown>
+        ![m66 rev2 xiao rp2040 front](pics/m65-rev10-3d-front.webp){ loading=lazy }
+        ![m66 rev2 xiao rp2040 back](pics/m65-rev10-3d-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 1"
+
+        <div class="image-grid" markdown>
+        ![m66 rev1 xiao rp2040 front](pics/m65-rev9-render-front.webp){ loading=lazy }
+        ![m66 rev1 xiao rp2040 back](pics/m65-rev9-render-back.webp){ loading=lazy }
+        </div>
+
+    ## Schematics { #schematic }
+
+    === "Rev 4"
+
+        ![m66 rev 4 schematic](pics/m66/m66-rev4-schematic.webp){ loading=lazy }
+
+    === "Rev 3"
+
+        ![m66 rev 3 schematic](pics/m65-rev11-schematic.webp){ loading=lazy }
+
+    === "Rev 2"
+
+        ![m66 rev 2 schematic](pics/m65-rev10-schematic.webp){ loading=lazy }
+
+    === "Rev 1"
+
+        ![m66 rev 1 schematic](pics/m65-rev9-schematic.webp){ loading=lazy }
+
+    ## PCBs { #pcb }
+
+    === "Rev 4"
+
+        ![m66 rev4 pcb](pics/m66/m66-rev4-pcb.webp){ loading=lazy }
+
+    === "Rev 3"
+
+        <div class="image-grid" markdown>
+        ![m66 rev3 pcb layout](pics/m65-rev11-pcb.webp){ loading=lazy }
+        ![m66 rev3 pcb front](pics/mlego_m65_rev11_pcb_front.webp){ loading=lazy }
+        ![m66 rev3 pcb back](pics/mlego_m65_rev11_pcb_back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 2"
+
+        <div class="image-grid" markdown>
+        ![m66 rev2 pcb layout](pics/m65-rev10-pcb.webp){ loading=lazy }
+        ![m66 rev2 pcb front](pics/m65-rev10pcb-front.webp){ loading=lazy }
+        ![m66 rev2 pcb back](pics/m65-rev10pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 1"
+
+        <div class="image-grid" markdown>
+        ![m66 rev1 pcb layout](pics/m65-rev9-pcb.webp){ loading=lazy }
+        ![m66 rev1 pcb front](pics/m65-rev9-pcb-front.webp){ loading=lazy }
+        ![m66 rev1 pcb back](pics/m65-rev9-pcb-back.webp){ loading=lazy }
+        </div>
+
+    ## Gerbers & KiCad Source { #gerbers }
+
+    Production-ready Gerbers for JLCPCB:
+
+    * [ **m66 Rev 4 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/GERBER-m66-rev4.zip)
+    * [ **m66 Rev 3 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev11.zip)
+    * [ **m66 Rev 2 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev10.zip)
+    * [ **m66 Rev 1 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev9.zip)
+
+    Full KiCad project files are hosted on [GitLab (`m-lego/m65`)](https://gitlab.com/m-lego/m65/). Note that the default branch `HEAD` is always work-in-progress; check out the specific revision tag/branch below:
+
+    ### KiCad Checkout { #kicad }
+
+    === "Rev 4"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout m66-rev4
+        ```
+
+    === "Rev 3"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision11
+        ```
+
+    === "Rev 2"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision10
+        ```
+
+    === "Rev 1"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision9
+        ```
+
+    ## Firmware { #firmware }
+
+    Both **QMK** and **ZMK** are supported. You can download prebuilt `.uf2` binaries below or compile from source.
+
+    ### ZMK { #zmk }
+
+    Latest ZMK builds are available from the [mlego-zmk GitHub Actions workflow](https://github.com/alinelena/mlego-zmk/actions/workflows/build.yml) (select the latest successful **Build mlego** run):
+
+    * [Prebuilt ZMK firmware for Rev 4](https://github.com/alinelena/mlego-zmk/tree/main/firmware)
+
+    ### QMK Prebuilt UF2 { #qmk }
+
+    * [mlego_m66_rev4_default_rgb_screen.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev4_default_rgb_screen.uf2)
+    * [mlego_m66_rev4_uk_rgb_screen.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev4_uk_rgb_screen.uf2)
+    * [mlego_m66_rev3_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev3_default.uf2)
+    * [mlego_m66_rev3_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev3_uk.uf2)
+    * [mlego_m66_rev2_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev2_default.uf2)
+    * [mlego_m66_rev2_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev2_uk.uf2)
+    * [mlego_m66_rev1_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev1_default.uf2)
+    * [mlego_m66_rev1_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m66_rev1_uk.uf2)
+
+    Latest automated QMK builds can also be downloaded from [GitHub Actions](https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml).
+
+    ### QMK Source Build { #qmk-source }
+
+    === "Rev 4"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m66/rev4 -km uk
+        qmk compile -kb mlego/m66/rev4 -km default
+        ```
+
+    === "Rev 3"
+
+        ```bash
+        # OLED version
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m66/rev3 -km uk
+        qmk compile -kb mlego/m66/rev3 -km default
+
+        # E-Ink version
+        git clone --recurse-submodules -b mlego_eink https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m66/rev3 -km uk
+        qmk compile -kb mlego/m66/rev3 -km default
+        ```
+
+    === "Rev 2"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m66/rev2 -km uk
+        qmk compile -kb mlego/m66/rev2 -km default
+        ```
+
+    === "Rev 1"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m66/rev1 -km uk
+        qmk compile -kb mlego/m66/rev1 -km default
+        ```
+
+    ## Build Gallery { #pictures }
+
+    === "Rev 4"
+
+        <div class="image-grid" markdown>
+        ![m66 rev 4 LCD](pics/m66/mlego_m66_rev4-lcd.webp){ loading=lazy }
+        ![m66 rev 4 Sharp](pics/m66/mlego_m66_rev4-sharp.webp){ loading=lazy }
+        ![m66 rev 4 Sharp](pics/m66/mlege-m66-rev4-sharp.webp){ loading=lazy }
+        </div>
+
+    === "Rev 3"
+
+        <div class="image-grid" markdown>
+        ![m66 rev 3 e-ink](pics/mlego_m65_rev11_eink.webp){ loading=lazy }
+        ![m66 rev 3 OLED](pics/mlego_m65_rev11_oled.webp){ loading=lazy }
+        </div>
+
+    === "Rev 2"
+
+        <div class="image-grid" markdown>
+        ![m66 rev 2 LOTR](pics/m65-rev10-lotr-a.webp){ loading=lazy }
+        ![m66 rev 2 dev/tty](pics/m65-rev10-tty-a.webp){ loading=lazy }
+        ![m66 rev 2 dev/tty](pics/m65-rev10-tty-b.webp){ loading=lazy }
+        ![m66 rev 2 LOTR](pics/m65-rev10-lotr-b.webp){ loading=lazy }
+        </div>
+
+    === "Rev 1"
+
+        ![m66 rev 1](pics/m65-rev9.webp){ loading=lazy }
+
+    ## Keymaps & Layout { #keymaps-layout }
+
+    All m66 revisions share the same 5×14 physical layout and keymaps (shown below for Rev 4).
+
+    ### Physical Layout { #layout }
+
+    ![m66 rev4 layout](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14.svg){ loading=lazy }
+
+    ### Combined UK Keymap Summary { #summary-keymap }
+
+    Except for mouse keys, QMK and ZMK keymaps are identical:
+
+    ![m66 keymaps](pics/m66/mlego_m66_rev4_uk.svg){ loading=lazy }
+
+    * **Center legend**: Layer 0 (Base) · **Left legend**: Layer 1 (Lower) · **Right legend**: Layer 2 (Raise) · **Bottom legend**: Layer 3 (Adjust)
+    * **Legend codes**: `l` Lighting · `u` Unicode · `d` Debug · `b` Bootloader · `e` Erase EEPROM · `r` Reset MCU
+
+    ### Default Keymap Layers { #keymap-default }
+
+    === "Layer 0 — QWERTY"
+
+        ![m66 rev4 default layer 0](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-0.svg){ loading=lazy }
+
+    === "Layer 1 — Lower"
+
+        ![m66 rev4 default layer 1](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-1.svg){ loading=lazy }
+
+    === "Layer 2 — Raise"
+
+        ![m66 rev4 default layer 2](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-2.svg){ loading=lazy }
+
+    === "Layer 3 — Adjust"
+
+        ![m66 rev4 default layer 3](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-3.svg){ loading=lazy }
+
+    ### UK ISO Keymap Layers (with RGB Indicators) { #keymap-uk }
+
+    === "Layer 0 — QWERTY"
+
+        ![m66 rev4 UK layer 0](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-0.svg){ loading=lazy }
+        ![m66 rev4 UK layer 0 photo](pics/m66/mlego_m66_uk-0.webp){ loading=lazy }
+
+    === "Layer 1 — Lower"
+
+        ![m66 rev4 UK layer 1](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-1.svg){ loading=lazy }
+        ![m66 rev4 UK layer 1 photo](pics/m66/mlego_m66_uk-1.webp){ loading=lazy }
+
+    === "Layer 2 — Raise"
+
+        ![m66 rev4 UK layer 2](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-2.svg){ loading=lazy }
+        ![m66 rev4 UK layer 2 photo](pics/m66/mlego_m66_uk-2.webp){ loading=lazy }
+
+    === "Layer 3 — Adjust"
+
+        ![m66 rev4 UK layer 3](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-3.svg){ loading=lazy }
+        ![m66 rev4 UK layer 3 photo](pics/m66/mlego_m66_uk-3.webp){ loading=lazy }
+
+    ## Matrix & Pinout Reference { #matrix-pins }
+
+    === "Rev 4 (RP2040 Pro Micro)"
+
+        ![m66 rev4 matrix](pics/m66/mlego-m66-rev4-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
+
+    === "Rev 3 (XIAO RP2040)"
+
+        ![m66 rev3 matrix](pics/m66/mlego-m66-rev3-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
+
+    === "Rev 2 (XIAO RP2040)"
+
+        ![m66 rev2 matrix](pics/m66/mlego-m66-rev2-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
+
+    === "Rev 1 (XIAO RP2040)"
+
+        ![m66 rev1 matrix](pics/m66/mlego-m66-rev1-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
+
+        ```text
+        ShiftRegister SN74HC595N (#1 & #2)        ShiftRegister 74HC165N (#3)
+        QB |1    16| VCC                          nPL |1    16| VCC
+        QC |2    15| QA                            CP |2    15| nCE
+        QD |3    14| SER data                      D4 |3    14| D3
+        QE |4    13| OE                            D5 |4    13| D2
+        QF |5    12| RCLK latch                    D6 |5    12| D1
+        QG |6    11| SRCLK clock                   D7 |6    11| D0
+        QH |7    10| SRCLR                        nQ7 |7    10| DS
+         G |8     9| QH*                            G |8     9| Q7
+        ```
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | C13 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | MUTE | `3D0` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | X* | `3D1` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | X* | `3D2` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | X* | `3D3` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | X* | `3D4` |
+        | **Col Pin** | `2QB` | `2QC` | `2QD` | `2QE` | `2QF` | `2QG` | `2QH` | `2QA` | `1QH` | `1QG` | `1QF` | `1QE` | `1QA` | `1QD` | *(X* NC)* |
+
+        * **Encoders**: `Pad_A = GP27`, `Pad_B = GP26`
+        * **OLED (I²C)**: `SCL = GP7`, `SDA = GP6`
+        * **`74HC595N` (Columns)**: `MOSI = GP3` (pin 11), `Latch = GP1` (pin 8), `Clock = GP2` (pin 9)
+        * **`74HC165N` (Rows)**: `Latch = GP1` (pin 8), `Clock = GP2` (pin 9), `MISO = GP4` (pin 10)
+        * **LEDs (RP2040)**: `CAPS_LOCK = GP25`, `Lower = GP16`, `Raise = GP17`, `RGB DI = GP12`, `RGB On = GP11`
+- id: m65
+  title: m65 (5×13 Ortho)
+  category: keyboards
+  badge: 5×13 Ortho
+  keys: '65'
+  mcu: STM32F401 / RP2040 / XIAO
+  firmware: QMK & ZMK
+  image: pics/mlego_m65_rev11_eink.webp
+  summary: Original 65-key ISO-friendly LEGO ortholinear keyboard evolved across 11
+    revisions — from BluePill to Raspberry Pi Pico and Seeed XIAO SPI shift registers.
+  content: |
+    # m65 — 5×13 LEGO Ortholinear Keyboard
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Rev 11 Tested</span>
+      <span class="spec-badge">5×13 Ortho (65–66 Keys)</span>
+      <span class="spec-badge">XIAO RP2040 / BLE · Pico · STM32</span>
+      <span class="spec-badge">SPI Shift Registers (74HC595 / 589 / 165)</span>
+      <span class="spec-badge">OLED &amp; E-Ink + Rotary Encoder</span>
+      <span class="spec-badge">QMK &amp; ZMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![m65 rev 11 with WeAct e-ink display](pics/mlego_m65_rev11_eink.webp){ loading=lazy }
+    ![m65 rev 11 with OLED display](pics/mlego_m65_rev11_oled.webp){ loading=lazy }
+    </div>
+
+    The **m65** is a 5-row, 13-column ortholinear mechanical keyboard designed to accommodate all standard keycaps from an ISO layout.
+
+    In its later iterations (**Rev 7–Rev 11**), it departs from a traditional direct-pin matrix and uses the tiny [Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/) or [Seeed Studio XIAO nRF52840 BLE](https://wiki.seeedstudio.com/XIAO_BLE/) (`SAMD21` may also work). Because the XIAO only exposes 11 GPIO pins, rows are scanned via a `74HC589` (or `74HC165`) input shift register while columns are driven by two chained `74HC595` output shift registers over hardware SPI (sharing clock and latch pins), leaving pins free for an I²C OLED / SPI e-ink screen and a clickable rotary encoder (making Rev 9–11 technically a 14-column matrix, later spun off into the [**m66**](#doc/m66) line).
+
+    > **Seeed Studio Sponsorship**
+    >
+        For **Rev 7**, Seeed Studio kindly sponsored the 5×13 version with PCBs and XIAO microcontrollers as part of the [Seeed Fusion DIY XIAO Mechanical Keyboard Contest](https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html) and their [Fusion PCB Assembly service](https://www.seeedstudio.com/pcb-assembly.html).
+
+    > **Status: **Rev 11** Done and Tested**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware (QMK & ZMK)
+        * [ ] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    > **Revision History**
+    >
+
+        * **Rev 11**: XIAO RP2040 with 3 shift registers (2× `74HC595` + 1× `74HC589`), OLED / e-ink (`SSD1680` WeAct), and push rotary encoder with QMK (actively exploring ZMK support for RP2040 and nRF52840)
+        * **Rev 10**: XIAO RP2040 with 3 shift registers (2× `74HC595` + 1× `74HC589`), OLED, and push rotary encoder with QMK
+        * **Rev 9**: XIAO RP2040 with 3 shift registers (2× `74HC595` + 1× `74HC165`), OLED, and push rotary encoder with QMK
+        * **Rev 7/8**: XIAO RP2040 and nRF52840 with 2× `74HC595` shift registers, rotary encoder, no OLED (both QMK and ZMK firmware supported)
+        * **Rev 5/6**: `RP2040` support (Raspberry Pi Pico, WeAct RP2040, and compatible clones), non-push encoder, OLED
+        * **Rev 4**: `STM32F401`/`F411` BlackPill, non-push encoder, OLED
+        * **Rev 3**: `STM32F401`/`F411` BlackPill, non-push encoder
+        * **Rev 2**: `GD32F303` aka [BluePill Plus](https://github.com/WeActStudio/BluePill-Plus) (USB-C `F103` equivalent)
+        * **Rev 1**: `STM32F103` / `APM32F103` or `STM32F303`
+
+    ## BOM { #bom }
+
+    ### Microcontrollers { #mcus }
+
+    > **MCU Selection Guide**
+    >
+
+        Using off-the-shelf development boards makes DIY keyboard design much simpler because all high-frequency crystal and USB protection circuitry lives on the MCU daughterboard. While I have built handwired boards with AVR (`ATmega32U4`), I strongly advise against using AVR for new designs.
+
+        * **Rev 1**: [`STM32F103C8T6` BluePill](https://stm32-base.org/boards/STM32F103C8T6-Blue-Pill.html) or [RobotDyn `STM32F303CCT6` BlackPill](https://stm32-base.org/boards/STM32F303CCT6-RobotDyn-Black-Pill.html) *(do not confuse with the WeAct F401/F411 BlackPill)*. Micro-USB; requires flashing an `stm32duino` bootloader.
+        * **Rev 2**: `GD32F303` [BluePill Plus](https://github.com/WeActStudio/BluePill-Plus) with USB Type-C.
+        * **Rev 3 / Rev 4**: WeAct [`STM32F401`/`F411` MiniSTM32F4x BlackPill](https://github.com/WeActStudio/WeActStudio.MiniSTM32F4x) with USB Type-C.
+        * **Rev 5 / Rev 6**: `RP2040` ([Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html), [Waveshare RP2040-Plus](https://www.waveshare.com/wiki/RP2040-Plus), or USB-C compatible clones — verify pinout compatibility).
+        * **Rev 7 / Rev 9 / Rev 10 / Rev 11**: [Seeed Studio XIAO RP2040](https://wiki.seeedstudio.com/XIAO-RP2040/) and [Seeed Studio XIAO BLE nRF52840](https://wiki.seeedstudio.com/XIAO_BLE/). Ultra-compact footprint using SPI shift registers for matrix scanning.
+        * **Need more pins?**: Consider the [WeAct `STM32G431` CoreBoard](https://github.com/WeActStudio/WeActStudio.STM32G431CoreBoard), already supported in QMK.
+
+    ### Component Lists by Revision
+
+    #### Rev 11
+
+    > **Revision 11 BOM**
+    >
+
+        * **LEGO Case**: ~46× 1×2 or 1×4 plates (use full bricks if housing a battery), 1× 16×32 double-sided baseplate or 2× 16×16 plates (gray compatible plates minimize PCB flexing), optional 4× 1×1 tiles/eyes and 4× 2×2 corner plates
+        * **Diodes**: 66× `1N4148` signal diodes (DO-35 through-hole or SOD-123 SMD)
+        * **Resistors**: 5× 10 kΩ (THT or SMD 1206) and 1× 5.1 kΩ (THT or SMD 1206)
+        * **MCU**: Seeed Studio XIAO RP2040 (or nRF52840) + recommended female socket headers
+        * **Shift Registers**: 2× `74HC595` (SOIC-16 SMD) and 1× `74HC589` (SOIC-16 SMD)
+        * **MOSFET**: 1× `2N7002` FET (SOT-23 SMD)
+        * **Capacitors (optional)**: 3× 100 nF decoupling capacitors (THT, SMD, or integrated socket)
+        * **Battery / Wireless (optional)**: Pogo pins, LiPo battery, 2-pin PH 2.0 battery socket, and 1P2T 4 mm micro slide switch
+        * **Encoder**: Clickable EC11 rotary encoder (Bourns 24-pulse incremental encoder with 6 mm flat shaft)
+        * **Displays (optional)**:
+            * 128×32 I²C OLED (4-pin) + 1×4 DIL socket
+            * WeAct SSD1680 e-ink module + 2×4 header and socket
+
+    #### Rev 10
+
+    ??? warning "Revision 10 BOM (Superseded by Rev 11)"
+
+        * Identical to **Rev 11** above, with 128×32 I²C OLED (4-pin) + 1×4 DIL socket (prior to the dedicated 2×4 e-ink header added in Rev 11).
+
+    #### Rev 9
+
+    ??? info "Revision 9 BOM"
+
+        * **LEGO Case**: 16×32 double-sided plate (or 2× 16×16) + ~46× 1×2 or 1×4 plates
+        * **Diodes**: 66× `1N4148` signal diodes (DO-35 or SOD-123)
+        * **Resistors**: 5× 10 kΩ THT resistors
+        * **MCU**: Seeed Studio XIAO RP2040 (or nRF52840) + female headers
+        * **Shift Registers**: 2× `74HC595` (DIP-16 THT + sockets) and 1× `74HC165` (DIP-16 THT + socket)
+        * **Capacitors (optional)**: 3× 100 nF decoupling capacitors
+        * **Battery / Encoder**: Pogo pins, LiPo battery, 2-pin PH 2.0 socket, 1P2T 4 mm micro switch, EC11 clickable rotary encoder
+
+    #### Rev 7/8
+
+    ??? info "Revision 7/8 BOM"
+
+        * **LEGO Case**: 16×32 double-sided plate (or 2× 16×16) + ~46× 1×2 or 1×4 plates
+        * **Diodes**: 65× `1N4148` signal diodes (DO-35 or SOD-123)
+        * **MCU**: Seeed Studio XIAO RP2040 or XIAO nRF52840 BLE + female headers
+        * **Shift Registers**: 2× `74HC595` (DIP-16 THT + sockets)
+        * **Capacitors (optional)**: 2× 100 nF decoupling capacitors
+        * **Encoder & Battery**: EC11 rotary encoder, optional pogo pins and LiPo battery
+
+    #### Rev 5/6
+
+    ??? info "Revision 5/6 BOM"
+
+        * **LEGO Case**: 16×32 double-sided plate + ~46× 1×2 or 1×4 plates
+        * **Diodes**: 65× `1N4148` signal diodes (DO-35 or SOD-123)
+        * **MCU**: Raspberry Pi Pico (`RP2040`), WeAct RP2040, Teenstar, or compatible clone + 2×20 round pin headers & DIL sockets
+        * **LEDs & Resistors**: 2× LEDs + 2× resistors (`R1`, `R2` — 510 Ω works well for green/yellow LEDs; 1 kΩ for white LEDs)
+        * **Switches & Peripherals**: 65× 5-pin PCB-mount MX switches, EC11 rotary encoder, optional 128×32 I²C OLED (with 1×4 DIL socket), optional 3-pin horizontal JST header for LED strip
+
+    #### Rev 4
+
+    ??? info "Revision 4 BOM (and Rev 1–3)"
+
+        * **LEGO Case**: 16×32 double-sided plate + ~46× 1×2 or 1×4 plates
+        * **Diodes**: 65× `1N4148` signal diodes (DO-35 or SOD-123)
+        * **MCU**: WeAct `STM32F401` or `STM32F411` BlackPill + 2×20 round pin headers and 40-way DIL socket (15.24 mm)
+        * **Resistors & LEDs**:
+            * `R1`, `R2`: 2× 510 Ω (green/yellow) or 1 kΩ (white) + 2× indicator LEDs
+            * `R3`: 1× 100 kΩ pull-up resistor (ensures reliable `STM32F4x1` bootloader entry)
+        * **Switches & Peripherals**: 65× 5-pin PCB-mount switches, EC11 rotary encoder, 128×32 I²C OLED (with 1×4 socket), optional 3-pin horizontal JST header for LED strip
+        * *(For Rev 1–3, use the same BOM as Rev 4 with the corresponding MCU module.)*
+
+    ## Case { #case }
+
+    <div class="image-grid" markdown>
+    ![Case 3D render](pics/m65-case.webp){ loading=lazy }
+    ![LEGO parts for case](pics/lego_1.webp){ loading=lazy }
+    ![Case front](pics/lego_2.webp){ loading=lazy }
+    ![Case back](pics/lego_3.webp){ loading=lazy }
+    ![Case side](pics/lego_4.webp){ loading=lazy }
+    </div>
+
+    ## Assembly { #assembly }
+
+    Follow the illustrated [Assembly Guide](#doc/assembly) for soldering diodes, resistors, sockets, and switches.
+
+    ## Thickness Profiles { #thickness }
+
+    Depending on how many intermediate LEGO layers you stack, the enclosure can be built ultra-slim or deep enough for JST headers and acoustic foam:
+
+    <div class="grid cards" markdown>
+
+    -   ![1 double base plate, 1 intermediate plate and pcb. 8 mm](pics/thick-1.webp){ loading=lazy }
+
+        **8.0 mm — Slim Profile**
+
+        1× baseplate (single or double-sided, flat or angled) + 1× intermediate plate (3.2 mm) + PCB (1.6 mm). Leaves room for a thin sheet of sound-dampening foam.
+
+    -   ![1 double base plate, 2 intermediate plate and pcb. 11.2 mm](pics/thick-2.webp){ loading=lazy }
+
+        **11.2 mm — Dual-Plate Profile**
+
+        1× double-sided baseplate + 2× intermediate plates + PCB. Fits thicker foam or a hand-soldered LED strip (without a JST connector).
+
+    -   ![1 double base plate, 1 intermediate brick and pcb. 14.4 mm](pics/thick-3.webp){ loading=lazy }
+
+        **14.4 mm — Full Brick Profile**
+
+        1× double-sided baseplate + 1× full LEGO brick + PCB. Provides clearance for a 3-pin JST header or LiPo battery.
+
+    </div>
+
+    ## 3D Renders { #3d-render }
+
+    === "Rev 11"
+
+        <div class="image-grid" markdown>
+        ![m65 rev11 xiao rp2040 front](pics/m65-rev11-3d-front.webp){ loading=lazy }
+        ![m65 rev11 xiao rp2040 back](pics/m65-rev11-3d-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 10"
+
+        <div class="image-grid" markdown>
+        ![m65 rev10 xiao rp2040 front](pics/m65-rev10-3d-front.webp){ loading=lazy }
+        ![m65 rev10 xiao rp2040 back](pics/m65-rev10-3d-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 9"
+
+        <div class="image-grid" markdown>
+        ![m65 rev9 xiao rp2040 front](pics/m65-rev9-render-front.webp){ loading=lazy }
+        ![m65 rev9 xiao rp2040 back](pics/m65-rev9-render-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 7/8"
+
+        ![3d render rev7](pics/m65_3d_rev7.webp){ loading=lazy }
+
+    === "Rev 5/6"
+
+        <div class="image-grid" markdown>
+        ![3d render rev5 front](pics/m65-rev5-render.webp){ loading=lazy }
+        ![3d render rev5 back](pics/m65-rev5-render-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 4"
+
+        ![3d render rev4](pics/m65-rev4-render.webp){ loading=lazy }
+
+    === "Rev 2"
+
+        ![3d render rev2](pics/m65-v2.webp){ loading=lazy }
+
+    === "Rev 1"
+
+        ![3d render rev1](pics/m65.webp){ loading=lazy }
+
+    ## Schematics { #schematic }
+
+    === "Rev 11"
+
+        ![m65 rev11 schematic](pics/m65-rev11-schematic.webp){ loading=lazy }
+
+    === "Rev 10"
+
+        ![m65 rev10 schematic](pics/m65-rev10-schematic.webp){ loading=lazy }
+
+    === "Rev 9"
+
+        ![m65 rev9 schematic](pics/m65-rev9-schematic.webp){ loading=lazy }
+
+    === "Rev 7"
+
+        ![m65 rev7 schematic](pics/m65-rev7-schematic.webp){ loading=lazy }
+
+    === "Rev 5"
+
+        ![m65 rev5 schematic](pics/m65-rev5-schematic.webp){ loading=lazy }
+
+    === "Rev 4"
+
+        ![m65 rev4 schematic](pics/m65-rev4-schematic.webp){ loading=lazy }
+
+    ## PCBs { #pcb }
+
+    === "Rev 11"
+
+        <div class="image-grid" markdown>
+        ![m65 rev11 pcb layout](pics/m65-rev11-pcb.webp){ loading=lazy }
+        ![m65 rev11 pcb front](pics/mlego_m65_rev11_pcb_front.webp){ loading=lazy }
+        ![m65 rev11 pcb back](pics/mlego_m65_rev11_pcb_back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 10"
+
+        <div class="image-grid" markdown>
+        ![m65 rev10 pcb layout](pics/m65-rev10-pcb.webp){ loading=lazy }
+        ![m65 rev10 pcb front](pics/m65-rev10pcb-front.webp){ loading=lazy }
+        ![m65 rev10 pcb back](pics/m65-rev10pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 9"
+
+        <div class="image-grid" markdown>
+        ![m65 rev9 pcb layout](pics/m65-rev9-pcb.webp){ loading=lazy }
+        ![m65 rev9 pcb front](pics/m65-rev9-pcb-front.webp){ loading=lazy }
+        ![m65 rev9 pcb back](pics/m65-rev9-pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 7/8"
+
+        <div class="image-grid" markdown>
+        ![m65 rev7 xiao pcb](pics/m65-rev7-pcb.webp){ loading=lazy }
+        ![pcb rev7 front](pics/m65-rev7-pcb-front.webp){ loading=lazy }
+        ![pcb rev7 back](pics/m65-rev7-pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 5/6"
+
+        <div class="image-grid" markdown>
+        ![pcb rev5 layout](pics/m65-rev5-pcb.webp){ loading=lazy }
+        ![pcb rev5 front](pics/m65-rev5-pcb-front.webp){ loading=lazy }
+        ![pcb rev5 back](pics/m65-rev5-pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 4"
+
+        <div class="image-grid" markdown>
+        ![pcb rev4 layout](pics/m65-pcb4.webp){ loading=lazy }
+        ![pcb rev4 front](pics/m65-rev4-pcb-front.webp){ loading=lazy }
+        ![pcb rev4 back](pics/m65-rev4-pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 3"
+
+        <div class="image-grid" markdown>
+        ![pcb rev3 front](pics/m65-rev3-pcb-front.webp){ loading=lazy }
+        ![pcb rev3 back](pics/m65-rev3-pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "Rev 2"
+
+        ![pcb rev2](pics/m65-pcb-2.webp){ loading=lazy }
+
+    === "Rev 1"
+
+        ![pcb rev1](pics/m65-pcb.webp){ loading=lazy }
+
+    ## Gerbers & KiCad Source { #gerbers }
+
+    Production-ready Gerbers for JLCPCB:
+
+    * [ **Rev 11 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev11.zip)
+    * [ **Rev 10 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev10.zip)
+    * [ **Rev 9 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev9.zip)
+    * [ **Rev 7/8 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev7.zip)
+    * [ **Rev 5/6 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/m65-rev5-gerbers.zip)
+    * [ **Rev 4 Gerbers**](https://gitlab.com/m-lego/m65/-/blob/devel/gerbers/gerbers-rev4.zip)
+
+    Full KiCad project files are available in [`m-lego/m65` on GitLab](https://gitlab.com/m-lego/m65/). Note that the default branch `HEAD` is always work-in-progress:
+
+    ### KiCad Checkout { #kicad }
+
+    === "Rev 11"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision11
+        ```
+
+    === "Rev 10"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision10
+        ```
+
+    === "Rev 9"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision9
+        ```
+
+    === "Rev 7"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision7
+        ```
+
+    === "Rev 5/6"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision5
+        ```
+
+    === "Rev 4"
+
+        ```bash
+        git clone https://gitlab.com/m-lego/m65.git
+        cd m65
+        git checkout revision4
+        ```
+
+    ## Firmware { #firmware }
+
+    Both **QMK** and **ZMK** are supported. You can download prebuilt `.uf2` binaries below or build from source.
+
+    ### ZMK { #zmk }
+
+    Revisions 7, 5, and 4 support ZMK:
+
+    * [firmware/mlego5x13_rev7-seeeduino_xiao_ble-zmk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego5x13_rev7-seeeduino_xiao_ble-zmk.uf2)
+    * [firmware/mlego5x13_rev7-seeeduino_xiao_rp2040-zmk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego5x13_rev7-seeeduino_xiao_rp2040-zmk.uf2)
+    * [firmware/mlego5x13_rev4-blackpill_f401ce-zmk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego5x13_rev4-blackpill_f401ce-zmk.uf2)
+    * [firmware/mlego5x13_rev5-rpi_pico-zmk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego5x13_rev5-rpi_pico-zmk.uf2)
+
+    Latest automated ZMK builds are available in [GitHub Actions (`mlego-zmk`)](https://github.com/alinelena/mlego-zmk/actions/workflows/build.yml) under the **Build mlego** workflow artifacts.
+
+    **ZMK Shield Sources**:
+
+    * [Main `mlego-zmk` Repository](https://github.com/alinelena/mlego-zmk)
+    * [Rev 4 — `STM32F401` BlackPill Shield](https://github.com/alinelena/mlego-zmk/tree/main/config/boards/shields/mlego5x13_rev4)
+    * [Rev 5 — Raspberry Pi Pico `RP2040` Shield](https://github.com/alinelena/mlego-zmk/tree/main/config/boards/shields/mlego5x13_rev5)
+    * [Rev 7/8 — Seeed XIAO BLE (Sense) Shield](https://github.com/alinelena/mlego-zmk/tree/main/config/boards/shields/mlego5x13_rev8)
+    * [Rev 7 — Seeed XIAO `RP2040` Shield](https://github.com/alinelena/mlego-zmk/tree/main/config/boards/shields/mlego5x13_rev7)
+
+    ### QMK { #qmk }
+
+    * [firmware/mlego_m65_rev11_default_knob.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev11_default_knob.uf2)
+    * [firmware/mlego_m65_rev11_uk_knob.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev11_uk_knob.uf2)
+    * [firmware/mlego_m65_rev11_uk_knob_eink.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev11_uk_knob_eink.uf2)
+    * [firmware/mlego_m65_rev10_default_knob.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev10_default_knob.uf2)
+    * [firmware/mlego_m65_rev10_uk_knob.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev10_uk_knob.uf2)
+    * [firmware/mlego_m65_rev9_default_knob.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev9_default_knob.uf2)
+    * [firmware/mlego_m65_rev9_uk_knob.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev9_uk_knob.uf2)
+    * [firmware/mlego_m65_rev7_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev7_default.uf2)
+    * [firmware/mlego_m65_rev7_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev7_uk.uf2)
+    * [firmware/mlego_m65_rev6_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev6_default.uf2)
+    * [firmware/mlego_m65_rev6_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev6_uk.uf2)
+    * [firmware/mlego_m65_rev5_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev5_default.uf2)
+    * [firmware/mlego_m65_rev5_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev5_uk.uf2)
+    * [firmware/mlego_m65_rev4_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev4_default.uf2)
+    * [firmware/mlego_m65_rev4_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev4_uk.uf2)
+    * [firmware/mlego_m65_rev3_default.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev3_default.uf2)
+    * [firmware/mlego_m65_rev3_uk.uf2](https://gitlab.com/m-lego/m65/-/blob/devel/firmware/mlego_m65_rev3_uk.uf2)
+
+    Latest automated QMK builds can be downloaded from [GitHub Actions](https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml).
+
+    #### QMK Build Instructions { #git }
+
+    === "Rev 11"
+
+        ```bash
+        # OLED version
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev11 -km uk_knob
+        qmk compile -kb mlego/m65/rev11 -km default_knob
+
+        # E-Ink version
+        git clone --recurse-submodules -b mlego_eink https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev11 -km uk_knob
+        ```
+
+    === "Rev 10"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev10 -km uk_knob
+        qmk compile -kb mlego/m65/rev10 -km default_knob
+        ```
+
+    === "Rev 9"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev9 -km uk_knob
+        qmk compile -kb mlego/m65/rev9 -km default_knob
+        ```
+
+    === "Rev 7"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev7 -km uk
+        qmk compile -kb mlego/m65/rev7 -km default
+        ```
+
+    === "Rev 5/6"
+
+        ```bash
+        git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev5 -km uk
+        qmk compile -kb mlego/m65/rev6 -km uk
+        ```
+
+    === "Rev 4"
+
+        ```bash
+        git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m65/rev4 -km uk
+        ```
+
+    === "Rev 3"
+
+        ```bash
+        git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
+        cd qmk_firmware
+        make mlego/m65/rev3:uk
+        make mlego/m65/rev3:uk:flash
+        ```
+
+    === "Rev 2"
+
+        ```bash
+        # GD32F303 WeAct BluePill Plus
+        git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
+        cd qmk_firmware
+        make mlego/m65/rev2:uk
+        make mlego/m65/rev2:uk:flash
+        ```
+
+    === "Rev 1"
+
+        ```bash
+        git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
+        cd qmk_firmware
+        make mlego/m65/rev1:uk
+        make mlego/m65/rev1:uk:flash
+        ```
+
+    ## Build Gallery { #pictures }
+
+    ### By Hardware Revision
+
+    === "Rev 11"
+
+        <div class="image-grid" markdown>
+        ![m65 rev 11 e-ink](pics/mlego_m65_rev11_eink.webp){ loading=lazy }
+        ![m65 rev 11 OLED](pics/mlego_m65_rev11_oled.webp){ loading=lazy }
+        </div>
+
+    === "Rev 10"
+
+        <div class="image-grid" markdown>
+        ![m65 rev 10 LOTR A](pics/m65-rev10-lotr-a.webp){ loading=lazy }
+        ![m65 rev 10 dev/tty A](pics/m65-rev10-tty-a.webp){ loading=lazy }
+        ![m65 rev 10 dev/tty B](pics/m65-rev10-tty-b.webp){ loading=lazy }
+        ![m65 rev 10 LOTR B](pics/m65-rev10-lotr-b.webp){ loading=lazy }
+        </div>
+
+    === "Rev 9"
+
+        ![m65 rev 9](pics/m65-rev9.webp){ loading=lazy }
+
+    === "Rev 7 & 8"
+
+        <div class="image-grid" markdown>
+        ![m65 rev8 xiao ble sense](pics/m65-rev7-xiao-ble-sense.webp){ loading=lazy }
+        ![m65 rev7 xiao rp2040](pics/m65-rev7-xiao-rp2040.webp){ loading=lazy }
+        ![m65 rev7 xiao pcb](pics/m65-rev7-nok.webp){ loading=lazy }
+        </div>
+
+    === "Rev 5 & 6"
+
+        ![rev5/6 with RP2040 USB-C](pics/m65-rev5-blank.webp){ loading=lazy }
+
+    === "Rev 1–4"
+
+        <div class="image-grid" markdown>
+        ![Rev 4 — MT3 Elvish](pics/m65-elvish.webp){ loading=lazy }
+        ![Rev 3 — MT3 Dwarvish](pics/m65-dwarvish.webp){ loading=lazy }
+        ![Rev 2 — Keyboard #14 (Commodore C64 harvested keycaps)](pics/m65_c64.webp){ loading=lazy }
+        ![Rev 1 — Keyboard #2 (MT3 Susuwatari, Kailh Crystal Jade)](pics/m65-susu.webp){ loading=lazy }
+        </div>
+
+    ### Switch & Keycap Showcase (#1–#15) { #other }
+
+    <div class="grid cards" markdown>
+
+    -   ![Bare switches](pics/m65-nokey.webp){ loading=lazy }
+
+        **Bare Frame & Switches**
+
+        Assembled PCB and switches mounted on the LEGO baseplate prior to keycaps.
+
+    -   ![Keyboard #1 MT3 dev/tty](pics/m65-tty.webp){ loading=lazy }
+
+        **Keyboard #1 — MT3 `/dev/tty` Bleached**
+
+        Kailh Crystal Royal tactile switches with MT3 `/dev/tty` Bleached keycaps ([alt view](pics/m65-tty-f.webp)).
+
+    -   ![Keyboard #2 MT3 Susuwatari](pics/m65-susu-2.webp){ loading=lazy }
+
+        **Keyboard #2 — MT3 Susuwatari**
+
+        Kailh Crystal Jade clicky switches paired with double-shot ABS MT3 Susuwatari.
+
+    -   ![Keyboard #3 MT3 dev/tty](pics/m65-tty-2.webp){ loading=lazy }
+
+        **Keyboard #3 — MT3 `/dev/tty`**
+
+        Kailh Crystal Royal switches ([home view 1](pics/m65-home.webp), [home view 2](pics/m65-home-2.webp)).
+
+    -   ![Keyboard #4 NK Blueberry](pics/m65-tty-nkblueberry.webp){ loading=lazy }
+
+        **Keyboard #4 — NovelKeys Blueberry**
+
+        Re-sprung NovelKeys Blueberry tactile switches with MT3 `/dev/tty`.
+
+    -   ![Keyboard #5 Gateron Ink v2](pics/m65-gats.webp){ loading=lazy }
+
+        **Keyboard #5 — Gateron Ink v2**
+
+        Gateron Ink v2 Yellow and Red linear switches prepared for a DK ISO layout.
+
+    -   ![Keyboard #6 Linearized Jades](pics/m65-japan-2.webp){ loading=lazy }
+
+        **Keyboard #6 — "Linear" Crystal Jades**
+
+        Kailh Crystal Jades with clickbars removed, paired with MT3 `/dev/tty` + Godspeed & Japanese alphas ([switches 1](pics/m65-jade-lin.webp), [switches 2](pics/m65-jade-lin-2.webp), [build 1](pics/m65-japan.webp)).
+
+    -   ![Keyboard #7 Gateron Whites](pics/m65-g-white.webp){ loading=lazy }
+
+        **Keyboard #7 — Gateron Whites & Godspeed**
+
+        Gateron White switches with MT3 `/dev/tty` and Godspeed modifiers ([bare](pics/m65-white-naked.webp), [without mods](pics/m65-gat-white.webp)).
+
+    -   ![Keyboard #8 MT3 Camillo](pics/m65-olivetti.webp){ loading=lazy }
+
+        **Keyboard #8 — Frankenswitch Linears**
+
+        Custom frankenswitch linears with MT3 Camillo, Godspeed, and Susuwatari accents.
+
+    -   ![Keyboard #9 MT3 Extended 2048](pics/m65-2048.webp){ loading=lazy }
+
+        **Keyboard #9 — MT3 Extended 2048**
+
+        MT3 Extended 2048 icon legends with colorful accent modifiers.
+
+    -   ![Keyboard #10 MT3 Dasher](pics/m65-dasher.webp){ loading=lazy }
+
+        **Keyboard #10 — MT3 Dasher**
+
+        Two-tone blue MT3 Dasher keycap set.
+
+    -   ![Keyboard #11 MT3 Cyber](pics/m65-cyber.webp){ loading=lazy }
+
+        **Keyboard #11 — MT3 MiTo Cyber**
+
+        High-contrast purple/magenta/yellow MT3 Cyber set.
+
+    -   ![Keyboard #12 MT3 3277](pics/m65-3277.webp){ loading=lazy }
+
+        **Keyboard #12 — MT3 Matt3o 3277**
+
+        IBM 3277 terminal-inspired dark gray and turquoise keycaps.
+
+    -   ![Keyboard #13 MT3 Fairlane](pics/m65-fair.webp){ loading=lazy }
+
+        **Keyboard #13 — MT3 Fairlane**
+
+        Pastel mint and cream MT3 Fairlane keycaps.
+
+    -   ![Keyboard #14 Commodore C64](pics/m65_c64.webp){ loading=lazy }
+
+        **Keyboard #14 — Commodore C64 Harvest**
+
+        Original harvested Commodore 64 keycaps mounted via 3D-printed MX stem adapters.
+
+    -   ![Keyboard #15 MT3 Camillo Eva-02](pics/m65-camillo.webp){ loading=lazy }
+
+        **Keyboard #15 — MT3 Camillo & Eva-02**
+
+        MT3 Camillo alphas with Evangelion Unit-02 novelty accents.
+
+    </div>
+
+    ## Keymaps & Layout { #keymaps-layout }
+
+    Default QMK layers for the 5×13 ortholinear layout:
+
+    <div class="image-grid" markdown>
+    ![Layout summary](pics/m65-l1.webp){ loading=lazy }
+    ![Layout lower](pics/m65-lwr.webp){ loading=lazy }
+    ![Layout raise](pics/m65-rse.webp){ loading=lazy }
+    </div>
+
+    ## Pinouts by Revision { #pins }
+
+    === "Rev 9–11 (XIAO RP2040)"
+
+        *(Note: Rev 9–11 correspond to [m66 Rev 1–3](m66.md#matrix-pins) where the clickable encoder forms Column 13.)*
+
+        ```text
+        ShiftRegister SN74HC595N (#1 & #2)        ShiftRegister 74HC165N / 74HC589 (#3)
+        QB |1    16| VCC                          nPL |1    16| VCC
+        QC |2    15| QA                            CP |2    15| nCE
+        QD |3    14| SER data                      D4 |3    14| D3
+        QE |4    13| OE                            D5 |4    13| D2
+        QF |5    12| RCLK latch                    D6 |5    12| D1
+        QG |6    11| SRCLK clock                   D7 |6    11| D0
+        QH |7    10| SRCLR                        nQ7 |7    10| DS
+         G |8     9| QH*                            G |8     9| Q7
+        ```
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | C13 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | MUTE | `3D0` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | X* | `3D1` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | X* | `3D2` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | X* | `3D3` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | X* | `3D4` |
+        | **Col** | `2QB` | `2QC` | `2QD` | `2QE` | `2QF` | `2QG` | `2QH` | `2QA` | `1QH` | `1QG` | `1QF` | `1QE` | `1QA` | `1QD` | *(X* NC)* |
+
+        * **Encoders**: `Pad_A = GP27`, `Pad_B = GP26`
+        * **OLED (I²C)**: `SCL = GP7`, `SDA = GP6`
+        * **`74HC595N`**: `MOSI = GP3` (pin 11), `Latch = GP1` (pin 8), `Clock = GP2` (pin 9)
+        * **`74HC165N`**: `Latch = GP1` (pin 8), `Clock = GP2` (pin 9), `MISO = GP4` (pin 10), `SPI_DIVISOR = 8`
+        * **LEDs (RP2040)**: `CAPS_LOCK = GP25`, `Lower = GP16`, `Raise = GP17`, `RGB DI = GP12`, `RGB On = GP11`
+
+    === "Rev 7/8 (XIAO RP2040 / BLE)"
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `D0 (GP26)` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `D1 (GP27)` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `D2 (GP28)` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `D3 (GP29)` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `D4 (GP6)` |
+        | **Col** | `2QH` | `2QG` | `2QF` | `2QE` | `2QD` | `2QC` | `2QB` | `2QA` | `1QH` | `1QG` | `1QF` | `1QE` | `1QA` | |
+
+        * **Encoders**: `Pad_A = D5 (GP7)`, `Pad_B = D6 (GP0)`
+        * **`74HC595N`**: `Data = D10 (GP3)`, `Latch = D7 (GP1)`, `Clock = D8 (GP2)`, `SPI_DIVISOR = 32`
+        * **LEDs (RP2040)**: `CAPS_LOCK = GP25`, `Lower = GP16`, `Raise = GP17`, `RGB DI = GP12`, `RGB On = GP11`
+
+    === "Rev 5 & 6 (RP2040 Pico / WeAct)"
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `GP22` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `GP16` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `GP18` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `GP19` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `GP20` |
+        | **Col** | `GP1` | `GP6` | `GP7` | `GP8` | `GP9` | `GP15` | `GP14` | `GP13` | `GP12` | `GP11` | `GP10` | `GP17` | `GP21` | |
+
+        * **Encoders**: `Pad_A = GP4`, `Pad_B = GP5`
+        * **OLED (I²C)**: `SDA = GP2`, `SCL = GP3`
+        * **LEDs (Rev 5 Pico)**: `NUM_LOCK = GP28`, `CAPS_LOCK = GP25`, `SCROLL_LOCK = GP27`, `RGB_DI = GP0`
+        * **LEDs (Rev 6 WeAct)**: `NUM_LOCK = GP29`, `CAPS_LOCK = GP25`, `SCROLL_LOCK = GP28`, `RGB_DI = GP0` *(same physical positions on PCB)*
+
+    === "Rev 4 (`STM32F401`/`F411`)"
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `B10` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `A5` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `A6` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `A7` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `B0` |
+        | **Col** | `B14` | `A8` | `A10` | `A15` | `B3` | `B4` | `B5` | `B7` | `A1` | `A2` | `A3` | `A4` | `B1` | |
+
+        * **Encoders**: `Pad_A = A0`, `Pad_B = B6`
+        * **OLED (I²C)**: `SDA = B9`, `SCL = B8`
+        * **LEDs**: `NUM_LOCK = B12`, `CAPS_LOCK = C13`, `SCROLL_LOCK = B13`, `RGB_DI = B15`
+
+    === "Rev 3 (`STM32F401`/`F411`)"
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `B10` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `A5` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `A6` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `A7` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `B0` |
+        | **Col** | `A10` | `A15` | `B3` | `B4` | `B5` | `B9` | `B8` | `B7` | `A1` | `A2` | `A3` | `A4` | `B1` | |
+
+        * **Encoders**: `Pad_A = A0`, `Pad_B = B6`
+        * **LEDs**: `NUM_LOCK = B12`, `CAPS_LOCK = C13`, `SCROLL_LOCK = B13`, `RGB_DI = B15`
+
+    === "Rev 1 & 2 (`STM32F103` / `GD32F303`)"
+
+        | Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
+        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+        | **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `B11` |
+        | **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `B0` |
+        | **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `B1` |
+        | **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `A2` |
+        | **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `A3` |
+        | **Col** | `A10` | `A15` | `B3` | `B4` | `B5` | `B9` | `B8` | `B7` | `B6` | `C15` | `A0` | `A7` | `B10` | |
+
+        * **Encoders**: `Pad_A = A8`, `Pad_B = A9`
+        * **LEDs**: `NUM_LOCK = B12`, `CAPS_LOCK = B2` (Rev 2) / `C13` (Rev 1), `SCROLL_LOCK = B13`, `RGB_DI = B15`
+
+    ## Matrix Scan Frequencies & OLED Benchmarks { #scan-frequencies }
+
+    Matrix scan frequencies (in Hz) reported by QMK with `DEBUG_MATRIX_SCAN_RATE` enabled using the default keymap:
+
+    | MCU Platform | Revision | Freq 1 (Minimal)¹ [Hz] | Freq 2 (Full Features)² [Hz] |
+    | :--- | :--- | :---: | :---: |
+    | Teensy 2.0 (`ATmega32U4`) | Handwire | `1860` | — |
+    | `APM32F103C8T6` (`STM32F103`) | Rev 1 | `3427` | — |
+    | `GD32F303CCT6` (BluePill Plus) | Rev 2 | `3931` | — |
+    | `STM32F401` BlackPill | Rev 4 | `4681` | `1976` |
+    | `RP2040` Raspberry Pi Pico | Rev 5 | `5277` | `2214` |
+    | `RP2040` WeAct | Rev 6 | `5278` | `2202` |
+    | `RP2040` Seeed XIAO (2× `74HC595`) | Rev 7 | `6162` | — |
+    | `RP2040` Seeed XIAO (2× `595` + 1× `165`) | Rev 9³ | `4366` | `2125` |
+    | `RP2040` Seeed XIAO (Unicode enabled) | Rev 9 | `3986` | `1924` |
+
+    1. **Freq 1**: OLED off, WPM off, RGBLight off, Mousekey and Extrakey off.
+    2. **Freq 2**: OLED on with all standard features enabled.
+    3. **Rev 9**: Includes an extra 14th column compared to earlier revisions; `SPI_DIVISOR` is `8` on Rev 9 vs `32` on Rev 7.
+
+    ### Impact of `OLED_UPDATE_INTERVAL` { #oled-case }
+
+    Updating an I²C OLED display on every matrix scan causes a noticeable drop in scan rate. QMK provides `OLED_UPDATE_INTERVAL` (in milliseconds) to throttle display refreshes. Tested on **Rev 9** (`128×32` and `128×64` screens yield identical numbers; baselines with OLED off: `3760 Hz` with WPM off, `2631 Hz` with WPM on):
+
+    | `OLED_UPDATE_INTERVAL` [ms] | Matrix Scan Frequency [Hz] |
+    | :---: | :---: |
+    | `0` *(QMK default)* | `2125` |
+    | `1` | `3154` |
+    | `2` | `3629` |
+    | `3` | `3788` |
+    | `4` | `3868` |
+    | `5` | `3915` |
+    | **`10`** *(100 FPS — recommended)* | **`4011`** |
+    | `20` | `4058` |
+    | `30` | `4075` |
+    | `50` | `4087` |
+    | `100` | `4097` |
+
+    > **Takeaways**
+    >
+        1. Setting `OLED_UPDATE_INTERVAL` to **`10` ms** (100 FPS) nearly doubles the effective matrix scan rate (`4011 Hz` vs `2125 Hz`) while remaining more than fast enough for any keyboard status OLED.
+        2. Curiously, throttling the OLED refresh achieves a higher peak scan rate (`4097 Hz`) than compiling with the OLED disabled (`3760 Hz`).
+- id: m60
+  title: m60 (5×12 Ortho)
+  category: keyboards
+  badge: 5×12 Ortho
+  keys: '60'
+  mcu: STM32F401 / RP2040
+  firmware: QMK
+  image: pics/5x12/m60_rev2.webp
+  summary: Preonic-inspired 60-key 5×12 layout in a LEGO case with rotary encoder,
+    RGB strip, and OLED support.
+  content: |
+    # m60 — 5×12 LEGO Ortholinear Keyboard
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Rev 1 &amp; Rev 2 Tested</span>
+      <span class="spec-badge">5×12 Ortho (60 Keys)</span>
+      <span class="spec-badge">STM32F401 / RP2040 Pico</span>
+      <span class="spec-badge">Rotary Encoder + OLED (Rev 2)</span>
+      <span class="spec-badge">QMK (UF2)</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![M60 5x12 rev 1](pics/5x12/m60.webp){ loading=lazy }
+    ![M60 5x12 rev 2](pics/5x12/m60_rev2.webp){ loading=lazy }
+    </div>
+
+    A Preonic-inspired **5×12 ortholinear mechanical keyboard** mounted in a modular LEGO case, featuring an optional rotary encoder, RGB underglow strip, and I²C OLED support (Rev 2, thanks to `@yyhazy`).
+
+    > **Status: Rev 1 & Rev 2 Tested**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware
+        * [x] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    ## Features
+
+    * **Layout**: 5×12 ortholinear (60 keys, 5-pin PCB-mount MX switches)
+    * **Controller**:
+        * **Rev 1**: WeAct [`STM32F401`/`F411` BlackPill](https://github.com/WeActTC/MiniSTM32F4x1)
+        * **Rev 2**: Raspberry Pi Pico (`RP2040`) or compatible pinout
+    * **Peripherals**: Optional EC11 rotary encoder, 3-pin addressable LED strip, and I²C OLED display (Rev 2)
+    * **Firmware**: QMK with UF2 drag-and-drop flashing by default
+
+    ## 3D Render & PCBs { #render }
+
+    === "Rev 2 3D Render"
+
+        ![M60 5x12 rev 2 3D render](pics/5x12/5x12_rev2_3d.webp){ loading=lazy }
+
+    === "Rev 1 PCB"
+
+        ![M60 5x12 PCB](pics/5x12/m60-pcb.webp){ loading=lazy }
+
+    ## BOM { #bom }
+
+    === "Rev 2 (RP2040 Pico)"
+
+        * 1× Raspberry Pi Pico (`RP2040`) or compatible pinout module
+        * 60× `1N4148` signal diodes (DO-35 through-hole)
+        * 60× 5-pin Cherry MX–compatible switches
+        * 1× EC11 rotary encoder (optional)
+        * 1× I²C OLED module (optional)
+        * 2× 220 Ω or 350 Ω LED resistors (select value for your LED color and brightness)
+        * 2× status indicator LEDs
+        * 1× 40-pin DIL/DIP socket (or two 20-pin female headers)
+        * 3-pin RGB LED strip (optional)
+        * LEGO 16×32 baseplate and perimeter plates/bricks
+
+    === "Rev 1 (STM32F401)"
+
+        * 1× WeAct `STM32F401` BlackPill
+        * 60× `1N4148` signal diodes (DO-35 through-hole)
+        * 60× 5-pin Cherry MX–compatible switches
+        * 1× EC11 rotary encoder (optional)
+        * 2× 220 Ω or 350 Ω LED resistors
+        * 2× status indicator LEDs
+        * 1× 40-pin DIL/DIP socket
+        * 3-pin RGB LED strip (optional)
+        * LEGO 16×32 baseplate and perimeter plates/bricks
+
+    ## Case & Assembly { #case }
+
+    * **LEGO Enclosure**: See the [m65 Case & Thickness section](m65.md#case) for plate dimensions and stacking options.
+    * **Soldering & Build**: Follow the step-by-step [Assembly Guide](#doc/assembly).
+
+    ## Gerbers & KiCad { #gerbers }
+
+    Production-ready Gerbers for JLCPCB:
+
+    * [ **Rev 1 Gerbers (`STM32F401`)**](https://gitlab.com/m-lego/m60/-/blob/main/gerbers-stm32f401.zip)
+    * [ **Rev 2 Gerbers (`RP2040`)**](https://gitlab.com/m-lego/m60/-/blob/main/gerbers-rp2040.zip)
+
+    Full KiCad project files are available in the [`m-lego/m60` GitLab repository](https://gitlab.com/m-lego/m60/), using shared symbols and footprints from [`m-lego/m65`](https://gitlab.com/m-lego/m65/).
+
+    ## Firmware { #firmware }
+
+    === "Rev 2 (`RP2040`)"
+
+        Download prebuilt UF2: [mlego_m60_rev1_default.uf2](https://gitlab.com/m-lego/m60/-/blob/main/firmware/mlego_m60_rev1_default.uf2) or compile from source:
+
+        ```bash
+        git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m60/rev2 -km default
+
+        # or using make:
+        make mlego/m60/rev2:default
+        ```
+
+    === "Rev 1 (`STM32F401`)"
+
+        Download prebuilt UF2: [mlego_m60_rev1_default.uf2](https://gitlab.com/m-lego/m60/-/blob/main/firmware/mlego_m60_rev1_default.uf2) (requires [TinyUF2 bootloader](https://github.com/adafruit/tinyuf2) installed on the STM32F401):
+
+        ```bash
+        git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m60/rev1 -km default
+
+        # or using make:
+        make mlego/m60/rev1:default
+        ```
+
+    ## Pinout Reference { #pins }
+
+    === "Rev 2 (`RP2040`)"
+
+        * **Columns (C0–C11)**: `GP1`, `GP6`, `GP7`, `GP8`, `GP9`, `GP15`, `GP14`, `GP13`, `GP12`, `GP11`, `GP10`, `GP21`
+        * **Rows (R0–R4)**: `GP19`, `GP16`, `GP17`, `GP18`, `GP20`
+        * **Encoder**: `Pad_A = GP4`, `Pad_B = GP5`
+        * **OLED (I²C)**: `SDA = GP2`, `SCL = GP3`
+
+        | Indicator / RGB | Pin |
+        | :--- | :--- |
+        | `NUM_LOCK` | `GP22` |
+        | `CAPS_LOCK` | `GP25` |
+        | `SCROLL_LOCK` | `GP27` |
+        | `RGB_DI` | `GP0` |
+
+    === "Rev 1 (`STM32F401`)"
+
+        * **Columns (C0–C11)**: `A10`, `A15`, `B3`, `B4`, `B5`, `B7`, `B6`, `A1`, `A2`, `A3`, `A4`, `A5`
+        * **Rows (R0–R4)**: `A6`, `A7`, `B0`, `B1`, `B10`
+        * **Encoder**: `Pad_A = A0`, `Pad_B = A8`
+
+        | Indicator / RGB | Pin |
+        | :--- | :--- |
+        | `NUM_LOCK` | `B12` |
+        | `CAPS_LOCK` | `C13` |
+        | `SCROLL_LOCK` | `B13` |
+        | `RGB_DI` | `B15` |
+
+    ## Additional Photos
+
+    ![M60 5x12 build](pics/5x12/m60_a.webp){ loading=lazy }
+- id: m60_split
+  title: m60 Split (5×12 Split)
+  category: keyboards
+  badge: 5×12 Split
+  keys: 60 (2×30)
+  mcu: Dual STM32F401 / F411
+  firmware: QMK
+  image: pics/5x12s/m60_split.webp
+  summary: Ergonomic split ortholinear keyboard mounted on twin 16×16 LEGO plates
+    with dual encoders and RGB underglow.
+  content: |
+    # m60 Split — 5×12 Split LEGO Keyboard
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Tested &amp; Verified</span>
+      <span class="spec-badge">5×12 Split (2× 5×6)</span>
+      <span class="spec-badge">2× STM32F401 / F411 BlackPill</span>
+      <span class="spec-badge">Dual Encoders + RGB Underglow</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![M60 split 5x12](pics/5x12s/m60_split.webp){ loading=lazy }
+    ![M60 split 5x12 with LEDs](pics/5x12s/m60s-leds.webp){ loading=lazy }
+    </div>
+
+    An ergonomic **5×12 split ortholinear keyboard** mounted on two 16×16 LEGO baseplates, featuring dual rotary encoders (one per half) and addressable RGB underglow.
+
+    > **Status: Tested All OK**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware
+        * [x] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    ## Features
+
+    * **Layout**: 5×12 split (two 5×6 halves, 60 keys total)
+    * **Controllers**: 2× WeAct [`STM32F401` (Rev 1) or `STM32F411` (Rev 2) BlackPill](https://github.com/WeActTC/MiniSTM32F4x1)
+    * **Peripherals**: 1× rotary encoder per half, RGB underglow strip, 4× status LEDs
+    * **Interconnect**: Direct 3-wire serial cable via angled 3-pin JST XH 2.54 mm connectors
+    * **Firmware**: QMK with TinyUF2 bootloader support
+
+    ## Renders & PCBs { #renders }
+
+    === "Left & Right Printed PCBs"
+
+        ![M60 split 5x12 left/right PCB](pics/5x12s/m60_split_pcb.webp){ loading=lazy }
+
+    === "KiCad Left & Right Layout"
+
+        <div class="image-grid" markdown>
+        ![M60 split left PCB](pics/5x12s/m60-left.webp){ loading=lazy }
+        ![M60 split right PCB](pics/5x12s/m60-right.webp){ loading=lazy }
+        </div>
+
+    === "3D Render (Left Half)"
+
+        ![M60 split 3D render](pics/5x12s/m60-split-3d.webp){ loading=lazy }
+
+    ## BOM { #bom }
+
+    * 2× WeAct `STM32F401` (or `STM32F411`) BlackPill boards with headers
+    * 2× 40-pin DIL/DIP sockets
+    * 60× `1N4148` signal diodes (DO-35 through-hole)
+    * 60× 5-pin Cherry MX–compatible switches
+    * 2× EC11 rotary encoders
+    * **Resistors**:
+        * 3× 4.7 kΩ (`R1` and `R2` on left half; `R1` on right half)
+        * 2× 100 kΩ (`R5` on left half; `R4` on right half)
+        * 4× 220 Ω LED resistors (`R3`, `R4` on left half; `R2`, `R3` on right half — adjust to match LED color/brightness)
+    * 4× status indicator LEDs
+    * 2× angled 3-pin JST XH 2.54 mm connectors (plus matching direct, non-crossed interconnect cable)
+    * Optional: 2× additional 3-pin JST connectors and 3-pin addressable LED strips
+    * 2× LEGO 16×16 baseplates and perimeter plates/bricks
+
+    ## Case & Assembly { #case }
+
+    * **LEGO Enclosure**: See the [m65 Case & Thickness section](m65.md#case) for LEGO plate stacking details.
+    * **Soldering & Build**: Follow the step-by-step [Assembly Guide](#doc/assembly).
+
+    ## Gerbers & KiCad { #gerbers }
+
+    Production-ready Gerbers for JLCPCB:
+
+    * [ **Rev 1 Left Half Gerbers**](https://gitlab.com/m-lego/m60_split/-/blob/main/m60-split-left/gerbers-left.zip)
+    * [ **Rev 1 Right Half Gerbers**](https://gitlab.com/m-lego/m60_split/-/blob/main/m60-split-right/gerbers-right.zip)
+
+    Full KiCad project files are available in [`m-lego/m60_split` on GitLab](https://gitlab.com/m-lego/m60_split/) (shared footprints in [`m-lego/m65`](https://gitlab.com/m-lego/m65/)).
+
+    ## Firmware { #firmware }
+
+    Ensure both BlackPill boards are flashed with the [TinyUF2 bootloader](https://github.com/adafruit/tinyuf2).
+
+    === "Rev 1 (`STM32F401`)"
+
+        Download prebuilt UF2: [mlego_m60_split_rev1_default.uf2](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev1_default.uf2)
+
+        ```bash
+        git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m60_split/rev1 -km default
+        ```
+
+    === "Rev 2 (`STM32F411`)"
+
+        Download prebuilt UF2: [mlego_m60_split_rev2_default.uf2](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev2_default.uf2)
+
+        ```bash
+        git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m60_split/rev2 -km default
+        ```
+
+    ## Pinout Reference { #pins }
+
+    * **Left Half**:
+        * **Columns**: `B14`, `A10`, `A15`, `B3`, `B4`, `B5`
+        * **Rows**: `B0`, `A6`, `A7`, `B1`, `A5`
+    * **Right Half**:
+        * **Columns**: `B0`, `A3`, `A2`, `A1`, `B7`, `B5`
+        * **Rows**: `B1`, `A4`, `A5`, `A6`, `A7`
+    * **Encoders**: `Pad_A = A0`, `Pad_B = A8`
+    * **Split Communication**: `SPLIT_HAND_PIN = B9`, `SERIAL_USART_TX_PIN = B6`
+
+    | Indicator / RGB | Pin |
+    | :--- | :--- |
+    | `NUM_LOCK` | `B12` |
+    | `CAPS_LOCK` | `C13` |
+    | `SCROLL_LOCK` | `B13` |
+    | `RGB_DI` | `B15` |
+
+    ## Community Builds { #other-builds }
+
+    Builds by **Seth** (`u/modularsynth123456`):
+
+    <div class="image-grid" markdown>
+    ![M60 split by Seth 4](pics/5x12s/m60s_4.webp){ loading=lazy }
+    ![M60 split by Seth 3](pics/5x12s/m60s_3.webp){ loading=lazy }
+    ![M60 split by Seth 1](pics/5x12s/m60s_1.webp){ loading=lazy }
+    ![M60 split by Seth 2](pics/5x12s/m60s_2.webp){ loading=lazy }
+    </div>
+- id: m48
+  title: m48 (4×12 Ortho)
+  category: keyboards
+  badge: 4×12 Ortho
+  keys: '48'
+  mcu: STM32F401 / F411
+  firmware: QMK
+  image: pics/4x12/m48_tty.webp
+  summary: Ultra-compact 48-key Planck-style ortholinear keyboard in a LEGO chassis
+    with rotary encoder support.
+  content: |
+    # m48 — 4×12 Planck-Style LEGO Keyboard
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Tested &amp; Verified</span>
+      <span class="spec-badge">4×12 Ortho (48 Keys)</span>
+      <span class="spec-badge">STM32F401 / F411 BlackPill</span>
+      <span class="spec-badge">Rotary Encoder + RGB Strip</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![M48 4x12 with MT3 /dev/tty keycaps](pics/4x12/m48_tty.webp){ loading=lazy }
+    ![M48 4x12 switches exposed](pics/4x12/m48.webp){ loading=lazy }
+    </div>
+
+    A compact, Planck-style **4×12 ortholinear mechanical keyboard** mounted in a modular LEGO enclosure with an optional rotary encoder and addressable LED strip.
+
+    > **Status: Tested All OK!**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware
+        * [x] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    ## Features
+
+    * **Layout**: 4×12 ortholinear (48 keys, 5-pin PCB-mount MX switches)
+    * **Controller**: WeAct [`STM32F401` or `STM32F411` BlackPill](https://github.com/WeActTC/MiniSTM32F4x1)
+    * **Peripherals**: 1× EC11 rotary encoder, status LED, optional 3-pin RGB LED strip
+    * **Firmware**: QMK
+
+    ## 3D Render & PCBs { #3d-render }
+
+    === "3D Render"
+
+        ![M48 4x12 3D render](pics/4x12/m48-3d-render.webp){ loading=lazy }
+
+    === "Printed PCB (Front & Back)"
+
+        <div class="image-grid" markdown>
+        ![M48 4x12 PCB front](pics/4x12/m48-pcb-front.webp){ loading=lazy }
+        ![M48 4x12 PCB back](pics/4x12/m48-pcb-back.webp){ loading=lazy }
+        </div>
+
+    === "KiCad Layout"
+
+        ![M48 4x12 KiCad PCB](pics/4x12/m48-pcb.webp){ loading=lazy }
+
+    ## BOM { #bom }
+
+    * 1× WeAct `STM32F401` BlackPill with headers
+    * 1× 40-pin DIL/DIP socket
+    * 48× `1N4148` signal diodes (DO-35 through-hole)
+    * 48× 5-pin Cherry MX–compatible switches
+    * 1× EC11 rotary encoder
+    * 2× 220 Ω or 350 Ω resistors (for status LEDs and boot pull-up; see [m65 BOM notes](m65.md#bom))
+    * 1× status indicator LED
+    * Optional: 3-pin addressable LED strip
+    * LEGO 16×32 baseplate and perimeter plates/bricks
+
+    ## Case & Assembly { #case }
+
+    * **LEGO Enclosure**: See the [m65 Case & Thickness section](m65.md#case).
+    * **Soldering & Build**: Follow the step-by-step [Assembly Guide](#doc/assembly).
+
+    ## Gerbers & KiCad { #gerbers }
+
+    Production-ready Gerbers for JLCPCB:
+
+    * [ **Rev 1 Gerbers (`STM32F401`)**](https://gitlab.com/m-lego/m48/-/blob/main/gerbers-stm32f401.zip)
+
+    Full KiCad project files are available in [`m-lego/m48` on GitLab](https://gitlab.com/m-lego/m48/). Prebuilt UF2 firmware is available at [`mlego_m48_rev1_default.uf2`](https://gitlab.com/m-lego/m48/-/blob/main/firmware/mlego_m48_rev1_default.uf2).
+
+    ## Firmware { #firmware }
+
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+    cd qmk-alin
+
+    qmk compile -kb m-lego/m48/rev1 -km default
+
+    # or using make:
+    make m-lego/m48/rev1:default
+    ```
+
+    ## Pinout Reference { #pins }
+
+    * **Columns (C0–C11)**: `A10`, `A15`, `B3`, `B4`, `B5`, `B7`, `B6`, `A1`, `A2`, `A3`, `A4`, `A5`
+    * **Rows (R0–R3)**: `A6`, `A7`, `B0`, `B10`
+    * **Encoder**: `Pad_A = A0`, `Pad_B = A8`
+
+    | Indicator / RGB | Pin |
+    | :--- | :--- |
+    | `NUM_LOCK` | `B12` |
+    | `CAPS_LOCK` | `C13` |
+    | `SCROLL_LOCK` | `B13` |
+    | `RGB_DI` | `B15` |
+- id: m20
+  title: m20 (5×4 Pad)
+  category: keyboards
+  badge: 5×4 Pad
+  keys: '20'
+  mcu: Raspberry Pi Pico (RP2040)
+  firmware: QMK
+  image: pics/m20/m20_v1.webp
+  summary: Versatile 20-key macropad/numpad supporting 5-pin Cherry MX and Kailh Choc
+    v2 low-profile switches, rotary encoder, and OLED.
+  content: |
+    # m20 — 5×4 LEGO Macropad / Numpad
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Tested &amp; Verified</span>
+      <span class="spec-badge">5×4 Ortho (20 Keys)</span>
+      <span class="spec-badge">RP2040 Pico / Clones</span>
+      <span class="spec-badge">MX &amp; Kailh Choc v2</span>
+      <span class="spec-badge">Rotary Encoder + OLED + RGB</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![M20 5x4 v1](pics/m20/m20_v1.webp){ loading=lazy }
+    ![M20 5x4 v2](pics/m20/m20_v2.webp){ loading=lazy }
+    </div>
+
+    A versatile **5×4 ortholinear macropad / numpad** mounted on a 16×16 LEGO baseplate, supporting both 5-pin Cherry MX and low-profile Kailh Choc v2 switches, plus an optional rotary encoder, I²C OLED screen, and RGB LED strip.
+
+    > **Status: Tested All OK**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware
+        * [x] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    ## Features
+
+    * **Layout**: 5×4 ortholinear (20 keys)
+    * **Switches**: Dual footprint supporting 5-pin Cherry MX and Kailh Choc v2 switches
+    * **Controller**: Raspberry Pi Pico (`RP2040`) or compatible clones (WeAct, Teenstar)
+    * **Peripherals**: Optional EC11 rotary encoder, I²C OLED display, status LED, and 3-pin RGB LED strip
+    * **Diodes**: Supports both through-hole (DO-35) and surface-mount (SOD-123) `1N4148` diodes
+    * **Firmware**: QMK
+
+    ## 3D Render & PCBs { #render }
+
+    === "3D Render"
+
+        ![M20 3D render](pics/m20/m20-pcb.webp){ loading=lazy }
+
+    === "Printed PCB (Front & Bottom)"
+
+        <div class="image-grid" markdown>
+        ![M20 PCB front](pics/m20/m20_pcb_front.webp){ loading=lazy }
+        ![M20 PCB bottom](pics/m20/m20_pcb_bottom.webp){ loading=lazy }
+        </div>
+
+    ## BOM { #bom }
+
+    * 1× `RP2040` Raspberry Pi Pico or compatible clone (WeAct, Teenstar)
+    * 2× 20-pin DIL/DIP sockets and matching headers
+    * 20× `1N4148` signal diodes (DO-35 through-hole or SOD-123 SMD)
+    * 20× 5-pin Cherry MX or Kailh Choc v2 switches
+    * 1× EC11 rotary encoder (optional)
+    * 1× 510 Ω resistor + 1× status indicator LED (adjust resistor value for desired LED brightness)
+    * 1× I²C OLED display (optional)
+    * 3-pin addressable LED strip (optional)
+    * LEGO 16×16 baseplate and perimeter bricks/tiles
+
+    ## Case & Assembly { #case }
+
+    * **LEGO Enclosure**: See the [m65 Case & Thickness section](m65.md#case).
+    * **Soldering & Build**: Follow the step-by-step [Assembly Guide](#doc/assembly).
+
+    ## Gerbers & KiCad { #gerbers }
+
+    Full KiCad project files and Gerbers are available in the [`m-lego/m20` GitLab repository](https://gitlab.com/m-lego/m20/), using shared symbols and footprints from [`m-lego/m65`](https://gitlab.com/m-lego/m65/).
+
+    ## Firmware { #firmware }
+
+    ```bash
+    git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+    cd qmk-alin
+    qmk compile -kb mlego/m20/rev1 -km default
+
+    # or using make:
+    make mlego/m20/rev1:default
+    ```
+
+    ## Pinout Reference { #pins }
+
+    * **Columns (C0–C3)**: `GP1`, `GP6`, `GP7`, `GP8`
+    * **Rows (R0–R4)**: `GP9`, `GP10`, `GP11`, `GP12`, `GP13`
+    * **Encoder**: `Pad_A = GP4`, `Pad_B = GP5`
+    * **OLED (I²C)**: `SDA = GP2`, `SCL = GP3`
+
+    | Indicator / RGB | Pin |
+    | :--- | :--- |
+    | `NUM_LOCK` | `GP14` |
+    | `SCROLL_LOCK` | `GP25` |
+    | `RGB_DI` | `GP0` |
+
+    ## Build Gallery { #other-pictures }
+
+    <div class="image-grid" markdown>
+    ![M20 dual build](pics/m20/m20_two.webp){ loading=lazy }
+    ![M20 LEGO case](pics/m20/m20_lego.webp){ loading=lazy }
+    ![M20 LEGO case angle](pics/m20/m20_lego-2.webp){ loading=lazy }
+    </div>
+- id: m8
+  title: m8 (2×4 Pad)
+  category: keyboards
+  badge: 2×4 Pad
+  keys: '8'
+  mcu: XIAO RP2040 / 74HC595 + 74HC589
+  firmware: QMK
+  image: pics/hand/m1-5x5-rounded.webp
+  summary: 8-key SPI shift-register engineering testbed driving an e-ink display,
+    I²C OLED, and clickable encoder on minimal MCU pins.
+  content: |
+    # m8 — 2×4 LEGO Macropad & SPI Testbed
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Prototype Tested</span>
+      <span class="spec-badge">2×4 Ortho (8 Keys)</span>
+      <span class="spec-badge">74HC595 + 74HC589 Shift Registers</span>
+      <span class="spec-badge">SPI E-Ink + I²C OLED + Clickable Encoder</span>
+      <span class="spec-badge">QMK</span>
+    </div>
+
+    ![m8 2x4 test board](https://gitlab.com/m-lego/m4x2/-/raw/main/pics/m4x2.jpg){ loading=lazy }
+
+    The **m8 (m4×2)** is an 8-key hardware development testbed designed to validate scanning a switch matrix via chained **`74HC595`** (column output) and buffered **`74HC589`** (row input) shift registers over hardware SPI while sharing the SPI bus with a **WeAct SSD1680 e-ink display**, alongside an **I²C OLED screen** and a **clickable rotary encoder**.
+
+    The circuitry validated on this board directly informed the architecture of [**m65 Rev 10/11**](#doc/m65) and [**m66 Rev 2/3**](#doc/m66). See [Not Enough Pins?](#doc/notenoughpins) for the full schematic analysis of this SPI bus-sharing circuit.
+
+    ## KiCad Project & Hardware Files { #kicad }
+
+    Full schematics, PCB layouts, and Gerbers are available in the GitLab repository:
+
+    * [ **`m-lego/m4x2` on GitLab**](https://gitlab.com/m-lego/m4x2)
+- id: m4
+  title: m4 (2×2 Pad)
+  category: keyboards
+  badge: 2×2 Pad
+  keys: '4'
+  mcu: Seeed XIAO BLE / RP2040
+  firmware: ZMK & QMK
+  image: pics/m4/m4-full.webp
+  summary: Ultra-compact 4-key macropad and wireless testbed for prototyping shift-register
+    matrix scanning and BLE firmware.
+  content: |
+    # m4 — 2×2 LEGO Macropad
+
+    <div class="spec-badges">
+      <span class="spec-badge spec-badge--status">Status: Rev 1 &amp; Rev 2 Tested</span>
+      <span class="spec-badge">2×2 Ortho (4 Keys)</span>
+      <span class="spec-badge">Seeed XIAO nRF52840 BLE / RP2040</span>
+      <span class="spec-badge">2× 74HC595 Shift Registers</span>
+      <span class="spec-badge">Rotary Encoder + OLED</span>
+      <span class="spec-badge">ZMK &amp; QMK</span>
+    </div>
+
+    <div class="image-grid" markdown>
+    ![M4 2x2 nRF52840 ZMK](pics/m4/m4-full.webp){ loading=lazy }
+    ![M4 2x2 RP2040 QMK](pics/m4/m4-rp2040-qmk.webp){ loading=lazy }
+    ![M4 2x2 RP2040 ZMK](pics/m4/m4-rp2040-zmk.webp){ loading=lazy }
+    </div>
+
+    A compact **2×2 ortholinear macropad** set in an 8×12 LEGO frame with an optional rotary encoder and I²C OLED display.
+
+    Built around the [Seeed Studio XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html) and [Seeed Studio XIAO BLE nRF52840](https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html), the **m4** served as the hardware and firmware proving ground for chaining two `74HC595` shift registers over SPI before scaling the design up to the 65-key [m65 Rev 7](#doc/m65).
+
+    Other boards in the Seeed XIAO family ([SAMD21](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html), [XIAO BLE Sense](https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html), and [ESP32C3](https://www.seeedstudio.com/Seeed-XIAO-ESP32C3-p-5431.html)) share the same footprint.
+
+    > **Status: All OK**
+    >
+
+        * [x] Gerbers designed
+        * [x] Firmware (ZMK & QMK)
+        * [x] Breadboard tested
+        * [x] Gerbers printed
+        * [x] Board tested
+
+    ## Features
+
+    * **Layout**: 2×2 ortholinear (4 keys, 5-pin PCB-mount MX switches)
+    * **Controller**: Seeed Studio XIAO nRF52840 BLE (Rev 1) or XIAO RP2040 (Rev 2)
+    * **Matrix Expansion**: 2× chained `74HC595` SMD shift registers
+    * **Peripherals**: Optional EC11 rotary encoder and I²C OLED display
+    * **Firmware**: ZMK (BLE & RP2040) and QMK (RP2040)
+
+    ## 3D Render & PCBs { #render }
+
+    === "3D Render"
+
+        ![M4 2x2 3D render](pics/m4/m2x2-3d.webp){ loading=lazy }
+
+    === "KiCad PCB (Front & Back)"
+
+        <div class="image-grid" markdown>
+        ![M4 2x2 front PCB](pics/m4/m4-front-pcb.webp){ loading=lazy }
+        ![M4 2x2 back PCB](pics/m4/m4-back-pcb.webp){ loading=lazy }
+        </div>
+
+    ## BOM { #bom }
+
+    * 1× [Seeed Studio XIAO BLE nRF52840](https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html) or [Seeed Studio XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html)
+    * 2× 7-pin DIL/DIP female sockets + matching male headers
+    * 2× `74HC595` surface-mount shift registers (SOIC-16)
+    * 4× `1N4148` signal diodes (DO-35 through-hole or SOD-123 SMD)
+    * 4× 5-pin Cherry MX–compatible switches
+    * 1× EC11 rotary encoder (optional)
+    * 1× I²C OLED display (optional)
+    * LEGO 8×12 baseplate (or 2× 4×12 plates) and perimeter bricks/plates
+
+    ## Case & Assembly { #case }
+
+    * **LEGO Enclosure**: Uses an 8×12 plate base (or two 4×12 plates). See the [m65 Case section](m65.md#case) for stacking details.
+    * **Soldering & Build**: Follow the step-by-step [Assembly Guide](#doc/assembly).
+
+    ## Gerbers & KiCad { #gerbers }
+
+    * [ **Rev 1 Gerbers**](https://gitlab.com/m-lego/m4/-/blob/main/gerbers.zip)
+    * **Shift-Register KiCad Project**: [`m-lego/m4` on GitLab](https://gitlab.com/m-lego/m4/)
+    * **Direct-Pin KiCad Project (v2)**: [`m-lego/m2x2-v2` on GitLab](https://gitlab.com/m-lego/m2x2-v2)
+
+    ## Firmware { #firmware }
+
+    === "Rev 1 — XIAO nRF52840 (ZMK)"
+
+        * **Prebuilt UF2**: [firmware/mlego2x2_rev1-seeeduino_xiao_ble-zmk.uf2](https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego2x2_rev1-seeeduino_xiao_ble-zmk.uf2)
+        * **Source**: [`alinelena/mlego-zmk`](https://github.com/alinelena/mlego-zmk)
+
+    === "Rev 2 — XIAO RP2040 (QMK & ZMK)"
+
+        * **Prebuilt ZMK UF2**: [firmware/mlego2x2_rev2-seeeduino_xiao_rp2040-zmk.uf2](https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego2x2_rev2-seeeduino_xiao_rp2040-zmk.uf2) ([ZMK RP2040 source](https://github.com/alinelena/mlego-zmk-rp2040))
+        * **Prebuilt QMK UF2**: [firmware/mlego_m4_rev2_default.uf2](https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego_m4_rev2_default.uf2) ([QMK source](https://github.com/alinelena/qmk_firmware/tree/mlego/keyboards/mlego/m4))
+
+        Compile QMK from source:
+
+        ```bash
+        git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+        cd qmk-alin
+        qmk compile -kb mlego/m4/rev2 -km default
+        ```
+
+    ## Pinout Reference { #pins }
+
+    * **Rows**: `1 (D0)`, `4 (D3)`
+    * **Columns**:
+        * `C0`: Shift Register 1 — `QA`
+        * `C1`: Shift Register 2 — `QA`
+    * **`74HC595N` Shift Registers**:
+        * `Data (MOSI)`: `11 (D10)`
+        * `Latch (RCLK)`: `8 (D7)`
+        * `Clock (SRCLK)`: `9 (D8)`
+    * **Encoder**: `Pad_A = 2 (D1)`, `Pad_B = 3 (D2)`
+    * **OLED (I²C)**: `SDA = 5 (D4)`, `SCL = 6 (D5)`
+
+    ## Additional Photos { #other-pictures }
+
+    <div class="image-grid" markdown>
+    ![M4 2x2 bare](pics/m4/m2x2.webp){ loading=lazy }
+    ![M4 2x2 switches](pics/m4/m4_2x2.webp){ loading=lazy }
+    ![M4 2x2 with DSA keycaps](pics/m4/m4-2x2_dsa.webp){ loading=lazy }
+    </div>

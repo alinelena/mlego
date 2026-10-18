@@ -1,0 +1,772 @@
+enable: true
+title: Hardware & Build Guides
+subtitle: Soldering tutorials, matrix theory, shift-register expansion, and KiCad
+  PCB design
+items:
+- id: assembly
+  title: Step-by-Step Assembly Guide
+  category: guides
+  badge: Build Guide
+  image: pics/final_3.webp
+  summary: 'Illustrated soldering and assembly walkthrough: sockets, diodes, LED resistor
+    calculations, and LEGO case mounting.'
+  content: |
+    # Step-by-Step Assembly Guide
+
+    <div class="spec-badges">
+      <span class="spec-badge">Build Time: ~2 Hours</span>
+      <span class="spec-badge">Through-Hole Soldering</span>
+      <span class="spec-badge">Modular LEGO Enclosure</span>
+    </div>
+
+    ## Before You Start { #before-you-start }
+
+    > **Prerequisites**
+    >
+        This guide assumes you know basic through-hole soldering, have reviewed the **BOM** section for your keyboard revision, and have all components and the PCB ready. While the soldering complexity is low, expect the full assembly to take around **2 hours**.
+
+    > **Familiarize Yourself with the PCB**
+    >
+        * **Front side**: The side with the silkscreen artwork (switches, MCU socket, and OLED mount on this side).
+        * **Back side**: The underside where component leads are soldered.
+        * You can ignore `R4` and `R5` on older revisions (`m65 Rev 4`), as they are only used in advanced configurations with special I²C pull-ups.
+
+    <div class="image-grid" markdown>
+    ![PCB front side](pics/m65-rev4-pcb-front.webp){ loading=lazy }
+    ![PCB back side](pics/m65-rev4-pcb-back.webp){ loading=lazy }
+    </div>
+
+    ## 1. Preparing the MCU Socket & Headers { #mcu }
+
+    > **Always Socket Your Microcontroller**
+    >
+        Whatever MCU board you use (`STM32` BlackPill, Raspberry Pi Pico `RP2040`, or Seeed Studio `XIAO`), **strongly consider socketing it** so it can be replaced or reused easily.
+
+    1. For 40-pin boards, I use **machined round pin headers** paired with a **40-way DIL socket** (or two single-row 20-pin female headers, which are especially convenient for Raspberry Pi Pico boards).
+
+    <div class="image-grid" markdown>
+    ![Round headers and 40-way DIL socket](pics/header_1.webp){ loading=lazy }
+    ![Single-row female header sockets](pics/sockets.webp){ loading=lazy }
+    </div>
+
+    > **Header Orientation**
+    >
+        Insert the male header pins partway into the socket with the **conical/tapered pins pointing down into the socket**, then place the MCU board on top. Using the socket as a jig keeps both rows perfectly parallel.
+
+    <div class="image-grid" markdown>
+    ![Headers seated in socket jig](pics/header_2.webp){ loading=lazy }
+    ![MCU placed on top of headers ready to solder](pics/header_3.webp){ loading=lazy }
+    </div>
+
+    2. Verify the headers are vertical and stable. Solder the two corner pins of each row first to tack the alignment, then solder the remaining pins.
+
+    <div class="image-grid" markdown>
+    ![Soldered MCU headers top view](pics/header_4.webp){ loading=lazy }
+    ![Soldered MCU headers side profile](pics/header_5.webp){ loading=lazy }
+    </div>
+
+    ## 2. Preparing the OLED Display { #oled }
+
+    If your build includes an I²C OLED screen, socket it as well using a 4-pin row of round machine pins and a low-profile 1×4 socket:
+
+    1. Use the keyboard PCB itself as an alignment jig: place the 4-pin header into the PCB pads (conical side pointing down toward the PCB), seat the OLED module on top, and level it with a bit of Blu-Tack or painter's tape.
+    2. Solder the 4 pins to the **OLED module only** (do not solder the header directly to the keyboard PCB!), then remove the OLED assembly.
+
+    <div class="image-grid" markdown>
+    ![OLED header and socket](pics/header_6.webp){ loading=lazy }
+    ![OLED aligned on PCB jig](pics/header_7.webp){ loading=lazy }
+    ![Completed removable OLED module](pics/header_8.webp){ loading=lazy }
+    </div>
+
+    ## 3. Soldering the Diodes { #diodes }
+
+    Prepare your `1N4148` (DO-35 through-hole) signal diodes (65 or 66 for `m65`/`m66`, 60 for `m60`, 48 for `m48`, 20 for `m20`).
+
+    1. Bend the leads at 90° as shown below.
+
+    ![1N4148 diode bent at 90 degrees](pics/diodes_1.webp){ loading=lazy }
+
+    > **Diode Polarity (Black Cathode Band)**
+    >
+        Note the **black ring/collar (cathode)** at one end of the glass body. Insert every diode from the front of the PCB with the **black collar oriented toward the bottom/lower pad** (matching the silkscreen diode triangle/bar symbol).
+
+    2. Splay the leads outward on the back of the PCB to hold each diode snug against the board while flipping it over. Working column by column is fastest.
+
+    <div class="image-grid" markdown>
+    ![Diodes inserted on front side](pics/diodes_2.webp){ loading=lazy }
+    ![Diode leads bent on back side](pics/diodes_3.webp){ loading=lazy }
+    </div>
+
+    > **Trimming Diode Leads**
+    >
+        After soldering, use flush cutters to trim the excess leads cleanly at the solder joint. *(Alternatively, you can wiggle the leads until they snap off at the joint, though it is good practice to briefly reflow the joint afterward if you do so.)*
+
+    3. For the horizontal diodes along the top row, bend one lead straight down beside the glass body as shown below so you can populate the entire row in one pass:
+
+    <div class="image-grid" markdown>
+    ![Soldered diode joint](pics/diodes_4.webp){ loading=lazy }
+    ![Top row diode bending](pics/diodes_5.webp){ loading=lazy }
+    ![All diodes soldered](pics/diodes_6.webp){ loading=lazy }
+    </div>
+
+    ## 4. Soldering the Resistors { #resistors }
+
+    Resistors are non-polarized — bend, insert, and splay the leads just like the diodes, ensuring the right resistance value goes into each footprint:
+
+    > **Resistor Values (Rev 4–6)**
+    >
+        * **`R3` (100 kΩ or 22 kΩ)**: Required on `STM32F401`/`F411` BlackPill builds so the MCU enters DFU bootloader mode reliably.
+        * **`R1` & `R2` (LED Current-Limiting)**: Select based on your LED color and desired brightness — 510 Ω gives a pleasant glow on green/yellow LEDs, while 1 kΩ works well for bright white LEDs.
+
+    > **Testing LED Brightness & Polarity**
+    >
+        Before soldering `R1`/`R2` and the LEDs, test them on a breadboard (or with DuPont jumper wires from a 3.3 V pin on your MCU) to confirm you like the brightness and to verify which LED leg is positive (3.3 V) and which is negative (`GND`) — some batch LEDs do not follow the standard long-leg-anode convention!
+
+    <div class="image-grid" markdown>
+    ![Resistors inserted](pics/resistor_1.webp){ loading=lazy }
+    ![Resistors soldered](pics/resistor_2.webp){ loading=lazy }
+    </div>
+
+    ## 5. Soldering the MCU & OLED Sockets { #sockets }
+
+    1. Place the 40-way DIL MCU socket (or female headers) onto the front of the PCB and hold it flat with painter's tape.
+    2. Flip the board over, solder the diagonal corner pins first while pressing the socket flush against the PCB, verify alignment, and solder all remaining pins.
+    3. Repeat for the 4-pin OLED socket.
+
+    <div class="image-grid" markdown>
+    ![MCU socket taped in place](pics/socket_1.webp){ loading=lazy }
+    ![OLED socket placed](pics/socket_2.webp){ loading=lazy }
+    ![Sockets soldered](pics/socket_3.webp){ loading=lazy }
+    </div>
+
+    ## 6. Soldering Indicator LEDs { #leds }
+
+    > **LED Polarity**
+    >
+        Insert each LED into the position matching its resistor (`R1` or `R2`). Ensure the **cathode (ground) leg goes into the square-plated hole**. Splay the legs, solder from the back, and trim flush.
+
+    <div class="image-grid" markdown>
+    ![Indicator LEDs inserted](pics/led_1.webp){ loading=lazy }
+    ![Indicator LEDs soldered](pics/led_2.webp){ loading=lazy }
+    </div>
+
+    ## 7. Mounting & Soldering Switches { #switches }
+
+    1. Inspect your 5-pin switches to make sure no metal pins are bent, then press them firmly into the PCB until the plastic legs snap flush.
+    2. Sight down each row and column to confirm all switches sit level and straight.
+
+    > **Loose-Fitting Switches**
+    >
+        Some switch housings (such as certain Kailh batches) fit slightly looser in PCB-mount holes. Place a flat hardcover book on top of the switches when flipping the board over so every switch stays seated flush against the PCB while soldering.
+
+    <div class="image-grid" markdown>
+    ![Switches seated on front](pics/switches_1.webp){ loading=lazy }
+    ![Switch pins ready to solder on back](pics/switches_2.webp){ loading=lazy }
+    </div>
+
+    ## 8. Soldering the Rotary Encoder { #encoder }
+
+    Snap the EC11 rotary encoder into its footprint at the top-right corner. On earlier revisions (`Rev 1–8`), only the 3 rotational pins are routed; on `Rev 9+` and `m66`, all 5 signal pins (including the push-button switch) are active. Solder all signal pins as well as the two side mounting tabs for mechanical strength.
+
+    <div class="image-grid" markdown>
+    ![Rotary encoder seated](pics/encoder_1.webp){ loading=lazy }
+    ![Rotary encoder soldered](pics/encoder_2.webp){ loading=lazy }
+    </div>
+
+    > **PCB Soldering Complete!**
+    >
+        Your keyboard PCB assembly is now electrically complete.
+
+    ## 9. Building the LEGO Enclosure & Final Testing { #the-box }
+
+    1. Assemble your LEGO base using a 16×32 baseplate (or two 16×16 plates) and perimeter 1×2 / 1×4 plates. For a ~6° typing angle, stack a full brick + plate along the top edge.
+    2. Add a sheet of hobbycraft foam inside the cavity for sound dampening, then align the PCB mounting holes over the perimeter LEGO studs and press down gently until the 1.6 mm PCB sits flush with the studs.
+    3. Seat the socketed MCU, OLED screen, and encoder knob, then plug in the USB cable.
+
+    <div class="image-grid" markdown>
+    ![LEGO baseplate parts](pics/lego_1.webp){ loading=lazy }
+    ![LEGO perimeter walls assembled](pics/lego_2.webp){ loading=lazy }
+    ![PCB mounted on LEGO case](pics/final_1.webp){ loading=lazy }
+    ![MCU and OLED seated](pics/final_2.webp){ loading=lazy }
+    </div>
+
+    > **First Power-On Checklist**
+    >
+        * **OLED Screen**: Displays "an elephant inside a boa constrictor" splash graphic for a few seconds, then switches to the active layer indicator and live WPM counter.
+        * **Rotary Encoder**: Turning the knob adjusts system volume (`Vol+` / `Vol-`).
+        * **Layer Tap-Dance LEDs**:
+            * Double-tap the **3rd key from the left on the bottom row** (`Lower`): the first indicator LED next to the encoder lights up (double-tap again to toggle off).
+            * Double-tap the **5th key from the left on the bottom row** (`Raise`): the second indicator LED lights up.
+        * **Key Matrix**: Test every switch in a keyboard tester — then install your keycaps and enjoy!
+
+    ![Finished mlego keyboard with keycaps](pics/final_3.webp){ loading=lazy }
+- id: notenoughpins
+  title: Not Enough Pins? Matrix Expansion
+  category: guides
+  badge: Hardware Guide
+  image: pics/matrix-2b_v2.webp
+  summary: Exhaustive engineering tutorial on driving large matrices from tiny MCUs
+    via SPI shift registers and matrix folding.
+  content: |
+    # Not Enough Pins for Your Keyboard Matrix?
+
+    <div class="spec-badges">
+      <span class="spec-badge">SPI Shift Registers</span>
+      <span class="spec-badge">74HC595 · 74HC165 · 74HC589</span>
+      <span class="spec-badge">Matrix Remapping (5×13 → 8×9)</span>
+      <span class="spec-badge">QMK &amp; ZMK</span>
+    </div>
+
+    So you decided to wire a custom mechanical keyboard, but your favorite compact microcontroller doesn't expose enough GPIO pins for the full switch matrix. This is the exact challenge I hit when moving the 65-key [**m65**](#doc/m65) onto the tiny 11-pin **Seeed Studio XIAO RP2040**.
+
+    ## Common Pin-Reduction Approaches
+
+    Before settling on SPI shift registers, I surveyed the existing approaches used in the community:
+
+    * **Duplex Matrix**: Folds long rows/columns by wiring two switches per row/column intersection with opposing diodes. Effective, but makes schematic reading and routing more mentally taxing.
+    * **Direct-Pin Shift Registers**: Used in boards like [tzarc's Ghoul](https://github.com/tzarc/ghoul) with chained `74HC589` shift registers (one bit per switch, no matrix). Great scan speed, but requires many ICs for 65+ keys.
+    * **I²C IO Expanders & Demuxers**: Popular on split boards (e.g., [Ferris IO Expander guide](https://github.com/pierrechevalier83/ferris/wiki/Understanding-the-QMK-firmware-for-the-IO-Expander)) or `74HC138` 3-to-8 decoders in QMK.
+    * **SPI Shift-Register Matrix Scanning**: Using inexpensive `74HC595` (serial-in, parallel-out) and `74HC165` / `74HC589` (parallel-in, serial-out) shift registers to drive columns and/or read rows over hardware SPI.
+        * Background tutorials on shift registers: [Last Minute Engineers — `74HC595`](https://lastminuteengineers.com/74hc595-shift-register-arduino-tutorial/) and [DroneBot Workshop — `74HC595` & `74HC165`](https://dronebotworkshop.com/shift-registers/).
+        * Initial keyboard inspiration: [mehmedbasic.dk — `74HC595` Keyboard](https://mehmedbasic.dk/post/74hc595-keyboard/).
+
+    > **Official QMK Support & Acknowledgments**
+    >
+        When I started experimenting with these circuits, QMK had very few public examples. Since QMK `0.20.0`, boards like Keychron and `hazel/bad_wings` use `74HC595`, and `handwired/dqz11n1g` uses `74HC165`. Huge thanks to **sigprof** and **tzarc** for their guidance on SPI timing and tri-state buffering.
+
+    > **Disclaimer**
+    >
+        While the schematics and firmware below work reliably together to scan a 13×5 / 14×5 matrix at 4,000–6,000+ Hz, remember I am a hardware enthusiast rather than an electrical engineer — use and adapt them at your own risk!
+
+    ---
+
+    ## Method 1: Scan Columns via `74HC595` + Direct GPIO Rows { #1-scan-only-columns-with-shift-registers }
+
+    Uses **2× [`74HC595`](https://www.ti.com/product/SN74HC595)** output shift registers chained over SPI (`MOSI`, `SCK`, `RCLK`) to drive up to 16 columns using only **3 MCU pins**, while the 5 rows are read directly on 5 MCU GPIO pins (total: **8 pins** for a 5×16 matrix).
+
+    ![Matrix Version 1 — 2x 74HC595 column scanning](pics/matrix-1.webp){ loading=lazy }
+
+    * **QMK Implementation**: [`mlego/m65/rev7/matrix.c`](https://github.com/alinelena/qmk_firmware/tree/mlego_dev/keyboards/mlego/m65/rev7/matrix.c)
+    * **ZMK Implementation**: [`mlego5x13_rev8.overlay` (`zmk,kscan-gpio-matrix` + `74hc595`)](https://github.com/alinelena/mlego-zmk/blob/main/config/boards/shields/mlego5x13_rev8/mlego5x13_rev8.overlay)
+
+    ---
+
+    ## Method 2a: Scan Columns (`74HC595`) & Rows (`74HC165`) — Unbuffered { #2a-scan-both-columns-and-rows-with-shift-registers }
+
+    Uses **2× `74HC595`** (columns) and **1× [`74HC165`](https://www.ti.com/product/SN74HC165)** (rows). Both ICs are inexpensive and widely available in through-hole (DIP-16) and SMD (SOIC-16) packages. Reads the entire 5×14 matrix using only **4 MCU pins** (`MOSI`, `MISO`, `SCK`, shared `Latch`).
+
+    > **Limitation: Unbuffered `MISO`**
+    >
+        Because the `74HC165` serial output (`Q7`) does not have a true high-impedance (3-state) output when deselected, **you cannot easily share the `MISO` pin with other SPI peripherals** without adding external tri-state buffer circuitry.
+
+    ![Matrix Version 2a — 2x 74HC595 + 1x 74HC165](pics/matrix-2a.webp){ loading=lazy }
+
+    * **QMK Implementation**: [`mlego/m66/rev1/matrix.c`](https://github.com/alinelena/qmk_firmware/blob/mlego_dev/keyboards/mlego/m66/rev1/matrix.c)
+
+    ---
+
+    ## Method 2b: Scan Columns (`74HC595`) & Rows (`74HC589`) — Buffered 3-State SPI { #2b-scan-both-columns-and-rows-with-shift-registers }
+
+    Replaces the `74HC165` with a **1× [`74HC589`](https://www.onsemi.com/pdf/datasheet/mc74hc589a-d.pdf)** (mostly SMD today). The `74HC589` includes an internal **3-state output buffer**, allowing the `MISO` line to be cleanly shared with other SPI devices (such as SPI e-ink or Sharp Memory displays).
+
+    ### Variant 1 (Single Shared Latch — Deprecated) { #variant-1 }
+
+    > **Do Not Use Variant 1 for New Designs**
+    >
+        While this single-latch circuit (`m65 Rev 10` / `m66 Rev 2`) works with carefully tuned firmware timing, it relies on edge-case latch/output-enable behavior. Use **Variant 2** below instead.
+
+    ![Matrix Version 2b Variant 1](pics/matrix-2b.webp){ loading=lazy }
+
+    * **QMK Reference**: [`mlego/m66/rev2/matrix.c`](https://github.com/alinelena/qmk_firmware/blob/mlego_dev/keyboards/mlego/m66/rev2/matrix.c)
+
+    ### Variant 2 (Separate Chip Selects — Recommended) { #variant-2 }
+
+    Uses separate latch / chip-select lines for the `2× 74HC595` column driver and the `1× 74HC589` row reader (costing 1 extra pin compared to Variant 1, for **5 SPI pins total**), making SPI bus sharing and matrix scanning clean and deterministic.
+
+    ![Matrix Version 2b Variant 2](pics/matrix-2b_v2.webp){ loading=lazy }
+
+    * **QMK Implementation**: [`mlego/m66/rev3/matrix.c`](https://github.com/alinelena/qmk_firmware/blob/mlego_dev/keyboards/m66/rev3/matrix.c)
+
+    > **Hybrid Scanning**
+    >
+        All three shift-register methods above can be combined with direct GPIO pins in custom `matrix.c` routines if you want to mix shift-register columns with extra direct keys.
+
+    ---
+
+    ## Method 3: Mathematical Matrix Restructuring (Zero Extra Hardware) { #restructure-the-matrix }
+
+    If you are only short by **1 or 2 GPIO pins**, you don't need any shift registers at all — simply **decouple the electrical matrix dimensions from the physical key layout** so the row and column counts are closer to a square (Rows ≈ Cols maximizes Rows × Cols for a fixed pin budget Rows + Cols).
+
+    * **Example 1**: A physical **6×17** board (68 keys) normally requires 6 + 17 = 23 pins. Electrically wiring it as a **10×7** or **9×8** matrix reduces the pin count to 17 pins — saving **6 pins**!
+    * **Example 2 (`m65` 5×13 Ortho)**:
+        * **Standard 5×13 Matrix**: Uses 5 + 13 = **18 pins** (`65` positions).
+        * **Restructured 8×9 Matrix**: Uses 8 + 9 = **17 pins** (`72` positions, saving 1 pin with 7 spare switch slots!).
+
+    Both QMK (via data-driven `info.json` `"matrix": [row, col]` coordinates) and ZMK (via `zmk,matrix-transform`) make this remapping trivial:
+
+    === "Standard 5×13 Matrix (18 Pins)"
+
+        **1. `info.json` Pin Definition (`5 + 13 = 18` pins)**:
+
+        ```json
+        "matrix_pins": {
+            "cols": ["GP1", "GP6", "GP7", "GP8", "GP9", "GP15", "GP14", "GP13", "GP12", "GP11", "GP10", "GP17", "GP21"],
+            "rows": ["GP22", "GP16", "GP18", "GP19", "GP20"]
+        }
+        ```
+
+        **2. Physical-to-Electrical Mapping (1:1 Grid)**:
+
+        ```text
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │0A││0B││0C││0D││0E││0F││0G││0H││0I││0J││0K││0L││0M│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │1A││1B││1C││1D││1E││1F││1G││1H││1I││1J││1K││1L││1M│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │2A││2B││2C││2D││2E││2F││2G││2H││2I││2J││2K││2L││2M│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │3A││3B││3C││3D││3E││3F││3G││3H││3I││3J││3K││3L││3M│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │4A││4B││4C││4D││4E││4F││4G││4H││4I││4J││4K││4L││4M│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ```
+
+        **3. Full `LAYOUT_ortho_5x13` Definition**:
+
+        ??? code "Expand 5×13 `info.json` Layout Definition"
+
+            ```json
+            "LAYOUT_ortho_5x13": {
+                "layout": [
+                    { "label": "⎋" , "matrix": [0, 0] , "w": 1, "x": 0 , "y": 0 },
+                    { "label": "1" , "matrix": [0, 1] , "w": 1, "x": 1 , "y": 0 },
+                    { "label": "2" , "matrix": [0, 2] , "w": 1, "x": 2 , "y": 0 },
+                    { "label": "3" , "matrix": [0, 3] , "w": 1, "x": 3 , "y": 0 },
+                    { "label": "4" , "matrix": [0, 4] , "w": 1, "x": 4 , "y": 0 },
+                    { "label": "5" , "matrix": [0, 5] , "w": 1, "x": 5 , "y": 0 },
+                    { "label": "6" , "matrix": [0, 6] , "w": 1, "x": 6 , "y": 0 },
+                    { "label": "7" , "matrix": [0, 7] , "w": 1, "x": 7 , "y": 0 },
+                    { "label": "8" , "matrix": [0, 8] , "w": 1, "x": 8 , "y": 0 },
+                    { "label": "9" , "matrix": [0, 9] , "w": 1, "x": 9 , "y": 0 },
+                    { "label": "0" , "matrix": [0, 10], "w": 1, "x": 10, "y": 0 },
+                    { "label": "-" , "matrix": [0, 11], "w": 1, "x": 11, "y": 0 },
+                    { "label": "⌫" , "matrix": [0, 12], "w": 1, "x": 12, "y": 0 },
+                    { "label": "↹", "matrix": [1, 0] , "w": 1, "x": 0 , "y": 1 },
+                    { "label": "q" , "matrix": [1, 1] , "w": 1, "x": 1 , "y": 1 },
+                    { "label": "w" , "matrix": [1, 2] , "w": 1, "x": 2 , "y": 1 },
+                    { "label": "e" , "matrix": [1, 3] , "w": 1, "x": 3 , "y": 1 },
+                    { "label": "r" , "matrix": [1, 4] , "w": 1, "x": 4 , "y": 1 },
+                    { "label": "t" , "matrix": [1, 5] , "w": 1, "x": 5 , "y": 1 },
+                    { "label": "y" , "matrix": [1, 6] , "w": 1, "x": 6 , "y": 1 },
+                    { "label": "u" , "matrix": [1, 7] , "w": 1, "x": 7 , "y": 1 },
+                    { "label": "i" , "matrix": [1, 8] , "w": 1, "x": 8 , "y": 1 },
+                    { "label": "o" , "matrix": [1, 9] , "w": 1, "x": 9 , "y": 1 },
+                    { "label": "p" , "matrix": [1, 10], "w": 1, "x": 10, "y": 1 },
+                    { "label": "[" , "matrix": [1, 11], "w": 1, "x": 11, "y": 1 },
+                    { "label": "]" , "matrix": [1, 12], "w": 1, "x": 12, "y": 1 },
+                    { "label": "#" , "matrix": [2, 0] , "w": 1, "x": 0 , "y": 2 },
+                    { "label": "a" , "matrix": [2, 1] , "w": 1, "x": 1 , "y": 2 },
+                    { "label": "s" , "matrix": [2, 2] , "w": 1, "x": 2 , "y": 2 },
+                    { "label": "d" , "matrix": [2, 3] , "w": 1, "x": 3 , "y": 2 },
+                    { "label": "f" , "matrix": [2, 4] , "w": 1, "x": 4 , "y": 2 },
+                    { "label": "g" , "matrix": [2, 5] , "w": 1, "x": 5 , "y": 2 },
+                    { "label": "h" , "matrix": [2, 6] , "w": 1, "x": 6 , "y": 2 },
+                    { "label": "j" , "matrix": [2, 7] , "w": 1, "x": 7 , "y": 2 },
+                    { "label": "k" , "matrix": [2, 8] , "w": 1, "x": 8 , "y": 2 },
+                    { "label": "l" , "matrix": [2, 9] , "w": 1, "x": 9 , "y": 2 },
+                    { "label": ";" , "matrix": [2, 10], "w": 1, "x": 10, "y": 2 },
+                    { "label": "'" , "matrix": [2, 11], "w": 1, "x": 11, "y": 2 },
+                    { "label": "⏎" , "matrix": [2, 12], "w": 1, "x": 12, "y": 2 },
+                    { "label": "⇧" , "matrix": [3, 0] , "w": 1, "x": 0 , "y": 3 },
+                    { "label": "\\", "matrix": [3, 1] , "w": 1, "x": 1 , "y": 3 },
+                    { "label": "z" , "matrix": [3, 2] , "w": 1, "x": 2 , "y": 3 },
+                    { "label": "x" , "matrix": [3, 3] , "w": 1, "x": 3 , "y": 3 },
+                    { "label": "c" , "matrix": [3, 4] , "w": 1, "x": 4 , "y": 3 },
+                    { "label": "v" , "matrix": [3, 5] , "w": 1, "x": 5 , "y": 3 },
+                    { "label": "b" , "matrix": [3, 6] , "w": 1, "x": 6 , "y": 3 },
+                    { "label": "n" , "matrix": [3, 7] , "w": 1, "x": 7 , "y": 3 },
+                    { "label": "m" , "matrix": [3, 8] , "w": 1, "x": 8 , "y": 3 },
+                    { "label": "," , "matrix": [3, 9] , "w": 1, "x": 9 , "y": 3 },
+                    { "label": "." , "matrix": [3, 10], "w": 1, "x": 10, "y": 3 },
+                    { "label": "↑" , "matrix": [3, 11], "w": 1, "x": 11, "y": 3 },
+                    { "label": "/" , "matrix": [3, 12], "w": 1, "x": 12, "y": 3 },
+                    { "label": "⎈" , "matrix": [4, 0] , "w": 1, "x": 0 , "y": 4 },
+                    { "label": "" , "matrix": [4, 1] , "w": 1, "x": 1 , "y": 4 },
+                    { "label": "⇓" , "matrix": [4, 2] , "w": 1, "x": 2 , "y": 4 },
+                    { "label": "⎇" , "matrix": [4, 3] , "w": 1, "x": 3 , "y": 4 },
+                    { "label": "⇑" , "matrix": [4, 4] , "w": 1, "x": 4 , "y": 4 },
+                    { "label": " " , "matrix": [4, 5] , "w": 1, "x": 5 , "y": 4 },
+                    { "label": " " , "matrix": [4, 6] , "w": 1, "x": 6 , "y": 4 },
+                    { "label": " " , "matrix": [4, 7] , "w": 1, "x": 7 , "y": 4 },
+                    { "label": "⎇" , "matrix": [4, 8] , "w": 1, "x": 8 , "y": 4 },
+                    { "label": "⇧" , "matrix": [4, 9] , "w": 1, "x": 9 , "y": 4 },
+                    { "label": "←", "matrix": [4, 10], "w": 1, "x": 10, "y": 4 },
+                    { "label": "↓" , "matrix": [4, 11], "w": 1, "x": 11, "y": 4 },
+                    { "label": "→" , "matrix": [4, 12], "w": 1, "x": 12, "y": 4 }
+                ]
+            }
+            ```
+
+    === "Restructured 8×9 Matrix (17 Pins — Saves 1 Pin)"
+
+        **1. `info.json` Pin Definition (`8 + 9 = 17` pins)**:
+
+        ```json
+        "matrix_pins": {
+            "cols": ["GP1", "GP6", "GP7", "GP8", "GP9", "GP15", "GP14", "GP13", "GP12"],
+            "rows": ["GP11", "GP10", "GP17", "GP21", "GP16", "GP18", "GP19", "GP20"]
+        }
+        ```
+
+        **2. Physical-to-Electrical Mapping (8 Rows `0–7` × 9 Cols `A–I`)**:
+
+        Wire all keys sharing the same digit (`0–7`) to the corresponding row pin, and all keys sharing the same letter (`A–I`) to the corresponding column pin:
+
+        ```text
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │0A││0B││0C││0D││0E││0F││0G││0H││0I││1A││1B││1C││1D│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │1E││1F││1G││1H││1I││2A││2B││2C││2D││2E││2F││2G││2H│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │2I││3A││3B││3C││3D││3E││3F││3G││3H││3I││4A││4B││4C│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │4D││4E││4F││4G││4H││4I││5A││5B││5C││5D││5E││5F││5G│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+        │5H││5I││6A││6B││6C││6D││6E││6F││6G││6H││6I││7A││7B│
+        └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+        ```
+
+        **3. Full Remapped `LAYOUT_ortho_5x13` Definition**:
+
+        ??? code "Expand Remapped 8×9 `info.json` Layout Definition"
+
+            ```json
+            "LAYOUT_ortho_5x13": {
+                "layout": [
+                    { "label": "⎋" , "matrix": [0, 0] , "w": 1, "x": 0 , "y": 0 },
+                    { "label": "1" , "matrix": [0, 1] , "w": 1, "x": 1 , "y": 0 },
+                    { "label": "2" , "matrix": [0, 2] , "w": 1, "x": 2 , "y": 0 },
+                    { "label": "3" , "matrix": [0, 3] , "w": 1, "x": 3 , "y": 0 },
+                    { "label": "4" , "matrix": [0, 4] , "w": 1, "x": 4 , "y": 0 },
+                    { "label": "5" , "matrix": [0, 5] , "w": 1, "x": 5 , "y": 0 },
+                    { "label": "6" , "matrix": [0, 6] , "w": 1, "x": 6 , "y": 0 },
+                    { "label": "7" , "matrix": [0, 7] , "w": 1, "x": 7 , "y": 0 },
+                    { "label": "8" , "matrix": [0, 8] , "w": 1, "x": 8 , "y": 0 },
+                    { "label": "9" , "matrix": [1, 0] , "w": 1, "x": 9 , "y": 0 },
+                    { "label": "0" , "matrix": [1, 1], "w": 1, "x": 10, "y": 0 },
+                    { "label": "-" , "matrix": [1, 2], "w": 1, "x": 11, "y": 0 },
+                    { "label": "⌫" , "matrix": [1, 3], "w": 1, "x": 12, "y": 0 },
+                    { "label": "↹", "matrix": [1, 4] , "w": 1, "x": 0 , "y": 1 },
+                    { "label": "q" , "matrix": [1, 5] , "w": 1, "x": 1 , "y": 1 },
+                    { "label": "w" , "matrix": [1, 6] , "w": 1, "x": 2 , "y": 1 },
+                    { "label": "e" , "matrix": [1, 7] , "w": 1, "x": 3 , "y": 1 },
+                    { "label": "r" , "matrix": [1, 8] , "w": 1, "x": 4 , "y": 1 },
+                    { "label": "t" , "matrix": [2, 0] , "w": 1, "x": 5 , "y": 1 },
+                    { "label": "y" , "matrix": [2, 1] , "w": 1, "x": 6 , "y": 1 },
+                    { "label": "u" , "matrix": [2, 2] , "w": 1, "x": 7 , "y": 1 },
+                    { "label": "i" , "matrix": [2, 3] , "w": 1, "x": 8 , "y": 1 },
+                    { "label": "o" , "matrix": [2, 4] , "w": 1, "x": 9 , "y": 1 },
+                    { "label": "p" , "matrix": [2, 5], "w": 1, "x": 10, "y": 1 },
+                    { "label": "[" , "matrix": [2, 6], "w": 1, "x": 11, "y": 1 },
+                    { "label": "]" , "matrix": [2, 7], "w": 1, "x": 12, "y": 1 },
+                    { "label": "#" , "matrix": [2, 8] , "w": 1, "x": 0 , "y": 2 },
+                    { "label": "a" , "matrix": [3, 0] , "w": 1, "x": 1 , "y": 2 },
+                    { "label": "s" , "matrix": [3, 1] , "w": 1, "x": 2 , "y": 2 },
+                    { "label": "d" , "matrix": [3, 2] , "w": 1, "x": 3 , "y": 2 },
+                    { "label": "f" , "matrix": [3, 3] , "w": 1, "x": 4 , "y": 2 },
+                    { "label": "g" , "matrix": [3, 4] , "w": 1, "x": 5 , "y": 2 },
+                    { "label": "h" , "matrix": [3, 5] , "w": 1, "x": 6 , "y": 2 },
+                    { "label": "j" , "matrix": [3, 6] , "w": 1, "x": 7 , "y": 2 },
+                    { "label": "k" , "matrix": [3, 7] , "w": 1, "x": 8 , "y": 2 },
+                    { "label": "l" , "matrix": [3, 8] , "w": 1, "x": 9 , "y": 2 },
+                    { "label": ";" , "matrix": [4, 0], "w": 1, "x": 10, "y": 2 },
+                    { "label": "'" , "matrix": [4, 1], "w": 1, "x": 11, "y": 2 },
+                    { "label": "⏎" , "matrix": [4, 2], "w": 1, "x": 12, "y": 2 },
+                    { "label": "⇧" , "matrix": [4, 3] , "w": 1, "x": 0 , "y": 3 },
+                    { "label": "\\", "matrix": [4, 4] , "w": 1, "x": 1 , "y": 3 },
+                    { "label": "z" , "matrix": [4, 5] , "w": 1, "x": 2 , "y": 3 },
+                    { "label": "x" , "matrix": [4, 6] , "w": 1, "x": 3 , "y": 3 },
+                    { "label": "c" , "matrix": [4, 7] , "w": 1, "x": 4 , "y": 3 },
+                    { "label": "v" , "matrix": [4, 8] , "w": 1, "x": 5 , "y": 3 },
+                    { "label": "b" , "matrix": [5, 0] , "w": 1, "x": 6 , "y": 3 },
+                    { "label": "n" , "matrix": [5, 1] , "w": 1, "x": 7 , "y": 3 },
+                    { "label": "m" , "matrix": [5, 2] , "w": 1, "x": 8 , "y": 3 },
+                    { "label": "," , "matrix": [5, 3] , "w": 1, "x": 9 , "y": 3 },
+                    { "label": "." , "matrix": [5, 4], "w": 1, "x": 10, "y": 3 },
+                    { "label": "↑" , "matrix": [5, 5], "w": 1, "x": 11, "y": 3 },
+                    { "label": "/" , "matrix": [5, 6], "w": 1, "x": 12, "y": 3 },
+                    { "label": "⎈" , "matrix": [5, 7] , "w": 1, "x": 0 , "y": 4 },
+                    { "label": "" , "matrix": [5, 8] , "w": 1, "x": 1 , "y": 4 },
+                    { "label": "⇓" , "matrix": [6, 0] , "w": 1, "x": 2 , "y": 4 },
+                    { "label": "⎇" , "matrix": [6, 1] , "w": 1, "x": 3 , "y": 4 },
+                    { "label": "⇑" , "matrix": [6, 2] , "w": 1, "x": 4 , "y": 4 },
+                    { "label": " " , "matrix": [6, 3] , "w": 1, "x": 5 , "y": 4 },
+                    { "label": " " , "matrix": [6, 4] , "w": 1, "x": 6 , "y": 4 },
+                    { "label": " " , "matrix": [6, 5] , "w": 1, "x": 7 , "y": 4 },
+                    { "label": "⎇" , "matrix": [6, 6] , "w": 1, "x": 8 , "y": 4 },
+                    { "label": "⇧" , "matrix": [6, 7] , "w": 1, "x": 9 , "y": 4 },
+                    { "label": "←", "matrix": [6, 8], "w": 1, "x": 10, "y": 4 },
+                    { "label": "↓" , "matrix": [7, 0], "w": 1, "x": 11, "y": 4 },
+                    { "label": "→" , "matrix": [7, 1], "w": 1, "x": 12, "y": 4 }
+                ]
+            }
+            ```
+- id: how_matrix_works_extra
+  title: How Keyboard Matrices Work (3×3)
+  category: guides
+  badge: Electronics Guide
+  image: pics/col2row/pcb-3df-col2row.webp
+  summary: Beginner-friendly hardware primer on diode direction, ghosting prevention,
+    KiCad PCB routing, and bootstrapping QMK.
+  content: |
+    # How a Keyboard Matrix Works — Practical 3×3 Guide
+
+    <div class="spec-badges">
+      <span class="spec-badge">COL2ROW vs. ROW2COL</span>
+      <span class="spec-badge">QMK Data-Driven Config</span>
+      <span class="spec-badge">STM32F401 &amp; RP2040</span>
+      <span class="spec-badge">KiCad PCB Design</span>
+    </div>
+
+    ## Setting Up the Scene { #set-up-the-scene }
+
+    If you have read the official QMK guides — [How a Keyboard Matrix Works](https://docs.qmk.fm/#/how_a_matrix_works), [How Keyboards Work](https://docs.qmk.fm/#/how_keyboards_work), and [Understanding QMK's Code](https://docs.qmk.fm/#/understanding_qmk) — and want a concrete, end-to-end example connecting the schematic, diode orientation, QMK firmware, and PCB layout, this guide walks through a complete **3×3 mechanical keypad (`m3x3`)** using a WeAct **`STM32F401` BlackPill** (and **Raspberry Pi Pico `RP2040`**).
+
+    > **MCU Pin Quirks**
+    >
+        Every microcontroller family has its own pin constraints and boot strapping requirements. Always check which pins are reserved or require pull-ups before finalizing a PCB:
+
+        * [WeAct BlackPill `STM32F401CCU6` Pinout](https://stm32-base.org/boards/STM32F401CCU6-WeAct-Black-Pill-V1.2.html) & [`STM32F411CEU6` Pinout](https://stm32-base.org/boards/STM32F411CEU6-WeAct-Black-Pill-V2.0.html)
+        * [QMK WeAct BlackPill `STM32F4x1` Platform Notes](https://docs.qmk.fm/#/platformdev_blackpill_f4x1?id=weact-blackpill-stm32f4x1)
+
+    ### Diode Orientation: `COL2ROW` vs. `ROW2COL`
+
+    Adding a `1N4148` signal diode in series with each key switch prevents **ghosting** when multiple keys are pressed simultaneously. Because a diode conducts current in only one direction, there are two valid ways to orient the diodes across your matrix intersections:
+
+    | `COL2ROW` (Column → Row) | `ROW2COL` (Row → Column) |
+    | :---: | :---: |
+    | ![circuit schematic diode orientation columns to rows](pics/col2row/circuit-col2row.webp){ loading=lazy } | ![circuit schematic diode orientation rows to columns](pics/row2col/circuit-row2col.webp){ loading=lazy } |
+    | Diode cathode (black band) points toward the **Row** line | Diode cathode (black band) points toward the **Column** line |
+
+    In both circuits above, **Rows (`R0–R2`)** connect to `B3`, `B4`, `B5` and **Columns (`C0–C2`)** connect to `B12`, `B13`, `B14`. The only hardware difference is the direction of the diode!
+
+    In QMK's `config.h` (or `info.json`), this is configured via `DIODE_DIRECTION`:
+
+    === "Left Circuit (`COL2ROW`)"
+
+        ```c
+        // config.h
+        #define DIODE_DIRECTION COL2ROW
+        ```
+
+        ```json
+        // info.json
+        "diode_direction": "COL2ROW"
+        ```
+
+    === "Right Circuit (`ROW2COL`)"
+
+        ```c
+        // config.h
+        #define DIODE_DIRECTION ROW2COL
+        ```
+
+        ```json
+        // info.json
+        "diode_direction": "ROW2COL"
+        ```
+
+    At this stage, you already have everything needed to write and test the firmware on a breadboard using only the MCU and a few DuPont jumper wires!
+
+    ---
+
+    ## Creating a Simple QMK Firmware { #creating-a-simple-firmware }
+
+    Once you have [set up your QMK environment](https://docs.qmk.fm/#/newbs_getting_started), QMK's CLI can scaffold the entire keyboard definition automatically.
+
+    > **Design Parameters for `m3x3`**
+    >
+        * **MCU Type**: `blackpill_f401` (or `blackpill_f411`)
+        * **Column Pins (`C0–C2`)**: `B12`, `B13`, `B14` *(order matters!)*
+        * **Row Pins (`R0–R2`)**: `B3`, `B4`, `B5` *(order matters!)*
+        * **Diode Direction**: `COL2ROW`
+        * **Keyboard Name**: `m3x3`
+        * **GitHub Username / Author**: `alinelena` / `"dr faustroll"`
+
+    ### Scaffold the Keyboard
+
+    ```bash
+    qmk new-keyboard -n "dr faustroll" -u alinelena -t blackpill_f401 -kb m3x3 -l ortho_3x3
+    ```
+
+    QMK generates the following directory structure inside `keyboards/m3x3/`:
+
+    ```text
+    Ψ Generating a new QMK keyboard directory
+    Ψ Created a new keyboard called m3x3.
+    Ψ To start working on things, `cd` into keyboards/m3x3,
+    Ψ or open the directory in your preferred text editor.
+    Ψ And build with qmk compile -kb m3x3 -km default.
+
+    keyboards/m3x3/
+    ├── config.h
+    ├── info.json
+    ├── keymaps/
+    │   └── default/
+    │       └── keymap.c
+    ├── readme.md
+    └── rules.mk
+    ```
+
+    ### Configure `info.json` and `keymap.c`
+
+    1. **Set Diode Direction (`keyboards/m3x3/info.json`)**:
+
+        ```json
+        "diode_direction": "COL2ROW",
+        ```
+
+    2. **Set Matrix Pins (`keyboards/m3x3/info.json`)**:
+        Replace the placeholder pins with our actual row and column pins:
+
+        ```json
+        "matrix_pins": {
+            "cols": ["B12", "B13", "B14"],
+            "rows": ["B3", "B4", "B5"]
+        },
+        ```
+
+    3. **Customize the Keymap (`keyboards/m3x3/keymaps/default/keymap.c`)**:
+        See QMK's [Basic Keycodes reference](https://docs.qmk.fm/#/keycodes_basic). Replace the default `KC_A`–`KC_I` block with a 1–9 numpad layout:
+
+        ```c
+        [0] = LAYOUT_ortho_3x3(
+            KC_7,   KC_8,   KC_9,
+            KC_4,   KC_5,   KC_6,
+            KC_1,   KC_2,   KC_3
+        )
+        ```
+
+    4. **Compile & Flash**:
+
+        ```bash
+        qmk compile -kb m3x3 -km default
+        qmk flash -kb m3x3 -km default
+        ```
+
+        ```text
+        Linking: .build/m3x3_default.elf                                            [OK]
+        Creating binary load file for flashing: .build/m3x3_default.bin             [OK]
+        Size after:
+           text    data     bss     dec     hex filename
+              0   23032       0   23032    59f8 m3x3_default.bin
+        ```
+
+    ---
+
+    ## What If My Layout Is Not Listed in `qmk new-keyboard`? { #my-layout-is-not-listed }
+
+    If your exact matrix dimensions aren't listed as a community layout preset, simply bootstrap with the closest larger preset (for example, `ortho_4x4`) and trim `keyboards/m3x3/info.json` and `keymaps/default/keymap.c`:
+
+    1. Update `"diode_direction"` and `"matrix_pins"` in `keyboards/m3x3/info.json` to 3 columns and 3 rows as shown above.
+    2. In `keyboards/m3x3/info.json`, rename `"LAYOUT_ortho_4x4"` to `"LAYOUT_ortho_3x3"` and remove any entries referencing row `3` or column `3`:
+
+        ```json
+        "LAYOUT_ortho_3x3": {
+            "layout": [
+                { "matrix": [0, 0], "x": 0, "y": 0 },
+                { "matrix": [0, 1], "x": 1, "y": 0 },
+                { "matrix": [0, 2], "x": 2, "y": 0 },
+                { "matrix": [1, 0], "x": 0, "y": 1 },
+                { "matrix": [1, 1], "x": 1, "y": 1 },
+                { "matrix": [1, 2], "x": 2, "y": 1 },
+                { "matrix": [2, 0], "x": 0, "y": 2 },
+                { "matrix": [2, 1], "x": 1, "y": 2 },
+                { "matrix": [2, 2], "x": 2, "y": 2 }
+            ]
+        }
+        ```
+
+    3. Update `keyboards/m3x3/keymaps/default/keymap.c` to use `LAYOUT_ortho_3x3` with 9 keys, then compile and flash!
+
+    ---
+
+    ## Using Raspberry Pi Pico (`RP2040`) { #i-want-to-use-raspberry-pico-rp2040 }
+
+    Switching to an `RP2040` board is just a matter of choosing `-t RP2040` and specifying valid `GPx` pin names:
+
+    * [Official Raspberry Pi Pico Pinout PDF](https://datasheets.raspberrypi.com/pico/Pico-R3-A4-Pinout.pdf) *(always verify the pinout diagram for your specific RP2040 clone)*
+    * [QMK `RP2040` Platform Documentation](https://docs.qmk.fm/#/platformdev_rp2040)
+
+    ```bash
+    qmk new-keyboard -n "dr faustroll" -u alinelena -t RP2040 -kb m3x3 -l ortho_3x3
+    ```
+
+    Then set your chosen GPIO pins (for example, `GP0`–`GP2` for columns and `GP10`–`GP12` for rows) in `keyboards/m3x3/info.json`:
+
+    ```json
+    "diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "cols": ["GP0", "GP1", "GP2"],
+        "rows": ["GP10", "GP11", "GP12"]
+    },
+    ```
+
+    ---
+
+    ## Designing the PCB in KiCad { #pcbs }
+
+    Once your firmware is tested, you can either [handwire the switches](#doc/hand5x5) or design a custom PCB in **KiCad**:
+
+    * **PCB Design Tutorial**: [ai03's Keyboard PCB Design Guide](https://wiki.ai03.com/books/pcb-design)
+    * **KiCad Footprints & Symbols**: [ebastler's `marbastlib`](https://github.com/ebastler/marbastlib) and [mechkey.org resources](https://mechkey.org/)
+
+    ### Side-by-Side PCB Comparison (`COL2ROW` vs. `ROW2COL`)
+
+    | View | `COL2ROW` (Column → Row) | `ROW2COL` (Row → Column) |
+    | :--- | :---: | :---: |
+    | **KiCad Routed Tracks** | ![PCB tracks COL2ROW](pics/col2row/pcb-col2row.webp){ loading=lazy } | ![PCB tracks ROW2COL](pics/row2col/pcb-row2col.webp){ loading=lazy } |
+    | **3D Render (Front)** | ![PCB 3D front COL2ROW](pics/col2row/pcb-3df-col2row.webp){ loading=lazy } | ![PCB 3D front ROW2COL](pics/row2col/pcb-3df-row2col.webp){ loading=lazy } |
+    | **3D Render (Bottom)** | ![PCB 3D bottom COL2ROW](pics/col2row/pcb-3db-col2row.webp){ loading=lazy } | ![PCB 3D bottom ROW2COL](pics/row2col/pcb-3db-row2col.webp){ loading=lazy } |
+- id: hand5x5
+  title: Handwire Helpers (5×5 Breakout)
+  category: guides
+  badge: PCB Design
+  image: pics/hand/m1-5x5-rounded.webp
+  summary: Modular 5×5 switch matrix break-apart PCBs to simplify custom handwiring
+    and speed up prototyping.
+  content: |
+    # Handwire Helpers — Modular 5×5 Matrix PCB
+
+    <div class="spec-badges">
+      <span class="spec-badge">5×5 Modular Switch Grid</span>
+      <span class="spec-badge">Cherry MX &amp; Kailh Choc v2</span>
+      <span class="spec-badge">Cut-to-Size Matrix Panel</span>
+    </div>
+
+    Handwiring a custom keyboard is rewarding, but point-to-point soldering can be tedious. This project provides a **modular 5×5 switch matrix PCB** supporting both **Cherry MX** and **Kailh Choc v2** footprints that can be scored and cut to your exact row/column dimensions and chained together.
+
+    <div class="image-grid" markdown>
+    ![Handwire 5x5 panel front](pics/hand/hand-1.webp){ loading=lazy }
+    ![Handwire 5x5 panel back](pics/hand/hand-2.webp){ loading=lazy }
+    </div>
+
+    ## 3D Render & PCB Layout { #render }
+
+    <div class="image-grid" markdown>
+    ![Handwire 5x5 3D render](pics/hand/m1-5x5-rounded.webp){ loading=lazy }
+    ![Handwire 5x5 KiCad PCB](pics/hand/m1-5x5-pcb.webp){ loading=lazy }
+    </div>
+
+    ## Gerbers & KiCad Source { #gerbers }
+
+    * [ **Ready-Made JLCPCB Gerbers (`gerbers-rev5.zip`)**](https://gitlab.com/m-lego/hand5x5/-/blob/main/gerbers-rev5.zip)
+    * **Full KiCad Project**: [`m-lego/hand5x5` on GitLab](https://gitlab.com/m-lego/hand5x5) (shared footprints in [`m-lego/m65`](https://gitlab.com/m-lego/m65))

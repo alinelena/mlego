@@ -1,0 +1,111 @@
+enable: true
+title: Hardware Comparison Lineup
+subtitle: Comprehensive side-by-side specifications for all mlego keyboard models
+  and conversions
+columns:
+- Model
+- Layout
+- Keys
+- MCU Platform
+- Key Features & Peripherals
+- Firmware
+- Action
+items:
+- id: m66
+  name: m66
+  layout: 5×14 Ortho
+  keys: '66'
+  mcu: RP2040 / nice!nano / XIAO
+  features: Clickable Encoder, Per-Key RGB, Modular Display (OLED/E-Ink/Sharp/LCD)
+  firmware: QMK & ZMK
+- id: m65
+  name: m65
+  layout: 5×13 Ortho
+  keys: '65'
+  mcu: STM32F401 / RP2040 / XIAO
+  features: 11 Hardware Revisions, Underglow RGB, Shift Register Matrix, E-Ink
+  firmware: QMK & ZMK
+- id: m60
+  name: m60
+  layout: 5×12 Ortho
+  keys: '60'
+  mcu: STM32F401 / RP2040
+  features: Preonic-style, Rotary encoder, RGB strip, OLED support
+  firmware: QMK
+- id: m60_split
+  name: m60 Split
+  layout: 5×12 Split
+  keys: 60 (2×30)
+  mcu: Dual STM32F401 / 411
+  features: Dual 16×16 LEGO baseplates, Dual encoders, Underglow RGB
+  firmware: QMK
+- id: m48
+  name: m48
+  layout: 4×12 Ortho
+  keys: '48'
+  mcu: STM32F401 / F411
+  features: Planck-style compact, Rotary encoder, RGB strip
+  firmware: QMK
+- id: m20
+  name: m20
+  layout: 5×4 Pad
+  keys: '20'
+  mcu: Raspberry Pi Pico (RP2040)
+  features: Cherry MX & Kailh Choc v2, Rotary encoder, OLED
+  firmware: QMK
+- id: m8
+  name: m8
+  layout: 2×4 Pad
+  keys: '8'
+  mcu: XIAO RP2040
+  features: 74HC595 + 74HC589 SPI Shift Registers, E-Ink, OLED
+  firmware: QMK
+- id: m4
+  name: m4
+  layout: 2×2 Pad
+  keys: '4'
+  mcu: Seeed XIAO BLE / RP2040
+  features: Wireless BLE, Shift register prototype, Compact macropad
+  firmware: ZMK & QMK
+- id: tipro8x16
+  name: Tipro 8×16
+  layout: 8×16 POS
+  keys: '128'
+  mcu: STM32F401
+  features: Polished steel plate, 74HC595 LED expander, MT3 keycaps
+  firmware: QMK
+- id: tipro8x12
+  name: Tipro 8×12
+  layout: 8×12 POS
+  keys: '96'
+  mcu: STM32F401
+  features: Daughterboard conversion, Shift register LEDs
+  firmware: QMK
+- id: tipro8x4
+  name: Tipro 8×4
+  layout: 8×4 POS
+  keys: '32'
+  mcu: WeAct STM32G431
+  features: Dedicated 32-key POS macropad module
+  firmware: QMK
+- id: tiproansi-ortho
+  name: Tipro ANSI-Ortho
+  layout: ANSI + Ortho
+  keys: Hybrid
+  mcu: STM32F401
+  features: Hybrid ANSI 60% + Ortho macro bank
+  firmware: QMK
+- id: tiproortho-ansi
+  name: Tipro Ortho-ANSI
+  layout: Ortho + ANSI
+  keys: Hybrid
+  mcu: STM32F401
+  features: Left-hand ortho pad + ANSI typewriter
+  firmware: QMK
+- id: prime
+  name: SS Prime Mouse
+  layout: 5-Btn Mouse
+  keys: '5'
+  mcu: STM32F103
+  features: PixArt PMW3389 sensor, SWD unlocked, UF2 bootloader
+  firmware: QMK

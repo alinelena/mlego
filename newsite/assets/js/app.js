@@ -1,22 +1,27 @@
-/* global marked, bootstrap, window, document */
+/* global jsyaml, marked, bootstrap, window, document */
 
 (function () {
   "use strict";
 
-  // Data storage
-  let docsData = window.MLEGO_DATA || {};
-  let currentFilter = "all";
-  let currentSearchQuery = "";
-  let modalInstance = null;
-  let currentDocId = null;
+  // Section YAML data sources matching alin.elena.re architecture
+  const DATA_FILES = {
+    site: "data/site.yml",
+    about: "data/about.yml",
+    keyboards: "data/keyboards.yml",
+    converted: "data/converted.yml",
+    mice: "data/mice.yml",
+    guides: "data/guides.yml",
+    specs: "data/specs.yml",
+  };
 
-  // Category order for navigation
-  const CATEGORIES = [
-    { id: "keyboards", name: "Keyboards", icon: "bi-keyboard", color: "#6cb670" },
-    { id: "converted", name: "POS Conversions", icon: "bi-cpu", color: "#fbbf24" },
-    { id: "mice", name: "Mice Liberation", icon: "bi-mouse", color: "#818cf8" },
-    { id: "guides", name: "Hardware Guides", icon: "bi-journal-code", color: "#f472b6" },
-  ];
+  const state = {
+    data: {},
+    docsById: new Map(),
+    currentFilter: "all",
+    currentSearchQuery: "",
+    modalInstance: null,
+    currentDocId: null,
+  };
 
   // Configure marked options
   if (typeof marked !== "undefined") {
@@ -28,31 +33,68 @@
     });
   }
 
-  // Fetch docs data if not loaded via script tag
-  async function loadData() {
-    if (Object.keys(docsData).length > 0) {
-      initApp();
-      return;
+  async function fetchYaml(path) {
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error(`Failed to load ${path}: ${response.status}`);
     }
-    try {
-      const res = await fetch("data/docs.json");
-      if (res.ok) {
-        docsData = await res.json();
-      }
-    } catch (e) {
-      console.warn("Could not load data/docs.json dynamically, using bundle if available", e);
-    }
-    initApp();
+    const text = await response.text();
+    return jsyaml.load(text);
   }
 
-  function initApp() {
+  async function loadAllData() {
+    try {
+      const results = await Promise.all(
+        Object.entries(DATA_FILES).map(async ([key, path]) => {
+          const val = await fetchYaml(path);
+          return [key, val];
+        })
+      );
+      state.data = Object.fromEntries(results);
+
+      // Index items by ID for the reader modal
+      ["keyboards", "converted", "mice", "guides"].forEach((key) => {
+        const sec = state.data[key];
+        if (sec && Array.isArray(sec.items)) {
+          sec.items.forEach((item) => {
+            state.docsById.set(item.id, item);
+          });
+        }
+      });
+
+      // Index About manifesto as 'home'
+      if (state.data.about) {
+        state.docsById.set("home", {
+          id: "home",
+          title: "mlego Overview & Manifesto",
+          category: "overview",
+          badge: "Overview",
+          content: state.data.about.content || "",
+        });
+      }
+
+      renderUI();
+    } catch (err) {
+      console.error("Error loading YAML data:", err);
+    }
+  }
+
+  function renderUI() {
     setupFloatingMenu();
     setupParallax();
     setupScrollReveal();
     setupSearchAndFilters();
-    renderAllSections();
+
+    renderAboutSection();
+    renderKeyboardsSection();
+    renderConvertedSection();
+    renderMiceSection();
+    renderGuidesSection();
+    renderSpecsTable();
+
     setupLightbox();
     setupRouting();
+    attachCardListeners();
   }
 
   /* ==========================================================================
@@ -79,7 +121,6 @@
       }
     });
 
-    // Close menu on link click
     panel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         toggleBtn.setAttribute("aria-expanded", "false");
@@ -87,7 +128,7 @@
       });
     });
 
-    // Section scroll spy to update label
+    // Section spy
     const sections = document.querySelectorAll("section[id], header");
     window.addEventListener(
       "scroll",
@@ -162,8 +203,30 @@
   }
 
   /* ==========================================================================
-     Card Renderers
+     Section Renderers
      ========================================================================== */
+  function renderAboutSection() {
+    const about = state.data.about;
+    if (!about) return;
+
+    const statsContainer = document.getElementById("about-stats-container");
+    if (statsContainer && Array.isArray(about.stats)) {
+      statsContainer.innerHTML = about.stats
+        .map(
+          (s) => `
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <i class="bi ${s.icon} stat-icon" style="color: ${s.color};"></i>
+            <div class="stat-count">${s.count}</div>
+            <div class="stat-label">${s.label}</div>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+  }
+
   function renderHardwareCard(item) {
     const badgeColorClass =
       item.category === "keyboards"
@@ -229,80 +292,44 @@
     `;
   }
 
-  function renderAllSections() {
-    // 1. Keyboards
+  function renderKeyboardsSection() {
     const kbContainer = document.getElementById("keyboards-grid");
-    if (kbContainer) {
-      const kbList = ["m66", "m65", "m60", "m60_split", "m48", "m20", "m8", "m4"]
-        .map((id) => docsData[id])
-        .filter(Boolean);
-      kbContainer.innerHTML = kbList.map(renderHardwareCard).join("");
+    const data = state.data.keyboards;
+    if (kbContainer && data && Array.isArray(data.items)) {
+      kbContainer.innerHTML = data.items.map(renderHardwareCard).join("");
     }
+  }
 
-    // 2. Converted POS
-    const convertedContainer = document.getElementById("converted-grid");
-    if (convertedContainer) {
-      const convList = ["tipro8x16", "tipro8x12", "tipro8x4", "tiproansi-ortho", "tiproortho-ansi"]
-        .map((id) => docsData[id])
-        .filter(Boolean);
-      convertedContainer.innerHTML = convList.map(renderHardwareCard).join("");
+  function renderConvertedSection() {
+    const convContainer = document.getElementById("converted-grid");
+    const data = state.data.converted;
+    if (convContainer && data && Array.isArray(data.items)) {
+      convContainer.innerHTML = data.items.map(renderHardwareCard).join("");
     }
+  }
 
-    // 3. Mice
+  function renderMiceSection() {
     const miceContainer = document.getElementById("mice-grid");
-    if (miceContainer) {
-      const miceList = ["prime"].map((id) => docsData[id]).filter(Boolean);
-      miceContainer.innerHTML = miceList.map(renderHardwareCard).join("");
+    const data = state.data.mice;
+    if (miceContainer && data && Array.isArray(data.items)) {
+      miceContainer.innerHTML = data.items.map(renderHardwareCard).join("");
     }
+  }
 
-    // 4. Guides
+  function renderGuidesSection() {
     const guidesContainer = document.getElementById("guides-grid");
-    if (guidesContainer) {
-      const guideList = ["assembly", "notenoughpins", "how_matrix_works_extra", "hand5x5"]
-        .map((id) => docsData[id])
-        .filter(Boolean);
-      guidesContainer.innerHTML = guideList.map(renderGuideCard).join("");
+    const data = state.data.guides;
+    if (guidesContainer && data && Array.isArray(data.items)) {
+      guidesContainer.innerHTML = data.items.map(renderGuideCard).join("");
     }
-
-    // 5. Lineup Specs Table
-    renderSpecsTable();
-
-    // Attach card event listeners
-    document.querySelectorAll(".open-doc-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const docId = btn.getAttribute("data-doc-id");
-        if (docId) openDoc(docId);
-      });
-    });
-
-    document.querySelectorAll(".view-img-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const src = btn.getAttribute("data-img-src");
-        if (src) openLightbox(src);
-      });
-    });
   }
 
   function renderSpecsTable() {
     const tableBody = document.getElementById("specs-table-body");
-    if (!tableBody) return;
+    const data = state.data.specs;
+    if (!tableBody || !data || !Array.isArray(data.items)) return;
 
-    const list = [
-      { id: "m66", name: "m66", layout: "5×14 Ortho", keys: "66", mcu: "RP2040 / nice!nano / XIAO", features: "Clickable Encoder, Per-Key RGB, Modular Display (OLED/E-Ink/Sharp/LCD)", firmware: "QMK & ZMK" },
-      { id: "m65", name: "m65", layout: "5×13 Ortho", keys: "65", mcu: "STM32F401 / RP2040 / XIAO", features: "11 Hardware Revisions, Underglow RGB, Shift Register Matrix, E-Ink", firmware: "QMK & ZMK" },
-      { id: "m60", name: "m60", layout: "5×12 Ortho", keys: "60", mcu: "STM32F401 / RP2040", features: "Preonic-style, Rotary encoder, RGB strip, OLED support", firmware: "QMK" },
-      { id: "m60_split", name: "m60 Split", layout: "5×12 Split", keys: "60 (2×30)", mcu: "Dual STM32F401 / 411", features: "Dual 16×16 LEGO baseplates, Dual encoders, Underglow RGB", firmware: "QMK" },
-      { id: "m48", name: "m48", layout: "4×12 Ortho", keys: "48", mcu: "STM32F401 / F411", features: "Planck-style compact, Rotary encoder, RGB strip", firmware: "QMK" },
-      { id: "m20", name: "m20", layout: "5×4 Pad", keys: "20", mcu: "Raspberry Pi Pico (RP2040)", features: "Cherry MX & Kailh Choc v2, Rotary encoder, OLED", firmware: "QMK" },
-      { id: "m8", name: "m8", layout: "2×4 Pad", keys: "8", mcu: "XIAO RP2040", features: "74HC595 + 74HC589 SPI Shift Registers, E-Ink, OLED", firmware: "QMK" },
-      { id: "m4", name: "m4", layout: "2×2 Pad", keys: "4", mcu: "Seeed XIAO BLE / RP2040", features: "Wireless BLE, Shift register prototype, Compact macropad", firmware: "ZMK & QMK" },
-      { id: "tipro8x16", name: "Tipro 8×16", layout: "8×16 POS", keys: "128", mcu: "STM32F401", features: "Polished steel plate, 74HC595 LED expander, MT3 keycaps", firmware: "QMK" },
-      { id: "tipro8x12", name: "Tipro 8×12", layout: "8×12 POS", keys: "96", mcu: "STM32F401", features: "Daughterboard conversion, Shift register LEDs", firmware: "QMK" },
-      { id: "tipro8x4", name: "Tipro 8×4", layout: "8×4 POS", keys: "32", mcu: "WeAct STM32G431", features: "Dedicated 32-key POS macropad module", firmware: "QMK" },
-      { id: "prime", name: "SS Prime Mouse", layout: "5-Btn Mouse", keys: "5", mcu: "STM32F103", features: "PixArt PMW3389 sensor, SWD unlocked, UF2 bootloader", firmware: "QMK" },
-    ];
-
-    tableBody.innerHTML = list
+    tableBody.innerHTML = data.items
       .map(
         (row) => `
         <tr>
@@ -323,6 +350,22 @@
       .join("");
   }
 
+  function attachCardListeners() {
+    document.querySelectorAll(".open-doc-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const docId = btn.getAttribute("data-doc-id");
+        if (docId) openDoc(docId);
+      });
+    });
+
+    document.querySelectorAll(".view-img-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-img-src");
+        if (src) openLightbox(src);
+      });
+    });
+  }
+
   /* ==========================================================================
      Search & Filters
      ========================================================================== */
@@ -335,8 +378,8 @@
       cards.forEach((card) => {
         const cat = card.getAttribute("data-category");
         const searchText = card.getAttribute("data-search") || "";
-        const matchesCategory = currentFilter === "all" || cat === currentFilter;
-        const matchesQuery = !currentSearchQuery || searchText.includes(currentSearchQuery.toLowerCase());
+        const matchesCategory = state.currentFilter === "all" || cat === state.currentFilter;
+        const matchesQuery = !state.currentSearchQuery || searchText.includes(state.currentSearchQuery.toLowerCase());
 
         if (matchesCategory && matchesQuery) {
           card.style.display = "";
@@ -348,7 +391,7 @@
 
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
-        currentSearchQuery = e.target.value.trim();
+        state.currentSearchQuery = e.target.value.trim();
         applyFilter();
       });
     }
@@ -357,7 +400,7 @@
       pill.addEventListener("click", () => {
         filterPills.forEach((p) => p.classList.remove("active"));
         pill.classList.add("active");
-        currentFilter = pill.getAttribute("data-filter") || "all";
+        state.currentFilter = pill.getAttribute("data-filter") || "all";
         applyFilter();
       });
     });
@@ -367,13 +410,13 @@
      Document Reader Modal
      ========================================================================== */
   function openDoc(docId) {
-    const item = docsData[docId];
+    const item = state.docsById.get(docId);
     if (!item) {
       console.warn("Document not found:", docId);
       return;
     }
 
-    currentDocId = docId;
+    state.currentDocId = docId;
 
     const modalEl = document.getElementById("docReaderModal");
     const titleEl = document.getElementById("docModalTitle");
@@ -384,17 +427,18 @@
 
     titleEl.textContent = item.title;
     metaEl.innerHTML = `
-      <span class="mlego-badge me-2">${item.badge || item.category}</span>
+      <span class="mlego-badge me-2">${item.badge || item.category || "Doc"}</span>
       ${item.mcu ? `<span class="badge bg-dark text-info border border-info border-opacity-25 me-2"><i class="bi bi-cpu me-1"></i>${item.mcu}</span>` : ""}
       ${item.firmware ? `<span class="badge bg-dark text-success border border-success border-opacity-25 me-2"><i class="bi bi-code-slash me-1"></i>${item.firmware}</span>` : ""}
       <span class="text-muted"><i class="bi bi-file-earmark-text me-1"></i>${item.id}.md</span>
     `;
 
-    // Render Markdown
-    if (typeof marked !== "undefined" && item.markdown) {
-      bodyEl.innerHTML = marked.parse(item.markdown);
+    // Render markdown content from the section YAML
+    const markdownContent = item.content || item.markdown || "No documentation content available.";
+    if (typeof marked !== "undefined") {
+      bodyEl.innerHTML = marked.parse(markdownContent);
     } else {
-      bodyEl.textContent = item.markdown || "No content available.";
+      bodyEl.textContent = markdownContent;
     }
 
     // Attach click-to-zoom on images inside modal
@@ -418,10 +462,10 @@
       pre.appendChild(copyBtn);
     });
 
-    if (!modalInstance) {
-      modalInstance = new bootstrap.Modal(modalEl);
+    if (!state.modalInstance) {
+      state.modalInstance = new bootstrap.Modal(modalEl);
     }
-    modalInstance.show();
+    state.modalInstance.show();
 
     // Update URL hash
     window.location.hash = `doc/${docId}`;
@@ -456,7 +500,7 @@
       const hash = window.location.hash;
       if (hash.startsWith("#doc/")) {
         const id = hash.replace("#doc/", "");
-        if (docsData[id]) {
+        if (state.docsById.has(id)) {
           openDoc(id);
         }
       }
@@ -466,7 +510,6 @@
     handleHash();
   }
 
-  // Kickoff
-  document.addEventListener("DOMContentLoaded", loadData);
+  // Kickoff YAML data loading
+  document.addEventListener("DOMContentLoaded", loadAllData);
 })();
-
