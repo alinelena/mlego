@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Keyboard Matrices Work (3×3) — mlego</title>
+  <meta name="description" content="Beginner-friendly hardware primer on diode direction, ghosting prevention, KiCad PCB routing, and bootstrapping QMK.">
+  <meta name="author" content="Alin M. Elena">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="images/favicon.webp" type="image/webp">
+  <link rel="icon" href="images/favicon.webp" type="image/webp">
+
+  <!-- Google Fonts matching alin.elena.re -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anaheim&family=Cabin+Sketch:wght@700&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Kalam:wght@400;700&family=Permanent+Marker&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400&family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Dark Theme Styles matching alin.elena.re -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Floating Corner Navigation Menu matching alin.elena.re -->
+  <nav class="corner-nav-wrapper" aria-label="Site navigation">
+    <button
+      type="button"
+      id="corner-menu-toggle"
+      class="corner-menu-btn"
+      aria-expanded="false"
+      aria-controls="corner-menu-panel"
+      aria-label="Toggle navigation menu"
+    >
+      <img id="corner-btn-logo" src="images/logo.webp" alt="mlego" class="brand-avatar">
+      <span id="corner-current-section">Menu</span>
+      <span class="menu-icon-bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <div id="corner-menu-panel" class="corner-menu-panel" role="menu">
+      <div class="d-flex align-items-center justify-content-between px-2 pb-2 mb-2 border-bottom border-secondary border-opacity-25">
+        <span class="fw-bold text-white small text-uppercase" style="letter-spacing: 0.06em;">mlego Navigation</span>
+        <span class="badge bg-dark text-info border border-info border-opacity-25">mlego.elena.re</span>
+      </div>
+      <ul id="corner-nav-list" class="corner-nav-list">
+        <li>
+          <a href="index.html" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+            <i class="bi bi-house-door"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
+            <i class="bi bi-info-circle"></i> About
+          </a>
+        </li>
+
+        <!-- Keyboards Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #6cb670;">
+            <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="keyboards.html" class="corner-nav-link">All Keyboards</a></li>
+            <li><a href="m66.html" class="corner-nav-link">m66 (5×14)</a></li>
+            <li><a href="m65.html" class="corner-nav-link">m65 (5×13)</a></li>
+            <li><a href="m60.html" class="corner-nav-link">m60 (5×12)</a></li>
+            <li><a href="m60_split.html" class="corner-nav-link">m60 Split</a></li>
+            <li><a href="m48.html" class="corner-nav-link">m48 (4×12)</a></li>
+            <li><a href="m20.html" class="corner-nav-link">m20 (5×4)</a></li>
+            <li><a href="m8.html" class="corner-nav-link">m8 (2×4)</a></li>
+            <li><a href="m4.html" class="corner-nav-link">m4 (2×2)</a></li>
+          </ul>
+        </li>
+
+        <!-- POS Conversions Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #fbbf24;">
+            <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="converted.html" class="corner-nav-link">All Conversions</a></li>
+            <li><a href="tipro8x16.html" class="corner-nav-link">Tipro 8×16</a></li>
+            <li><a href="tipro8x12.html" class="corner-nav-link">Tipro 8×12</a></li>
+            <li><a href="tipro8x4.html" class="corner-nav-link">Tipro 8×4</a></li>
+            <li><a href="tiproansi-ortho.html" class="corner-nav-link">Tipro ANSI-Ortho</a></li>
+            <li><a href="tiproortho-ansi.html" class="corner-nav-link">Tipro Ortho-ANSI</a></li>
+          </ul>
+        </li>
+
+        <!-- Mice Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #818cf8;">
+            <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="mice.html" class="corner-nav-link">All Mice</a></li>
+            <li><a href="prime.html" class="corner-nav-link">SteelSeries Prime</a></li>
+          </ul>
+        </li>
+
+        <!-- Guides Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="true" style="--nav-item-color: #f472b6;">
+            <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list show">
+            <li><a href="guides.html" class="corner-nav-link">All Guides</a></li>
+            <li><a href="assembly.html" class="corner-nav-link">Assembly Guide</a></li>
+            <li><a href="notenoughpins.html" class="corner-nav-link">Not Enough Pins</a></li>
+            <li><a href="how_matrix_works_extra.html" class="corner-nav-link">How Matrix Works</a></li>
+            <li><a href="hand5x5.html" class="corner-nav-link">Handwire Helpers</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="specs.html" class="corner-nav-link" style="--nav-item-color: #fb923c;">
+            <i class="bi bi-table"></i> Lineup Specs
+          </a>
+        </li>
+
+        <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
+          <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+            <i class="bi bi-globe2"></i> Alin's Main Site
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Subpage Header -->
+  <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
+    <div class="container pt-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">Home</a></li>
+          <li class="breadcrumb-item"><a href="guides.html" class="text-decoration-none text-info">Build Guides</a></li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">How Keyboard Matrices Work (3×3)</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-2">
+        <div>
+          <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">How Keyboard Matrices Work (3×3)</h1>
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="mlego-badge">Electronics Guide</span>
+            
+            
+            
+          </div>
+        </div>
+        <div>
+          <a href="guides.html" class="btn btn-sm btn-ddmms-outline">
+            <i class="bi bi-arrow-left me-1"></i> All Build Guides
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="surface-card p-4 p-md-5">
+            <div class="modal-article-body">
+              <h1 id="how-a-keyboard-matrix-works-practical-33-guide">How a Keyboard Matrix Works — Practical 3×3 Guide</h1>
+<div class="spec-badges">
+  <span class="spec-badge">COL2ROW vs. ROW2COL</span>
+  <span class="spec-badge">QMK Data-Driven Config</span>
+  <span class="spec-badge">STM32F401 &amp; RP2040</span>
+  <span class="spec-badge">KiCad PCB Design</span>
+</div>
+
+<h2 id="set-up-the-scene">Setting Up the Scene</h2>
+<p>If you have read the official QMK guides — <a href="https://docs.qmk.fm/#/how_a_matrix_works">How a Keyboard Matrix Works</a>, <a href="https://docs.qmk.fm/#/how_keyboards_work">How Keyboards Work</a>, and <a href="https://docs.qmk.fm/#/understanding_qmk">Understanding QMK's Code</a> — and want a concrete, end-to-end example connecting the schematic, diode orientation, QMK firmware, and PCB layout, this guide walks through a complete <strong>3×3 mechanical keypad (<code>m3x3</code>)</strong> using a WeAct <strong><code>STM32F401</code> BlackPill</strong> (and <strong>Raspberry Pi Pico <code>RP2040</code></strong>).</p>
+<blockquote>
+<p><strong>MCU Pin Quirks</strong></p>
+<pre><code>Every microcontroller family has its own pin constraints and boot strapping requirements. Always check which pins are reserved or require pull-ups before finalizing a PCB:
+</code></pre>
+</blockquote>
+<pre><code>* [WeAct BlackPill `STM32F401CCU6` Pinout](https://stm32-base.org/boards/STM32F401CCU6-WeAct-Black-Pill-V1.2.html) &amp; [`STM32F411CEU6` Pinout](https://stm32-base.org/boards/STM32F411CEU6-WeAct-Black-Pill-V2.0.html)
+* [QMK WeAct BlackPill `STM32F4x1` Platform Notes](https://docs.qmk.fm/#/platformdev_blackpill_f4x1?id=weact-blackpill-stm32f4x1)
+</code></pre>
+<h3 id="diode-orientation-col2row-vs-row2col">Diode Orientation: <code>COL2ROW</code> vs. <code>ROW2COL</code></h3>
+<p>Adding a <code>1N4148</code> signal diode in series with each key switch prevents <strong>ghosting</strong> when multiple keys are pressed simultaneously. Because a diode conducts current in only one direction, there are two valid ways to orient the diodes across your matrix intersections:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><code>COL2ROW</code> (Column → Row)</th>
+<th style="text-align: center;"><code>ROW2COL</code> (Row → Column)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="circuit schematic diode orientation columns to rows" loading="lazy" src="pics/col2row/circuit-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="circuit schematic diode orientation rows to columns" loading="lazy" src="pics/row2col/circuit-row2col.webp" /></td>
+</tr>
+<tr>
+<td style="text-align: center;">Diode cathode (black band) points toward the <strong>Row</strong> line</td>
+<td style="text-align: center;">Diode cathode (black band) points toward the <strong>Column</strong> line</td>
+</tr>
+</tbody>
+</table>
+<p>In both circuits above, <strong>Rows (<code>R0–R2</code>)</strong> connect to <code>B3</code>, <code>B4</code>, <code>B5</code> and <strong>Columns (<code>C0–C2</code>)</strong> connect to <code>B12</code>, <code>B13</code>, <code>B14</code>. The only hardware difference is the direction of the diode!</p>
+<p>In QMK's <code>config.h</code> (or <code>info.json</code>), this is configured via <code>DIODE_DIRECTION</code>:</p>
+<p>=== "Left Circuit (<code>COL2ROW</code>)"</p>
+<pre><code>```c
+// config.h
+#define DIODE_DIRECTION COL2ROW
+```
+
+```json
+// info.json
+"diode_direction": "COL2ROW"
+```
+</code></pre>
+<p>=== "Right Circuit (<code>ROW2COL</code>)"</p>
+<pre><code>```c
+// config.h
+#define DIODE_DIRECTION ROW2COL
+```
+
+```json
+// info.json
+"diode_direction": "ROW2COL"
+```
+</code></pre>
+<p>At this stage, you already have everything needed to write and test the firmware on a breadboard using only the MCU and a few DuPont jumper wires!</p>
+<hr />
+<h2 id="creating-a-simple-firmware">Creating a Simple QMK Firmware</h2>
+<p>Once you have <a href="https://docs.qmk.fm/#/newbs_getting_started">set up your QMK environment</a>, QMK's CLI can scaffold the entire keyboard definition automatically.</p>
+<blockquote>
+<p><strong>Design Parameters for <code>m3x3</code></strong></p>
+<pre><code>* **MCU Type**: `blackpill_f401` (or `blackpill_f411`)
+* **Column Pins (`C0–C2`)**: `B12`, `B13`, `B14` *(order matters!)*
+* **Row Pins (`R0–R2`)**: `B3`, `B4`, `B5` *(order matters!)*
+* **Diode Direction**: `COL2ROW`
+* **Keyboard Name**: `m3x3`
+* **GitHub Username / Author**: `alinelena` / `"dr faustroll"`
+</code></pre>
+</blockquote>
+<h3 id="scaffold-the-keyboard">Scaffold the Keyboard</h3>
+<pre><code class="language-bash">qmk new-keyboard -n &quot;dr faustroll&quot; -u alinelena -t blackpill_f401 -kb m3x3 -l ortho_3x3
+</code></pre>
+<p>QMK generates the following directory structure inside <code>keyboards/m3x3/</code>:</p>
+<pre><code class="language-text">Ψ Generating a new QMK keyboard directory
+Ψ Created a new keyboard called m3x3.
+Ψ To start working on things, `cd` into keyboards/m3x3,
+Ψ or open the directory in your preferred text editor.
+Ψ And build with qmk compile -kb m3x3 -km default.
+
+keyboards/m3x3/
+├── config.h
+├── info.json
+├── keymaps/
+│   └── default/
+│       └── keymap.c
+├── readme.md
+└── rules.mk
+</code></pre>
+<h3 id="configure-infojson-and-keymapc">Configure <code>info.json</code> and <code>keymap.c</code></h3>
+<ol>
+<li>
+<p><strong>Set Diode Direction (<code>keyboards/m3x3/info.json</code>)</strong>:</p>
+<p><code>json
+"diode_direction": "COL2ROW",</code></p>
+</li>
+<li>
+<p><strong>Set Matrix Pins (<code>keyboards/m3x3/info.json</code>)</strong>:
+    Replace the placeholder pins with our actual row and column pins:</p>
+<p><code>json
+"matrix_pins": {
+    "cols": ["B12", "B13", "B14"],
+    "rows": ["B3", "B4", "B5"]
+},</code></p>
+</li>
+<li>
+<p><strong>Customize the Keymap (<code>keyboards/m3x3/keymaps/default/keymap.c</code>)</strong>:
+    See QMK's <a href="https://docs.qmk.fm/#/keycodes_basic">Basic Keycodes reference</a>. Replace the default <code>KC_A</code>–<code>KC_I</code> block with a 1–9 numpad layout:</p>
+<p><code>c
+[0] = LAYOUT_ortho_3x3(
+    KC_7,   KC_8,   KC_9,
+    KC_4,   KC_5,   KC_6,
+    KC_1,   KC_2,   KC_3
+)</code></p>
+</li>
+<li>
+<p><strong>Compile &amp; Flash</strong>:</p>
+<p><code>bash
+qmk compile -kb m3x3 -km default
+qmk flash -kb m3x3 -km default</code></p>
+<p><code>text
+Linking: .build/m3x3_default.elf                                            [OK]
+Creating binary load file for flashing: .build/m3x3_default.bin             [OK]
+Size after:
+   text    data     bss     dec     hex filename
+      0   23032       0   23032    59f8 m3x3_default.bin</code></p>
+</li>
+</ol>
+<hr />
+<h2 id="my-layout-is-not-listed">What If My Layout Is Not Listed in <code>qmk new-keyboard</code>?</h2>
+<p>If your exact matrix dimensions aren't listed as a community layout preset, simply bootstrap with the closest larger preset (for example, <code>ortho_4x4</code>) and trim <code>keyboards/m3x3/info.json</code> and <code>keymaps/default/keymap.c</code>:</p>
+<ol>
+<li>Update <code>"diode_direction"</code> and <code>"matrix_pins"</code> in <code>keyboards/m3x3/info.json</code> to 3 columns and 3 rows as shown above.</li>
+<li>
+<p>In <code>keyboards/m3x3/info.json</code>, rename <code>"LAYOUT_ortho_4x4"</code> to <code>"LAYOUT_ortho_3x3"</code> and remove any entries referencing row <code>3</code> or column <code>3</code>:</p>
+<p><code>json
+"LAYOUT_ortho_3x3": {
+    "layout": [
+        { "matrix": [0, 0], "x": 0, "y": 0 },
+        { "matrix": [0, 1], "x": 1, "y": 0 },
+        { "matrix": [0, 2], "x": 2, "y": 0 },
+        { "matrix": [1, 0], "x": 0, "y": 1 },
+        { "matrix": [1, 1], "x": 1, "y": 1 },
+        { "matrix": [1, 2], "x": 2, "y": 1 },
+        { "matrix": [2, 0], "x": 0, "y": 2 },
+        { "matrix": [2, 1], "x": 1, "y": 2 },
+        { "matrix": [2, 2], "x": 2, "y": 2 }
+    ]
+}</code></p>
+</li>
+<li>
+<p>Update <code>keyboards/m3x3/keymaps/default/keymap.c</code> to use <code>LAYOUT_ortho_3x3</code> with 9 keys, then compile and flash!</p>
+</li>
+</ol>
+<hr />
+<h2 id="i-want-to-use-raspberry-pico-rp2040">Using Raspberry Pi Pico (<code>RP2040</code>)</h2>
+<p>Switching to an <code>RP2040</code> board is just a matter of choosing <code>-t RP2040</code> and specifying valid <code>GPx</code> pin names:</p>
+<ul>
+<li><a href="https://datasheets.raspberrypi.com/pico/Pico-R3-A4-Pinout.pdf">Official Raspberry Pi Pico Pinout PDF</a> <em>(always verify the pinout diagram for your specific RP2040 clone)</em></li>
+<li><a href="https://docs.qmk.fm/#/platformdev_rp2040">QMK <code>RP2040</code> Platform Documentation</a></li>
+</ul>
+<pre><code class="language-bash">qmk new-keyboard -n &quot;dr faustroll&quot; -u alinelena -t RP2040 -kb m3x3 -l ortho_3x3
+</code></pre>
+<p>Then set your chosen GPIO pins (for example, <code>GP0</code>–<code>GP2</code> for columns and <code>GP10</code>–<code>GP12</code> for rows) in <code>keyboards/m3x3/info.json</code>:</p>
+<pre><code class="language-json">&quot;diode_direction&quot;: &quot;COL2ROW&quot;,
+&quot;matrix_pins&quot;: {
+    &quot;cols&quot;: [&quot;GP0&quot;, &quot;GP1&quot;, &quot;GP2&quot;],
+    &quot;rows&quot;: [&quot;GP10&quot;, &quot;GP11&quot;, &quot;GP12&quot;]
+},
+</code></pre>
+<hr />
+<h2 id="pcbs">Designing the PCB in KiCad</h2>
+<p>Once your firmware is tested, you can either <a href="#doc/hand5x5">handwire the switches</a> or design a custom PCB in <strong>KiCad</strong>:</p>
+<ul>
+<li><strong>PCB Design Tutorial</strong>: <a href="https://wiki.ai03.com/books/pcb-design">ai03's Keyboard PCB Design Guide</a></li>
+<li><strong>KiCad Footprints &amp; Symbols</strong>: <a href="https://github.com/ebastler/marbastlib">ebastler's <code>marbastlib</code></a> and <a href="https://mechkey.org/">mechkey.org resources</a></li>
+</ul>
+<h3 id="side-by-side-pcb-comparison-col2row-vs-row2col">Side-by-Side PCB Comparison (<code>COL2ROW</code> vs. <code>ROW2COL</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">View</th>
+<th style="text-align: center;"><code>COL2ROW</code> (Column → Row)</th>
+<th style="text-align: center;"><code>ROW2COL</code> (Row → Column)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>KiCad Routed Tracks</strong></td>
+<td style="text-align: center;"><img alt="PCB tracks COL2ROW" loading="lazy" src="pics/col2row/pcb-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="PCB tracks ROW2COL" loading="lazy" src="pics/row2col/pcb-row2col.webp" /></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3D Render (Front)</strong></td>
+<td style="text-align: center;"><img alt="PCB 3D front COL2ROW" loading="lazy" src="pics/col2row/pcb-3df-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="PCB 3D front ROW2COL" loading="lazy" src="pics/row2col/pcb-3df-row2col.webp" /></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3D Render (Bottom)</strong></td>
+<td style="text-align: center;"><img alt="PCB 3D bottom COL2ROW" loading="lazy" src="pics/col2row/pcb-3db-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="PCB 3D bottom ROW2COL" loading="lazy" src="pics/row2col/pcb-3db-row2col.webp" /></td>
+</tr>
+</tbody>
+</table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="sticky-top" style="top: 2rem;">
+            <div class="surface-card p-4 mb-4">
+              <div class="hardware-card-thumb-wrap mb-3 rounded" style="height: 200px;">
+                <img src="pics/col2row/pcb-3df-col2row.webp" alt="How Keyboard Matrices Work (3×3)" class="hardware-card-thumb" style="cursor: zoom-in;" onclick="openLightbox('pics/col2row/pcb-3df-col2row.webp')">
+              </div>
+              <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
+              <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
+                <li><strong class="text-white">Layout:</strong> Electronics Guide</li>
+                
+                
+                
+              </ul>
+              <p class="small text-secondary mb-3">Beginner-friendly hardware primer on diode direction, ghosting prevention, KiCad PCB routing, and bootstrapping QMK.</p>
+              <div class="d-grid gap-2">
+                <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="btn btn-sm btn-ddmms-primary text-center">
+                  <i class="bi bi-git me-1"></i> View Hardware Repo
+                </a>
+                <a href="guides.html" class="btn btn-sm btn-ddmms-outline text-center">
+                  <i class="bi bi-grid me-1"></i> Browse More Build Guides
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer matching alin.elena.re -->
+  <footer class="py-5 border-top border-secondary border-opacity-25 text-center mt-5" style="background-color: #0b0e12;">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+        <img src="images/logo.webp" alt="mlego" style="width: 32px; height: 32px; border-radius: 50%;">
+        <span class="fw-bold text-white fs-5" style="font-family: 'Anaheim', sans-serif;">mlego notes</span>
+      </div>
+      <p class="text-secondary small mb-3">
+        Modular LEGO-mounted ortholinear keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes.
+      </p>
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-git"></i></a>
+        <a href="https://github.com/alinelena" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-github"></i></a>
+        <a href="https://alin.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-globe"></i></a>
+        <a href="https://ddmms.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-building"></i></a>
+      </div>
+      <div class="text-muted small">
+        Copyright &copy; 2017&ndash;2026 <a href="https://alin.elena.re" class="text-info">Alin M. Elena</a>. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Overlay for Image Zoom -->
+  <div id="lightbox-overlay" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image Preview">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Hardware Preview">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

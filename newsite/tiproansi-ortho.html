@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipro ANSI-Ortho — mlego</title>
+  <meta name="description" content="Combination ANSI 60% layout with dedicated ortholinear macro bank converted to QMK.">
+  <meta name="author" content="Alin M. Elena">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="images/favicon.webp" type="image/webp">
+  <link rel="icon" href="images/favicon.webp" type="image/webp">
+
+  <!-- Google Fonts matching alin.elena.re -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anaheim&family=Cabin+Sketch:wght@700&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Kalam:wght@400;700&family=Permanent+Marker&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400&family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Dark Theme Styles matching alin.elena.re -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Floating Corner Navigation Menu matching alin.elena.re -->
+  <nav class="corner-nav-wrapper" aria-label="Site navigation">
+    <button
+      type="button"
+      id="corner-menu-toggle"
+      class="corner-menu-btn"
+      aria-expanded="false"
+      aria-controls="corner-menu-panel"
+      aria-label="Toggle navigation menu"
+    >
+      <img id="corner-btn-logo" src="images/logo.webp" alt="mlego" class="brand-avatar">
+      <span id="corner-current-section">Menu</span>
+      <span class="menu-icon-bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <div id="corner-menu-panel" class="corner-menu-panel" role="menu">
+      <div class="d-flex align-items-center justify-content-between px-2 pb-2 mb-2 border-bottom border-secondary border-opacity-25">
+        <span class="fw-bold text-white small text-uppercase" style="letter-spacing: 0.06em;">mlego Navigation</span>
+        <span class="badge bg-dark text-info border border-info border-opacity-25">mlego.elena.re</span>
+      </div>
+      <ul id="corner-nav-list" class="corner-nav-list">
+        <li>
+          <a href="index.html" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+            <i class="bi bi-house-door"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
+            <i class="bi bi-info-circle"></i> About
+          </a>
+        </li>
+
+        <!-- Keyboards Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #6cb670;">
+            <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="keyboards.html" class="corner-nav-link">All Keyboards</a></li>
+            <li><a href="m66.html" class="corner-nav-link">m66 (5×14)</a></li>
+            <li><a href="m65.html" class="corner-nav-link">m65 (5×13)</a></li>
+            <li><a href="m60.html" class="corner-nav-link">m60 (5×12)</a></li>
+            <li><a href="m60_split.html" class="corner-nav-link">m60 Split</a></li>
+            <li><a href="m48.html" class="corner-nav-link">m48 (4×12)</a></li>
+            <li><a href="m20.html" class="corner-nav-link">m20 (5×4)</a></li>
+            <li><a href="m8.html" class="corner-nav-link">m8 (2×4)</a></li>
+            <li><a href="m4.html" class="corner-nav-link">m4 (2×2)</a></li>
+          </ul>
+        </li>
+
+        <!-- POS Conversions Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="true" style="--nav-item-color: #fbbf24;">
+            <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list show">
+            <li><a href="converted.html" class="corner-nav-link">All Conversions</a></li>
+            <li><a href="tipro8x16.html" class="corner-nav-link">Tipro 8×16</a></li>
+            <li><a href="tipro8x12.html" class="corner-nav-link">Tipro 8×12</a></li>
+            <li><a href="tipro8x4.html" class="corner-nav-link">Tipro 8×4</a></li>
+            <li><a href="tiproansi-ortho.html" class="corner-nav-link">Tipro ANSI-Ortho</a></li>
+            <li><a href="tiproortho-ansi.html" class="corner-nav-link">Tipro Ortho-ANSI</a></li>
+          </ul>
+        </li>
+
+        <!-- Mice Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #818cf8;">
+            <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="mice.html" class="corner-nav-link">All Mice</a></li>
+            <li><a href="prime.html" class="corner-nav-link">SteelSeries Prime</a></li>
+          </ul>
+        </li>
+
+        <!-- Guides Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #f472b6;">
+            <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="guides.html" class="corner-nav-link">All Guides</a></li>
+            <li><a href="assembly.html" class="corner-nav-link">Assembly Guide</a></li>
+            <li><a href="notenoughpins.html" class="corner-nav-link">Not Enough Pins</a></li>
+            <li><a href="how_matrix_works_extra.html" class="corner-nav-link">How Matrix Works</a></li>
+            <li><a href="hand5x5.html" class="corner-nav-link">Handwire Helpers</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="specs.html" class="corner-nav-link" style="--nav-item-color: #fb923c;">
+            <i class="bi bi-table"></i> Lineup Specs
+          </a>
+        </li>
+
+        <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
+          <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+            <i class="bi bi-globe2"></i> Alin's Main Site
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Subpage Header -->
+  <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
+    <div class="container pt-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">Home</a></li>
+          <li class="breadcrumb-item"><a href="converted.html" class="text-decoration-none text-info">POS Conversions</a></li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">Tipro ANSI-Ortho</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-2">
+        <div>
+          <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">Tipro ANSI-Ortho</h1>
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="mlego-badge">ANSI + Ortho</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">Hybrid Keys</span>
+            <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F401</span>
+            <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
+          </div>
+        </div>
+        <div>
+          <a href="converted.html" class="btn btn-sm btn-ddmms-outline">
+            <i class="bi bi-arrow-left me-1"></i> All POS Conversions
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="surface-card p-4 p-md-5">
+            <div class="modal-article-body">
+              <h1 id="tipro-ansi-ortho-hybrid-pos-conversion">Tipro ANSI-Ortho — Hybrid POS Conversion</h1>
+<div class="spec-badges">
+  <span class="spec-badge spec-badge--status">Status: Completed</span>
+  <span class="spec-badge">Hybrid ANSI + Ortholinear</span>
+  <span class="spec-badge">WeAct STM32F401 Daughterboard</span>
+  <span class="spec-badge">QMK</span>
+</div>
+
+<div class="image-grid">
+<p><img alt="Tipro ANSI-Ortho completed" loading="lazy" src="pics/tipro/tiproansi-ortho.webp" />
+<img alt="Tipro ANSI-Ortho switches exposed" loading="lazy" src="pics/tipro/tipro-ansiortho-nokeys.webp" /></p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>A hybrid <strong>ANSI staggered + ortholinear</strong> Tipro terminal converted to run <strong>QMK Firmware</strong> using the same <code>STM32F401</code> + <code>74HC595</code> daughterboard technique described in the <a href="#doc/tipro8x16">Tipro 8×16 guide</a>.</p>
+<h2 id="wiring">Internal Wiring &amp; KiCad</h2>
+<p><img alt="Tipro ANSI-Ortho internal wiring" loading="lazy" src="pics/tipro/tiproansi-ortho-back.webp" /></p>
+<ul>
+<li><strong>KiCad Daughterboard Project</strong>: <a href="https://gitlab.com/m-lego/hand8x16/"><code>m-lego/hand8x16</code> on GitLab</a></li>
+</ul>
+<h2 id="firmware">Firmware</h2>
+<ul>
+<li><strong>Prebuilt UF2</strong>: <a href="https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev1_default_ansiortho.uf2"> <code>tipro_rev1_default_ansiortho.uf2</code></a></li>
+</ul>
+<p>Compile from source:</p>
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+cd qmk-alin
+qmk compile -kb tipro/rev1 -km default_ansiortho
+</code></pre>
+<h2 id="pins">Pinout Reference</h2>
+<p>Identical to the <a href="tipro8x16.md#pins">Tipro 8×16 pinout</a>.</p>
+<h2 id="photos">Original Condition</h2>
+<p><img alt="Tipro ANSI-Ortho original condition" loading="lazy" src="pics/tipro/tipro-ansi-ortho-orig.webp" /></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="sticky-top" style="top: 2rem;">
+            <div class="surface-card p-4 mb-4">
+              <div class="hardware-card-thumb-wrap mb-3 rounded" style="height: 200px;">
+                <img src="pics/tipro/tiproansi-ortho.webp" alt="Tipro ANSI-Ortho" class="hardware-card-thumb" style="cursor: zoom-in;" onclick="openLightbox('pics/tipro/tiproansi-ortho.webp')">
+              </div>
+              <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
+              <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
+                <li><strong class="text-white">Layout:</strong> ANSI + Ortho</li>
+                <li><strong class="text-white">Keys:</strong> Hybrid</li>
+                <li><strong class="text-white">MCU:</strong> STM32F401</li>
+                <li><strong class="text-white">Firmware:</strong> QMK</li>
+              </ul>
+              <p class="small text-secondary mb-3">Combination ANSI 60% layout with dedicated ortholinear macro bank converted to QMK.</p>
+              <div class="d-grid gap-2">
+                <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="btn btn-sm btn-ddmms-primary text-center">
+                  <i class="bi bi-git me-1"></i> View Hardware Repo
+                </a>
+                <a href="converted.html" class="btn btn-sm btn-ddmms-outline text-center">
+                  <i class="bi bi-grid me-1"></i> Browse More POS Conversions
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer matching alin.elena.re -->
+  <footer class="py-5 border-top border-secondary border-opacity-25 text-center mt-5" style="background-color: #0b0e12;">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+        <img src="images/logo.webp" alt="mlego" style="width: 32px; height: 32px; border-radius: 50%;">
+        <span class="fw-bold text-white fs-5" style="font-family: 'Anaheim', sans-serif;">mlego notes</span>
+      </div>
+      <p class="text-secondary small mb-3">
+        Modular LEGO-mounted ortholinear keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes.
+      </p>
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-git"></i></a>
+        <a href="https://github.com/alinelena" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-github"></i></a>
+        <a href="https://alin.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-globe"></i></a>
+        <a href="https://ddmms.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-building"></i></a>
+      </div>
+      <div class="text-muted small">
+        Copyright &copy; 2017&ndash;2026 <a href="https://alin.elena.re" class="text-info">Alin M. Elena</a>. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Overlay for Image Zoom -->
+  <div id="lightbox-overlay" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image Preview">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Hardware Preview">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

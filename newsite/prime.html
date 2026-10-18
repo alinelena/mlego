@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteelSeries Prime Mouse — mlego</title>
+  <meta name="description" content="Hardware teardown, SWD unlock via OpenOCD, UF2 bootloader flashing, and QMK conversion for the SteelSeries Prime gaming mouse.">
+  <meta name="author" content="Alin M. Elena">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="images/favicon.webp" type="image/webp">
+  <link rel="icon" href="images/favicon.webp" type="image/webp">
+
+  <!-- Google Fonts matching alin.elena.re -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anaheim&family=Cabin+Sketch:wght@700&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Kalam:wght@400;700&family=Permanent+Marker&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400&family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Dark Theme Styles matching alin.elena.re -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Floating Corner Navigation Menu matching alin.elena.re -->
+  <nav class="corner-nav-wrapper" aria-label="Site navigation">
+    <button
+      type="button"
+      id="corner-menu-toggle"
+      class="corner-menu-btn"
+      aria-expanded="false"
+      aria-controls="corner-menu-panel"
+      aria-label="Toggle navigation menu"
+    >
+      <img id="corner-btn-logo" src="images/logo.webp" alt="mlego" class="brand-avatar">
+      <span id="corner-current-section">Menu</span>
+      <span class="menu-icon-bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <div id="corner-menu-panel" class="corner-menu-panel" role="menu">
+      <div class="d-flex align-items-center justify-content-between px-2 pb-2 mb-2 border-bottom border-secondary border-opacity-25">
+        <span class="fw-bold text-white small text-uppercase" style="letter-spacing: 0.06em;">mlego Navigation</span>
+        <span class="badge bg-dark text-info border border-info border-opacity-25">mlego.elena.re</span>
+      </div>
+      <ul id="corner-nav-list" class="corner-nav-list">
+        <li>
+          <a href="index.html" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+            <i class="bi bi-house-door"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
+            <i class="bi bi-info-circle"></i> About
+          </a>
+        </li>
+
+        <!-- Keyboards Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #6cb670;">
+            <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="keyboards.html" class="corner-nav-link">All Keyboards</a></li>
+            <li><a href="m66.html" class="corner-nav-link">m66 (5×14)</a></li>
+            <li><a href="m65.html" class="corner-nav-link">m65 (5×13)</a></li>
+            <li><a href="m60.html" class="corner-nav-link">m60 (5×12)</a></li>
+            <li><a href="m60_split.html" class="corner-nav-link">m60 Split</a></li>
+            <li><a href="m48.html" class="corner-nav-link">m48 (4×12)</a></li>
+            <li><a href="m20.html" class="corner-nav-link">m20 (5×4)</a></li>
+            <li><a href="m8.html" class="corner-nav-link">m8 (2×4)</a></li>
+            <li><a href="m4.html" class="corner-nav-link">m4 (2×2)</a></li>
+          </ul>
+        </li>
+
+        <!-- POS Conversions Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #fbbf24;">
+            <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="converted.html" class="corner-nav-link">All Conversions</a></li>
+            <li><a href="tipro8x16.html" class="corner-nav-link">Tipro 8×16</a></li>
+            <li><a href="tipro8x12.html" class="corner-nav-link">Tipro 8×12</a></li>
+            <li><a href="tipro8x4.html" class="corner-nav-link">Tipro 8×4</a></li>
+            <li><a href="tiproansi-ortho.html" class="corner-nav-link">Tipro ANSI-Ortho</a></li>
+            <li><a href="tiproortho-ansi.html" class="corner-nav-link">Tipro Ortho-ANSI</a></li>
+          </ul>
+        </li>
+
+        <!-- Mice Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="true" style="--nav-item-color: #818cf8;">
+            <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list show">
+            <li><a href="mice.html" class="corner-nav-link">All Mice</a></li>
+            <li><a href="prime.html" class="corner-nav-link">SteelSeries Prime</a></li>
+          </ul>
+        </li>
+
+        <!-- Guides Submenu -->
+        <li>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #f472b6;">
+            <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="guides.html" class="corner-nav-link">All Guides</a></li>
+            <li><a href="assembly.html" class="corner-nav-link">Assembly Guide</a></li>
+            <li><a href="notenoughpins.html" class="corner-nav-link">Not Enough Pins</a></li>
+            <li><a href="how_matrix_works_extra.html" class="corner-nav-link">How Matrix Works</a></li>
+            <li><a href="hand5x5.html" class="corner-nav-link">Handwire Helpers</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="specs.html" class="corner-nav-link" style="--nav-item-color: #fb923c;">
+            <i class="bi bi-table"></i> Lineup Specs
+          </a>
+        </li>
+
+        <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
+          <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+            <i class="bi bi-globe2"></i> Alin's Main Site
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Subpage Header -->
+  <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
+    <div class="container pt-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">Home</a></li>
+          <li class="breadcrumb-item"><a href="mice.html" class="text-decoration-none text-info">QMK Mice</a></li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">SteelSeries Prime Mouse</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-2">
+        <div>
+          <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">SteelSeries Prime Mouse</h1>
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="mlego-badge">QMK Mouse</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">5-Btn Keys</span>
+            <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F103 + PMW3389</span>
+            <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK (UF2)</span>
+          </div>
+        </div>
+        <div>
+          <a href="mice.html" class="btn btn-sm btn-ddmms-outline">
+            <i class="bi bi-arrow-left me-1"></i> All QMK Mice
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="surface-card p-4 p-md-5">
+            <div class="modal-article-body">
+              <h1 id="steelseries-prime-qmk-mouse-liberation">SteelSeries Prime — QMK Mouse Liberation</h1>
+<div class="spec-badges">
+  <span class="spec-badge spec-badge--status">Difficulty: Medium (Soldering + SWD)</span>
+  <span class="spec-badge">STM32F103C8T6</span>
+  <span class="spec-badge">PixArt PMW3389 (TrueMove Pro)</span>
+  <span class="spec-badge">6 Buttons + RGB Wheel</span>
+  <span class="spec-badge">UF2 Bootloader + QMK</span>
+</div>
+
+<p><img alt="SteelSeries Prime mouse" loading="lazy" src="pics/prime.webp" /></p>
+<p>The wired <a href="https://steelseries.com/gaming-mice/prime">SteelSeries Prime</a> is an affordable, lightweight gaming mouse (picked up from a local discounter, B&amp;M, for £15) built around an <strong><code>STM32F103C8T6</code></strong> microcontroller, a <strong>TrueMove Pro</strong> optical sensor (compatible with QMK's PixArt <code>PMW3389</code> driver), 6 buttons, and an RGB scroll wheel LED.</p>
+<p>Because the fancier <strong>Prime+</strong> shares the same MCU and optical sensor and was already ported to QMK by <strong>Dasky</strong>, adapting the standard Prime was straightforward. Converting it requires opening the shell, soldering a 5-pin SWD header, unlocking flash protection via <code>openocd</code>, and flashing a UF2 bootloader.</p>
+<h2 id="pcbs">Internal PCBs</h2>
+<div class="image-grid">
+<p><img alt="SteelSeries Prime PCB front" loading="lazy" src="pics/prime_front.webp" />
+<img alt="SteelSeries Prime PCB back with lens removed" loading="lazy" src="pics/prime_back.webp" /></p>
+</div>
+<h2 id="tools">Required Tools</h2>
+<ul>
+<li><strong>Screwdrivers</strong>: <code>PH0</code> (for internal PCB screws) and <code>TX6</code> Torx (for external case screws beneath the skates)</li>
+<li><strong>SWD Programmer</strong>: <code>ST-Link v2</code> (an inexpensive clone from RobotDyn/AliExpress works fine)</li>
+<li><strong>Soldering Gear</strong>: Soldering iron, 5-pin 2.54 mm pitch header strip, and 3–4 female-to-female DuPont jumper wires</li>
+</ul>
+<h2 id="prep">Teardown &amp; Preparation</h2>
+<ol>
+<li><strong>Remove PTFE Skates</strong>: Carefully peel back the glued PTFE feet covering the bottom screws so they can be reused after reassembly (or keep replacement skates on hand).</li>
+<li><strong>Open the Shell</strong>: Unscrew the 4 external case screws using the <code>TX6</code> driver.</li>
+<li><strong>Disconnect Ribbon Cable</strong>: Gently separate the top shell and release the internal ribbon cable using its zero-insertion-force latch lever.</li>
+<li><strong>Remove Internal PCB</strong>: Unscrew the 2 main PCB screws plus the 2 additional screws next to the scroll wheel (<code>PH0</code>). Lift the PCB out of the lower housing (don't worry if the small plastic alignment prong on the side of the PCB snaps).</li>
+<li><strong>Solder SWD Header</strong>: Clear any factory solder from the 5 through-holes on the SWD header footprint and solder the 2.54 mm pin header in place.</li>
+</ol>
+<h2 id="bootloader">Flashing the UF2 Bootloader</h2>
+<ol>
+<li><strong>Wire ST-Link to the Mouse PCB</strong>:<ul>
+<li>If powering the mouse via its USB cable, connect 3 DuPont wires: <code>GND</code>, <code>SWCLK</code>, and <code>SWDIO</code>.</li>
+<li>If powering directly from the ST-Link, connect a 4th wire for <code>VCC</code> (3.3 V).</li>
+</ul>
+</li>
+<li>
+<p><strong>Download or Build the Bootloader</strong>:</p>
+<ul>
+<li><strong>Prebuilt Binary</strong>: <a href="https://gitlab.com/m-lego/m65/-/blob/devel/firmware/uf2boot_prime.bin"> <code>firmware/uf2boot_prime.bin</code></a></li>
+<li><strong>Build from Source</strong>: Clone <a href="https://github.com/daskygit/uf2-prime-plus"><code>daskygit/uf2-prime-plus</code></a>, apply the patch below to rename the USB volume/product labels for the standard Prime, and build target <code>PRIME_PLUS</code>:</li>
+</ul>
+<p>```diff
+diff --git a/libopencm3/Makefile b/libopencm3/Makefile
+index d93efeac..d5c2e4d6 100644
+--- a/libopencm3/Makefile
++++ b/libopencm3/Makefile
+@@ -59,7 +59,7 @@ build: lib
+  LIB_DIRS:=$(wildcard $(addprefix lib/,$(TARGETS)))
+  $(LIB_DIRS): $(IRQ_DEFN_FILES:=.genhdr)
+         @printf "  BUILD   $@\n";
+-       $(Q)$(MAKE) --directory=$@ SRCLIBDIR="$(SRCLIBDIR)"
++       $(Q)$(MAKE) --directory=$@ SRCLIBDIR=$(SRCLIBDIR)</p>
+<p>lib: $(LIB_DIRS)
+         $(Q)true
+diff --git a/src/stm32f103/prime_plus/config.h b/src/stm32f103/prime_plus/config.h
+index d7c2b50..6fe0eb7 100644
+--- a/src/stm32f103/prime_plus/config.h
++++ b/src/stm32f103/prime_plus/config.h
+@@ -49,11 +49,11 @@
+  #define UF2_FAMILY 0x5ee21072</p>
+<p>#undef VOLUME_LABEL
+-#define VOLUME_LABEL "PRIMEPLUS"
++#define VOLUME_LABEL "PRIME"
+  #undef PRODUCT_NAME
+-#define PRODUCT_NAME "SteelSeries Prime+"
++#define PRODUCT_NAME "SteelSeries Prime"
+  #undef BOARD_ID
+-#define BOARD_ID "steelseries-prime-plus"
++#define BOARD_ID "steelseries-prime"
+```</p>
+</li>
+<li>
+<p><strong>Remove <code>STM32F103</code> Write Protection</strong>:
+    Using <code>openocd</code> (or STM32CubeProgrammer):</p>
+<p><code>sh
+openocd -f interface/stlink.cfg -f target/stm32f1x.cfg \
+  -c "init; reset halt; stm32f1x unlock 0; flash protect 0 0 last off; reset halt; exit"</code></p>
+</li>
+<li>
+<p><strong>Flash the UF2 Bootloader</strong>:</p>
+<p><code>sh
+openocd -f interface/stlink.cfg -f target/stm32f1x.cfg \
+  -c "program uf2boot.bin verify reset exit 0x8000000"</code></p>
+</li>
+<li>
+<p><strong>Reassemble</strong>: Disconnect power and remove the ST-Link jumper wires, then reassemble the PCB, ribbon cable, shell, and skates.</p>
+</li>
+</ol>
+<h2 id="firmware">QMK Firmware</h2>
+<ol>
+<li><strong>Enter UF2 Bootloader Mode</strong>: Hold down the <strong>underside CPI button</strong> while plugging in the USB cable. A removable USB mass-storage drive (<code>PRIME</code>) will mount on your computer.</li>
+<li>
+<p><strong>Flash QMK</strong>:</p>
+<ul>
+<li><strong>Prebuilt UF2</strong>: Download <a href="https://gitlab.com/m-lego/m65/-/blob/devel/firmware/steelseries_prime_default.uf2"> <code>firmware/steelseries_prime_default.uf2</code></a> and copy it onto the mounted drive.</li>
+<li><strong>Compile from Source</strong>:</li>
+</ul>
+<p><code>bash
+git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+cd qmk-alin
+qmk compile -kb steelseries/prime -km default
+qmk flash -kb steelseries/prime -km default</code></p>
+</li>
+</ol>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="sticky-top" style="top: 2rem;">
+            <div class="surface-card p-4 mb-4">
+              <div class="hardware-card-thumb-wrap mb-3 rounded" style="height: 200px;">
+                <img src="pics/prime.webp" alt="SteelSeries Prime Mouse" class="hardware-card-thumb" style="cursor: zoom-in;" onclick="openLightbox('pics/prime.webp')">
+              </div>
+              <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
+              <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
+                <li><strong class="text-white">Layout:</strong> QMK Mouse</li>
+                <li><strong class="text-white">Keys:</strong> 5-Btn</li>
+                <li><strong class="text-white">MCU:</strong> STM32F103 + PMW3389</li>
+                <li><strong class="text-white">Firmware:</strong> QMK (UF2)</li>
+              </ul>
+              <p class="small text-secondary mb-3">Hardware teardown, SWD unlock via OpenOCD, UF2 bootloader flashing, and QMK conversion for the SteelSeries Prime gaming mouse.</p>
+              <div class="d-grid gap-2">
+                <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="btn btn-sm btn-ddmms-primary text-center">
+                  <i class="bi bi-git me-1"></i> View Hardware Repo
+                </a>
+                <a href="mice.html" class="btn btn-sm btn-ddmms-outline text-center">
+                  <i class="bi bi-grid me-1"></i> Browse More QMK Mice
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer matching alin.elena.re -->
+  <footer class="py-5 border-top border-secondary border-opacity-25 text-center mt-5" style="background-color: #0b0e12;">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+        <img src="images/logo.webp" alt="mlego" style="width: 32px; height: 32px; border-radius: 50%;">
+        <span class="fw-bold text-white fs-5" style="font-family: 'Anaheim', sans-serif;">mlego notes</span>
+      </div>
+      <p class="text-secondary small mb-3">
+        Modular LEGO-mounted ortholinear keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes.
+      </p>
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-git"></i></a>
+        <a href="https://github.com/alinelena" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-github"></i></a>
+        <a href="https://alin.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-globe"></i></a>
+        <a href="https://ddmms.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-building"></i></a>
+      </div>
+      <div class="text-muted small">
+        Copyright &copy; 2017&ndash;2026 <a href="https://alin.elena.re" class="text-info">Alin M. Elena</a>. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Overlay for Image Zoom -->
+  <div id="lightbox-overlay" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image Preview">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Hardware Preview">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mlego — Modular LEGO Ortholinear Keyboards &amp; Hardware Notes</title>
+  <title>Modular LEGO Ortholinear Keyboards & Hardware Notes — mlego</title>
   <meta name="description" content="Custom ISO-friendly ortholinear mechanical keyboards, macropads, vintage POS terminal conversions, and QMK/ZMK firmware — all mounted in modular LEGO cases.">
   <meta name="author" content="Alin M. Elena">
 
@@ -51,46 +51,81 @@
       </div>
       <ul id="corner-nav-list" class="corner-nav-list">
         <li>
-          <a href="#hero" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+          <a href="index.html" class="corner-nav-link active" style="--nav-item-color: #57cbcc;">
             <i class="bi bi-house-door"></i> Home
           </a>
         </li>
         <li>
-          <a href="#about" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
-            <i class="bi bi-info-circle"></i> About Project
+          <a href="about.html" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
+            <i class="bi bi-info-circle"></i> About
           </a>
         </li>
+
+        <!-- Keyboards Submenu -->
         <li>
-          <a href="#keyboards" class="corner-nav-link" style="--nav-item-color: #6cb670;">
-            <i class="bi bi-keyboard"></i> Keyboards
-          </a>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #6cb670;">
+            <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="keyboards.html" class="corner-nav-link">All Keyboards</a></li>
+            <li><a href="m66.html" class="corner-nav-link">m66 (5×14)</a></li>
+            <li><a href="m65.html" class="corner-nav-link">m65 (5×13)</a></li>
+            <li><a href="m60.html" class="corner-nav-link">m60 (5×12)</a></li>
+            <li><a href="m60_split.html" class="corner-nav-link">m60 Split</a></li>
+            <li><a href="m48.html" class="corner-nav-link">m48 (4×12)</a></li>
+            <li><a href="m20.html" class="corner-nav-link">m20 (5×4)</a></li>
+            <li><a href="m8.html" class="corner-nav-link">m8 (2×4)</a></li>
+            <li><a href="m4.html" class="corner-nav-link">m4 (2×2)</a></li>
+          </ul>
         </li>
+
+        <!-- POS Conversions Submenu -->
         <li>
-          <a href="#converted" class="corner-nav-link" style="--nav-item-color: #fbbf24;">
-            <i class="bi bi-cpu"></i> POS Conversions
-          </a>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #fbbf24;">
+            <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="converted.html" class="corner-nav-link">All Conversions</a></li>
+            <li><a href="tipro8x16.html" class="corner-nav-link">Tipro 8×16</a></li>
+            <li><a href="tipro8x12.html" class="corner-nav-link">Tipro 8×12</a></li>
+            <li><a href="tipro8x4.html" class="corner-nav-link">Tipro 8×4</a></li>
+            <li><a href="tiproansi-ortho.html" class="corner-nav-link">Tipro ANSI-Ortho</a></li>
+            <li><a href="tiproortho-ansi.html" class="corner-nav-link">Tipro Ortho-ANSI</a></li>
+          </ul>
         </li>
+
+        <!-- Mice Submenu -->
         <li>
-          <a href="#mice" class="corner-nav-link" style="--nav-item-color: #818cf8;">
-            <i class="bi bi-mouse"></i> QMK Mice
-          </a>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #818cf8;">
+            <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="mice.html" class="corner-nav-link">All Mice</a></li>
+            <li><a href="prime.html" class="corner-nav-link">SteelSeries Prime</a></li>
+          </ul>
         </li>
+
+        <!-- Guides Submenu -->
         <li>
-          <a href="#guides" class="corner-nav-link" style="--nav-item-color: #f472b6;">
-            <i class="bi bi-journal-code"></i> Build Guides
-          </a>
+          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #f472b6;">
+            <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
+          </button>
+          <ul class="corner-subnav-list">
+            <li><a href="guides.html" class="corner-nav-link">All Guides</a></li>
+            <li><a href="assembly.html" class="corner-nav-link">Assembly Guide</a></li>
+            <li><a href="notenoughpins.html" class="corner-nav-link">Not Enough Pins</a></li>
+            <li><a href="how_matrix_works_extra.html" class="corner-nav-link">How Matrix Works</a></li>
+            <li><a href="hand5x5.html" class="corner-nav-link">Handwire Helpers</a></li>
+          </ul>
         </li>
+
         <li>
-          <a href="#specs" class="corner-nav-link" style="--nav-item-color: #fb923c;">
+          <a href="specs.html" class="corner-nav-link" style="--nav-item-color: #fb923c;">
             <i class="bi bi-table"></i> Lineup Specs
           </a>
         </li>
+
         <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
-          <a href="/classic/" class="corner-nav-link" style="--nav-item-color: #38bdf8;">
-            <i class="bi bi-journal-text"></i> Classic MkDocs Notes
-          </a>
-        </li>
-        <li>
           <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
             <i class="bi bi-globe2"></i> Alin's Main Site
           </a>
@@ -116,10 +151,10 @@
 
         <!-- CTAs & Social Links -->
         <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-4">
-          <a href="#keyboards" class="btn-ddmms-primary">
+          <a href="keyboards.html" class="btn-ddmms-primary text-decoration-none">
             <i class="bi bi-keyboard"></i> Explore Keyboards
           </a>
-          <a href="#guides" class="btn-ddmms-outline">
+          <a href="guides.html" class="btn-ddmms-outline text-decoration-none">
             <i class="bi bi-tools"></i> Build Guides
           </a>
           <a href="https://gitlab.com/m-lego/m65" target="_blank" rel="noopener" class="btn-social-pill" style="--pill-color: #fc6d26;">
@@ -134,7 +169,7 @@
         </div>
 
         <div class="mt-4">
-          <a href="#about" class="scroll-down-btn text-decoration-none">
+          <a href="#about-overview" class="scroll-down-btn text-decoration-none">
             <span>Discover</span>
             <i class="bi bi-chevron-down"></i>
           </a>
@@ -144,8 +179,8 @@
   </header>
 
   <main>
-    <!-- About Section -->
-    <section id="about" class="section-block reveal-section">
+    <!-- About Overview -->
+    <section id="about-overview" class="section-block reveal-section">
       <div class="container">
         <div class="section-header" style="--section-accent: #2dd4bf;">
           <h2 class="section-title">
@@ -155,8 +190,7 @@
           <div class="section-divider"></div>
         </div>
 
-        <!-- 4 Quick Stat Cards -->
-        <div class="row g-4 mb-5" id="about-stats-container">
+        <div class="row g-4 mb-5">
           <div class="col-6 col-lg-3">
             <div class="stat-card">
               <i class="bi bi-keyboard stat-icon"></i>
@@ -187,7 +221,6 @@
           </div>
         </div>
 
-        <!-- About Cards -->
         <div class="row g-4">
           <div class="col-lg-6">
             <div class="surface-card">
@@ -214,8 +247,8 @@
                 This project is an evolving maker journey rather than a static commercial kit. Every revision explores a new microcontroller (STM32, RP2040, nRF52840), display technology (OLED, WeAct e-ink, Sharp Memory, ST7735 IPS LCD), or matrix scanning circuit.
               </p>
               <div class="mt-auto pt-2">
-                <a href="#doc/home" class="btn btn-sm btn-ddmms-outline open-doc-btn" data-doc-id="home">
-                  <i class="bi bi-file-earmark-text me-1"></i> Read Full Manifesto
+                <a href="about.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                  <i class="bi bi-file-earmark-text me-1"></i> Read Full Story &amp; Manifesto
                 </a>
               </div>
             </div>
@@ -229,38 +262,101 @@
       <div class="parallax-bg" style="background-image: url('images/backgrounds/old-brick-wall.webp');"></div>
     </div>
 
-    <!-- Keyboards Section -->
-    <section id="keyboards" class="section-block section-bg-alt reveal-section">
+    <!-- Featured Keyboards Preview -->
+    <section class="section-block section-bg-alt reveal-section">
       <div class="container">
         <div class="section-header" style="--section-accent: #6cb670;">
           <h2 class="section-title">
             <span class="section-title-highlight" style="color: #6cb670;">Designed</span> <span class="text-white">Keyboards</span>
           </h2>
-          <p class="text-secondary mb-2">Custom ortholinear mechanical keyboards and macropads in modular LEGO cases</p>
+          <p class="text-secondary mb-2">Flagship ortholinear keyboards in modular LEGO enclosures</p>
           <div class="section-divider"></div>
         </div>
 
-        <!-- Search & Filter Controls -->
-        <div class="search-filter-box">
-          <div class="row g-3 align-items-center">
-            <div class="col-md-6">
-              <div class="search-input-group">
-                <i class="bi bi-search"></i>
-                <input type="text" id="search-input" class="search-input" placeholder="Search boards, MCUs (RP2040, STM32, XIAO), firmware...">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="hardware-card">
+              <div class="hardware-card-thumb-wrap">
+                <a href="m66.html">
+                  <img src="pics/m66/mlego_m66_rev4-lcd.webp" alt="m66 (5×14 Ortho)" class="hardware-card-thumb" loading="lazy">
+                </a>
+              </div>
+              <div class="hardware-card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="mlego-badge mlego-badge--green">5×14 Ortho</span>
+                  <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">66 Keys</span>
+                </div>
+                <h3 class="h5 hardware-card-title mb-2">
+                  <a href="m66.html" class="text-white text-decoration-none">m66 (5×14 Ortho)</a>
+                </h3>
+                <p class="hardware-card-desc">Flagship 5×14 ortholinear keyboard with dedicated encoder column, per-key RGB, and modular OLED, e-ink, Sharp Memory, or IPS LCD displays.</p>
+                <div class="mt-auto pt-2 border-top border-secondary border-opacity-25">
+                  <a href="m66.html" class="btn btn-sm btn-ddmms-primary text-decoration-none w-100 text-center">
+                    <i class="bi bi-book me-1"></i> Read Documentation
+                  </a>
+                </div>
               </div>
             </div>
-            <div class="col-md-6 d-flex flex-wrap gap-2 justify-content-md-end">
-              <button type="button" class="filter-pill active" data-filter="all">All Items</button>
-              <button type="button" class="filter-pill" data-filter="keyboards">Keyboards</button>
-              <button type="button" class="filter-pill" data-filter="converted">POS Terminals</button>
-              <button type="button" class="filter-pill" data-filter="mice">Mice</button>
-              <button type="button" class="filter-pill" data-filter="guides">Guides</button>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="hardware-card">
+              <div class="hardware-card-thumb-wrap">
+                <a href="m65.html">
+                  <img src="pics/mlego_m65_rev11_eink.webp" alt="m65 (5×13 Ortho)" class="hardware-card-thumb" loading="lazy">
+                </a>
+              </div>
+              <div class="hardware-card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="mlego-badge mlego-badge--green">5×13 Ortho</span>
+                  <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">65 Keys</span>
+                </div>
+                <h3 class="h5 hardware-card-title mb-2">
+                  <a href="m65.html" class="text-white text-decoration-none">m65 (5×13 Ortho)</a>
+                </h3>
+                <p class="hardware-card-desc">Original 65-key ISO-friendly LEGO ortholinear keyboard evolved across 11 revisions — from BluePill to Raspberry Pi Pico and Seeed XIAO SPI shift registers.</p>
+                <div class="mt-auto pt-2 border-top border-secondary border-opacity-25">
+                  <a href="m65.html" class="btn btn-sm btn-ddmms-primary text-decoration-none w-100 text-center">
+                    <i class="bi bi-book me-1"></i> Read Documentation
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="hardware-card">
+              <div class="hardware-card-thumb-wrap">
+                <a href="m60.html">
+                  <img src="pics/5x12/m60_rev2.webp" alt="m60 (5×12 Ortho)" class="hardware-card-thumb" loading="lazy">
+                </a>
+              </div>
+              <div class="hardware-card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="mlego-badge mlego-badge--green">5×12 Ortho</span>
+                  <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">60 Keys</span>
+                </div>
+                <h3 class="h5 hardware-card-title mb-2">
+                  <a href="m60.html" class="text-white text-decoration-none">m60 (5×12 Ortho)</a>
+                </h3>
+                <p class="hardware-card-desc">Preonic-inspired 60-key 5×12 layout in a LEGO case with rotary encoder, RGB strip, and OLED support.</p>
+                <div class="mt-auto pt-2 border-top border-secondary border-opacity-25">
+                  <a href="m60.html" class="btn btn-sm btn-ddmms-primary text-decoration-none w-100 text-center">
+                    <i class="bi bi-book me-1"></i> Read Documentation
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Keyboards Grid Container -->
-        <div class="row" id="keyboards-grid"></div>
+        <div class="text-center mt-3">
+          <a href="keyboards.html" class="btn btn-ddmms-outline text-decoration-none">
+            <i class="bi bi-grid me-1"></i> Explore All 8 Designed Keyboards &rarr;
+          </a>
+        </div>
       </div>
     </section>
 
@@ -269,78 +365,77 @@
       <div class="parallax-bg" style="background-image: url('images/backgrounds/stone-wall.webp');"></div>
     </div>
 
-    <!-- POS Conversions Section -->
-    <section id="converted" class="section-block reveal-section">
+    <!-- Quick Navigation Hub -->
+    <section class="section-block reveal-section">
       <div class="container">
         <div class="section-header" style="--section-accent: #fbbf24;">
           <h2 class="section-title">
-            <span class="section-title-highlight" style="color: #fbbf24;">Vintage POS</span> <span class="text-white">Conversions</span>
+            <span class="section-title-highlight" style="color: #fbbf24;">Hardware</span> <span class="text-white">Directory</span>
           </h2>
-          <p class="text-secondary mb-2">Rescued mechanical Tipro terminals restored and converted to QMK firmware</p>
+          <p class="text-secondary mb-2">Dedicated sections for POS conversions, mice liberation, and electronics build notes</p>
           <div class="section-divider"></div>
         </div>
 
-        <div class="row" id="converted-grid"></div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="surface-card text-center p-4">
+              <div class="card-icon-badge mx-auto" style="background: rgba(251, 191, 36, 0.12); color: #fbbf24; border-color: rgba(251, 191, 36, 0.3);">
+                <i class="bi bi-cpu"></i>
+              </div>
+              <h3 class="h5 text-white mb-2">Vintage POS Conversions</h3>
+              <p class="small text-secondary mb-3">Vintage Tipro mechanical point-of-sale terminals restored with custom STM32 daughterboards.</p>
+              <a href="converted.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                <i class="bi bi-arrow-right me-1"></i> 5 Tipro Models
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="surface-card text-center p-4">
+              <div class="card-icon-badge mx-auto" style="background: rgba(129, 140, 248, 0.12); color: #818cf8; border-color: rgba(129, 140, 248, 0.3);">
+                <i class="bi bi-mouse"></i>
+              </div>
+              <h3 class="h5 text-white mb-2">Liberated QMK Mice</h3>
+              <p class="small text-secondary mb-3">SteelSeries Prime gaming mouse unlocked via OpenOCD, custom UF2 bootloader, and QMK.</p>
+              <a href="mice.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                <i class="bi bi-arrow-right me-1"></i> Prime Guide
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="surface-card text-center p-4">
+              <div class="card-icon-badge mx-auto" style="background: rgba(244, 114, 182, 0.12); color: #f472b6; border-color: rgba(244, 114, 182, 0.3);">
+                <i class="bi bi-journal-code"></i>
+              </div>
+              <h3 class="h5 text-white mb-2">Hardware &amp; Build Guides</h3>
+              <p class="small text-secondary mb-3">Assembly guides, SPI shift-register matrix expansion, 3×3 KiCad matrix tutorial, and breakout PCBs.</p>
+              <a href="guides.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                <i class="bi bi-arrow-right me-1"></i> 4 Build Guides
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Parallax Divider 3 -->
     <div class="parallax-band parallax-window" data-parallax-speed="0.38">
-      <div class="parallax-bg" style="background-image: url('images/backgrounds/old-wall.webp');"></div>
-    </div>
-
-    <!-- Mice Section -->
-    <section id="mice" class="section-block section-bg-alt reveal-section">
-      <div class="container">
-        <div class="section-header" style="--section-accent: #818cf8;">
-          <h2 class="section-title">
-            <span class="section-title-highlight" style="color: #818cf8;">Liberated</span> <span class="text-white">QMK Mice</span>
-          </h2>
-          <p class="text-secondary mb-2">Gaming mice freed from closed-source software with custom QMK firmware and bootloader</p>
-          <div class="section-divider"></div>
-        </div>
-
-        <div class="row justify-content-center" id="mice-grid"></div>
-      </div>
-    </section>
-
-    <!-- Parallax Divider 4 -->
-    <div class="parallax-band parallax-window" data-parallax-speed="0.38">
-      <div class="parallax-bg" style="background-image: url('images/backgrounds/stone-wall-2.webp');"></div>
-    </div>
-
-    <!-- Guides Section -->
-    <section id="guides" class="section-block reveal-section">
-      <div class="container">
-        <div class="section-header" style="--section-accent: #f472b6;">
-          <h2 class="section-title">
-            <span class="section-title-highlight" style="color: #f472b6;">Hardware</span> <span class="text-white">&amp; Build Guides</span>
-          </h2>
-          <p class="text-secondary mb-2">Soldering tutorials, matrix theory, shift-register expansion, and KiCad PCB design</p>
-          <div class="section-divider"></div>
-        </div>
-
-        <div class="row" id="guides-grid"></div>
-      </div>
-    </section>
-
-    <!-- Parallax Divider 5 -->
-    <div class="parallax-band parallax-window" data-parallax-speed="0.38">
       <div class="parallax-bg" style="background-image: url('images/backgrounds/stones.webp');"></div>
     </div>
 
-    <!-- Specs Section -->
-    <section id="specs" class="section-block section-bg-alt reveal-section">
+    <!-- Lineup Comparison Preview -->
+    <section class="section-block section-bg-alt reveal-section">
       <div class="container">
         <div class="section-header" style="--section-accent: #fb923c;">
           <h2 class="section-title">
-            <span class="section-title-highlight" style="color: #fb923c;">Hardware</span> <span class="text-white">Comparison Lineup</span>
+            <span class="section-title-highlight" style="color: #fb923c;">Lineup</span> <span class="text-white">Comparison</span>
           </h2>
-          <p class="text-secondary mb-2">Comprehensive side-by-side specifications for all mlego keyboard models and conversions</p>
+          <p class="text-secondary mb-2">Quick side-by-side specs overview</p>
           <div class="section-divider"></div>
         </div>
 
-        <div class="specs-table-wrapper table-responsive">
+        <div class="specs-table-wrapper table-responsive mb-4">
           <table class="specs-table">
             <thead>
               <tr>
@@ -348,20 +443,105 @@
                 <th>Layout</th>
                 <th>Keys</th>
                 <th>MCU Platform</th>
-                <th>Key Features &amp; Peripherals</th>
                 <th>Firmware</th>
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody id="specs-table-body"></tbody>
+            <tbody>
+
+              <tr>
+                <td class="fw-bold text-white"><a href="m66.html" class="text-info text-decoration-none">m66</a></td>
+                <td><span class="mlego-badge">5×14 Ortho</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">66</span></td>
+                <td class="small text-secondary">RP2040 / nice!nano / XIAO</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK & ZMK</span></td>
+                <td>
+                  <a href="m66.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="fw-bold text-white"><a href="m65.html" class="text-info text-decoration-none">m65</a></td>
+                <td><span class="mlego-badge">5×13 Ortho</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">65</span></td>
+                <td class="small text-secondary">STM32F401 / RP2040 / XIAO</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK & ZMK</span></td>
+                <td>
+                  <a href="m65.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="fw-bold text-white"><a href="m60.html" class="text-info text-decoration-none">m60</a></td>
+                <td><span class="mlego-badge">5×12 Ortho</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">60</span></td>
+                <td class="small text-secondary">STM32F401 / RP2040</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
+                <td>
+                  <a href="m60.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="fw-bold text-white"><a href="m60_split.html" class="text-info text-decoration-none">m60 Split</a></td>
+                <td><span class="mlego-badge">5×12 Split</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">60 (2×30)</span></td>
+                <td class="small text-secondary">Dual STM32F401 / 411</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
+                <td>
+                  <a href="m60_split.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="fw-bold text-white"><a href="m48.html" class="text-info text-decoration-none">m48</a></td>
+                <td><span class="mlego-badge">4×12 Ortho</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">48</span></td>
+                <td class="small text-secondary">STM32F401 / F411</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
+                <td>
+                  <a href="m48.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="fw-bold text-white"><a href="m20.html" class="text-info text-decoration-none">m20</a></td>
+                <td><span class="mlego-badge">5×4 Pad</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">20</span></td>
+                <td class="small text-secondary">Raspberry Pi Pico (RP2040)</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
+                <td>
+                  <a href="m20.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
           </table>
+        </div>
+
+        <div class="text-center">
+          <a href="specs.html" class="btn btn-ddmms-outline text-decoration-none">
+            <i class="bi bi-table me-1"></i> View Full 14-Model Comparison Matrix &rarr;
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer matching alin.elena.re -->
-  <footer class="py-5 border-top border-secondary border-opacity-25 text-center" style="background-color: #0b0e12;">
+  <footer class="py-5 border-top border-secondary border-opacity-25 text-center mt-5" style="background-color: #0b0e12;">
     <div class="container">
       <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
         <img src="images/logo.webp" alt="mlego" style="width: 32px; height: 32px; border-radius: 50%;">
@@ -382,40 +562,12 @@
     </div>
   </footer>
 
-  <!-- Document Reader Modal matching alin.elena.re postReaderModal -->
-  <div class="modal fade" id="docReaderModal" tabindex="-1" aria-labelledby="docModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content" style="background-color: #161c24; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 20px 60px rgba(0,0,0,0.85);">
-        <div class="modal-header border-secondary border-opacity-25 px-4 py-3">
-          <div>
-            <h2 class="modal-title h4 text-white mb-1" id="docModalTitle"></h2>
-            <div id="docModalMeta" class="small text-muted d-flex align-items-center flex-wrap gap-1"></div>
-          </div>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-4 p-md-5 text-light modal-article-body" id="docModalBody"></div>
-        <div class="modal-footer border-secondary border-opacity-25 px-4 py-3 d-flex justify-content-between">
-          <span class="text-muted small">mlego hardware &amp; build documentation</span>
-          <button type="button" class="btn-ddmms-outline btn-sm" data-bs-dismiss="modal">
-            <i class="bi bi-x-lg me-1"></i> Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Lightbox Overlay for Image Zoom -->
   <div id="lightbox-overlay" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image Preview">
     <img id="lightbox-img" class="lightbox-img" src="" alt="Hardware Preview">
   </div>
 
-  <!-- Dependencies: Bootstrap 5 Bundle, js-yaml, marked -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <!-- Main Application Script (fetches section YAML files) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
-
