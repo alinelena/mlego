@@ -7,6 +7,8 @@ items:
     title: Tipro 8×16 (128-Key)
     category: converted
     badge: 8×16 POS
+    chip_badge: 128 Keys
+    color: '#38bdf8'
     keys: "128"
     mcu: STM32F401 + 74HC595
     firmware: QMK
@@ -18,6 +20,8 @@ items:
     title: Tipro 8×12 (96-Key)
     category: converted
     badge: 8×12 POS
+    chip_badge: 96 Keys
+    color: '#34d399'
     keys: "96"
     mcu: STM32F401 + 74HC595
     firmware: QMK
@@ -29,6 +33,8 @@ items:
     title: Tipro 8×4 (32-Key)
     category: converted
     badge: 8×4 POS
+    chip_badge: 32 Keys
+    color: '#fbbf24'
     keys: "32"
     mcu: WeAct STM32G431
     firmware: QMK
@@ -40,6 +46,8 @@ items:
     title: Tipro ANSI-Ortho
     category: converted
     badge: ANSI + Ortho
+    chip_badge: 60%+
+    color: '#f472b6'
     keys: Hybrid
     mcu: STM32F401
     firmware: QMK
@@ -51,6 +59,8 @@ items:
     title: Tipro Ortho-ANSI
     category: converted
     badge: Ortho + ANSI
+    chip_badge: +60%
+    color: '#a78bfa'
     keys: Hybrid
     mcu: STM32F401
     firmware: QMK

@@ -5,31 +5,43 @@ items:
   - id: assembly
     file: assembly.md
     title: Step-by-Step Assembly Guide
+    chip_title: Assembly
     category: guides
     badge: Build Guide
+    chip_badge: Build
+    color: '#2dd4bf'
     image: pics/final_3.webp
     summary: "Illustrated soldering and assembly walkthrough: sockets, diodes, LED resistor calculations, and LEGO case mounting."
 
   - id: notenoughpins
     file: notenoughpins.md
     title: Not Enough Pins? Matrix Expansion
+    chip_title: Not Enough Pins
     category: guides
     badge: Hardware Guide
+    chip_badge: Shift Reg
+    color: '#fb923c'
     image: pics/matrix-2b_v2.webp
     summary: Exhaustive engineering tutorial on driving large matrices from tiny MCUs via SPI shift registers and matrix folding.
 
   - id: how_matrix_works_extra
     file: how_matrix_works_extra.md
     title: How Keyboard Matrices Work (3×3)
+    chip_title: Matrix Theory
     category: guides
     badge: Electronics Guide
+    chip_badge: 3×3
+    color: '#f472b6'
     image: pics/col2row/pcb-3df-col2row.webp
     summary: Beginner-friendly hardware primer on diode direction, ghosting prevention, KiCad PCB routing, and bootstrapping QMK.
 
   - id: hand5x5
     file: hand5x5.md
     title: Handwire Helpers (5×5 Breakout)
+    chip_title: Handwire 5×5
     category: guides
     badge: PCB Design
+    chip_badge: PCB
+    color: '#a78bfa'
     image: pics/hand/m1-5x5-rounded.webp
     summary: Modular 5×5 switch matrix break-apart PCBs to simplify custom handwiring and speed up prototyping.

@@ -133,6 +133,12 @@ def build_site(outdir: Path):
     specs_data = yaml.safe_load((DATA_DIR / "specs.yml").read_text(encoding="utf-8"))
     about_data = yaml.safe_load((DATA_DIR / "about.yml").read_text(encoding="utf-8"))
 
+    # Set globals so all templates (including partials like header.html) have direct access to item arrays
+    env.globals["keyboards_items"] = keyboards_data["items"]
+    env.globals["converted_items"] = converted_data["items"]
+    env.globals["mice_items"] = mice_data["items"]
+    env.globals["guides_items"] = guides_data["items"]
+
     # 3. Render Landing Page
     index_tpl = env.get_template("index.html")
     index_html = index_tpl.render(

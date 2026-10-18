@@ -278,14 +278,14 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 0.35rem;
-  padding: 0.35rem 0.55rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 0.45rem;
-  color: #cbd5e1;
+  padding: 0.38rem 0.6rem;
+  background: color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 9%, rgba(255, 255, 255, 0.03));
+  border: 1px solid color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 30%, transparent);
+  border-radius: 0.5rem;
+  color: #e2e8f0;
   font-size: 0.82rem;
   text-decoration: none;
-  transition: all 0.16s ease;
+  transition: all 0.18s ease;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -295,6 +295,7 @@ a:hover {
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #f1f5f9;
 }
 
 .corner-subnav-chip .chip-badge {
@@ -302,23 +303,33 @@ a:hover {
   font-size: 0.68rem;
   padding: 0.1rem 0.35rem;
   border-radius: 0.25rem;
-  background: rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 18%, #000);
+  border: 1px solid color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 35%, transparent);
   color: var(--chip-accent, var(--accent-cyan));
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .corner-subnav-chip:hover {
-  background: color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 16%, transparent);
+  background: color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 22%, transparent);
   border-color: var(--chip-accent, var(--accent-cyan));
   color: #fff;
   transform: translateY(-1px);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 30%, transparent);
+}
+
+.corner-subnav-chip:hover .chip-badge {
+  background: var(--chip-accent, var(--accent-cyan));
+  color: #0b0f14;
+  font-weight: 700;
 }
 
 .corner-subnav-chip.active {
-  background: color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 24%, transparent);
+  background: color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 28%, transparent);
   border-color: var(--chip-accent, var(--accent-cyan));
   color: #fff;
   font-weight: 600;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--chip-accent, var(--accent-cyan)) 40%, transparent);
 }
 
 .corner-subnav-chip.active .chip-badge {
@@ -1103,25 +1114,58 @@ a:hover {
   box-shadow: 0 0 16px rgba(87, 203, 204, 0.25);
 }
 
-/* Category Filter Pills */
+/* Category Filter & Quick Jump Pills */
 .filter-pill {
-  padding: 0.4rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.95rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 10%, rgba(255, 255, 255, 0.04));
+  border: 1px solid color-mix(in srgb, var(--pill-color, #57cbcc) 35%, transparent);
+  color: var(--pill-color, var(--text-secondary));
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.2s ease;
+}
+
+.filter-pill .filter-pill-name {
+  color: #f1f5f9;
+}
+
+.filter-pill .filter-pill-badge {
+  font-family: "Anaheim", monospace;
+  font-size: 0.7rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 18%, #000);
+  border: 1px solid color-mix(in srgb, var(--pill-color, #57cbcc) 35%, transparent);
+  color: var(--pill-color, var(--accent-cyan));
+  font-weight: 600;
 }
 
 .filter-pill:hover,
 .filter-pill.active {
-  background: rgba(87, 203, 204, 0.16);
-  border-color: var(--accent-cyan);
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 24%, transparent);
+  border-color: var(--pill-color, #57cbcc);
   color: #fff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--pill-color, #57cbcc) 35%, transparent);
+}
+
+.filter-pill:hover .filter-pill-name,
+.filter-pill.active .filter-pill-name {
+  color: #fff;
+  font-weight: 600;
+}
+
+.filter-pill:hover .filter-pill-badge,
+.filter-pill.active .filter-pill-badge {
+  background: var(--pill-color, #57cbcc);
+  color: #0b0f14;
+  font-weight: 700;
 }
 
 /* Hardware Spec Badges */
@@ -1458,9 +1502,9 @@ a:hover {
   gap: 0.45rem;
   padding: 0.38rem 0.85rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 10%, rgba(255, 255, 255, 0.04));
+  border: 1px solid color-mix(in srgb, var(--pill-color, #57cbcc) 35%, transparent);
+  color: var(--pill-color, var(--text-secondary));
   font-size: 0.86rem;
   font-weight: 500;
   text-decoration: none;
@@ -1468,19 +1512,33 @@ a:hover {
   flex-shrink: 0;
 }
 
+.subnav-pill .subnav-pill-title {
+  color: #f1f5f9;
+}
+
 .subnav-pill:hover {
-  background: rgba(87, 203, 204, 0.14);
-  border-color: var(--accent-cyan);
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 22%, transparent);
+  border-color: var(--pill-color, #57cbcc);
   color: #fff;
   transform: translateY(-1px);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--pill-color, #57cbcc) 30%, transparent);
+}
+
+.subnav-pill:hover .subnav-pill-title {
+  color: #fff;
 }
 
 .subnav-pill.active {
-  background: rgba(87, 203, 204, 0.22);
-  border-color: var(--accent-cyan);
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 28%, transparent);
+  border-color: var(--pill-color, #57cbcc);
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 0 12px rgba(87, 203, 204, 0.25);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--pill-color, #57cbcc) 40%, transparent);
+}
+
+.subnav-pill.active .subnav-pill-title {
+  color: #fff;
+  font-weight: 600;
 }
 
 .subnav-pill-parent {
@@ -1495,12 +1553,20 @@ a:hover {
   font-size: 0.7rem;
   padding: 0.1rem 0.4rem;
   border-radius: 0.25rem;
-  background: rgba(0, 0, 0, 0.35);
-  color: var(--accent-cyan);
+  background: color-mix(in srgb, var(--pill-color, #57cbcc) 18%, #000);
+  border: 1px solid color-mix(in srgb, var(--pill-color, #57cbcc) 35%, transparent);
+  color: var(--pill-color, var(--accent-cyan));
+  font-weight: 600;
+}
+
+.subnav-pill:hover .subnav-pill-badge {
+  background: var(--pill-color, #57cbcc);
+  color: #0b0f14;
+  font-weight: 700;
 }
 
 .subnav-pill.active .subnav-pill-badge {
-  background: var(--accent-cyan);
+  background: var(--pill-color, #57cbcc);
   color: #0b0f14;
   font-weight: 700;
 }

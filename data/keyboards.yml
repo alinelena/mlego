@@ -7,6 +7,8 @@ items:
     title: m66 (5×14 Ortho)
     category: keyboards
     badge: 5×14 Ortho
+    chip_badge: 5×14
+    color: '#38bdf8'
     keys: 66
     mcu: RP2040 / nice!nano / XIAO
     firmware: QMK & ZMK
@@ -18,6 +20,8 @@ items:
     title: m65 (5×13 Ortho)
     category: keyboards
     badge: 5×13 Ortho
+    chip_badge: 5×13
+    color: '#2dd4bf'
     keys: 65
     mcu: STM32F401 / RP2040 / XIAO
     firmware: QMK & ZMK
@@ -29,6 +33,8 @@ items:
     title: m60 (5×12 Ortho)
     category: keyboards
     badge: 5×12 Ortho
+    chip_badge: 5×12
+    color: '#4ade80'
     keys: 60
     mcu: STM32F401 / RP2040
     firmware: QMK
@@ -40,6 +46,8 @@ items:
     title: m60 Split (5×12 Split)
     category: keyboards
     badge: 5×12 Split
+    chip_badge: Split
+    color: '#a3e635'
     keys: 60 (2×30)
     mcu: Dual STM32F401 / F411
     firmware: QMK
@@ -51,6 +59,8 @@ items:
     title: m48 (4×12 Ortho)
     category: keyboards
     badge: 4×12 Ortho
+    chip_badge: 4×12
+    color: '#fbbf24'
     keys: 48
     mcu: STM32F401 / F411
     firmware: QMK
@@ -62,6 +72,8 @@ items:
     title: m20 (5×4 Pad)
     category: keyboards
     badge: 5×4 Pad
+    chip_badge: 5×4
+    color: '#f97316'
     keys: 20
     mcu: Raspberry Pi Pico (RP2040)
     firmware: QMK
@@ -73,6 +85,8 @@ items:
     title: m8 (2×4 Pad)
     category: keyboards
     badge: 2×4 Pad
+    chip_badge: 2×4
+    color: '#fb7185'
     keys: 8
     mcu: XIAO RP2040 / 74HC595 + 74HC589
     firmware: QMK
@@ -84,6 +98,8 @@ items:
     title: m4 (2×2 Pad)
     category: keyboards
     badge: 2×2 Pad
+    chip_badge: 2×2
+    color: '#c084fc'
     keys: 4
     mcu: Seeed XIAO BLE / RP2040
     firmware: ZMK & QMK

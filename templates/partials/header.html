@@ -46,41 +46,15 @@
         </div>
         <div class="corner-subnav-panel{% if active_group == 'keyboards' %} show{% endif %}">
           <div class="corner-subnav-grid">
-            <a href="m66.html" class="corner-subnav-chip{% if active_page == 'm66' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m66</span>
-              <span class="chip-badge">5×14</span>
+            {% for k in keyboards_items %}
+            <a href="{{ k.id }}.html" class="corner-subnav-chip{% if active_page == k.id %} active{% endif %}" style="--chip-accent: {{ k.color }};">
+              <span class="chip-name">{{ k.title.split('(')[0].strip() }}</span>
+              <span class="chip-badge">{{ k.chip_badge or k.badge }}</span>
             </a>
-            <a href="m65.html" class="corner-subnav-chip{% if active_page == 'm65' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m65</span>
-              <span class="chip-badge">5×13</span>
-            </a>
-            <a href="m60.html" class="corner-subnav-chip{% if active_page == 'm60' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m60</span>
-              <span class="chip-badge">5×12</span>
-            </a>
-            <a href="m60_split.html" class="corner-subnav-chip{% if active_page == 'm60_split' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m60 Split</span>
-              <span class="chip-badge">Dual</span>
-            </a>
-            <a href="m48.html" class="corner-subnav-chip{% if active_page == 'm48' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m48</span>
-              <span class="chip-badge">4×12</span>
-            </a>
-            <a href="m20.html" class="corner-subnav-chip{% if active_page == 'm20' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m20</span>
-              <span class="chip-badge">5×4</span>
-            </a>
-            <a href="m8.html" class="corner-subnav-chip{% if active_page == 'm8' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m8</span>
-              <span class="chip-badge">2×4</span>
-            </a>
-            <a href="m4.html" class="corner-subnav-chip{% if active_page == 'm4' %} active{% endif %}" style="--chip-accent: #6cb670;">
-              <span class="chip-name">m4</span>
-              <span class="chip-badge">2×2</span>
-            </a>
+            {% endfor %}
           </div>
           <div class="text-end pt-2">
-            <a href="keyboards.html" class="corner-subnav-all-link">Browse All 8 Keyboards <i class="bi bi-arrow-right"></i></a>
+            <a href="keyboards.html" class="corner-subnav-all-link">Browse All {{ keyboards_items|length }} Keyboards <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </li>
@@ -97,29 +71,15 @@
         </div>
         <div class="corner-subnav-panel{% if active_group == 'converted' %} show{% endif %}">
           <div class="corner-subnav-grid">
-            <a href="tipro8x16.html" class="corner-subnav-chip{% if active_page == 'tipro8x16' %} active{% endif %}" style="--chip-accent: #fbbf24;">
-              <span class="chip-name">Tipro 8×16</span>
-              <span class="chip-badge">128 Keys</span>
+            {% for c in converted_items %}
+            <a href="{{ c.id }}.html" class="corner-subnav-chip{% if active_page == c.id %} active{% endif %}" style="--chip-accent: {{ c.color }};">
+              <span class="chip-name">{{ c.title.split('(')[0].strip() }}</span>
+              <span class="chip-badge">{{ c.chip_badge or c.badge }}</span>
             </a>
-            <a href="tipro8x12.html" class="corner-subnav-chip{% if active_page == 'tipro8x12' %} active{% endif %}" style="--chip-accent: #fbbf24;">
-              <span class="chip-name">Tipro 8×12</span>
-              <span class="chip-badge">96 Keys</span>
-            </a>
-            <a href="tipro8x4.html" class="corner-subnav-chip{% if active_page == 'tipro8x4' %} active{% endif %}" style="--chip-accent: #fbbf24;">
-              <span class="chip-name">Tipro 8×4</span>
-              <span class="chip-badge">32 Keys</span>
-            </a>
-            <a href="tiproansi-ortho.html" class="corner-subnav-chip{% if active_page == 'tiproansi-ortho' %} active{% endif %}" style="--chip-accent: #fbbf24;">
-              <span class="chip-name">ANSI-Ortho</span>
-              <span class="chip-badge">60%+</span>
-            </a>
-            <a href="tiproortho-ansi.html" class="corner-subnav-chip{% if active_page == 'tiproortho-ansi' %} active{% endif %}" style="--chip-accent: #fbbf24;">
-              <span class="chip-name">Ortho-ANSI</span>
-              <span class="chip-badge">+60%</span>
-            </a>
+            {% endfor %}
           </div>
           <div class="text-end pt-2">
-            <a href="converted.html" class="corner-subnav-all-link">Browse All 5 Conversions <i class="bi bi-arrow-right"></i></a>
+            <a href="converted.html" class="corner-subnav-all-link">Browse All {{ converted_items|length }} Conversions <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </li>
@@ -136,10 +96,12 @@
         </div>
         <div class="corner-subnav-panel{% if active_group == 'mice' %} show{% endif %}">
           <div class="corner-subnav-grid">
-            <a href="prime.html" class="corner-subnav-chip{% if active_page == 'prime' %} active{% endif %}" style="--chip-accent: #818cf8;">
-              <span class="chip-name">Prime Mouse</span>
-              <span class="chip-badge">QMK</span>
+            {% for m in mice_items %}
+            <a href="{{ m.id }}.html" class="corner-subnav-chip{% if active_page == m.id %} active{% endif %}" style="--chip-accent: {{ m.color }};">
+              <span class="chip-name">{{ m.title.split('(')[0].strip() }}</span>
+              <span class="chip-badge">{{ m.chip_badge or m.badge }}</span>
             </a>
+            {% endfor %}
           </div>
           <div class="text-end pt-2">
             <a href="mice.html" class="corner-subnav-all-link">Browse All Mice <i class="bi bi-arrow-right"></i></a>
@@ -159,25 +121,15 @@
         </div>
         <div class="corner-subnav-panel{% if active_group == 'guides' %} show{% endif %}">
           <div class="corner-subnav-grid">
-            <a href="assembly.html" class="corner-subnav-chip{% if active_page == 'assembly' %} active{% endif %}" style="--chip-accent: #f472b6;">
-              <span class="chip-name">Assembly</span>
-              <span class="chip-badge">Build</span>
+            {% for g in guides_items %}
+            <a href="{{ g.id }}.html" class="corner-subnav-chip{% if active_page == g.id %} active{% endif %}" style="--chip-accent: {{ g.color }};">
+              <span class="chip-name">{{ g.chip_title or g.title.split('(')[0].strip() }}</span>
+              <span class="chip-badge">{{ g.chip_badge or g.badge }}</span>
             </a>
-            <a href="notenoughpins.html" class="corner-subnav-chip{% if active_page == 'notenoughpins' %} active{% endif %}" style="--chip-accent: #f472b6;">
-              <span class="chip-name">Not Enough Pins</span>
-              <span class="chip-badge">Shift Reg</span>
-            </a>
-            <a href="how_matrix_works_extra.html" class="corner-subnav-chip{% if active_page == 'how_matrix_works_extra' %} active{% endif %}" style="--chip-accent: #f472b6;">
-              <span class="chip-name">Matrix Theory</span>
-              <span class="chip-badge">3×3</span>
-            </a>
-            <a href="hand5x5.html" class="corner-subnav-chip{% if active_page == 'hand5x5' %} active{% endif %}" style="--chip-accent: #f472b6;">
-              <span class="chip-name">Handwire 5×5</span>
-              <span class="chip-badge">PCB</span>
-            </a>
+            {% endfor %}
           </div>
           <div class="text-end pt-2">
-            <a href="guides.html" class="corner-subnav-all-link">Browse All 4 Guides <i class="bi bi-arrow-right"></i></a>
+            <a href="guides.html" class="corner-subnav-all-link">Browse All {{ guides_items|length }} Guides <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </li>

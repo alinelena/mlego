@@ -26,10 +26,10 @@
         <span class="text-secondary small text-uppercase fw-semibold me-2 d-none d-sm-inline">Quick Jump:</span>
         <div class="catalog-quicknav-pills">
           {% for item in items %}
-          <a href="{{ item.id }}.html" class="filter-pill text-decoration-none">
-            {{ item.title.split('(')[0].strip() }}
-            {% if item.badge %}
-            <span class="badge bg-secondary bg-opacity-25 ms-1" style="font-size: 0.72rem;">{{ item.badge }}</span>
+          <a href="{{ item.id }}.html" class="filter-pill text-decoration-none" style="--pill-color: {{ item.color }};">
+            <span class="filter-pill-name">{{ item.chip_title or item.title.split('(')[0].strip() }}</span>
+            {% if item.chip_badge or item.badge %}
+            <span class="filter-pill-badge">{{ item.chip_badge or item.badge }}</span>
             {% endif %}
           </a>
           {% endfor %}

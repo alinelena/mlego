@@ -47,10 +47,10 @@
           <i class="bi bi-grid-fill me-1"></i> All {{ parent_title }}
         </a>
         {% for sib in siblings %}
-        <a href="{{ sib.id }}.html" class="subnav-pill{% if sib.id == item.id %} active{% endif %}">
-          <span class="subnav-pill-title">{{ sib.title.split('(')[0].strip() }}</span>
-          {% if sib.badge %}
-          <span class="subnav-pill-badge">{{ sib.badge }}</span>
+        <a href="{{ sib.id }}.html" class="subnav-pill{% if sib.id == item.id %} active{% endif %}" style="--pill-color: {{ sib.color }};">
+          <span class="subnav-pill-title">{{ sib.chip_title or sib.title.split('(')[0].strip() }}</span>
+          {% if sib.chip_badge or sib.badge %}
+          <span class="subnav-pill-badge">{{ sib.chip_badge or sib.badge }}</span>
           {% endif %}
         </a>
         {% endfor %}

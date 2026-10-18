@@ -7,6 +7,8 @@ items:
     title: SteelSeries Prime Mouse
     category: mice
     badge: QMK Mouse
+    chip_badge: QMK
+    color: '#818cf8'
     keys: 5-Btn
     mcu: STM32F103 + PMW3389
     firmware: QMK (UF2)
