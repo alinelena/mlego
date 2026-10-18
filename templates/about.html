@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
+    <div class="container pt-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">Home</a></li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">About Project</li>
+        </ol>
+      </nav>
+      <div class="section-header text-start mb-0" style="--section-accent: #2dd4bf;">
+        <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">
+          <span style="color: #2dd4bf;">Project</span> Overview &amp; Manifesto
+        </h1>
+        <p class="text-secondary mb-0">Open-source modular hardware, KiCad engineering, and QMK/ZMK firmware playground</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        {% for s in about.stats %}
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <i class="bi {{ s.icon }} stat-icon" style="color: {{ s.color }};"></i>
+            <div class="stat-count">{{ s.count }}</div>
+            <div class="stat-label">{{ s.label }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="surface-card p-4 p-md-5">
+        <div class="modal-article-body">
+          {{ html_content|safe }}
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

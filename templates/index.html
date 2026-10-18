@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Hero / Landing Section -->
+  <header>
+    <section id="hero" class="hero-section parallax-window" data-parallax-speed="0.42">
+      <div class="parallax-bg" id="hero-parallax-bg" style="background-image: url('images/backgrounds/exterior-stone-wall.webp');"></div>
+      <div id="hero-content" class="hero-content container">
+        <div class="hero-pulse-badge">
+          <img src="images/logo.webp" alt="mlego logo">
+        </div>
+        <h1 class="hero-title">mlego notes</h1>
+        <p class="hero-subtitle">Modular LEGO Ortholinear Keyboards <span class="hero-bullet">•</span> Hardware &amp; QMK/ZMK Firmware</p>
+        
+        <p class="text-secondary mt-3 mb-4 mx-auto" style="max-width: 680px; font-size: 1.05rem;">
+          Custom ISO-friendly ortholinear mechanical keyboards, macropads, vintage POS terminal conversions, and firmware experiments — all mounted in modular LEGO cases.
+        </p>
+
+        <!-- CTAs & Social Links -->
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-4">
+          <a href="keyboards.html" class="btn-ddmms-primary text-decoration-none">
+            <i class="bi bi-keyboard"></i> Explore Keyboards
+          </a>
+          <a href="guides.html" class="btn-ddmms-outline text-decoration-none">
+            <i class="bi bi-tools"></i> Build Guides
+          </a>
+          <a href="https://gitlab.com/m-lego/m65" target="_blank" rel="noopener" class="btn-social-pill" style="--pill-color: #fc6d26;">
+            <i class="bi bi-git"></i> GitLab
+          </a>
+          <a href="https://github.com/alinelena" target="_blank" rel="noopener" class="btn-social-pill" style="--pill-color: #c9d1d9;">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+          <a href="https://alin.elena.re" target="_blank" rel="noopener" class="btn-social-pill" style="--pill-color: #57cbcc;">
+            <i class="bi bi-globe"></i> alin.elena.re
+          </a>
+        </div>
+
+        <div class="mt-4">
+          <a href="#about-overview" class="scroll-down-btn text-decoration-none">
+            <span>Discover</span>
+            <i class="bi bi-chevron-down"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- About Overview -->
+    <section id="about-overview" class="section-block reveal-section">
+      <div class="container">
+        <div class="section-header" style="--section-accent: #2dd4bf;">
+          <h2 class="section-title">
+            <span class="section-title-highlight" style="color: #2dd4bf;">Project</span> <span class="text-white">Overview</span>
+          </h2>
+          <p class="text-secondary mb-2">Fun, modular, open-source electronics &amp; mechanical keyboard playground</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          {% for s in about.stats %}
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <i class="bi {{ s.icon }} stat-icon" style="color: {{ s.color }};"></i>
+              <div class="stat-count">{{ s.count }}</div>
+              <div class="stat-label">{{ s.label }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="surface-card">
+              <div class="card-icon-badge" style="background: rgba(108, 182, 112, 0.12); color: #6cb670; border-color: rgba(108, 182, 112, 0.3);">
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <h3 class="h4 text-white mb-3">What This Project Is</h3>
+              <ul class="text-secondary ps-3 mb-0" style="line-height: 1.8;">
+                <li><strong class="text-light">Fun &amp; experimental</strong> — designed for learning electronics, KiCad routing, and firmware architecture.</li>
+                <li><strong class="text-light">Educational</strong> — documented schematics, SPI shift-register matrix expansion, and QMK/ZMK configs.</li>
+                <li><strong class="text-light">Functional daily drivers</strong> — full ISO keycap compatibility on comfortable ortholinear grids.</li>
+                <li><strong class="text-light">Modular LEGO Cases</strong> — PCBs drilled to official LEGO stud pitch (1.6mm), snapping onto standard LEGO plates.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="surface-card">
+              <div class="card-icon-badge" style="background: rgba(251, 146, 60, 0.12); color: #fb923c; border-color: rgba(251, 146, 60, 0.3);">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+              <h3 class="h4 text-white mb-3">Maker Playground, Not Commercial Endgame</h3>
+              <p class="text-secondary" style="line-height: 1.75;">
+                This project is an evolving maker journey rather than a static commercial kit. Every revision explores a new microcontroller (STM32, RP2040, nRF52840), display technology (OLED, WeAct e-ink, Sharp Memory, ST7735 IPS LCD), or matrix scanning circuit.
+              </p>
+              <div class="mt-auto pt-2">
+                <a href="about.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                  <i class="bi bi-file-earmark-text me-1"></i> Read Full Story &amp; Manifesto
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax Divider 1 -->
+    <div class="parallax-band parallax-window" data-parallax-speed="0.38">
+      <div class="parallax-bg" style="background-image: url('images/backgrounds/old-brick-wall.webp');"></div>
+    </div>
+
+    <!-- Featured Keyboards Preview -->
+    <section class="section-block section-bg-alt reveal-section">
+      <div class="container">
+        <div class="section-header" style="--section-accent: #6cb670;">
+          <h2 class="section-title">
+            <span class="section-title-highlight" style="color: #6cb670;">Designed</span> <span class="text-white">Keyboards</span>
+          </h2>
+          <p class="text-secondary mb-2">Flagship ortholinear keyboards in modular LEGO enclosures</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="row">
+          {% for item in keyboards['items'][:3] %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="hardware-card">
+              <div class="hardware-card-thumb-wrap">
+                <a href="{{ item.id }}.html">
+                  <img src="{{ item.image }}" alt="{{ item.title }}" class="hardware-card-thumb" loading="lazy">
+                </a>
+              </div>
+              <div class="hardware-card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="mlego-badge mlego-badge--green">{{ item.badge }}</span>
+                  <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">{{ item.keys }} Keys</span>
+                </div>
+                <h3 class="h5 hardware-card-title mb-2">
+                  <a href="{{ item.id }}.html" class="text-white text-decoration-none">{{ item.title }}</a>
+                </h3>
+                <p class="hardware-card-desc">{{ item.summary }}</p>
+                <div class="mt-auto pt-2 border-top border-secondary border-opacity-25">
+                  <a href="{{ item.id }}.html" class="btn btn-sm btn-ddmms-primary text-decoration-none w-100 text-center">
+                    <i class="bi bi-book me-1"></i> Read Documentation
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="text-center mt-3">
+          <a href="keyboards.html" class="btn btn-ddmms-outline text-decoration-none">
+            <i class="bi bi-grid me-1"></i> Explore All 8 Designed Keyboards &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax Divider 2 -->
+    <div class="parallax-band parallax-window" data-parallax-speed="0.38">
+      <div class="parallax-bg" style="background-image: url('images/backgrounds/stone-wall.webp');"></div>
+    </div>
+
+    <!-- Quick Navigation Hub -->
+    <section class="section-block reveal-section">
+      <div class="container">
+        <div class="section-header" style="--section-accent: #fbbf24;">
+          <h2 class="section-title">
+            <span class="section-title-highlight" style="color: #fbbf24;">Hardware</span> <span class="text-white">Directory</span>
+          </h2>
+          <p class="text-secondary mb-2">Dedicated sections for POS conversions, mice liberation, and electronics build notes</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="surface-card text-center p-4">
+              <div class="card-icon-badge mx-auto" style="background: rgba(251, 191, 36, 0.12); color: #fbbf24; border-color: rgba(251, 191, 36, 0.3);">
+                <i class="bi bi-cpu"></i>
+              </div>
+              <h3 class="h5 text-white mb-2">Vintage POS Conversions</h3>
+              <p class="small text-secondary mb-3">Vintage Tipro mechanical point-of-sale terminals restored with custom STM32 daughterboards.</p>
+              <a href="converted.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                <i class="bi bi-arrow-right me-1"></i> 5 Tipro Models
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="surface-card text-center p-4">
+              <div class="card-icon-badge mx-auto" style="background: rgba(129, 140, 248, 0.12); color: #818cf8; border-color: rgba(129, 140, 248, 0.3);">
+                <i class="bi bi-mouse"></i>
+              </div>
+              <h3 class="h5 text-white mb-2">Liberated QMK Mice</h3>
+              <p class="small text-secondary mb-3">SteelSeries Prime gaming mouse unlocked via OpenOCD, custom UF2 bootloader, and QMK.</p>
+              <a href="mice.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                <i class="bi bi-arrow-right me-1"></i> Prime Guide
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="surface-card text-center p-4">
+              <div class="card-icon-badge mx-auto" style="background: rgba(244, 114, 182, 0.12); color: #f472b6; border-color: rgba(244, 114, 182, 0.3);">
+                <i class="bi bi-journal-code"></i>
+              </div>
+              <h3 class="h5 text-white mb-2">Hardware &amp; Build Guides</h3>
+              <p class="small text-secondary mb-3">Assembly guides, SPI shift-register matrix expansion, 3×3 KiCad matrix tutorial, and breakout PCBs.</p>
+              <a href="guides.html" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+                <i class="bi bi-arrow-right me-1"></i> 4 Build Guides
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax Divider 3 -->
+    <div class="parallax-band parallax-window" data-parallax-speed="0.38">
+      <div class="parallax-bg" style="background-image: url('images/backgrounds/stones.webp');"></div>
+    </div>
+
+    <!-- Lineup Comparison Preview -->
+    <section class="section-block section-bg-alt reveal-section">
+      <div class="container">
+        <div class="section-header" style="--section-accent: #fb923c;">
+          <h2 class="section-title">
+            <span class="section-title-highlight" style="color: #fb923c;">Lineup</span> <span class="text-white">Comparison</span>
+          </h2>
+          <p class="text-secondary mb-2">Quick side-by-side specs overview</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="specs-table-wrapper table-responsive mb-4">
+          <table class="specs-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Layout</th>
+                <th>Keys</th>
+                <th>MCU Platform</th>
+                <th>Firmware</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in specs['items'][:6] %}
+              <tr>
+                <td class="fw-bold text-white"><a href="{{ row.id }}.html" class="text-info text-decoration-none">{{ row.name }}</a></td>
+                <td><span class="mlego-badge">{{ row.layout }}</span></td>
+                <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">{{ row.keys }}</span></td>
+                <td class="small text-secondary">{{ row.mcu }}</td>
+                <td><span class="badge bg-dark text-success border border-success border-opacity-25">{{ row.firmware }}</span></td>
+                <td>
+                  <a href="{{ row.id }}.html" class="btn btn-sm btn-ddmms-outline py-1 px-2 text-decoration-none">
+                    <i class="bi bi-file-text me-1"></i> View Page
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-center">
+          <a href="specs.html" class="btn btn-ddmms-outline text-decoration-none">
+            <i class="bi bi-table me-1"></i> View Full Comparison Matrix &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

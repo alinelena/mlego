@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Subpage Header -->
+  <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
+    <div class="container pt-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ parent_url }}" class="text-decoration-none text-info">{{ parent_title }}</a></li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">{{ item.title }}</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-2">
+        <div>
+          <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">{{ item.title }}</h1>
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            {% if item.badge %}
+            <span class="mlego-badge">{{ item.badge }}</span>
+            {% endif %}
+            {% if item.keys %}
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">{{ item.keys }} Keys</span>
+            {% endif %}
+            {% if item.mcu %}
+            <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>{{ item.mcu }}</span>
+            {% endif %}
+            {% if item.firmware %}
+            <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>{{ item.firmware }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <a href="{{ parent_url }}" class="btn btn-sm btn-ddmms-outline text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i> All {{ parent_title }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="surface-card p-4 p-md-5">
+            <div class="modal-article-body">
+              {{ html_content|safe }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="sticky-top" style="top: 2rem;">
+            <div class="surface-card p-4 mb-4">
+              <div class="hardware-card-thumb-wrap mb-3 rounded" style="height: 200px;">
+                <img src="{{ item.image or 'pics/mlego.webp' }}" alt="{{ item.title }}" class="hardware-card-thumb" style="cursor: zoom-in;" onclick="openLightbox('{{ item.image or 'pics/mlego.webp' }}')">
+              </div>
+              <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
+              <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
+                {% if item.badge %}
+                <li><strong class="text-white">Layout:</strong> {{ item.badge }}</li>
+                {% endif %}
+                {% if item.keys %}
+                <li><strong class="text-white">Keys:</strong> {{ item.keys }}</li>
+                {% endif %}
+                {% if item.mcu %}
+                <li><strong class="text-white">MCU:</strong> {{ item.mcu }}</li>
+                {% endif %}
+                {% if item.firmware %}
+                <li><strong class="text-white">Firmware:</strong> {{ item.firmware }}</li>
+                {% endif %}
+              </ul>
+              {% if item.summary %}
+              <p class="small text-secondary mb-3">{{ item.summary }}</p>
+              {% endif %}
+              <div class="d-grid gap-2">
+                <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="btn btn-sm btn-ddmms-primary text-center text-decoration-none">
+                  <i class="bi bi-git me-1"></i> View Hardware Repo
+                </a>
+                <a href="{{ parent_url }}" class="btn btn-sm btn-ddmms-outline text-center text-decoration-none">
+                  <i class="bi bi-grid me-1"></i> Browse More {{ parent_title }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

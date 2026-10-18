@@ -25,115 +25,114 @@
 </head>
 <body>
 
-  <!-- Floating Corner Navigation Menu matching alin.elena.re -->
-  <nav class="corner-nav-wrapper" aria-label="Site navigation">
-    <button
-      type="button"
-      id="corner-menu-toggle"
-      class="corner-menu-btn"
-      aria-expanded="false"
-      aria-controls="corner-menu-panel"
-      aria-label="Toggle navigation menu"
-    >
-      <img id="corner-btn-logo" src="images/logo.webp" alt="mlego" class="brand-avatar">
-      <span id="corner-current-section">Menu</span>
-      <span class="menu-icon-bars" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </button>
+<!-- Floating Corner Navigation Menu matching alin.elena.re -->
+<nav class="corner-nav-wrapper" aria-label="Site navigation">
+  <button
+    type="button"
+    id="corner-menu-toggle"
+    class="corner-menu-btn"
+    aria-expanded="false"
+    aria-controls="corner-menu-panel"
+    aria-label="Toggle navigation menu"
+  >
+    <img id="corner-btn-logo" src="images/logo.webp" alt="mlego" class="brand-avatar">
+    <span id="corner-current-section">Menu</span>
+    <span class="menu-icon-bars" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
 
-    <div id="corner-menu-panel" class="corner-menu-panel" role="menu">
-      <div class="d-flex align-items-center justify-content-between px-2 pb-2 mb-2 border-bottom border-secondary border-opacity-25">
-        <span class="fw-bold text-white small text-uppercase" style="letter-spacing: 0.06em;">mlego Navigation</span>
-        <span class="badge bg-dark text-info border border-info border-opacity-25">mlego.elena.re</span>
-      </div>
-      <ul id="corner-nav-list" class="corner-nav-list">
-        <li>
-          <a href="index.html" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
-            <i class="bi bi-house-door"></i> Home
-          </a>
-        </li>
-        <li>
-          <a href="about.html" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
-            <i class="bi bi-info-circle"></i> About
-          </a>
-        </li>
-
-        <!-- Keyboards Submenu -->
-        <li>
-          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #6cb670;">
-            <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
-          </button>
-          <ul class="corner-subnav-list">
-            <li><a href="keyboards.html" class="corner-nav-link">All Keyboards</a></li>
-            <li><a href="m66.html" class="corner-nav-link">m66 (5×14)</a></li>
-            <li><a href="m65.html" class="corner-nav-link">m65 (5×13)</a></li>
-            <li><a href="m60.html" class="corner-nav-link">m60 (5×12)</a></li>
-            <li><a href="m60_split.html" class="corner-nav-link">m60 Split</a></li>
-            <li><a href="m48.html" class="corner-nav-link">m48 (4×12)</a></li>
-            <li><a href="m20.html" class="corner-nav-link">m20 (5×4)</a></li>
-            <li><a href="m8.html" class="corner-nav-link">m8 (2×4)</a></li>
-            <li><a href="m4.html" class="corner-nav-link">m4 (2×2)</a></li>
-          </ul>
-        </li>
-
-        <!-- POS Conversions Submenu -->
-        <li>
-          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #fbbf24;">
-            <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
-          </button>
-          <ul class="corner-subnav-list">
-            <li><a href="converted.html" class="corner-nav-link">All Conversions</a></li>
-            <li><a href="tipro8x16.html" class="corner-nav-link">Tipro 8×16</a></li>
-            <li><a href="tipro8x12.html" class="corner-nav-link">Tipro 8×12</a></li>
-            <li><a href="tipro8x4.html" class="corner-nav-link">Tipro 8×4</a></li>
-            <li><a href="tiproansi-ortho.html" class="corner-nav-link">Tipro ANSI-Ortho</a></li>
-            <li><a href="tiproortho-ansi.html" class="corner-nav-link">Tipro Ortho-ANSI</a></li>
-          </ul>
-        </li>
-
-        <!-- Mice Submenu -->
-        <li>
-          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #818cf8;">
-            <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
-          </button>
-          <ul class="corner-subnav-list">
-            <li><a href="mice.html" class="corner-nav-link">All Mice</a></li>
-            <li><a href="prime.html" class="corner-nav-link">SteelSeries Prime</a></li>
-          </ul>
-        </li>
-
-        <!-- Guides Submenu -->
-        <li>
-          <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #f472b6;">
-            <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
-          </button>
-          <ul class="corner-subnav-list">
-            <li><a href="guides.html" class="corner-nav-link">All Guides</a></li>
-            <li><a href="assembly.html" class="corner-nav-link">Assembly Guide</a></li>
-            <li><a href="notenoughpins.html" class="corner-nav-link">Not Enough Pins</a></li>
-            <li><a href="how_matrix_works_extra.html" class="corner-nav-link">How Matrix Works</a></li>
-            <li><a href="hand5x5.html" class="corner-nav-link">Handwire Helpers</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="specs.html" class="corner-nav-link active" style="--nav-item-color: #fb923c;">
-            <i class="bi bi-table"></i> Lineup Specs
-          </a>
-        </li>
-
-        <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
-          <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
-            <i class="bi bi-globe2"></i> Alin's Main Site
-          </a>
-        </li>
-      </ul>
+  <div id="corner-menu-panel" class="corner-menu-panel" role="menu">
+    <div class="d-flex align-items-center justify-content-between px-2 pb-2 mb-2 border-bottom border-secondary border-opacity-25">
+      <span class="fw-bold text-white small text-uppercase" style="letter-spacing: 0.06em;">mlego Navigation</span>
+      <span class="badge bg-dark text-info border border-info border-opacity-25">mlego.elena.re</span>
     </div>
-  </nav>
+    <ul id="corner-nav-list" class="corner-nav-list">
+      <li>
+        <a href="index.html" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+          <i class="bi bi-house-door"></i> Home
+        </a>
+      </li>
+      <li>
+        <a href="about.html" class="corner-nav-link" style="--nav-item-color: #2dd4bf;">
+          <i class="bi bi-info-circle"></i> About
+        </a>
+      </li>
 
+      <!-- Keyboards Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #6cb670;">
+          <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list">
+          <li><a href="keyboards.html" class="corner-nav-link">All Keyboards</a></li>
+          <li><a href="m66.html" class="corner-nav-link">m66 (5×14)</a></li>
+          <li><a href="m65.html" class="corner-nav-link">m65 (5×13)</a></li>
+          <li><a href="m60.html" class="corner-nav-link">m60 (5×12)</a></li>
+          <li><a href="m60_split.html" class="corner-nav-link">m60 Split</a></li>
+          <li><a href="m48.html" class="corner-nav-link">m48 (4×12)</a></li>
+          <li><a href="m20.html" class="corner-nav-link">m20 (5×4)</a></li>
+          <li><a href="m8.html" class="corner-nav-link">m8 (2×4)</a></li>
+          <li><a href="m4.html" class="corner-nav-link">m4 (2×2)</a></li>
+        </ul>
+      </li>
+
+      <!-- POS Conversions Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #fbbf24;">
+          <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list">
+          <li><a href="converted.html" class="corner-nav-link">All Conversions</a></li>
+          <li><a href="tipro8x16.html" class="corner-nav-link">Tipro 8×16</a></li>
+          <li><a href="tipro8x12.html" class="corner-nav-link">Tipro 8×12</a></li>
+          <li><a href="tipro8x4.html" class="corner-nav-link">Tipro 8×4</a></li>
+          <li><a href="tiproansi-ortho.html" class="corner-nav-link">Tipro ANSI-Ortho</a></li>
+          <li><a href="tiproortho-ansi.html" class="corner-nav-link">Tipro Ortho-ANSI</a></li>
+        </ul>
+      </li>
+
+      <!-- Mice Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #818cf8;">
+          <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list">
+          <li><a href="mice.html" class="corner-nav-link">All Mice</a></li>
+          <li><a href="prime.html" class="corner-nav-link">SteelSeries Prime</a></li>
+        </ul>
+      </li>
+
+      <!-- Guides Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="false" style="--nav-item-color: #f472b6;">
+          <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list">
+          <li><a href="guides.html" class="corner-nav-link">All Guides</a></li>
+          <li><a href="assembly.html" class="corner-nav-link">Assembly Guide</a></li>
+          <li><a href="notenoughpins.html" class="corner-nav-link">Not Enough Pins</a></li>
+          <li><a href="how_matrix_works_extra.html" class="corner-nav-link">How Matrix Works</a></li>
+          <li><a href="hand5x5.html" class="corner-nav-link">Handwire Helpers</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="specs.html" class="corner-nav-link active" style="--nav-item-color: #fb923c;">
+          <i class="bi bi-table"></i> Lineup Specs
+        </a>
+      </li>
+
+      <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
+        <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+          <i class="bi bi-globe2"></i> Alin's Main Site
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
   <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
     <div class="container pt-4">
       <nav aria-label="breadcrumb">
@@ -167,11 +166,10 @@
             </tr>
           </thead>
           <tbody>
-
             <tr>
               <td class="fw-bold text-white"><a href="m66.html" class="text-info text-decoration-none">m66</a></td>
               <td><span class="mlego-badge">5×14 Ortho</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">66</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691cfaac0></span></td>
               <td class="small text-secondary">RP2040 / nice!nano / XIAO</td>
               <td class="small text-light">Clickable Encoder, Per-Key RGB, Modular Display (OLED/E-Ink/Sharp/LCD)</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK & ZMK</span></td>
@@ -181,11 +179,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m65.html" class="text-info text-decoration-none">m65</a></td>
               <td><span class="mlego-badge">5×13 Ortho</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">65</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26280></span></td>
               <td class="small text-secondary">STM32F401 / RP2040 / XIAO</td>
               <td class="small text-light">11 Hardware Revisions, Underglow RGB, Shift Register Matrix, E-Ink</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK & ZMK</span></td>
@@ -195,11 +192,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m60.html" class="text-info text-decoration-none">m60</a></td>
               <td><span class="mlego-badge">5×12 Ortho</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">60</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26300></span></td>
               <td class="small text-secondary">STM32F401 / RP2040</td>
               <td class="small text-light">Preonic-style, Rotary encoder, RGB strip, OLED support</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -209,11 +205,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m60_split.html" class="text-info text-decoration-none">m60 Split</a></td>
               <td><span class="mlego-badge">5×12 Split</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">60 (2×30)</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26340></span></td>
               <td class="small text-secondary">Dual STM32F401 / 411</td>
               <td class="small text-light">Dual 16×16 LEGO baseplates, Dual encoders, Underglow RGB</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -223,11 +218,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m48.html" class="text-info text-decoration-none">m48</a></td>
               <td><span class="mlego-badge">4×12 Ortho</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">48</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26380></span></td>
               <td class="small text-secondary">STM32F401 / F411</td>
               <td class="small text-light">Planck-style compact, Rotary encoder, RGB strip</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -237,11 +231,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m20.html" class="text-info text-decoration-none">m20</a></td>
               <td><span class="mlego-badge">5×4 Pad</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">20</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26440></span></td>
               <td class="small text-secondary">Raspberry Pi Pico (RP2040)</td>
               <td class="small text-light">Cherry MX & Kailh Choc v2, Rotary encoder, OLED</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -251,11 +244,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m8.html" class="text-info text-decoration-none">m8</a></td>
               <td><span class="mlego-badge">2×4 Pad</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">8</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26480></span></td>
               <td class="small text-secondary">XIAO RP2040</td>
               <td class="small text-light">74HC595 + 74HC589 SPI Shift Registers, E-Ink, OLED</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -265,11 +257,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="m4.html" class="text-info text-decoration-none">m4</a></td>
               <td><span class="mlego-badge">2×2 Pad</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">4</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d264c0></span></td>
               <td class="small text-secondary">Seeed XIAO BLE / RP2040</td>
               <td class="small text-light">Wireless BLE, Shift register prototype, Compact macropad</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">ZMK & QMK</span></td>
@@ -279,11 +270,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="tipro8x16.html" class="text-info text-decoration-none">Tipro 8×16</a></td>
               <td><span class="mlego-badge">8×16 POS</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">128</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26500></span></td>
               <td class="small text-secondary">STM32F401</td>
               <td class="small text-light">Polished steel plate, 74HC595 LED expander, MT3 keycaps</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -293,11 +283,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="tipro8x12.html" class="text-info text-decoration-none">Tipro 8×12</a></td>
               <td><span class="mlego-badge">8×12 POS</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">96</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26400></span></td>
               <td class="small text-secondary">STM32F401</td>
               <td class="small text-light">Daughterboard conversion, Shift register LEDs</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -307,11 +296,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="tipro8x4.html" class="text-info text-decoration-none">Tipro 8×4</a></td>
               <td><span class="mlego-badge">8×4 POS</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">32</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d263c0></span></td>
               <td class="small text-secondary">WeAct STM32G431</td>
               <td class="small text-light">Dedicated 32-key POS macropad module</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -321,11 +309,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="tiproansi-ortho.html" class="text-info text-decoration-none">Tipro ANSI-Ortho</a></td>
               <td><span class="mlego-badge">ANSI + Ortho</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">Hybrid</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26540></span></td>
               <td class="small text-secondary">STM32F401</td>
               <td class="small text-light">Hybrid ANSI 60% + Ortho macro bank</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -335,11 +322,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="tiproortho-ansi.html" class="text-info text-decoration-none">Tipro Ortho-ANSI</a></td>
               <td><span class="mlego-badge">Ortho + ANSI</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">Hybrid</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d26580></span></td>
               <td class="small text-secondary">STM32F401</td>
               <td class="small text-light">Left-hand ortho pad + ANSI typewriter</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -349,11 +335,10 @@
                 </a>
               </td>
             </tr>
-
             <tr>
               <td class="fw-bold text-white"><a href="prime.html" class="text-info text-decoration-none">SS Prime Mouse</a></td>
               <td><span class="mlego-badge">5-Btn Mouse</span></td>
-              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25">5</span></td>
+              <td><span class="badge bg-dark text-light border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7fb691d265c0></span></td>
               <td class="small text-secondary">STM32F103</td>
               <td class="small text-light">PixArt PMW3389 sensor, SWD unlocked, UF2 bootloader</td>
               <td><span class="badge bg-dark text-success border border-success border-opacity-25">QMK</span></td>
@@ -363,35 +348,33 @@
                 </a>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>
     </div>
   </main>
 
-  <!-- Footer matching alin.elena.re -->
-  <footer class="py-5 border-top border-secondary border-opacity-25 text-center mt-5" style="background-color: #0b0e12;">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
-        <img src="images/logo.webp" alt="mlego" style="width: 32px; height: 32px; border-radius: 50%;">
-        <span class="fw-bold text-white fs-5" style="font-family: 'Anaheim', sans-serif;">mlego notes</span>
-      </div>
-      <p class="text-secondary small mb-3">
-        Modular LEGO-mounted ortholinear keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes.
-      </p>
-      <div class="d-flex justify-content-center gap-3 mb-4">
-        <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-git"></i></a>
-        <a href="https://github.com/alinelena" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-github"></i></a>
-        <a href="https://alin.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-globe"></i></a>
-        <a href="https://ddmms.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5"><i class="bi bi-building"></i></a>
-      </div>
-      <div class="text-muted small">
-        Copyright &copy; 2017&ndash;2026 <a href="https://alin.elena.re" class="text-info">Alin M. Elena</a>. All rights reserved.
-      </div>
+<!-- Footer matching alin.elena.re -->
+<footer class="py-5 border-top border-secondary border-opacity-25 text-center mt-5" style="background-color: #0b0e12;">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+      <img src="images/logo.webp" alt="mlego" style="width: 32px; height: 32px; border-radius: 50%;">
+      <span class="fw-bold text-white fs-5" style="font-family: 'Anaheim', sans-serif;">mlego notes</span>
     </div>
-  </footer>
-
+    <p class="text-secondary small mb-3">
+      Modular LEGO-mounted ortholinear keyboards, QMK/ZMK firmware, POS conversions, and hardware build notes.
+    </p>
+    <div class="d-flex justify-content-center gap-3 mb-4">
+      <a href="https://gitlab.com/m-lego" target="_blank" rel="noopener" class="text-secondary hover-white fs-5" aria-label="GitLab"><i class="bi bi-git"></i></a>
+      <a href="https://github.com/alinelena" target="_blank" rel="noopener" class="text-secondary hover-white fs-5" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      <a href="https://alin.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5" aria-label="Personal Website"><i class="bi bi-globe"></i></a>
+      <a href="https://ddmms.elena.re" target="_blank" rel="noopener" class="text-secondary hover-white fs-5" aria-label="DDMMS Group"><i class="bi bi-building"></i></a>
+    </div>
+    <div class="text-muted small">
+      Copyright &copy; 2017&ndash;2026 <a href="https://alin.elena.re" class="text-info">Alin M. Elena</a>. All rights reserved.
+    </div>
+  </div>
+</footer>
   <!-- Lightbox Overlay for Image Zoom -->
   <div id="lightbox-overlay" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image Preview">
     <img id="lightbox-img" class="lightbox-img" src="" alt="Hardware Preview">

@@ -1,0 +1,108 @@
+<!-- Floating Corner Navigation Menu matching alin.elena.re -->
+<nav class="corner-nav-wrapper" aria-label="Site navigation">
+  <button
+    type="button"
+    id="corner-menu-toggle"
+    class="corner-menu-btn"
+    aria-expanded="false"
+    aria-controls="corner-menu-panel"
+    aria-label="Toggle navigation menu"
+  >
+    <img id="corner-btn-logo" src="images/logo.webp" alt="mlego" class="brand-avatar">
+    <span id="corner-current-section">Menu</span>
+    <span class="menu-icon-bars" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <div id="corner-menu-panel" class="corner-menu-panel" role="menu">
+    <div class="d-flex align-items-center justify-content-between px-2 pb-2 mb-2 border-bottom border-secondary border-opacity-25">
+      <span class="fw-bold text-white small text-uppercase" style="letter-spacing: 0.06em;">mlego Navigation</span>
+      <span class="badge bg-dark text-info border border-info border-opacity-25">mlego.elena.re</span>
+    </div>
+    <ul id="corner-nav-list" class="corner-nav-list">
+      <li>
+        <a href="index.html" class="corner-nav-link{% if active_page == 'home' %} active{% endif %}" style="--nav-item-color: #57cbcc;">
+          <i class="bi bi-house-door"></i> Home
+        </a>
+      </li>
+      <li>
+        <a href="about.html" class="corner-nav-link{% if active_page == 'about' %} active{% endif %}" style="--nav-item-color: #2dd4bf;">
+          <i class="bi bi-info-circle"></i> About
+        </a>
+      </li>
+
+      <!-- Keyboards Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'keyboards' %}true{% else %}false{% endif %}" style="--nav-item-color: #6cb670;">
+          <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list{% if active_group == 'keyboards' %} show{% endif %}">
+          <li><a href="keyboards.html" class="corner-nav-link{% if active_page == 'keyboards' %} active{% endif %}">All Keyboards</a></li>
+          <li><a href="m66.html" class="corner-nav-link{% if active_page == 'm66' %} active{% endif %}">m66 (5×14)</a></li>
+          <li><a href="m65.html" class="corner-nav-link{% if active_page == 'm65' %} active{% endif %}">m65 (5×13)</a></li>
+          <li><a href="m60.html" class="corner-nav-link{% if active_page == 'm60' %} active{% endif %}">m60 (5×12)</a></li>
+          <li><a href="m60_split.html" class="corner-nav-link{% if active_page == 'm60_split' %} active{% endif %}">m60 Split</a></li>
+          <li><a href="m48.html" class="corner-nav-link{% if active_page == 'm48' %} active{% endif %}">m48 (4×12)</a></li>
+          <li><a href="m20.html" class="corner-nav-link{% if active_page == 'm20' %} active{% endif %}">m20 (5×4)</a></li>
+          <li><a href="m8.html" class="corner-nav-link{% if active_page == 'm8' %} active{% endif %}">m8 (2×4)</a></li>
+          <li><a href="m4.html" class="corner-nav-link{% if active_page == 'm4' %} active{% endif %}">m4 (2×2)</a></li>
+        </ul>
+      </li>
+
+      <!-- POS Conversions Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'converted' %}true{% else %}false{% endif %}" style="--nav-item-color: #fbbf24;">
+          <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list{% if active_group == 'converted' %} show{% endif %}">
+          <li><a href="converted.html" class="corner-nav-link{% if active_page == 'converted' %} active{% endif %}">All Conversions</a></li>
+          <li><a href="tipro8x16.html" class="corner-nav-link{% if active_page == 'tipro8x16' %} active{% endif %}">Tipro 8×16</a></li>
+          <li><a href="tipro8x12.html" class="corner-nav-link{% if active_page == 'tipro8x12' %} active{% endif %}">Tipro 8×12</a></li>
+          <li><a href="tipro8x4.html" class="corner-nav-link{% if active_page == 'tipro8x4' %} active{% endif %}">Tipro 8×4</a></li>
+          <li><a href="tiproansi-ortho.html" class="corner-nav-link{% if active_page == 'tiproansi-ortho' %} active{% endif %}">Tipro ANSI-Ortho</a></li>
+          <li><a href="tiproortho-ansi.html" class="corner-nav-link{% if active_page == 'tiproortho-ansi' %} active{% endif %}">Tipro Ortho-ANSI</a></li>
+        </ul>
+      </li>
+
+      <!-- Mice Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'mice' %}true{% else %}false{% endif %}" style="--nav-item-color: #818cf8;">
+          <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list{% if active_group == 'mice' %} show{% endif %}">
+          <li><a href="mice.html" class="corner-nav-link{% if active_page == 'mice' %} active{% endif %}">All Mice</a></li>
+          <li><a href="prime.html" class="corner-nav-link{% if active_page == 'prime' %} active{% endif %}">SteelSeries Prime</a></li>
+        </ul>
+      </li>
+
+      <!-- Guides Submenu -->
+      <li>
+        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'guides' %}true{% else %}false{% endif %}" style="--nav-item-color: #f472b6;">
+          <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
+        </button>
+        <ul class="corner-subnav-list{% if active_group == 'guides' %} show{% endif %}">
+          <li><a href="guides.html" class="corner-nav-link{% if active_page == 'guides' %} active{% endif %}">All Guides</a></li>
+          <li><a href="assembly.html" class="corner-nav-link{% if active_page == 'assembly' %} active{% endif %}">Assembly Guide</a></li>
+          <li><a href="notenoughpins.html" class="corner-nav-link{% if active_page == 'notenoughpins' %} active{% endif %}">Not Enough Pins</a></li>
+          <li><a href="how_matrix_works_extra.html" class="corner-nav-link{% if active_page == 'how_matrix_works_extra' %} active{% endif %}">How Matrix Works</a></li>
+          <li><a href="hand5x5.html" class="corner-nav-link{% if active_page == 'hand5x5' %} active{% endif %}">Handwire Helpers</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="specs.html" class="corner-nav-link{% if active_page == 'specs' %} active{% endif %}" style="--nav-item-color: #fb923c;">
+          <i class="bi bi-table"></i> Lineup Specs
+        </a>
+      </li>
+
+      <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
+        <a href="https://alin.elena.re" target="_blank" rel="noopener" class="corner-nav-link" style="--nav-item-color: #57cbcc;">
+          <i class="bi bi-globe2"></i> Alin's Main Site
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Catalog Header -->
+  <header class="py-5 border-bottom border-secondary border-opacity-25" style="background: linear-gradient(180deg, #161c24 0%, #0f1318 100%);">
+    <div class="container pt-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2 small">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">Home</a></li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">{{ title }}</li>
+        </ol>
+      </nav>
+      <div class="section-header text-start mb-0" style="--section-accent: {{ accent_color }};">
+        <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">
+          <span style="color: {{ accent_color }};">{{ title.split()[0] }}</span> {{ ' '.join(title.split()[1:]) }}
+        </h1>
+        <p class="text-secondary mb-0">{{ subtitle }}</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <!-- Search Filter Box -->
+      <div class="search-filter-box mb-4">
+        <div class="search-input-group">
+          <i class="bi bi-search"></i>
+          <input type="text" id="search-input" class="search-input" placeholder="Filter by name, layout, MCU platform, or keyword...">
+        </div>
+      </div>
+
+      <div class="row" id="catalog-grid">
+        {% for item in items %}
+        <div class="col-lg-4 col-md-6 mb-4 card-item" data-search="{{ (item.title ~ ' ' ~ (item.mcu or '') ~ ' ' ~ (item.badge or '') ~ ' ' ~ (item.summary or ''))|lower }}">
+          <div class="hardware-card">
+            <div class="hardware-card-thumb-wrap">
+              <a href="{{ item.id }}.html">
+                <img src="{{ item.image or 'pics/mlego.webp' }}" alt="{{ item.title }}" class="hardware-card-thumb" loading="lazy">
+              </a>
+            </div>
+            <div class="hardware-card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="mlego-badge" style="color: {{ accent_color }}; border-color: {{ accent_color }}55;">{{ item.badge }}</span>
+                {% if item.keys %}
+                <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">{{ item.keys }} Keys</span>
+                {% endif %}
+              </div>
+              <h2 class="h5 hardware-card-title mb-2">
+                <a href="{{ item.id }}.html" class="text-white text-decoration-none">{{ item.title }}</a>
+              </h2>
+              <div class="hardware-card-specs mb-2">
+                {% if item.mcu %}
+                <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>{{ item.mcu }}</span>
+                {% endif %}
+                {% if item.firmware %}
+                <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>{{ item.firmware }}</span>
+                {% endif %}
+              </div>
+              <p class="hardware-card-desc">{{ item.summary }}</p>
+              <div class="mt-auto pt-2 border-top border-secondary border-opacity-25 d-flex align-items-center justify-content-between">
+                <a href="{{ item.id }}.html" class="btn btn-sm btn-ddmms-primary text-decoration-none">
+                  <i class="bi bi-book me-1"></i> View Documentation
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="openLightbox('{{ item.image or 'pics/mlego.webp' }}')" aria-label="Zoom Photo">
+                  <i class="bi bi-zoom-in"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+{% endblock %}
