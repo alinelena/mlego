@@ -40,7 +40,7 @@ jobs:
 
       - name: Build and deploy modern newsite
         run: |
-          uv run --python 3.12 tools/build_newsite.py
+          uv run --python 3.12 --with pyyaml tools/build_newsite.py
           # Deploy newsite to public root
           cp -r newsite/* ./public/
           # Also make newsite accessible at /newsite/

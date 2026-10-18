@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
-"""
-Build script for newsite.
-Reads documentation from notes/ (keeping notes/ completely untouched)
-and generates section YAML files matching the data structure of alin.elena.re.
-"""
+# /// script
+# dependencies = [
+#     "pyyaml>=6.0",
+# ]
+# ///
 from pathlib import Path
 import re
 import yaml
