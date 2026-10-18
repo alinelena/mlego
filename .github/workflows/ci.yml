@@ -35,19 +35,13 @@ jobs:
       - name: Set up Python
         run: uv python install 3.12
 
-      - name: Build modern site
-        run: |
-          uv run --python 3.12 --with-requirements requirements.txt tools/build_newsite.py
-          mkdir -p ./public
-          cp -r newsite/* ./public/
-          # Ensure pics are real files rather than relative symlinks
-          rm -rf ./public/pics
-          cp -r notes/pics ./public/pics
+      - name: Build site with Python
+        run: uv run --python 3.12 --with-requirements requirements.txt tools/build.py --outdir _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./public
+          path: ./_site
 
       - name: Deploy to GitHub Pages
         id: deployment

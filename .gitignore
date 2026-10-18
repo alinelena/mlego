@@ -1,0 +1,14 @@
+# Build output directories (generated in CI by python)
+_site/
+public/
+dist/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

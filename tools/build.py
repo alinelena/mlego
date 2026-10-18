@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # /// script
 # dependencies = [
 #     "pyyaml>=6.0",
@@ -5,17 +6,21 @@
 #     "jinja2>=3.1",
 # ]
 # ///
+import argparse
 from pathlib import Path
 import re
+import shutil
+import sys
 import yaml
 import markdown
 from jinja2 import Environment, FileSystemLoader
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = ROOT_DIR / "data"
 NOTES_DIR = ROOT_DIR / "notes"
-NEWSITE_DIR = ROOT_DIR / "newsite"
-DATA_DIR = NEWSITE_DIR / "data"
 TEMPLATES_DIR = ROOT_DIR / "templates"
+ASSETS_DIR = ROOT_DIR / "assets"
+PICS_DIR = ROOT_DIR / "pics"
 
 # Configure Jinja2 environment
 env = Environment(
@@ -95,26 +100,40 @@ def read_note(filename: str) -> str:
     """Read a markdown file directly from the notes/ directory and render to HTML"""
     file_path = NOTES_DIR / filename
     if not file_path.exists():
-        print(f"Warning: Note file not found: {file_path}")
+        print(f"Warning: Note file not found: {file_path}", file=sys.stderr)
         return ""
     raw_md = file_path.read_text(encoding="utf-8")
     cleaned_md = clean_markdown_for_web(raw_md)
     return md_to_html(cleaned_md)
 
-def main():
-    NEWSITE_DIR.mkdir(parents=True, exist_ok=True)
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
+def build_site(outdir: Path):
+    """Build the complete static website into outdir"""
+    outdir.mkdir(parents=True, exist_ok=True)
 
-    # Load section YAML files
+    # 1. Copy static assets and pictures
+    out_assets = outdir / "assets"
+    if out_assets.exists():
+        shutil.rmtree(out_assets)
+    shutil.copytree(ASSETS_DIR, out_assets)
+
+    out_pics = outdir / "pics"
+    if out_pics.exists():
+        shutil.rmtree(out_pics)
+    shutil.copytree(PICS_DIR, out_pics)
+
+    # Create .nojekyll for GitHub Pages
+    (outdir / ".nojekyll").touch(exist_ok=True)
+
+    # 2. Load YAML data files
+    site_data = yaml.safe_load((DATA_DIR / "site.yml").read_text(encoding="utf-8"))
     keyboards_data = yaml.safe_load((DATA_DIR / "keyboards.yml").read_text(encoding="utf-8"))
     converted_data = yaml.safe_load((DATA_DIR / "converted.yml").read_text(encoding="utf-8"))
     mice_data = yaml.safe_load((DATA_DIR / "mice.yml").read_text(encoding="utf-8"))
     guides_data = yaml.safe_load((DATA_DIR / "guides.yml").read_text(encoding="utf-8"))
     specs_data = yaml.safe_load((DATA_DIR / "specs.yml").read_text(encoding="utf-8"))
     about_data = yaml.safe_load((DATA_DIR / "about.yml").read_text(encoding="utf-8"))
-    site_data = yaml.safe_load((DATA_DIR / "site.yml").read_text(encoding="utf-8"))
 
-    # 1. Render Landing Page
+    # 3. Render Landing Page
     index_tpl = env.get_template("index.html")
     index_html = index_tpl.render(
         title="Modular LEGO Ortholinear Keyboards & Hardware Notes",
@@ -129,9 +148,9 @@ def main():
         guides=guides_data,
         specs=specs_data,
     )
-    (NEWSITE_DIR / "index.html").write_text(index_html, encoding="utf-8")
+    (outdir / "index.html").write_text(index_html, encoding="utf-8")
 
-    # 2. Render About Page (sourced directly from notes/index.md)
+    # 4. Render About Page (sourced directly from notes/index.md)
     about_file = about_data.get("file", "index.md")
     about_tpl = env.get_template("about.html")
     about_html = about_tpl.render(
@@ -139,23 +158,25 @@ def main():
         description="Project overview, philosophy, and history of mlego keyboards",
         active_page="about",
         active_group="about",
+        site=site_data,
         about=about_data,
         html_content=read_note(about_file),
     )
-    (NEWSITE_DIR / "about.html").write_text(about_html, encoding="utf-8")
+    (outdir / "about.html").write_text(about_html, encoding="utf-8")
 
-    # 3. Render Specs Page
+    # 5. Render Specs Page
     specs_tpl = env.get_template("specs.html")
     specs_html = specs_tpl.render(
         title="Hardware Comparison Lineup",
         description="Full side-by-side specifications for all mlego keyboards and conversions",
         active_page="specs",
         active_group="specs",
+        site=site_data,
         specs=specs_data,
     )
-    (NEWSITE_DIR / "specs.html").write_text(specs_html, encoding="utf-8")
+    (outdir / "specs.html").write_text(specs_html, encoding="utf-8")
 
-    # 4. Render Catalog Pages
+    # 6. Render Catalog Pages
     catalog_tpl = env.get_template("catalog.html")
     catalog_configs = [
         ("keyboards", "Designed Keyboards", "Custom ortholinear mechanical keyboards and macropads in modular LEGO cases", keyboards_data["items"], "#6cb670"),
@@ -171,12 +192,13 @@ def main():
             description=cat_subtitle,
             active_page=cat_id,
             active_group=cat_id,
+            site=site_data,
             items=cat_items,
             accent_color=cat_accent,
         )
-        (NEWSITE_DIR / f"{cat_id}.html").write_text(cat_html, encoding="utf-8")
+        (outdir / f"{cat_id}.html").write_text(cat_html, encoding="utf-8")
 
-    # 5. Render Detail Pages (content sourced directly from notes/<item.file>)
+    # 7. Render Detail Pages (content sourced directly from notes/<item.file>)
     detail_tpl = env.get_template("detail.html")
     detail_configs = [
         (keyboards_data["items"], "Keyboards", "keyboards.html", "keyboards"),
@@ -195,15 +217,28 @@ def main():
                 description=item.get("summary", ""),
                 active_page=item["id"],
                 active_group=group_id,
+                site=site_data,
                 item=item,
                 parent_title=parent_title,
                 parent_url=parent_url,
                 html_content=rendered_content,
             )
-            (NEWSITE_DIR / f"{item['id']}.html").write_text(det_html, encoding="utf-8")
+            (outdir / f"{item['id']}.html").write_text(det_html, encoding="utf-8")
             count += 1
 
-    print(f"Successfully rendered all {count + 7} pages with Jinja2 templates directly from notes/*.md!")
+    total_pages = count + 7
+    print(f"Successfully built {total_pages} pages into '{outdir}'!")
+
+def main():
+    parser = argparse.ArgumentParser(description="Build mlego static website from markdown notes and templates")
+    parser.add_argument("--outdir", default="_site", help="Destination directory for built static site (default: _site)")
+    args = parser.parse_args()
+
+    out_path = Path(args.outdir)
+    if not out_path.is_absolute():
+        out_path = ROOT_DIR / out_path
+
+    build_site(out_path)
 
 if __name__ == "__main__":
     main()
