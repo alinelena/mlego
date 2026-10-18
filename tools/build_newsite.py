@@ -25,33 +25,63 @@ env = Environment(
     lstrip_blocks=True,
 )
 
-LINK_REPLACEMENTS = [
-    ("m66.md", "m66.html"), ("m65.md", "m65.html"), ("m60.md", "m60.html"),
-    ("m60_split.md", "m60_split.html"), ("m48.md", "m48.html"), ("m20.md", "m20.html"),
-    ("m8.md", "m8.html"), ("m4.md", "m4.html"), ("tipro8x16.md", "tipro8x16.html"),
-    ("tipro8x12.md", "tipro8x12.html"), ("tipro8x4.md", "tipro8x4.html"),
-    ("tiproansi-ortho.md", "tiproansi-ortho.html"), ("tiproortho-ansi.md", "tiproortho-ansi.html"),
-    ("prime.md", "prime.html"), ("assembly.md", "assembly.html"),
-    ("notenoughpins.md", "notenoughpins.html"), ("how_matrix_works_extra.md", "how_matrix_works_extra.html"),
-    ("hand5x5.md", "hand5x5.html"),
-    ("keyboards/index.md", "keyboards.html"), ("converted/index.md", "converted.html"),
-    ("mice/index.md", "mice.html"), ("extra/index.md", "guides.html"),
-    ("index.md", "index.html"),
-    ("https://mlego.elena.space/tipro8x16/", "tipro8x16.html"),
-    ("https://mlego.elena.re/keyboards/", "keyboards.html"),
-]
-
 def clean_markdown_for_web(text: str) -> str:
     """Normalize image paths, links, and mkdocs syntax"""
+    # Strip MkDocs attribute annotations like {: loading=lazy }, { loading=lazy }, { #anchor }, { .md-button }
     text = re.sub(r'\{:\s*[^}]+\}', '', text)
     text = re.sub(r'\{[.#][^}]+\}', '', text)
+    text = re.sub(r'\{\s*loading=lazy\s*\}', '', text)
+
+    # Normalize relative image paths to pics/...
     text = re.sub(r'\((\.\./)+pics/', '(pics/', text)
     text = re.sub(r'\(\./pics/', '(pics/', text)
-    for old, new in LINK_REPLACEMENTS:
-        text = re.sub(rf'\]\((?:\.\./)?(?:keyboards/|converted/|mice/|extra/)?{re.escape(old)}\)', f']({new})', text)
-        text = re.sub(rf'\]\({re.escape(old)}\)', f']({new})', text)
+
+    # Internal anchor-based doc links (#doc/name)
+    text = re.sub(r'\(#doc/([a-zA-Z0-9_-]+)\)', r'(\1.html)', text)
+
+    # Section index links
+    text = re.sub(r'\]\((?:\.\./)?keyboards/index\.md\)', r'](keyboards.html)', text)
+    text = re.sub(r'\]\((?:\.\./)?converted/index\.md\)', r'](converted.html)', text)
+    text = re.sub(r'\]\((?:\.\./)?mice/index\.md\)', r'](mice.html)', text)
+    text = re.sub(r'\]\((?:\.\./)?extra/index\.md\)', r'](guides.html)', text)
+    text = re.sub(r'\]\((?:\.\./)?index\.md\)', r'](index.html)', text)
+
+    # Inter-page markdown links: ](name.md#anchor) -> ](name.html#anchor)
+    text = re.sub(
+        r'\]\((?:\.\./)?(?:keyboards/|converted/|mice/|extra/)?([a-zA-Z0-9_-]+)\.md(#[^)]+)?\)',
+        r'](\1.html\2)',
+        text
+    )
+
+    # Strip MkDocs icon shortcuts like :material-keyboard:
     text = re.sub(r':(?:material|octicons|fontawesome)-[a-z0-9-]+:', '', text)
+
+    # Convert MkDocs content tabs (=== "Title") to clean section subheadings
+    lines = text.splitlines()
+    processed_lines = []
+    in_tab = False
+    for line in lines:
+        tab_match = re.match(r'^===\s+"([^"]+)"', line)
+        if tab_match:
+            title = tab_match.group(1)
+            processed_lines.append(f'<h5 class="mt-4 mb-2 text-info">{title}</h5>')
+            in_tab = True
+        elif in_tab:
+            if line.startswith("    "):
+                processed_lines.append(line[4:])
+            elif line.strip() == "":
+                processed_lines.append("")
+            else:
+                in_tab = False
+                processed_lines.append(line)
+        else:
+            processed_lines.append(line)
+    text = "\n".join(processed_lines)
+
+    # Convert collapsible blocks (??? code "Title") and admonitions (!!! note "Title")
+    text = re.sub(r'^\?\?\?\+?\s+(?:[a-zA-Z0-9_-]+)?(?:\s+"([^"]+)")?', r'> **\1**\n>', text, flags=re.MULTILINE)
     text = re.sub(r'^!!!\s+([a-zA-Z0-9_-]+)(?:\s+"([^"]+)")?', r'> **\2**\n>', text, flags=re.MULTILINE)
+
     return text.strip() + "\n"
 
 def md_to_html(md_text: str) -> str:
@@ -60,6 +90,16 @@ def md_to_html(md_text: str) -> str:
         md_text,
         extensions=['extra', 'tables', 'fenced_code', 'toc', 'sane_lists']
     )
+
+def read_note(filename: str) -> str:
+    """Read a markdown file directly from the notes/ directory and render to HTML"""
+    file_path = NOTES_DIR / filename
+    if not file_path.exists():
+        print(f"Warning: Note file not found: {file_path}")
+        return ""
+    raw_md = file_path.read_text(encoding="utf-8")
+    cleaned_md = clean_markdown_for_web(raw_md)
+    return md_to_html(cleaned_md)
 
 def main():
     NEWSITE_DIR.mkdir(parents=True, exist_ok=True)
@@ -89,7 +129,8 @@ def main():
     )
     (NEWSITE_DIR / "index.html").write_text(index_html, encoding="utf-8")
 
-    # 2. Render About Page
+    # 2. Render About Page (sourced directly from notes/index.md)
+    about_file = about_data.get("file", "index.md")
     about_tpl = env.get_template("about.html")
     about_html = about_tpl.render(
         title="About Project & Manifesto",
@@ -97,7 +138,7 @@ def main():
         active_page="about",
         active_group="about",
         about=about_data,
-        html_content=md_to_html(clean_markdown_for_web(about_data.get("content", ""))),
+        html_content=read_note(about_file),
     )
     (NEWSITE_DIR / "about.html").write_text(about_html, encoding="utf-8")
 
@@ -133,7 +174,7 @@ def main():
         )
         (NEWSITE_DIR / f"{cat_id}.html").write_text(cat_html, encoding="utf-8")
 
-    # 5. Render Detail Pages
+    # 5. Render Detail Pages (content sourced directly from notes/<item.file>)
     detail_tpl = env.get_template("detail.html")
     detail_configs = [
         (keyboards_data["items"], "Keyboards", "keyboards.html", "keyboards"),
@@ -142,10 +183,11 @@ def main():
         (guides_data["items"], "Build Guides", "guides.html", "guides"),
     ]
 
+    count = 0
     for items, parent_title, parent_url, group_id in detail_configs:
         for item in items:
-            raw_content = clean_markdown_for_web(item.get("content", ""))
-            rendered_content = md_to_html(raw_content)
+            note_filename = item.get("file", f"{item['id']}.md")
+            rendered_content = read_note(note_filename)
             det_html = detail_tpl.render(
                 title=item["title"],
                 description=item.get("summary", ""),
@@ -157,8 +199,9 @@ def main():
                 html_content=rendered_content,
             )
             (NEWSITE_DIR / f"{item['id']}.html").write_text(det_html, encoding="utf-8")
+            count += 1
 
-    print("Successfully rendered all pages with Jinja2 templates!")
+    print(f"Successfully rendered all {count + 7} pages with Jinja2 templates directly from notes/*.md!")
 
 if __name__ == "__main__":
     main()

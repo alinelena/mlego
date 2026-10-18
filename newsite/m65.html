@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m65 (5×13 Ortho)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">5×13 Ortho</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240d59340> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">65 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F401 / RP2040 / XIAO</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK & ZMK</span>
           </div>
@@ -180,11 +180,11 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="m65 rev 11 with WeAct e-ink display" loading="lazy" src="pics/mlego_m65_rev11_eink.webp" />
-<img alt="m65 rev 11 with OLED display" loading="lazy" src="pics/mlego_m65_rev11_oled.webp" /></p>
+<p><img alt="m65 rev 11 with WeAct e-ink display" src="pics/mlego_m65_rev11_eink.webp" />
+<img alt="m65 rev 11 with OLED display" src="pics/mlego_m65_rev11_oled.webp" /></p>
 </div>
 <p>The <strong>m65</strong> is a 5-row, 13-column ortholinear mechanical keyboard designed to accommodate all standard keycaps from an ISO layout.</p>
-<p>In its later iterations (<strong>Rev 7–Rev 11</strong>), it departs from a traditional direct-pin matrix and uses the tiny <a href="https://wiki.seeedstudio.com/XIAO-RP2040/">Seeed Studio XIAO RP2040</a> or <a href="https://wiki.seeedstudio.com/XIAO_BLE/">Seeed Studio XIAO nRF52840 BLE</a> (<code>SAMD21</code> may also work). Because the XIAO only exposes 11 GPIO pins, rows are scanned via a <code>74HC589</code> (or <code>74HC165</code>) input shift register while columns are driven by two chained <code>74HC595</code> output shift registers over hardware SPI (sharing clock and latch pins), leaving pins free for an I²C OLED / SPI e-ink screen and a clickable rotary encoder (making Rev 9–11 technically a 14-column matrix, later spun off into the <a href="#doc/m66"><strong>m66</strong></a> line).</p>
+<p>In its later iterations (<strong>Rev 7–Rev 11</strong>), it departs from a traditional direct-pin matrix and uses the tiny <a href="https://wiki.seeedstudio.com/XIAO-RP2040/">Seeed Studio XIAO RP2040</a> or <a href="https://wiki.seeedstudio.com/XIAO_BLE/">Seeed Studio XIAO nRF52840 BLE</a> (<code>SAMD21</code> may also work). Because the XIAO only exposes 11 GPIO pins, rows are scanned via a <code>74HC589</code> (or <code>74HC165</code>) input shift register while columns are driven by two chained <code>74HC595</code> output shift registers over hardware SPI (sharing clock and latch pins), leaving pins free for an I²C OLED / SPI e-ink screen and a clickable rotary encoder (making Rev 9–11 technically a 14-column matrix, later spun off into the <a href="m66.html"><strong>m66</strong></a> line).</p>
 <blockquote>
 <p><strong>Seeed Studio Sponsorship</strong></p>
 <pre><code>For **Rev 7**, Seeed Studio kindly sponsored the 5×13 version with PCBs and XIAO microcontrollers as part of the [Seeed Fusion DIY XIAO Mechanical Keyboard Contest](https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html) and their [Fusion PCB Assembly service](https://www.seeedstudio.com/pcb-assembly.html).
@@ -247,11 +247,17 @@
     * WeAct SSD1680 e-ink module + 2×4 header and socket
 </code></pre>
 <h4 id="rev-10">Rev 10</h4>
-<p>??? warning "Revision 10 BOM (Superseded by Rev 11)"</p>
+<blockquote>
+<p><strong>Revision 10 BOM (Superseded by Rev 11)</strong>
+</p>
+</blockquote>
 <pre><code>* Identical to **Rev 11** above, with 128×32 I²C OLED (4-pin) + 1×4 DIL socket (prior to the dedicated 2×4 e-ink header added in Rev 11).
 </code></pre>
 <h4 id="rev-9">Rev 9</h4>
-<p>??? info "Revision 9 BOM"</p>
+<blockquote>
+<p><strong>Revision 9 BOM</strong>
+</p>
+</blockquote>
 <pre><code>* **LEGO Case**: 16×32 double-sided plate (or 2× 16×16) + ~46× 1×2 or 1×4 plates
 * **Diodes**: 66× `1N4148` signal diodes (DO-35 or SOD-123)
 * **Resistors**: 5× 10 kΩ THT resistors
@@ -261,7 +267,10 @@
 * **Battery / Encoder**: Pogo pins, LiPo battery, 2-pin PH 2.0 socket, 1P2T 4 mm micro switch, EC11 clickable rotary encoder
 </code></pre>
 <h4 id="rev-78">Rev 7/8</h4>
-<p>??? info "Revision 7/8 BOM"</p>
+<blockquote>
+<p><strong>Revision 7/8 BOM</strong>
+</p>
+</blockquote>
 <pre><code>* **LEGO Case**: 16×32 double-sided plate (or 2× 16×16) + ~46× 1×2 or 1×4 plates
 * **Diodes**: 65× `1N4148` signal diodes (DO-35 or SOD-123)
 * **MCU**: Seeed Studio XIAO RP2040 or XIAO nRF52840 BLE + female headers
@@ -270,7 +279,10 @@
 * **Encoder &amp; Battery**: EC11 rotary encoder, optional pogo pins and LiPo battery
 </code></pre>
 <h4 id="rev-56">Rev 5/6</h4>
-<p>??? info "Revision 5/6 BOM"</p>
+<blockquote>
+<p><strong>Revision 5/6 BOM</strong>
+</p>
+</blockquote>
 <pre><code>* **LEGO Case**: 16×32 double-sided plate + ~46× 1×2 or 1×4 plates
 * **Diodes**: 65× `1N4148` signal diodes (DO-35 or SOD-123)
 * **MCU**: Raspberry Pi Pico (`RP2040`), WeAct RP2040, Teenstar, or compatible clone + 2×20 round pin headers &amp; DIL sockets
@@ -278,7 +290,10 @@
 * **Switches &amp; Peripherals**: 65× 5-pin PCB-mount MX switches, EC11 rotary encoder, optional 128×32 I²C OLED (with 1×4 DIL socket), optional 3-pin horizontal JST header for LED strip
 </code></pre>
 <h4 id="rev-4">Rev 4</h4>
-<p>??? info "Revision 4 BOM (and Rev 1–3)"</p>
+<blockquote>
+<p><strong>Revision 4 BOM (and Rev 1–3)</strong>
+</p>
+</blockquote>
 <pre><code>* **LEGO Case**: 16×32 double-sided plate + ~46× 1×2 or 1×4 plates
 * **Diodes**: 65× `1N4148` signal diodes (DO-35 or SOD-123)
 * **MCU**: WeAct `STM32F401` or `STM32F411` BlackPill + 2×20 round pin headers and 40-way DIL socket (15.24 mm)
@@ -290,146 +305,146 @@
 </code></pre>
 <h2 id="case">Case</h2>
 <div class="image-grid">
-<p><img alt="Case 3D render" loading="lazy" src="pics/m65-case.webp" />
-<img alt="LEGO parts for case" loading="lazy" src="pics/lego_1.webp" />
-<img alt="Case front" loading="lazy" src="pics/lego_2.webp" />
-<img alt="Case back" loading="lazy" src="pics/lego_3.webp" />
-<img alt="Case side" loading="lazy" src="pics/lego_4.webp" /></p>
+<p><img alt="Case 3D render" src="pics/m65-case.webp" />
+<img alt="LEGO parts for case" src="pics/lego_1.webp" />
+<img alt="Case front" src="pics/lego_2.webp" />
+<img alt="Case back" src="pics/lego_3.webp" />
+<img alt="Case side" src="pics/lego_4.webp" /></p>
 </div>
 <h2 id="assembly">Assembly</h2>
-<p>Follow the illustrated <a href="#doc/assembly">Assembly Guide</a> for soldering diodes, resistors, sockets, and switches.</p>
+<p>Follow the illustrated <a href="assembly.html">Assembly Guide</a> for soldering diodes, resistors, sockets, and switches.</p>
 <h2 id="thickness">Thickness Profiles</h2>
 <p>Depending on how many intermediate LEGO layers you stack, the enclosure can be built ultra-slim or deep enough for JST headers and acoustic foam:</p>
 <div class="grid cards">
 <ul>
 <li>
-<p><img alt="1 double base plate, 1 intermediate plate and pcb. 8 mm" loading="lazy" src="pics/thick-1.webp" /></p>
+<p><img alt="1 double base plate, 1 intermediate plate and pcb. 8 mm" src="pics/thick-1.webp" /></p>
 <p><strong>8.0 mm — Slim Profile</strong></p>
 <p>1× baseplate (single or double-sided, flat or angled) + 1× intermediate plate (3.2 mm) + PCB (1.6 mm). Leaves room for a thin sheet of sound-dampening foam.</p>
 </li>
 <li>
-<p><img alt="1 double base plate, 2 intermediate plate and pcb. 11.2 mm" loading="lazy" src="pics/thick-2.webp" /></p>
+<p><img alt="1 double base plate, 2 intermediate plate and pcb. 11.2 mm" src="pics/thick-2.webp" /></p>
 <p><strong>11.2 mm — Dual-Plate Profile</strong></p>
 <p>1× double-sided baseplate + 2× intermediate plates + PCB. Fits thicker foam or a hand-soldered LED strip (without a JST connector).</p>
 </li>
 <li>
-<p><img alt="1 double base plate, 1 intermediate brick and pcb. 14.4 mm" loading="lazy" src="pics/thick-3.webp" /></p>
+<p><img alt="1 double base plate, 1 intermediate brick and pcb. 14.4 mm" src="pics/thick-3.webp" /></p>
 <p><strong>14.4 mm — Full Brick Profile</strong></p>
 <p>1× double-sided baseplate + 1× full LEGO brick + PCB. Provides clearance for a 3-pin JST header or LiPo battery.</p>
 </li>
 </ul>
 </div>
 <h2 id="3d-render">3D Renders</h2>
-<p>=== "Rev 11"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev11 xiao rp2040 front](pics/m65-rev11-3d-front.webp){ loading=lazy }
-![m65 rev11 xiao rp2040 back](pics/m65-rev11-3d-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 10"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev10 xiao rp2040 front](pics/m65-rev10-3d-front.webp){ loading=lazy }
-![m65 rev10 xiao rp2040 back](pics/m65-rev10-3d-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 9"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev9 xiao rp2040 front](pics/m65-rev9-render-front.webp){ loading=lazy }
-![m65 rev9 xiao rp2040 back](pics/m65-rev9-render-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 7/8"</p>
-<pre><code>![3d render rev7](pics/m65_3d_rev7.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 5/6"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![3d render rev5 front](pics/m65-rev5-render.webp){ loading=lazy }
-![3d render rev5 back](pics/m65-rev5-render-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 4"</p>
-<pre><code>![3d render rev4](pics/m65-rev4-render.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>![3d render rev2](pics/m65-v2.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>![3d render rev1](pics/m65.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 11</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev11 xiao rp2040 front" src="pics/m65-rev11-3d-front.webp" />
+<img alt="m65 rev11 xiao rp2040 back" src="pics/m65-rev11-3d-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 10</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev10 xiao rp2040 front" src="pics/m65-rev10-3d-front.webp" />
+<img alt="m65 rev10 xiao rp2040 back" src="pics/m65-rev10-3d-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 9</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev9 xiao rp2040 front" src="pics/m65-rev9-render-front.webp" />
+<img alt="m65 rev9 xiao rp2040 back" src="pics/m65-rev9-render-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 7/8</h5>
+
+<p><img alt="3d render rev7" src="pics/m65_3d_rev7.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 5/6</h5>
+
+<div class="image-grid">
+<p><img alt="3d render rev5 front" src="pics/m65-rev5-render.webp" />
+<img alt="3d render rev5 back" src="pics/m65-rev5-render-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<p><img alt="3d render rev4" src="pics/m65-rev4-render.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<p><img alt="3d render rev2" src="pics/m65-v2.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<p><img alt="3d render rev1" src="pics/m65.webp" /></p>
 <h2 id="schematic">Schematics</h2>
-<p>=== "Rev 11"</p>
-<pre><code>![m65 rev11 schematic](pics/m65-rev11-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 10"</p>
-<pre><code>![m65 rev10 schematic](pics/m65-rev10-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 9"</p>
-<pre><code>![m65 rev9 schematic](pics/m65-rev9-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 7"</p>
-<pre><code>![m65 rev7 schematic](pics/m65-rev7-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 5"</p>
-<pre><code>![m65 rev5 schematic](pics/m65-rev5-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 4"</p>
-<pre><code>![m65 rev4 schematic](pics/m65-rev4-schematic.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 11</h5>
+
+<p><img alt="m65 rev11 schematic" src="pics/m65-rev11-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 10</h5>
+
+<p><img alt="m65 rev10 schematic" src="pics/m65-rev10-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 9</h5>
+
+<p><img alt="m65 rev9 schematic" src="pics/m65-rev9-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 7</h5>
+
+<p><img alt="m65 rev7 schematic" src="pics/m65-rev7-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 5</h5>
+
+<p><img alt="m65 rev5 schematic" src="pics/m65-rev5-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<p><img alt="m65 rev4 schematic" src="pics/m65-rev4-schematic.webp" /></p>
 <h2 id="pcb">PCBs</h2>
-<p>=== "Rev 11"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev11 pcb layout](pics/m65-rev11-pcb.webp){ loading=lazy }
-![m65 rev11 pcb front](pics/mlego_m65_rev11_pcb_front.webp){ loading=lazy }
-![m65 rev11 pcb back](pics/mlego_m65_rev11_pcb_back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 10"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev10 pcb layout](pics/m65-rev10-pcb.webp){ loading=lazy }
-![m65 rev10 pcb front](pics/m65-rev10pcb-front.webp){ loading=lazy }
-![m65 rev10 pcb back](pics/m65-rev10pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 9"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev9 pcb layout](pics/m65-rev9-pcb.webp){ loading=lazy }
-![m65 rev9 pcb front](pics/m65-rev9-pcb-front.webp){ loading=lazy }
-![m65 rev9 pcb back](pics/m65-rev9-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 7/8"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev7 xiao pcb](pics/m65-rev7-pcb.webp){ loading=lazy }
-![pcb rev7 front](pics/m65-rev7-pcb-front.webp){ loading=lazy }
-![pcb rev7 back](pics/m65-rev7-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 5/6"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![pcb rev5 layout](pics/m65-rev5-pcb.webp){ loading=lazy }
-![pcb rev5 front](pics/m65-rev5-pcb-front.webp){ loading=lazy }
-![pcb rev5 back](pics/m65-rev5-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 4"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![pcb rev4 layout](pics/m65-pcb4.webp){ loading=lazy }
-![pcb rev4 front](pics/m65-rev4-pcb-front.webp){ loading=lazy }
-![pcb rev4 back](pics/m65-rev4-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![pcb rev3 front](pics/m65-rev3-pcb-front.webp){ loading=lazy }
-![pcb rev3 back](pics/m65-rev3-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>![pcb rev2](pics/m65-pcb-2.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>![pcb rev1](pics/m65-pcb.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 11</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev11 pcb layout" src="pics/m65-rev11-pcb.webp" />
+<img alt="m65 rev11 pcb front" src="pics/mlego_m65_rev11_pcb_front.webp" />
+<img alt="m65 rev11 pcb back" src="pics/mlego_m65_rev11_pcb_back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 10</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev10 pcb layout" src="pics/m65-rev10-pcb.webp" />
+<img alt="m65 rev10 pcb front" src="pics/m65-rev10pcb-front.webp" />
+<img alt="m65 rev10 pcb back" src="pics/m65-rev10pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 9</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev9 pcb layout" src="pics/m65-rev9-pcb.webp" />
+<img alt="m65 rev9 pcb front" src="pics/m65-rev9-pcb-front.webp" />
+<img alt="m65 rev9 pcb back" src="pics/m65-rev9-pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 7/8</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev7 xiao pcb" src="pics/m65-rev7-pcb.webp" />
+<img alt="pcb rev7 front" src="pics/m65-rev7-pcb-front.webp" />
+<img alt="pcb rev7 back" src="pics/m65-rev7-pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 5/6</h5>
+
+<div class="image-grid">
+<p><img alt="pcb rev5 layout" src="pics/m65-rev5-pcb.webp" />
+<img alt="pcb rev5 front" src="pics/m65-rev5-pcb-front.webp" />
+<img alt="pcb rev5 back" src="pics/m65-rev5-pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<div class="image-grid">
+<p><img alt="pcb rev4 layout" src="pics/m65-pcb4.webp" />
+<img alt="pcb rev4 front" src="pics/m65-rev4-pcb-front.webp" />
+<img alt="pcb rev4 back" src="pics/m65-rev4-pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<div class="image-grid">
+<p><img alt="pcb rev3 front" src="pics/m65-rev3-pcb-front.webp" />
+<img alt="pcb rev3 back" src="pics/m65-rev3-pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<p><img alt="pcb rev2" src="pics/m65-pcb-2.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<p><img alt="pcb rev1" src="pics/m65-pcb.webp" /></p>
 <h2 id="gerbers">Gerbers &amp; KiCad Source</h2>
 <p>Production-ready Gerbers for JLCPCB:</p>
 <ul>
@@ -442,47 +457,41 @@
 </ul>
 <p>Full KiCad project files are available in <a href="https://gitlab.com/m-lego/m65/"><code>m-lego/m65</code> on GitLab</a>. Note that the default branch <code>HEAD</code> is always work-in-progress:</p>
 <h3 id="kicad">KiCad Checkout</h3>
-<p>=== "Rev 11"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 11</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision11
-```
 </code></pre>
-<p>=== "Rev 10"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 10</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision10
-```
 </code></pre>
-<p>=== "Rev 9"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 9</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision9
-```
 </code></pre>
-<p>=== "Rev 7"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 7</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision7
-```
 </code></pre>
-<p>=== "Rev 5/6"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 5/6</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision5
-```
 </code></pre>
-<p>=== "Rev 4"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision4
-```
 </code></pre>
 <h2 id="firmware">Firmware</h2>
 <p>Both <strong>QMK</strong> and <strong>ZMK</strong> are supported. You can download prebuilt <code>.uf2</code> binaries below or build from source.</p>
@@ -525,9 +534,9 @@ git checkout revision4
 </ul>
 <p>Latest automated QMK builds can be downloaded from <a href="https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml">GitHub Actions</a>.</p>
 <h4 id="git">QMK Build Instructions</h4>
-<p>=== "Rev 11"</p>
-<pre><code>```bash
-# OLED version
+<h5 class="mt-4 mb-2 text-info">Rev 11</h5>
+
+<pre><code class="language-bash"># OLED version
 git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev11 -km uk_knob
@@ -537,189 +546,180 @@ qmk compile -kb mlego/m65/rev11 -km default_knob
 git clone --recurse-submodules -b mlego_eink https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev11 -km uk_knob
-```
 </code></pre>
-<p>=== "Rev 10"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 10</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev10 -km uk_knob
 qmk compile -kb mlego/m65/rev10 -km default_knob
-```
 </code></pre>
-<p>=== "Rev 9"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 9</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev9 -km uk_knob
 qmk compile -kb mlego/m65/rev9 -km default_knob
-```
 </code></pre>
-<p>=== "Rev 7"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 7</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev7 -km uk
 qmk compile -kb mlego/m65/rev7 -km default
-```
 </code></pre>
-<p>=== "Rev 5/6"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 5/6</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev5 -km uk
 qmk compile -kb mlego/m65/rev6 -km uk
-```
 </code></pre>
-<p>=== "Rev 4"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m65/rev4 -km uk
-```
 </code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>```bash
-git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
 cd qmk_firmware
 make mlego/m65/rev3:uk
 make mlego/m65/rev3:uk:flash
-```
 </code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>```bash
-# GD32F303 WeAct BluePill Plus
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<pre><code class="language-bash"># GD32F303 WeAct BluePill Plus
 git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
 cd qmk_firmware
 make mlego/m65/rev2:uk
 make mlego/m65/rev2:uk:flash
-```
 </code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>```bash
-git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules https://github.com/qmk/qmk_firmware.git
 cd qmk_firmware
 make mlego/m65/rev1:uk
 make mlego/m65/rev1:uk:flash
-```
 </code></pre>
 <h2 id="pictures">Build Gallery</h2>
 <h3 id="by-hardware-revision">By Hardware Revision</h3>
-<p>=== "Rev 11"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev 11 e-ink](pics/mlego_m65_rev11_eink.webp){ loading=lazy }
-![m65 rev 11 OLED](pics/mlego_m65_rev11_oled.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 10"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev 10 LOTR A](pics/m65-rev10-lotr-a.webp){ loading=lazy }
-![m65 rev 10 dev/tty A](pics/m65-rev10-tty-a.webp){ loading=lazy }
-![m65 rev 10 dev/tty B](pics/m65-rev10-tty-b.webp){ loading=lazy }
-![m65 rev 10 LOTR B](pics/m65-rev10-lotr-b.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 9"</p>
-<pre><code>![m65 rev 9](pics/m65-rev9.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 7 &amp; 8"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m65 rev8 xiao ble sense](pics/m65-rev7-xiao-ble-sense.webp){ loading=lazy }
-![m65 rev7 xiao rp2040](pics/m65-rev7-xiao-rp2040.webp){ loading=lazy }
-![m65 rev7 xiao pcb](pics/m65-rev7-nok.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 5 &amp; 6"</p>
-<pre><code>![rev5/6 with RP2040 USB-C](pics/m65-rev5-blank.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 1–4"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![Rev 4 — MT3 Elvish](pics/m65-elvish.webp){ loading=lazy }
-![Rev 3 — MT3 Dwarvish](pics/m65-dwarvish.webp){ loading=lazy }
-![Rev 2 — Keyboard #14 (Commodore C64 harvested keycaps)](pics/m65_c64.webp){ loading=lazy }
-![Rev 1 — Keyboard #2 (MT3 Susuwatari, Kailh Crystal Jade)](pics/m65-susu.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 11</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev 11 e-ink" src="pics/mlego_m65_rev11_eink.webp" />
+<img alt="m65 rev 11 OLED" src="pics/mlego_m65_rev11_oled.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 10</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev 10 LOTR A" src="pics/m65-rev10-lotr-a.webp" />
+<img alt="m65 rev 10 dev/tty A" src="pics/m65-rev10-tty-a.webp" />
+<img alt="m65 rev 10 dev/tty B" src="pics/m65-rev10-tty-b.webp" />
+<img alt="m65 rev 10 LOTR B" src="pics/m65-rev10-lotr-b.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 9</h5>
+
+<p><img alt="m65 rev 9" src="pics/m65-rev9.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 7 & 8</h5>
+
+<div class="image-grid">
+<p><img alt="m65 rev8 xiao ble sense" src="pics/m65-rev7-xiao-ble-sense.webp" />
+<img alt="m65 rev7 xiao rp2040" src="pics/m65-rev7-xiao-rp2040.webp" />
+<img alt="m65 rev7 xiao pcb" src="pics/m65-rev7-nok.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 5 & 6</h5>
+
+<p><img alt="rev5/6 with RP2040 USB-C" src="pics/m65-rev5-blank.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 1–4</h5>
+
+<div class="image-grid">
+<p><img alt="Rev 4 — MT3 Elvish" src="pics/m65-elvish.webp" />
+<img alt="Rev 3 — MT3 Dwarvish" src="pics/m65-dwarvish.webp" />
+<img alt="Rev 2 — Keyboard #14 (Commodore C64 harvested keycaps)" src="pics/m65_c64.webp" />
+<img alt="Rev 1 — Keyboard #2 (MT3 Susuwatari, Kailh Crystal Jade)" src="pics/m65-susu.webp" /></p>
+</div>
 <h3 id="other">Switch &amp; Keycap Showcase (#1–#15)</h3>
 <div class="grid cards">
 <ul>
 <li>
-<p><img alt="Bare switches" loading="lazy" src="pics/m65-nokey.webp" /></p>
+<p><img alt="Bare switches" src="pics/m65-nokey.webp" /></p>
 <p><strong>Bare Frame &amp; Switches</strong></p>
 <p>Assembled PCB and switches mounted on the LEGO baseplate prior to keycaps.</p>
 </li>
 <li>
-<p><img alt="Keyboard #1 MT3 dev/tty" loading="lazy" src="pics/m65-tty.webp" /></p>
+<p><img alt="Keyboard #1 MT3 dev/tty" src="pics/m65-tty.webp" /></p>
 <p><strong>Keyboard #1 — MT3 <code>/dev/tty</code> Bleached</strong></p>
 <p>Kailh Crystal Royal tactile switches with MT3 <code>/dev/tty</code> Bleached keycaps (<a href="pics/m65-tty-f.webp">alt view</a>).</p>
 </li>
 <li>
-<p><img alt="Keyboard #2 MT3 Susuwatari" loading="lazy" src="pics/m65-susu-2.webp" /></p>
+<p><img alt="Keyboard #2 MT3 Susuwatari" src="pics/m65-susu-2.webp" /></p>
 <p><strong>Keyboard #2 — MT3 Susuwatari</strong></p>
 <p>Kailh Crystal Jade clicky switches paired with double-shot ABS MT3 Susuwatari.</p>
 </li>
 <li>
-<p><img alt="Keyboard #3 MT3 dev/tty" loading="lazy" src="pics/m65-tty-2.webp" /></p>
+<p><img alt="Keyboard #3 MT3 dev/tty" src="pics/m65-tty-2.webp" /></p>
 <p><strong>Keyboard #3 — MT3 <code>/dev/tty</code></strong></p>
 <p>Kailh Crystal Royal switches (<a href="pics/m65-home.webp">home view 1</a>, <a href="pics/m65-home-2.webp">home view 2</a>).</p>
 </li>
 <li>
-<p><img alt="Keyboard #4 NK Blueberry" loading="lazy" src="pics/m65-tty-nkblueberry.webp" /></p>
+<p><img alt="Keyboard #4 NK Blueberry" src="pics/m65-tty-nkblueberry.webp" /></p>
 <p><strong>Keyboard #4 — NovelKeys Blueberry</strong></p>
 <p>Re-sprung NovelKeys Blueberry tactile switches with MT3 <code>/dev/tty</code>.</p>
 </li>
 <li>
-<p><img alt="Keyboard #5 Gateron Ink v2" loading="lazy" src="pics/m65-gats.webp" /></p>
+<p><img alt="Keyboard #5 Gateron Ink v2" src="pics/m65-gats.webp" /></p>
 <p><strong>Keyboard #5 — Gateron Ink v2</strong></p>
 <p>Gateron Ink v2 Yellow and Red linear switches prepared for a DK ISO layout.</p>
 </li>
 <li>
-<p><img alt="Keyboard #6 Linearized Jades" loading="lazy" src="pics/m65-japan-2.webp" /></p>
+<p><img alt="Keyboard #6 Linearized Jades" src="pics/m65-japan-2.webp" /></p>
 <p><strong>Keyboard #6 — "Linear" Crystal Jades</strong></p>
 <p>Kailh Crystal Jades with clickbars removed, paired with MT3 <code>/dev/tty</code> + Godspeed &amp; Japanese alphas (<a href="pics/m65-jade-lin.webp">switches 1</a>, <a href="pics/m65-jade-lin-2.webp">switches 2</a>, <a href="pics/m65-japan.webp">build 1</a>).</p>
 </li>
 <li>
-<p><img alt="Keyboard #7 Gateron Whites" loading="lazy" src="pics/m65-g-white.webp" /></p>
+<p><img alt="Keyboard #7 Gateron Whites" src="pics/m65-g-white.webp" /></p>
 <p><strong>Keyboard #7 — Gateron Whites &amp; Godspeed</strong></p>
 <p>Gateron White switches with MT3 <code>/dev/tty</code> and Godspeed modifiers (<a href="pics/m65-white-naked.webp">bare</a>, <a href="pics/m65-gat-white.webp">without mods</a>).</p>
 </li>
 <li>
-<p><img alt="Keyboard #8 MT3 Camillo" loading="lazy" src="pics/m65-olivetti.webp" /></p>
+<p><img alt="Keyboard #8 MT3 Camillo" src="pics/m65-olivetti.webp" /></p>
 <p><strong>Keyboard #8 — Frankenswitch Linears</strong></p>
 <p>Custom frankenswitch linears with MT3 Camillo, Godspeed, and Susuwatari accents.</p>
 </li>
 <li>
-<p><img alt="Keyboard #9 MT3 Extended 2048" loading="lazy" src="pics/m65-2048.webp" /></p>
+<p><img alt="Keyboard #9 MT3 Extended 2048" src="pics/m65-2048.webp" /></p>
 <p><strong>Keyboard #9 — MT3 Extended 2048</strong></p>
 <p>MT3 Extended 2048 icon legends with colorful accent modifiers.</p>
 </li>
 <li>
-<p><img alt="Keyboard #10 MT3 Dasher" loading="lazy" src="pics/m65-dasher.webp" /></p>
+<p><img alt="Keyboard #10 MT3 Dasher" src="pics/m65-dasher.webp" /></p>
 <p><strong>Keyboard #10 — MT3 Dasher</strong></p>
 <p>Two-tone blue MT3 Dasher keycap set.</p>
 </li>
 <li>
-<p><img alt="Keyboard #11 MT3 Cyber" loading="lazy" src="pics/m65-cyber.webp" /></p>
+<p><img alt="Keyboard #11 MT3 Cyber" src="pics/m65-cyber.webp" /></p>
 <p><strong>Keyboard #11 — MT3 MiTo Cyber</strong></p>
 <p>High-contrast purple/magenta/yellow MT3 Cyber set.</p>
 </li>
 <li>
-<p><img alt="Keyboard #12 MT3 3277" loading="lazy" src="pics/m65-3277.webp" /></p>
+<p><img alt="Keyboard #12 MT3 3277" src="pics/m65-3277.webp" /></p>
 <p><strong>Keyboard #12 — MT3 Matt3o 3277</strong></p>
 <p>IBM 3277 terminal-inspired dark gray and turquoise keycaps.</p>
 </li>
 <li>
-<p><img alt="Keyboard #13 MT3 Fairlane" loading="lazy" src="pics/m65-fair.webp" /></p>
+<p><img alt="Keyboard #13 MT3 Fairlane" src="pics/m65-fair.webp" /></p>
 <p><strong>Keyboard #13 — MT3 Fairlane</strong></p>
 <p>Pastel mint and cream MT3 Fairlane keycaps.</p>
 </li>
 <li>
-<p><img alt="Keyboard #14 Commodore C64" loading="lazy" src="pics/m65_c64.webp" /></p>
+<p><img alt="Keyboard #14 Commodore C64" src="pics/m65_c64.webp" /></p>
 <p><strong>Keyboard #14 — Commodore C64 Harvest</strong></p>
 <p>Original harvested Commodore 64 keycaps mounted via 3D-printed MX stem adapters.</p>
 </li>
 <li>
-<p><img alt="Keyboard #15 MT3 Camillo Eva-02" loading="lazy" src="pics/m65-camillo.webp" /></p>
+<p><img alt="Keyboard #15 MT3 Camillo Eva-02" src="pics/m65-camillo.webp" /></p>
 <p><strong>Keyboard #15 — MT3 Camillo &amp; Eva-02</strong></p>
 <p>MT3 Camillo alphas with Evangelion Unit-02 novelty accents.</p>
 </li>
@@ -728,16 +728,15 @@ make mlego/m65/rev1:uk:flash
 <h2 id="keymaps-layout">Keymaps &amp; Layout</h2>
 <p>Default QMK layers for the 5×13 ortholinear layout:</p>
 <div class="image-grid">
-<p><img alt="Layout summary" loading="lazy" src="pics/m65-l1.webp" />
-<img alt="Layout lower" loading="lazy" src="pics/m65-lwr.webp" />
-<img alt="Layout raise" loading="lazy" src="pics/m65-rse.webp" /></p>
+<p><img alt="Layout summary" src="pics/m65-l1.webp" />
+<img alt="Layout lower" src="pics/m65-lwr.webp" />
+<img alt="Layout raise" src="pics/m65-rse.webp" /></p>
 </div>
 <h2 id="pins">Pinouts by Revision</h2>
-<p>=== "Rev 9–11 (XIAO RP2040)"</p>
-<pre><code>*(Note: Rev 9–11 correspond to [m66 Rev 1–3](m66.md#matrix-pins) where the clickable encoder forms Column 13.)*
+<h5 class="mt-4 mb-2 text-info">Rev 9–11 (XIAO RP2040)</h5>
 
-```text
-ShiftRegister SN74HC595N (#1 &amp; #2)        ShiftRegister 74HC165N / 74HC589 (#3)
+<p><em>(Note: Rev 9–11 correspond to <a href="m66.html#matrix-pins">m66 Rev 1–3</a> where the clickable encoder forms Column 13.)</em></p>
+<pre><code class="language-text">ShiftRegister SN74HC595N (#1 &amp; #2)        ShiftRegister 74HC165N / 74HC589 (#3)
 QB |1    16| VCC                          nPL |1    16| VCC
 QC |2    15| QA                            CP |2    15| nCE
 QD |3    14| SER data                      D4 |3    14| D3
@@ -746,92 +745,805 @@ QF |5    12| RCLK latch                    D6 |5    12| D1
 QG |6    11| SRCLK clock                   D7 |6    11| D0
 QH |7    10| SRCLR                        nQ7 |7    10| DS
  G |8     9| QH*                            G |8     9| Q7
-```
-
-| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | C13 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | MUTE | `3D0` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | X* | `3D1` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | X* | `3D2` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | X* | `3D3` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | X* | `3D4` |
-| **Col** | `2QB` | `2QC` | `2QD` | `2QE` | `2QF` | `2QG` | `2QH` | `2QA` | `1QH` | `1QG` | `1QF` | `1QE` | `1QA` | `1QD` | *(X* NC)* |
-
-* **Encoders**: `Pad_A = GP27`, `Pad_B = GP26`
-* **OLED (I²C)**: `SCL = GP7`, `SDA = GP6`
-* **`74HC595N`**: `MOSI = GP3` (pin 11), `Latch = GP1` (pin 8), `Clock = GP2` (pin 9)
-* **`74HC165N`**: `Latch = GP1` (pin 8), `Clock = GP2` (pin 9), `MISO = GP4` (pin 10), `SPI_DIVISOR = 8`
-* **LEDs (RP2040)**: `CAPS_LOCK = GP25`, `Lower = GP16`, `Raise = GP17`, `RGB DI = GP12`, `RGB On = GP11`
 </code></pre>
-<p>=== "Rev 7/8 (XIAO RP2040 / BLE)"</p>
-<pre><code>| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `D0 (GP26)` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `D1 (GP27)` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `D2 (GP28)` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `D3 (GP29)` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `D4 (GP6)` |
-| **Col** | `2QH` | `2QG` | `2QF` | `2QE` | `2QD` | `2QC` | `2QB` | `2QA` | `1QH` | `1QG` | `1QF` | `1QE` | `1QA` | |
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">C13</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;">MUTE</td>
+<td style="text-align: center;"><code>3D0</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D1</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D2</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D3</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D4</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col</strong></td>
+<td style="text-align: center;"><code>2QB</code></td>
+<td style="text-align: center;"><code>2QC</code></td>
+<td style="text-align: center;"><code>2QD</code></td>
+<td style="text-align: center;"><code>2QE</code></td>
+<td style="text-align: center;"><code>2QF</code></td>
+<td style="text-align: center;"><code>2QG</code></td>
+<td style="text-align: center;"><code>2QH</code></td>
+<td style="text-align: center;"><code>2QA</code></td>
+<td style="text-align: center;"><code>1QH</code></td>
+<td style="text-align: center;"><code>1QG</code></td>
+<td style="text-align: center;"><code>1QF</code></td>
+<td style="text-align: center;"><code>1QE</code></td>
+<td style="text-align: center;"><code>1QA</code></td>
+<td style="text-align: center;"><code>1QD</code></td>
+<td style="text-align: center;"><em>(X</em> NC)*</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = GP27</code>, <code>Pad_B = GP26</code></li>
+<li><strong>OLED (I²C)</strong>: <code>SCL = GP7</code>, <code>SDA = GP6</code></li>
+<li><strong><code>74HC595N</code></strong>: <code>MOSI = GP3</code> (pin 11), <code>Latch = GP1</code> (pin 8), <code>Clock = GP2</code> (pin 9)</li>
+<li><strong><code>74HC165N</code></strong>: <code>Latch = GP1</code> (pin 8), <code>Clock = GP2</code> (pin 9), <code>MISO = GP4</code> (pin 10), <code>SPI_DIVISOR = 8</code></li>
+<li><strong>LEDs (RP2040)</strong>: <code>CAPS_LOCK = GP25</code>, <code>Lower = GP16</code>, <code>Raise = GP17</code>, <code>RGB DI = GP12</code>, <code>RGB On = GP11</code></li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 7/8 (XIAO RP2040 / BLE)</h5>
 
-* **Encoders**: `Pad_A = D5 (GP7)`, `Pad_B = D6 (GP0)`
-* **`74HC595N`**: `Data = D10 (GP3)`, `Latch = D7 (GP1)`, `Clock = D8 (GP2)`, `SPI_DIVISOR = 32`
-* **LEDs (RP2040)**: `CAPS_LOCK = GP25`, `Lower = GP16`, `Raise = GP17`, `RGB DI = GP12`, `RGB On = GP11`
-</code></pre>
-<p>=== "Rev 5 &amp; 6 (RP2040 Pico / WeAct)"</p>
-<pre><code>| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `GP22` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `GP16` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `GP18` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `GP19` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `GP20` |
-| **Col** | `GP1` | `GP6` | `GP7` | `GP8` | `GP9` | `GP15` | `GP14` | `GP13` | `GP12` | `GP11` | `GP10` | `GP17` | `GP21` | |
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;"><code>D0 (GP26)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;"><code>D1 (GP27)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;"><code>D2 (GP28)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;"><code>D3 (GP29)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;"><code>D4 (GP6)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col</strong></td>
+<td style="text-align: center;"><code>2QH</code></td>
+<td style="text-align: center;"><code>2QG</code></td>
+<td style="text-align: center;"><code>2QF</code></td>
+<td style="text-align: center;"><code>2QE</code></td>
+<td style="text-align: center;"><code>2QD</code></td>
+<td style="text-align: center;"><code>2QC</code></td>
+<td style="text-align: center;"><code>2QB</code></td>
+<td style="text-align: center;"><code>2QA</code></td>
+<td style="text-align: center;"><code>1QH</code></td>
+<td style="text-align: center;"><code>1QG</code></td>
+<td style="text-align: center;"><code>1QF</code></td>
+<td style="text-align: center;"><code>1QE</code></td>
+<td style="text-align: center;"><code>1QA</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = D5 (GP7)</code>, <code>Pad_B = D6 (GP0)</code></li>
+<li><strong><code>74HC595N</code></strong>: <code>Data = D10 (GP3)</code>, <code>Latch = D7 (GP1)</code>, <code>Clock = D8 (GP2)</code>, <code>SPI_DIVISOR = 32</code></li>
+<li><strong>LEDs (RP2040)</strong>: <code>CAPS_LOCK = GP25</code>, <code>Lower = GP16</code>, <code>Raise = GP17</code>, <code>RGB DI = GP12</code>, <code>RGB On = GP11</code></li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 5 & 6 (RP2040 Pico / WeAct)</h5>
 
-* **Encoders**: `Pad_A = GP4`, `Pad_B = GP5`
-* **OLED (I²C)**: `SDA = GP2`, `SCL = GP3`
-* **LEDs (Rev 5 Pico)**: `NUM_LOCK = GP28`, `CAPS_LOCK = GP25`, `SCROLL_LOCK = GP27`, `RGB_DI = GP0`
-* **LEDs (Rev 6 WeAct)**: `NUM_LOCK = GP29`, `CAPS_LOCK = GP25`, `SCROLL_LOCK = GP28`, `RGB_DI = GP0` *(same physical positions on PCB)*
-</code></pre>
-<p>=== "Rev 4 (<code>STM32F401</code>/<code>F411</code>)"</p>
-<pre><code>| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `B10` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `A5` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `A6` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `A7` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `B0` |
-| **Col** | `B14` | `A8` | `A10` | `A15` | `B3` | `B4` | `B5` | `B7` | `A1` | `A2` | `A3` | `A4` | `B1` | |
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;"><code>GP22</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;"><code>GP16</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;"><code>GP18</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;"><code>GP19</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;"><code>GP20</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col</strong></td>
+<td style="text-align: center;"><code>GP1</code></td>
+<td style="text-align: center;"><code>GP6</code></td>
+<td style="text-align: center;"><code>GP7</code></td>
+<td style="text-align: center;"><code>GP8</code></td>
+<td style="text-align: center;"><code>GP9</code></td>
+<td style="text-align: center;"><code>GP15</code></td>
+<td style="text-align: center;"><code>GP14</code></td>
+<td style="text-align: center;"><code>GP13</code></td>
+<td style="text-align: center;"><code>GP12</code></td>
+<td style="text-align: center;"><code>GP11</code></td>
+<td style="text-align: center;"><code>GP10</code></td>
+<td style="text-align: center;"><code>GP17</code></td>
+<td style="text-align: center;"><code>GP21</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = GP4</code>, <code>Pad_B = GP5</code></li>
+<li><strong>OLED (I²C)</strong>: <code>SDA = GP2</code>, <code>SCL = GP3</code></li>
+<li><strong>LEDs (Rev 5 Pico)</strong>: <code>NUM_LOCK = GP28</code>, <code>CAPS_LOCK = GP25</code>, <code>SCROLL_LOCK = GP27</code>, <code>RGB_DI = GP0</code></li>
+<li><strong>LEDs (Rev 6 WeAct)</strong>: <code>NUM_LOCK = GP29</code>, <code>CAPS_LOCK = GP25</code>, <code>SCROLL_LOCK = GP28</code>, <code>RGB_DI = GP0</code> <em>(same physical positions on PCB)</em></li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 4 (`STM32F401`/`F411`)</h5>
 
-* **Encoders**: `Pad_A = A0`, `Pad_B = B6`
-* **OLED (I²C)**: `SDA = B9`, `SCL = B8`
-* **LEDs**: `NUM_LOCK = B12`, `CAPS_LOCK = C13`, `SCROLL_LOCK = B13`, `RGB_DI = B15`
-</code></pre>
-<p>=== "Rev 3 (<code>STM32F401</code>/<code>F411</code>)"</p>
-<pre><code>| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `B10` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `A5` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `A6` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `A7` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `B0` |
-| **Col** | `A10` | `A15` | `B3` | `B4` | `B5` | `B9` | `B8` | `B7` | `A1` | `A2` | `A3` | `A4` | `B1` | |
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;"><code>B10</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;"><code>A5</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;"><code>A6</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;"><code>A7</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;"><code>B0</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col</strong></td>
+<td style="text-align: center;"><code>B14</code></td>
+<td style="text-align: center;"><code>A8</code></td>
+<td style="text-align: center;"><code>A10</code></td>
+<td style="text-align: center;"><code>A15</code></td>
+<td style="text-align: center;"><code>B3</code></td>
+<td style="text-align: center;"><code>B4</code></td>
+<td style="text-align: center;"><code>B5</code></td>
+<td style="text-align: center;"><code>B7</code></td>
+<td style="text-align: center;"><code>A1</code></td>
+<td style="text-align: center;"><code>A2</code></td>
+<td style="text-align: center;"><code>A3</code></td>
+<td style="text-align: center;"><code>A4</code></td>
+<td style="text-align: center;"><code>B1</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = A0</code>, <code>Pad_B = B6</code></li>
+<li><strong>OLED (I²C)</strong>: <code>SDA = B9</code>, <code>SCL = B8</code></li>
+<li><strong>LEDs</strong>: <code>NUM_LOCK = B12</code>, <code>CAPS_LOCK = C13</code>, <code>SCROLL_LOCK = B13</code>, <code>RGB_DI = B15</code></li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 3 (`STM32F401`/`F411`)</h5>
 
-* **Encoders**: `Pad_A = A0`, `Pad_B = B6`
-* **LEDs**: `NUM_LOCK = B12`, `CAPS_LOCK = C13`, `SCROLL_LOCK = B13`, `RGB_DI = B15`
-</code></pre>
-<p>=== "Rev 1 &amp; 2 (<code>STM32F103</code> / <code>GD32F303</code>)"</p>
-<pre><code>| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | `B11` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | `B0` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | `B1` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | `A2` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | `A3` |
-| **Col** | `A10` | `A15` | `B3` | `B4` | `B5` | `B9` | `B8` | `B7` | `B6` | `C15` | `A0` | `A7` | `B10` | |
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;"><code>B10</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;"><code>A5</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;"><code>A6</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;"><code>A7</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;"><code>B0</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col</strong></td>
+<td style="text-align: center;"><code>A10</code></td>
+<td style="text-align: center;"><code>A15</code></td>
+<td style="text-align: center;"><code>B3</code></td>
+<td style="text-align: center;"><code>B4</code></td>
+<td style="text-align: center;"><code>B5</code></td>
+<td style="text-align: center;"><code>B9</code></td>
+<td style="text-align: center;"><code>B8</code></td>
+<td style="text-align: center;"><code>B7</code></td>
+<td style="text-align: center;"><code>A1</code></td>
+<td style="text-align: center;"><code>A2</code></td>
+<td style="text-align: center;"><code>A3</code></td>
+<td style="text-align: center;"><code>A4</code></td>
+<td style="text-align: center;"><code>B1</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = A0</code>, <code>Pad_B = B6</code></li>
+<li><strong>LEDs</strong>: <code>NUM_LOCK = B12</code>, <code>CAPS_LOCK = C13</code>, <code>SCROLL_LOCK = B13</code>, <code>RGB_DI = B15</code></li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 1 & 2 (`STM32F103` / `GD32F303`)</h5>
 
-* **Encoders**: `Pad_A = A8`, `Pad_B = A9`
-* **LEDs**: `NUM_LOCK = B12`, `CAPS_LOCK = B2` (Rev 2) / `C13` (Rev 1), `SCROLL_LOCK = B13`, `RGB_DI = B15`
-</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;"><code>B11</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;"><code>B0</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;"><code>B1</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;"><code>A2</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;"><code>A3</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col</strong></td>
+<td style="text-align: center;"><code>A10</code></td>
+<td style="text-align: center;"><code>A15</code></td>
+<td style="text-align: center;"><code>B3</code></td>
+<td style="text-align: center;"><code>B4</code></td>
+<td style="text-align: center;"><code>B5</code></td>
+<td style="text-align: center;"><code>B9</code></td>
+<td style="text-align: center;"><code>B8</code></td>
+<td style="text-align: center;"><code>B7</code></td>
+<td style="text-align: center;"><code>B6</code></td>
+<td style="text-align: center;"><code>C15</code></td>
+<td style="text-align: center;"><code>A0</code></td>
+<td style="text-align: center;"><code>A7</code></td>
+<td style="text-align: center;"><code>B10</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = A8</code>, <code>Pad_B = A9</code></li>
+<li><strong>LEDs</strong>: <code>NUM_LOCK = B12</code>, <code>CAPS_LOCK = B2</code> (Rev 2) / <code>C13</code> (Rev 1), <code>SCROLL_LOCK = B13</code>, <code>RGB_DI = B15</code></li>
+</ul>
 <h2 id="scan-frequencies">Matrix Scan Frequencies &amp; OLED Benchmarks</h2>
 <p>Matrix scan frequencies (in Hz) reported by QMK with <code>DEBUG_MATRIX_SCAN_RATE</code> enabled using the default keymap:</p>
 <table>
@@ -979,7 +1691,7 @@ QH |7    10| SRCLR                        nQ7 |7    10| DS
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 5×13 Ortho</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240d59340></li>
+                <li><strong class="text-white">Keys:</strong> 65</li>
                 <li><strong class="text-white">MCU:</strong> STM32F401 / RP2040 / XIAO</li>
                 <li><strong class="text-white">Firmware:</strong> QMK & ZMK</li>
               </ul>

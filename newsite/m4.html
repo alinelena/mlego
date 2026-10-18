@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m4 (2×2 Pad)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">2×2 Pad</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240113880> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">4 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>Seeed XIAO BLE / RP2040</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>ZMK & QMK</span>
           </div>
@@ -180,12 +180,12 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="M4 2x2 nRF52840 ZMK" loading="lazy" src="pics/m4/m4-full.webp" />
-<img alt="M4 2x2 RP2040 QMK" loading="lazy" src="pics/m4/m4-rp2040-qmk.webp" />
-<img alt="M4 2x2 RP2040 ZMK" loading="lazy" src="pics/m4/m4-rp2040-zmk.webp" /></p>
+<p><img alt="M4 2x2 nRF52840 ZMK" src="pics/m4/m4-full.webp" />
+<img alt="M4 2x2 RP2040 QMK" src="pics/m4/m4-rp2040-qmk.webp" />
+<img alt="M4 2x2 RP2040 ZMK" src="pics/m4/m4-rp2040-zmk.webp" /></p>
 </div>
 <p>A compact <strong>2×2 ortholinear macropad</strong> set in an 8×12 LEGO frame with an optional rotary encoder and I²C OLED display.</p>
-<p>Built around the <a href="https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html">Seeed Studio XIAO RP2040</a> and <a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html">Seeed Studio XIAO BLE nRF52840</a>, the <strong>m4</strong> served as the hardware and firmware proving ground for chaining two <code>74HC595</code> shift registers over SPI before scaling the design up to the 65-key <a href="#doc/m65">m65 Rev 7</a>.</p>
+<p>Built around the <a href="https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html">Seeed Studio XIAO RP2040</a> and <a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html">Seeed Studio XIAO BLE nRF52840</a>, the <strong>m4</strong> served as the hardware and firmware proving ground for chaining two <code>74HC595</code> shift registers over SPI before scaling the design up to the 65-key <a href="m65.html">m65 Rev 7</a>.</p>
 <p>Other boards in the Seeed XIAO family (<a href="https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html">SAMD21</a>, <a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">XIAO BLE Sense</a>, and <a href="https://www.seeedstudio.com/Seeed-XIAO-ESP32C3-p-5431.html">ESP32C3</a>) share the same footprint.</p>
 <blockquote>
 <p><strong>Status: All OK</strong>
@@ -206,15 +206,15 @@
 <li><strong>Firmware</strong>: ZMK (BLE &amp; RP2040) and QMK (RP2040)</li>
 </ul>
 <h2 id="render">3D Render &amp; PCBs</h2>
-<p>=== "3D Render"</p>
-<pre><code>![M4 2x2 3D render](pics/m4/m2x2-3d.webp){ loading=lazy }
-</code></pre>
-<p>=== "KiCad PCB (Front &amp; Back)"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![M4 2x2 front PCB](pics/m4/m4-front-pcb.webp){ loading=lazy }
-![M4 2x2 back PCB](pics/m4/m4-back-pcb.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">3D Render</h5>
+
+<p><img alt="M4 2x2 3D render" src="pics/m4/m2x2-3d.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">KiCad PCB (Front & Back)</h5>
+
+<div class="image-grid">
+<p><img alt="M4 2x2 front PCB" src="pics/m4/m4-front-pcb.webp" />
+<img alt="M4 2x2 back PCB" src="pics/m4/m4-back-pcb.webp" /></p>
+</div>
 <h2 id="bom">BOM</h2>
 <ul>
 <li>1× <a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html">Seeed Studio XIAO BLE nRF52840</a> or <a href="https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html">Seeed Studio XIAO RP2040</a></li>
@@ -228,8 +228,8 @@
 </ul>
 <h2 id="case">Case &amp; Assembly</h2>
 <ul>
-<li><strong>LEGO Enclosure</strong>: Uses an 8×12 plate base (or two 4×12 plates). See the <a href="m65.md#case">m65 Case section</a> for stacking details.</li>
-<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="#doc/assembly">Assembly Guide</a>.</li>
+<li><strong>LEGO Enclosure</strong>: Uses an 8×12 plate base (or two 4×12 plates). See the <a href="m65.html#case">m65 Case section</a> for stacking details.</li>
+<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="assembly.html">Assembly Guide</a>.</li>
 </ul>
 <h2 id="gerbers">Gerbers &amp; KiCad</h2>
 <ul>
@@ -238,21 +238,22 @@
 <li><strong>Direct-Pin KiCad Project (v2)</strong>: <a href="https://gitlab.com/m-lego/m2x2-v2"><code>m-lego/m2x2-v2</code> on GitLab</a></li>
 </ul>
 <h2 id="firmware">Firmware</h2>
-<p>=== "Rev 1 — XIAO nRF52840 (ZMK)"</p>
-<pre><code>* **Prebuilt UF2**: [firmware/mlego2x2_rev1-seeeduino_xiao_ble-zmk.uf2](https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego2x2_rev1-seeeduino_xiao_ble-zmk.uf2)
-* **Source**: [`alinelena/mlego-zmk`](https://github.com/alinelena/mlego-zmk)
-</code></pre>
-<p>=== "Rev 2 — XIAO RP2040 (QMK &amp; ZMK)"</p>
-<pre><code>* **Prebuilt ZMK UF2**: [firmware/mlego2x2_rev2-seeeduino_xiao_rp2040-zmk.uf2](https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego2x2_rev2-seeeduino_xiao_rp2040-zmk.uf2) ([ZMK RP2040 source](https://github.com/alinelena/mlego-zmk-rp2040))
-* **Prebuilt QMK UF2**: [firmware/mlego_m4_rev2_default.uf2](https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego_m4_rev2_default.uf2) ([QMK source](https://github.com/alinelena/qmk_firmware/tree/mlego/keyboards/mlego/m4))
+<h5 class="mt-4 mb-2 text-info">Rev 1 — XIAO nRF52840 (ZMK)</h5>
 
-Compile QMK from source:
+<ul>
+<li><strong>Prebuilt UF2</strong>: <a href="https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego2x2_rev1-seeeduino_xiao_ble-zmk.uf2">firmware/mlego2x2_rev1-seeeduino_xiao_ble-zmk.uf2</a></li>
+<li><strong>Source</strong>: <a href="https://github.com/alinelena/mlego-zmk"><code>alinelena/mlego-zmk</code></a></li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 2 — XIAO RP2040 (QMK & ZMK)</h5>
 
-```bash
-git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+<ul>
+<li><strong>Prebuilt ZMK UF2</strong>: <a href="https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego2x2_rev2-seeeduino_xiao_rp2040-zmk.uf2">firmware/mlego2x2_rev2-seeeduino_xiao_rp2040-zmk.uf2</a> (<a href="https://github.com/alinelena/mlego-zmk-rp2040">ZMK RP2040 source</a>)</li>
+<li><strong>Prebuilt QMK UF2</strong>: <a href="https://gitlab.com/m-lego/m4/-/blob/main/firmware/mlego_m4_rev2_default.uf2">firmware/mlego_m4_rev2_default.uf2</a> (<a href="https://github.com/alinelena/qmk_firmware/tree/mlego/keyboards/mlego/m4">QMK source</a>)</li>
+</ul>
+<p>Compile QMK from source:</p>
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m4/rev2 -km default
-```
 </code></pre>
 <h2 id="pins">Pinout Reference</h2>
 <ul>
@@ -273,9 +274,9 @@ qmk compile -kb mlego/m4/rev2 -km default
 </ul>
 <h2 id="other-pictures">Additional Photos</h2>
 <div class="image-grid">
-<p><img alt="M4 2x2 bare" loading="lazy" src="pics/m4/m2x2.webp" />
-<img alt="M4 2x2 switches" loading="lazy" src="pics/m4/m4_2x2.webp" />
-<img alt="M4 2x2 with DSA keycaps" loading="lazy" src="pics/m4/m4-2x2_dsa.webp" /></p>
+<p><img alt="M4 2x2 bare" src="pics/m4/m2x2.webp" />
+<img alt="M4 2x2 switches" src="pics/m4/m4_2x2.webp" />
+<img alt="M4 2x2 with DSA keycaps" src="pics/m4/m4-2x2_dsa.webp" /></p>
 </div>
             </div>
           </div>
@@ -289,7 +290,7 @@ qmk compile -kb mlego/m4/rev2 -km default
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 2×2 Pad</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240113880></li>
+                <li><strong class="text-white">Keys:</strong> 4</li>
                 <li><strong class="text-white">MCU:</strong> Seeed XIAO BLE / RP2040</li>
                 <li><strong class="text-white">Firmware:</strong> ZMK & QMK</li>
               </ul>

@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m20 (5×4 Pad)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">5×4 Pad</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240113800> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">20 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>Raspberry Pi Pico (RP2040)</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
           </div>
@@ -180,8 +180,8 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="M20 5x4 v1" loading="lazy" src="pics/m20/m20_v1.webp" />
-<img alt="M20 5x4 v2" loading="lazy" src="pics/m20/m20_v2.webp" /></p>
+<p><img alt="M20 5x4 v1" src="pics/m20/m20_v1.webp" />
+<img alt="M20 5x4 v2" src="pics/m20/m20_v2.webp" /></p>
 </div>
 <p>A versatile <strong>5×4 ortholinear macropad / numpad</strong> mounted on a 16×16 LEGO baseplate, supporting both 5-pin Cherry MX and low-profile Kailh Choc v2 switches, plus an optional rotary encoder, I²C OLED screen, and RGB LED strip.</p>
 <blockquote>
@@ -204,15 +204,15 @@
 <li><strong>Firmware</strong>: QMK</li>
 </ul>
 <h2 id="render">3D Render &amp; PCBs</h2>
-<p>=== "3D Render"</p>
-<pre><code>![M20 3D render](pics/m20/m20-pcb.webp){ loading=lazy }
-</code></pre>
-<p>=== "Printed PCB (Front &amp; Bottom)"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![M20 PCB front](pics/m20/m20_pcb_front.webp){ loading=lazy }
-![M20 PCB bottom](pics/m20/m20_pcb_bottom.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">3D Render</h5>
+
+<p><img alt="M20 3D render" src="pics/m20/m20-pcb.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Printed PCB (Front & Bottom)</h5>
+
+<div class="image-grid">
+<p><img alt="M20 PCB front" src="pics/m20/m20_pcb_front.webp" />
+<img alt="M20 PCB bottom" src="pics/m20/m20_pcb_bottom.webp" /></p>
+</div>
 <h2 id="bom">BOM</h2>
 <ul>
 <li>1× <code>RP2040</code> Raspberry Pi Pico or compatible clone (WeAct, Teenstar)</li>
@@ -227,8 +227,8 @@
 </ul>
 <h2 id="case">Case &amp; Assembly</h2>
 <ul>
-<li><strong>LEGO Enclosure</strong>: See the <a href="m65.md#case">m65 Case &amp; Thickness section</a>.</li>
-<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="#doc/assembly">Assembly Guide</a>.</li>
+<li><strong>LEGO Enclosure</strong>: See the <a href="m65.html#case">m65 Case &amp; Thickness section</a>.</li>
+<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="assembly.html">Assembly Guide</a>.</li>
 </ul>
 <h2 id="gerbers">Gerbers &amp; KiCad</h2>
 <p>Full KiCad project files and Gerbers are available in the <a href="https://gitlab.com/m-lego/m20/"><code>m-lego/m20</code> GitLab repository</a>, using shared symbols and footprints from <a href="https://gitlab.com/m-lego/m65/"><code>m-lego/m65</code></a>.</p>
@@ -271,9 +271,9 @@ make mlego/m20/rev1:default
 </table>
 <h2 id="other-pictures">Build Gallery</h2>
 <div class="image-grid">
-<p><img alt="M20 dual build" loading="lazy" src="pics/m20/m20_two.webp" />
-<img alt="M20 LEGO case" loading="lazy" src="pics/m20/m20_lego.webp" />
-<img alt="M20 LEGO case angle" loading="lazy" src="pics/m20/m20_lego-2.webp" /></p>
+<p><img alt="M20 dual build" src="pics/m20/m20_two.webp" />
+<img alt="M20 LEGO case" src="pics/m20/m20_lego.webp" />
+<img alt="M20 LEGO case angle" src="pics/m20/m20_lego-2.webp" /></p>
 </div>
             </div>
           </div>
@@ -287,7 +287,7 @@ make mlego/m20/rev1:default
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 5×4 Pad</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240113800></li>
+                <li><strong class="text-white">Keys:</strong> 20</li>
                 <li><strong class="text-white">MCU:</strong> Raspberry Pi Pico (RP2040)</li>
                 <li><strong class="text-white">Firmware:</strong> QMK</li>
               </ul>

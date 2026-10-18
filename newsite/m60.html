@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m60 (5×12 Ortho)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">5×12 Ortho</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240113540> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">60 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F401 / RP2040</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
           </div>
@@ -179,8 +179,8 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="M60 5x12 rev 1" loading="lazy" src="pics/5x12/m60.webp" />
-<img alt="M60 5x12 rev 2" loading="lazy" src="pics/5x12/m60_rev2.webp" /></p>
+<p><img alt="M60 5x12 rev 1" src="pics/5x12/m60.webp" />
+<img alt="M60 5x12 rev 2" src="pics/5x12/m60_rev2.webp" /></p>
 </div>
 <p>A Preonic-inspired <strong>5×12 ortholinear mechanical keyboard</strong> mounted in a modular LEGO case, featuring an optional rotary encoder, RGB underglow strip, and I²C OLED support (Rev 2, thanks to <code>@yyhazy</code>).</p>
 <blockquote>
@@ -205,40 +205,44 @@
 <li><strong>Firmware</strong>: QMK with UF2 drag-and-drop flashing by default</li>
 </ul>
 <h2 id="render">3D Render &amp; PCBs</h2>
-<p>=== "Rev 2 3D Render"</p>
-<pre><code>![M60 5x12 rev 2 3D render](pics/5x12/5x12_rev2_3d.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 1 PCB"</p>
-<pre><code>![M60 5x12 PCB](pics/5x12/m60-pcb.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 2 3D Render</h5>
+
+<p><img alt="M60 5x12 rev 2 3D render" src="pics/5x12/5x12_rev2_3d.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 1 PCB</h5>
+
+<p><img alt="M60 5x12 PCB" src="pics/5x12/m60-pcb.webp" /></p>
 <h2 id="bom">BOM</h2>
-<p>=== "Rev 2 (RP2040 Pico)"</p>
-<pre><code>* 1× Raspberry Pi Pico (`RP2040`) or compatible pinout module
-* 60× `1N4148` signal diodes (DO-35 through-hole)
-* 60× 5-pin Cherry MX–compatible switches
-* 1× EC11 rotary encoder (optional)
-* 1× I²C OLED module (optional)
-* 2× 220 Ω or 350 Ω LED resistors (select value for your LED color and brightness)
-* 2× status indicator LEDs
-* 1× 40-pin DIL/DIP socket (or two 20-pin female headers)
-* 3-pin RGB LED strip (optional)
-* LEGO 16×32 baseplate and perimeter plates/bricks
-</code></pre>
-<p>=== "Rev 1 (STM32F401)"</p>
-<pre><code>* 1× WeAct `STM32F401` BlackPill
-* 60× `1N4148` signal diodes (DO-35 through-hole)
-* 60× 5-pin Cherry MX–compatible switches
-* 1× EC11 rotary encoder (optional)
-* 2× 220 Ω or 350 Ω LED resistors
-* 2× status indicator LEDs
-* 1× 40-pin DIL/DIP socket
-* 3-pin RGB LED strip (optional)
-* LEGO 16×32 baseplate and perimeter plates/bricks
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 2 (RP2040 Pico)</h5>
+
+<ul>
+<li>1× Raspberry Pi Pico (<code>RP2040</code>) or compatible pinout module</li>
+<li>60× <code>1N4148</code> signal diodes (DO-35 through-hole)</li>
+<li>60× 5-pin Cherry MX–compatible switches</li>
+<li>1× EC11 rotary encoder (optional)</li>
+<li>1× I²C OLED module (optional)</li>
+<li>2× 220 Ω or 350 Ω LED resistors (select value for your LED color and brightness)</li>
+<li>2× status indicator LEDs</li>
+<li>1× 40-pin DIL/DIP socket (or two 20-pin female headers)</li>
+<li>3-pin RGB LED strip (optional)</li>
+<li>LEGO 16×32 baseplate and perimeter plates/bricks</li>
+</ul>
+<h5 class="mt-4 mb-2 text-info">Rev 1 (STM32F401)</h5>
+
+<ul>
+<li>1× WeAct <code>STM32F401</code> BlackPill</li>
+<li>60× <code>1N4148</code> signal diodes (DO-35 through-hole)</li>
+<li>60× 5-pin Cherry MX–compatible switches</li>
+<li>1× EC11 rotary encoder (optional)</li>
+<li>2× 220 Ω or 350 Ω LED resistors</li>
+<li>2× status indicator LEDs</li>
+<li>1× 40-pin DIL/DIP socket</li>
+<li>3-pin RGB LED strip (optional)</li>
+<li>LEGO 16×32 baseplate and perimeter plates/bricks</li>
+</ul>
 <h2 id="case">Case &amp; Assembly</h2>
 <ul>
-<li><strong>LEGO Enclosure</strong>: See the <a href="m65.md#case">m65 Case &amp; Thickness section</a> for plate dimensions and stacking options.</li>
-<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="#doc/assembly">Assembly Guide</a>.</li>
+<li><strong>LEGO Enclosure</strong>: See the <a href="m65.html#case">m65 Case &amp; Thickness section</a> for plate dimensions and stacking options.</li>
+<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="assembly.html">Assembly Guide</a>.</li>
 </ul>
 <h2 id="gerbers">Gerbers &amp; KiCad</h2>
 <p>Production-ready Gerbers for JLCPCB:</p>
@@ -248,58 +252,96 @@
 </ul>
 <p>Full KiCad project files are available in the <a href="https://gitlab.com/m-lego/m60/"><code>m-lego/m60</code> GitLab repository</a>, using shared symbols and footprints from <a href="https://gitlab.com/m-lego/m65/"><code>m-lego/m65</code></a>.</p>
 <h2 id="firmware">Firmware</h2>
-<p>=== "Rev 2 (<code>RP2040</code>)"</p>
-<pre><code>Download prebuilt UF2: [mlego_m60_rev1_default.uf2](https://gitlab.com/m-lego/m60/-/blob/main/firmware/mlego_m60_rev1_default.uf2) or compile from source:
+<h5 class="mt-4 mb-2 text-info">Rev 2 (`RP2040`)</h5>
 
-```bash
-git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+<p>Download prebuilt UF2: <a href="https://gitlab.com/m-lego/m60/-/blob/main/firmware/mlego_m60_rev1_default.uf2">mlego_m60_rev1_default.uf2</a> or compile from source:</p>
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m60/rev2 -km default
 
 # or using make:
 make mlego/m60/rev2:default
-```
 </code></pre>
-<p>=== "Rev 1 (<code>STM32F401</code>)"</p>
-<pre><code>Download prebuilt UF2: [mlego_m60_rev1_default.uf2](https://gitlab.com/m-lego/m60/-/blob/main/firmware/mlego_m60_rev1_default.uf2) (requires [TinyUF2 bootloader](https://github.com/adafruit/tinyuf2) installed on the STM32F401):
+<h5 class="mt-4 mb-2 text-info">Rev 1 (`STM32F401`)</h5>
 
-```bash
-git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
+<p>Download prebuilt UF2: <a href="https://gitlab.com/m-lego/m60/-/blob/main/firmware/mlego_m60_rev1_default.uf2">mlego_m60_rev1_default.uf2</a> (requires <a href="https://github.com/adafruit/tinyuf2">TinyUF2 bootloader</a> installed on the STM32F401):</p>
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m60/rev1 -km default
 
 # or using make:
 make mlego/m60/rev1:default
-```
 </code></pre>
 <h2 id="pins">Pinout Reference</h2>
-<p>=== "Rev 2 (<code>RP2040</code>)"</p>
-<pre><code>* **Columns (C0–C11)**: `GP1`, `GP6`, `GP7`, `GP8`, `GP9`, `GP15`, `GP14`, `GP13`, `GP12`, `GP11`, `GP10`, `GP21`
-* **Rows (R0–R4)**: `GP19`, `GP16`, `GP17`, `GP18`, `GP20`
-* **Encoder**: `Pad_A = GP4`, `Pad_B = GP5`
-* **OLED (I²C)**: `SDA = GP2`, `SCL = GP3`
+<h5 class="mt-4 mb-2 text-info">Rev 2 (`RP2040`)</h5>
 
-| Indicator / RGB | Pin |
-| :--- | :--- |
-| `NUM_LOCK` | `GP22` |
-| `CAPS_LOCK` | `GP25` |
-| `SCROLL_LOCK` | `GP27` |
-| `RGB_DI` | `GP0` |
-</code></pre>
-<p>=== "Rev 1 (<code>STM32F401</code>)"</p>
-<pre><code>* **Columns (C0–C11)**: `A10`, `A15`, `B3`, `B4`, `B5`, `B7`, `B6`, `A1`, `A2`, `A3`, `A4`, `A5`
-* **Rows (R0–R4)**: `A6`, `A7`, `B0`, `B1`, `B10`
-* **Encoder**: `Pad_A = A0`, `Pad_B = A8`
+<ul>
+<li><strong>Columns (C0–C11)</strong>: <code>GP1</code>, <code>GP6</code>, <code>GP7</code>, <code>GP8</code>, <code>GP9</code>, <code>GP15</code>, <code>GP14</code>, <code>GP13</code>, <code>GP12</code>, <code>GP11</code>, <code>GP10</code>, <code>GP21</code></li>
+<li><strong>Rows (R0–R4)</strong>: <code>GP19</code>, <code>GP16</code>, <code>GP17</code>, <code>GP18</code>, <code>GP20</code></li>
+<li><strong>Encoder</strong>: <code>Pad_A = GP4</code>, <code>Pad_B = GP5</code></li>
+<li><strong>OLED (I²C)</strong>: <code>SDA = GP2</code>, <code>SCL = GP3</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Indicator / RGB</th>
+<th style="text-align: left;">Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>NUM_LOCK</code></td>
+<td style="text-align: left;"><code>GP22</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CAPS_LOCK</code></td>
+<td style="text-align: left;"><code>GP25</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SCROLL_LOCK</code></td>
+<td style="text-align: left;"><code>GP27</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RGB_DI</code></td>
+<td style="text-align: left;"><code>GP0</code></td>
+</tr>
+</tbody>
+</table>
+<h5 class="mt-4 mb-2 text-info">Rev 1 (`STM32F401`)</h5>
 
-| Indicator / RGB | Pin |
-| :--- | :--- |
-| `NUM_LOCK` | `B12` |
-| `CAPS_LOCK` | `C13` |
-| `SCROLL_LOCK` | `B13` |
-| `RGB_DI` | `B15` |
-</code></pre>
+<ul>
+<li><strong>Columns (C0–C11)</strong>: <code>A10</code>, <code>A15</code>, <code>B3</code>, <code>B4</code>, <code>B5</code>, <code>B7</code>, <code>B6</code>, <code>A1</code>, <code>A2</code>, <code>A3</code>, <code>A4</code>, <code>A5</code></li>
+<li><strong>Rows (R0–R4)</strong>: <code>A6</code>, <code>A7</code>, <code>B0</code>, <code>B1</code>, <code>B10</code></li>
+<li><strong>Encoder</strong>: <code>Pad_A = A0</code>, <code>Pad_B = A8</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Indicator / RGB</th>
+<th style="text-align: left;">Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>NUM_LOCK</code></td>
+<td style="text-align: left;"><code>B12</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CAPS_LOCK</code></td>
+<td style="text-align: left;"><code>C13</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SCROLL_LOCK</code></td>
+<td style="text-align: left;"><code>B13</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RGB_DI</code></td>
+<td style="text-align: left;"><code>B15</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="additional-photos">Additional Photos</h2>
-<p><img alt="M60 5x12 build" loading="lazy" src="pics/5x12/m60_a.webp" /></p>
+<p><img alt="M60 5x12 build" src="pics/5x12/m60_a.webp" /></p>
             </div>
           </div>
         </div>
@@ -312,7 +354,7 @@ make mlego/m60/rev1:default
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 5×12 Ortho</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240113540></li>
+                <li><strong class="text-white">Keys:</strong> 60</li>
                 <li><strong class="text-white">MCU:</strong> STM32F401 / RP2040</li>
                 <li><strong class="text-white">Firmware:</strong> QMK</li>
               </ul>

@@ -149,7 +149,6 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">Not Enough Pins? Matrix Expansion</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">Hardware Guide</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f024013cac0> Keys</span>
           </div>
         </div>
         <div>
@@ -175,7 +174,7 @@
   <span class="spec-badge">QMK &amp; ZMK</span>
 </div>
 
-<p>So you decided to wire a custom mechanical keyboard, but your favorite compact microcontroller doesn't expose enough GPIO pins for the full switch matrix. This is the exact challenge I hit when moving the 65-key <a href="#doc/m65"><strong>m65</strong></a> onto the tiny 11-pin <strong>Seeed Studio XIAO RP2040</strong>.</p>
+<p>So you decided to wire a custom mechanical keyboard, but your favorite compact microcontroller doesn't expose enough GPIO pins for the full switch matrix. This is the exact challenge I hit when moving the 65-key <a href="m65.html"><strong>m65</strong></a> onto the tiny 11-pin <strong>Seeed Studio XIAO RP2040</strong>.</p>
 <h2 id="common-pin-reduction-approaches">Common Pin-Reduction Approaches</h2>
 <p>Before settling on SPI shift registers, I surveyed the existing approaches used in the community:</p>
 <ul>
@@ -199,7 +198,7 @@
 <hr />
 <h2 id="1-scan-only-columns-with-shift-registers">Method 1: Scan Columns via <code>74HC595</code> + Direct GPIO Rows</h2>
 <p>Uses <strong>2× <a href="https://www.ti.com/product/SN74HC595"><code>74HC595</code></a></strong> output shift registers chained over SPI (<code>MOSI</code>, <code>SCK</code>, <code>RCLK</code>) to drive up to 16 columns using only <strong>3 MCU pins</strong>, while the 5 rows are read directly on 5 MCU GPIO pins (total: <strong>8 pins</strong> for a 5×16 matrix).</p>
-<p><img alt="Matrix Version 1 — 2x 74HC595 column scanning" loading="lazy" src="pics/matrix-1.webp" /></p>
+<p><img alt="Matrix Version 1 — 2x 74HC595 column scanning" src="pics/matrix-1.webp" /></p>
 <ul>
 <li><strong>QMK Implementation</strong>: <a href="https://github.com/alinelena/qmk_firmware/tree/mlego_dev/keyboards/mlego/m65/rev7/matrix.c"><code>mlego/m65/rev7/matrix.c</code></a></li>
 <li><strong>ZMK Implementation</strong>: <a href="https://github.com/alinelena/mlego-zmk/blob/main/config/boards/shields/mlego5x13_rev8/mlego5x13_rev8.overlay"><code>mlego5x13_rev8.overlay</code> (<code>zmk,kscan-gpio-matrix</code> + <code>74hc595</code>)</a></li>
@@ -212,7 +211,7 @@
 <pre><code>Because the `74HC165` serial output (`Q7`) does not have a true high-impedance (3-state) output when deselected, **you cannot easily share the `MISO` pin with other SPI peripherals** without adding external tri-state buffer circuitry.
 </code></pre>
 </blockquote>
-<p><img alt="Matrix Version 2a — 2x 74HC595 + 1x 74HC165" loading="lazy" src="pics/matrix-2a.webp" /></p>
+<p><img alt="Matrix Version 2a — 2x 74HC595 + 1x 74HC165" src="pics/matrix-2a.webp" /></p>
 <ul>
 <li><strong>QMK Implementation</strong>: <a href="https://github.com/alinelena/qmk_firmware/blob/mlego_dev/keyboards/mlego/m66/rev1/matrix.c"><code>mlego/m66/rev1/matrix.c</code></a></li>
 </ul>
@@ -225,13 +224,13 @@
 <pre><code>While this single-latch circuit (`m65 Rev 10` / `m66 Rev 2`) works with carefully tuned firmware timing, it relies on edge-case latch/output-enable behavior. Use **Variant 2** below instead.
 </code></pre>
 </blockquote>
-<p><img alt="Matrix Version 2b Variant 1" loading="lazy" src="pics/matrix-2b.webp" /></p>
+<p><img alt="Matrix Version 2b Variant 1" src="pics/matrix-2b.webp" /></p>
 <ul>
 <li><strong>QMK Reference</strong>: <a href="https://github.com/alinelena/qmk_firmware/blob/mlego_dev/keyboards/mlego/m66/rev2/matrix.c"><code>mlego/m66/rev2/matrix.c</code></a></li>
 </ul>
 <h3 id="variant-2">Variant 2 (Separate Chip Selects — Recommended)</h3>
 <p>Uses separate latch / chip-select lines for the <code>2× 74HC595</code> column driver and the <code>1× 74HC589</code> row reader (costing 1 extra pin compared to Variant 1, for <strong>5 SPI pins total</strong>), making SPI bus sharing and matrix scanning clean and deterministic.</p>
-<p><img alt="Matrix Version 2b Variant 2" loading="lazy" src="pics/matrix-2b_v2.webp" /></p>
+<p><img alt="Matrix Version 2b Variant 2" src="pics/matrix-2b_v2.webp" /></p>
 <ul>
 <li><strong>QMK Implementation</strong>: <a href="https://github.com/alinelena/qmk_firmware/blob/mlego_dev/keyboards/m66/rev3/matrix.c"><code>mlego/m66/rev3/matrix.c</code></a></li>
 </ul>
@@ -252,20 +251,16 @@
 </li>
 </ul>
 <p>Both QMK (via data-driven <code>info.json</code> <code>"matrix": [row, col]</code> coordinates) and ZMK (via <code>zmk,matrix-transform</code>) make this remapping trivial:</p>
-<p>=== "Standard 5×13 Matrix (18 Pins)"</p>
-<pre><code>**1. `info.json` Pin Definition (`5 + 13 = 18` pins)**:
+<h5 class="mt-4 mb-2 text-info">Standard 5×13 Matrix (18 Pins)</h5>
 
-```json
-"matrix_pins": {
-    "cols": ["GP1", "GP6", "GP7", "GP8", "GP9", "GP15", "GP14", "GP13", "GP12", "GP11", "GP10", "GP17", "GP21"],
-    "rows": ["GP22", "GP16", "GP18", "GP19", "GP20"]
+<p><strong>1. <code>info.json</code> Pin Definition (<code>5 + 13 = 18</code> pins)</strong>:</p>
+<pre><code class="language-json">&quot;matrix_pins&quot;: {
+    &quot;cols&quot;: [&quot;GP1&quot;, &quot;GP6&quot;, &quot;GP7&quot;, &quot;GP8&quot;, &quot;GP9&quot;, &quot;GP15&quot;, &quot;GP14&quot;, &quot;GP13&quot;, &quot;GP12&quot;, &quot;GP11&quot;, &quot;GP10&quot;, &quot;GP17&quot;, &quot;GP21&quot;],
+    &quot;rows&quot;: [&quot;GP22&quot;, &quot;GP16&quot;, &quot;GP18&quot;, &quot;GP19&quot;, &quot;GP20&quot;]
 }
-```
-
-**2. Physical-to-Electrical Mapping (1:1 Grid)**:
-
-```text
-┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+</code></pre>
+<p><strong>2. Physical-to-Electrical Mapping (1:1 Grid)</strong>:</p>
+<pre><code class="language-text">┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
 │0A││0B││0C││0D││0E││0F││0G││0H││0I││0J││0K││0L││0M│
 └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
 ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
@@ -280,100 +275,95 @@
 ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
 │4A││4B││4C││4D││4E││4F││4G││4H││4I││4J││4K││4L││4M│
 └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
-```
-
-**3. Full `LAYOUT_ortho_5x13` Definition**:
-
-??? code "Expand 5×13 `info.json` Layout Definition"
-
-    ```json
-    "LAYOUT_ortho_5x13": {
-        "layout": [
-            { "label": "⎋" , "matrix": [0, 0] , "w": 1, "x": 0 , "y": 0 },
-            { "label": "1" , "matrix": [0, 1] , "w": 1, "x": 1 , "y": 0 },
-            { "label": "2" , "matrix": [0, 2] , "w": 1, "x": 2 , "y": 0 },
-            { "label": "3" , "matrix": [0, 3] , "w": 1, "x": 3 , "y": 0 },
-            { "label": "4" , "matrix": [0, 4] , "w": 1, "x": 4 , "y": 0 },
-            { "label": "5" , "matrix": [0, 5] , "w": 1, "x": 5 , "y": 0 },
-            { "label": "6" , "matrix": [0, 6] , "w": 1, "x": 6 , "y": 0 },
-            { "label": "7" , "matrix": [0, 7] , "w": 1, "x": 7 , "y": 0 },
-            { "label": "8" , "matrix": [0, 8] , "w": 1, "x": 8 , "y": 0 },
-            { "label": "9" , "matrix": [0, 9] , "w": 1, "x": 9 , "y": 0 },
-            { "label": "0" , "matrix": [0, 10], "w": 1, "x": 10, "y": 0 },
-            { "label": "-" , "matrix": [0, 11], "w": 1, "x": 11, "y": 0 },
-            { "label": "⌫" , "matrix": [0, 12], "w": 1, "x": 12, "y": 0 },
-            { "label": "↹", "matrix": [1, 0] , "w": 1, "x": 0 , "y": 1 },
-            { "label": "q" , "matrix": [1, 1] , "w": 1, "x": 1 , "y": 1 },
-            { "label": "w" , "matrix": [1, 2] , "w": 1, "x": 2 , "y": 1 },
-            { "label": "e" , "matrix": [1, 3] , "w": 1, "x": 3 , "y": 1 },
-            { "label": "r" , "matrix": [1, 4] , "w": 1, "x": 4 , "y": 1 },
-            { "label": "t" , "matrix": [1, 5] , "w": 1, "x": 5 , "y": 1 },
-            { "label": "y" , "matrix": [1, 6] , "w": 1, "x": 6 , "y": 1 },
-            { "label": "u" , "matrix": [1, 7] , "w": 1, "x": 7 , "y": 1 },
-            { "label": "i" , "matrix": [1, 8] , "w": 1, "x": 8 , "y": 1 },
-            { "label": "o" , "matrix": [1, 9] , "w": 1, "x": 9 , "y": 1 },
-            { "label": "p" , "matrix": [1, 10], "w": 1, "x": 10, "y": 1 },
-            { "label": "[" , "matrix": [1, 11], "w": 1, "x": 11, "y": 1 },
-            { "label": "]" , "matrix": [1, 12], "w": 1, "x": 12, "y": 1 },
-            { "label": "#" , "matrix": [2, 0] , "w": 1, "x": 0 , "y": 2 },
-            { "label": "a" , "matrix": [2, 1] , "w": 1, "x": 1 , "y": 2 },
-            { "label": "s" , "matrix": [2, 2] , "w": 1, "x": 2 , "y": 2 },
-            { "label": "d" , "matrix": [2, 3] , "w": 1, "x": 3 , "y": 2 },
-            { "label": "f" , "matrix": [2, 4] , "w": 1, "x": 4 , "y": 2 },
-            { "label": "g" , "matrix": [2, 5] , "w": 1, "x": 5 , "y": 2 },
-            { "label": "h" , "matrix": [2, 6] , "w": 1, "x": 6 , "y": 2 },
-            { "label": "j" , "matrix": [2, 7] , "w": 1, "x": 7 , "y": 2 },
-            { "label": "k" , "matrix": [2, 8] , "w": 1, "x": 8 , "y": 2 },
-            { "label": "l" , "matrix": [2, 9] , "w": 1, "x": 9 , "y": 2 },
-            { "label": ";" , "matrix": [2, 10], "w": 1, "x": 10, "y": 2 },
-            { "label": "'" , "matrix": [2, 11], "w": 1, "x": 11, "y": 2 },
-            { "label": "⏎" , "matrix": [2, 12], "w": 1, "x": 12, "y": 2 },
-            { "label": "⇧" , "matrix": [3, 0] , "w": 1, "x": 0 , "y": 3 },
-            { "label": "\\", "matrix": [3, 1] , "w": 1, "x": 1 , "y": 3 },
-            { "label": "z" , "matrix": [3, 2] , "w": 1, "x": 2 , "y": 3 },
-            { "label": "x" , "matrix": [3, 3] , "w": 1, "x": 3 , "y": 3 },
-            { "label": "c" , "matrix": [3, 4] , "w": 1, "x": 4 , "y": 3 },
-            { "label": "v" , "matrix": [3, 5] , "w": 1, "x": 5 , "y": 3 },
-            { "label": "b" , "matrix": [3, 6] , "w": 1, "x": 6 , "y": 3 },
-            { "label": "n" , "matrix": [3, 7] , "w": 1, "x": 7 , "y": 3 },
-            { "label": "m" , "matrix": [3, 8] , "w": 1, "x": 8 , "y": 3 },
-            { "label": "," , "matrix": [3, 9] , "w": 1, "x": 9 , "y": 3 },
-            { "label": "." , "matrix": [3, 10], "w": 1, "x": 10, "y": 3 },
-            { "label": "↑" , "matrix": [3, 11], "w": 1, "x": 11, "y": 3 },
-            { "label": "/" , "matrix": [3, 12], "w": 1, "x": 12, "y": 3 },
-            { "label": "⎈" , "matrix": [4, 0] , "w": 1, "x": 0 , "y": 4 },
-            { "label": "" , "matrix": [4, 1] , "w": 1, "x": 1 , "y": 4 },
-            { "label": "⇓" , "matrix": [4, 2] , "w": 1, "x": 2 , "y": 4 },
-            { "label": "⎇" , "matrix": [4, 3] , "w": 1, "x": 3 , "y": 4 },
-            { "label": "⇑" , "matrix": [4, 4] , "w": 1, "x": 4 , "y": 4 },
-            { "label": " " , "matrix": [4, 5] , "w": 1, "x": 5 , "y": 4 },
-            { "label": " " , "matrix": [4, 6] , "w": 1, "x": 6 , "y": 4 },
-            { "label": " " , "matrix": [4, 7] , "w": 1, "x": 7 , "y": 4 },
-            { "label": "⎇" , "matrix": [4, 8] , "w": 1, "x": 8 , "y": 4 },
-            { "label": "⇧" , "matrix": [4, 9] , "w": 1, "x": 9 , "y": 4 },
-            { "label": "←", "matrix": [4, 10], "w": 1, "x": 10, "y": 4 },
-            { "label": "↓" , "matrix": [4, 11], "w": 1, "x": 11, "y": 4 },
-            { "label": "→" , "matrix": [4, 12], "w": 1, "x": 12, "y": 4 }
-        ]
-    }
-    ```
 </code></pre>
-<p>=== "Restructured 8×9 Matrix (17 Pins — Saves 1 Pin)"</p>
-<pre><code>**1. `info.json` Pin Definition (`8 + 9 = 17` pins)**:
-
-```json
-"matrix_pins": {
-    "cols": ["GP1", "GP6", "GP7", "GP8", "GP9", "GP15", "GP14", "GP13", "GP12"],
-    "rows": ["GP11", "GP10", "GP17", "GP21", "GP16", "GP18", "GP19", "GP20"]
+<p><strong>3. Full <code>LAYOUT_ortho_5x13</code> Definition</strong>:</p>
+<blockquote>
+<p><strong>Expand 5×13 <code>info.json</code> Layout Definition</strong>
+</p>
+</blockquote>
+<pre><code>```json
+"LAYOUT_ortho_5x13": {
+    "layout": [
+        { "label": "⎋" , "matrix": [0, 0] , "w": 1, "x": 0 , "y": 0 },
+        { "label": "1" , "matrix": [0, 1] , "w": 1, "x": 1 , "y": 0 },
+        { "label": "2" , "matrix": [0, 2] , "w": 1, "x": 2 , "y": 0 },
+        { "label": "3" , "matrix": [0, 3] , "w": 1, "x": 3 , "y": 0 },
+        { "label": "4" , "matrix": [0, 4] , "w": 1, "x": 4 , "y": 0 },
+        { "label": "5" , "matrix": [0, 5] , "w": 1, "x": 5 , "y": 0 },
+        { "label": "6" , "matrix": [0, 6] , "w": 1, "x": 6 , "y": 0 },
+        { "label": "7" , "matrix": [0, 7] , "w": 1, "x": 7 , "y": 0 },
+        { "label": "8" , "matrix": [0, 8] , "w": 1, "x": 8 , "y": 0 },
+        { "label": "9" , "matrix": [0, 9] , "w": 1, "x": 9 , "y": 0 },
+        { "label": "0" , "matrix": [0, 10], "w": 1, "x": 10, "y": 0 },
+        { "label": "-" , "matrix": [0, 11], "w": 1, "x": 11, "y": 0 },
+        { "label": "⌫" , "matrix": [0, 12], "w": 1, "x": 12, "y": 0 },
+        { "label": "↹", "matrix": [1, 0] , "w": 1, "x": 0 , "y": 1 },
+        { "label": "q" , "matrix": [1, 1] , "w": 1, "x": 1 , "y": 1 },
+        { "label": "w" , "matrix": [1, 2] , "w": 1, "x": 2 , "y": 1 },
+        { "label": "e" , "matrix": [1, 3] , "w": 1, "x": 3 , "y": 1 },
+        { "label": "r" , "matrix": [1, 4] , "w": 1, "x": 4 , "y": 1 },
+        { "label": "t" , "matrix": [1, 5] , "w": 1, "x": 5 , "y": 1 },
+        { "label": "y" , "matrix": [1, 6] , "w": 1, "x": 6 , "y": 1 },
+        { "label": "u" , "matrix": [1, 7] , "w": 1, "x": 7 , "y": 1 },
+        { "label": "i" , "matrix": [1, 8] , "w": 1, "x": 8 , "y": 1 },
+        { "label": "o" , "matrix": [1, 9] , "w": 1, "x": 9 , "y": 1 },
+        { "label": "p" , "matrix": [1, 10], "w": 1, "x": 10, "y": 1 },
+        { "label": "[" , "matrix": [1, 11], "w": 1, "x": 11, "y": 1 },
+        { "label": "]" , "matrix": [1, 12], "w": 1, "x": 12, "y": 1 },
+        { "label": "#" , "matrix": [2, 0] , "w": 1, "x": 0 , "y": 2 },
+        { "label": "a" , "matrix": [2, 1] , "w": 1, "x": 1 , "y": 2 },
+        { "label": "s" , "matrix": [2, 2] , "w": 1, "x": 2 , "y": 2 },
+        { "label": "d" , "matrix": [2, 3] , "w": 1, "x": 3 , "y": 2 },
+        { "label": "f" , "matrix": [2, 4] , "w": 1, "x": 4 , "y": 2 },
+        { "label": "g" , "matrix": [2, 5] , "w": 1, "x": 5 , "y": 2 },
+        { "label": "h" , "matrix": [2, 6] , "w": 1, "x": 6 , "y": 2 },
+        { "label": "j" , "matrix": [2, 7] , "w": 1, "x": 7 , "y": 2 },
+        { "label": "k" , "matrix": [2, 8] , "w": 1, "x": 8 , "y": 2 },
+        { "label": "l" , "matrix": [2, 9] , "w": 1, "x": 9 , "y": 2 },
+        { "label": ";" , "matrix": [2, 10], "w": 1, "x": 10, "y": 2 },
+        { "label": "'" , "matrix": [2, 11], "w": 1, "x": 11, "y": 2 },
+        { "label": "⏎" , "matrix": [2, 12], "w": 1, "x": 12, "y": 2 },
+        { "label": "⇧" , "matrix": [3, 0] , "w": 1, "x": 0 , "y": 3 },
+        { "label": "\\", "matrix": [3, 1] , "w": 1, "x": 1 , "y": 3 },
+        { "label": "z" , "matrix": [3, 2] , "w": 1, "x": 2 , "y": 3 },
+        { "label": "x" , "matrix": [3, 3] , "w": 1, "x": 3 , "y": 3 },
+        { "label": "c" , "matrix": [3, 4] , "w": 1, "x": 4 , "y": 3 },
+        { "label": "v" , "matrix": [3, 5] , "w": 1, "x": 5 , "y": 3 },
+        { "label": "b" , "matrix": [3, 6] , "w": 1, "x": 6 , "y": 3 },
+        { "label": "n" , "matrix": [3, 7] , "w": 1, "x": 7 , "y": 3 },
+        { "label": "m" , "matrix": [3, 8] , "w": 1, "x": 8 , "y": 3 },
+        { "label": "," , "matrix": [3, 9] , "w": 1, "x": 9 , "y": 3 },
+        { "label": "." , "matrix": [3, 10], "w": 1, "x": 10, "y": 3 },
+        { "label": "↑" , "matrix": [3, 11], "w": 1, "x": 11, "y": 3 },
+        { "label": "/" , "matrix": [3, 12], "w": 1, "x": 12, "y": 3 },
+        { "label": "⎈" , "matrix": [4, 0] , "w": 1, "x": 0 , "y": 4 },
+        { "label": "" , "matrix": [4, 1] , "w": 1, "x": 1 , "y": 4 },
+        { "label": "⇓" , "matrix": [4, 2] , "w": 1, "x": 2 , "y": 4 },
+        { "label": "⎇" , "matrix": [4, 3] , "w": 1, "x": 3 , "y": 4 },
+        { "label": "⇑" , "matrix": [4, 4] , "w": 1, "x": 4 , "y": 4 },
+        { "label": " " , "matrix": [4, 5] , "w": 1, "x": 5 , "y": 4 },
+        { "label": " " , "matrix": [4, 6] , "w": 1, "x": 6 , "y": 4 },
+        { "label": " " , "matrix": [4, 7] , "w": 1, "x": 7 , "y": 4 },
+        { "label": "⎇" , "matrix": [4, 8] , "w": 1, "x": 8 , "y": 4 },
+        { "label": "⇧" , "matrix": [4, 9] , "w": 1, "x": 9 , "y": 4 },
+        { "label": "←", "matrix": [4, 10], "w": 1, "x": 10, "y": 4 },
+        { "label": "↓" , "matrix": [4, 11], "w": 1, "x": 11, "y": 4 },
+        { "label": "→" , "matrix": [4, 12], "w": 1, "x": 12, "y": 4 }
+    ]
 }
 ```
+</code></pre>
+<h5 class="mt-4 mb-2 text-info">Restructured 8×9 Matrix (17 Pins — Saves 1 Pin)</h5>
 
-**2. Physical-to-Electrical Mapping (8 Rows `0–7` × 9 Cols `A–I`)**:
-
-Wire all keys sharing the same digit (`0–7`) to the corresponding row pin, and all keys sharing the same letter (`A–I`) to the corresponding column pin:
-
-```text
-┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
+<p><strong>1. <code>info.json</code> Pin Definition (<code>8 + 9 = 17</code> pins)</strong>:</p>
+<pre><code class="language-json">&quot;matrix_pins&quot;: {
+    &quot;cols&quot;: [&quot;GP1&quot;, &quot;GP6&quot;, &quot;GP7&quot;, &quot;GP8&quot;, &quot;GP9&quot;, &quot;GP15&quot;, &quot;GP14&quot;, &quot;GP13&quot;, &quot;GP12&quot;],
+    &quot;rows&quot;: [&quot;GP11&quot;, &quot;GP10&quot;, &quot;GP17&quot;, &quot;GP21&quot;, &quot;GP16&quot;, &quot;GP18&quot;, &quot;GP19&quot;, &quot;GP20&quot;]
+}
+</code></pre>
+<p><strong>2. Physical-to-Electrical Mapping (8 Rows <code>0–7</code> × 9 Cols <code>A–I</code>)</strong>:</p>
+<p>Wire all keys sharing the same digit (<code>0–7</code>) to the corresponding row pin, and all keys sharing the same letter (<code>A–I</code>) to the corresponding column pin:</p>
+<pre><code class="language-text">┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
 │0A││0B││0C││0D││0E││0F││0G││0H││0I││1A││1B││1C││1D│
 └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
 ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
@@ -388,83 +378,83 @@ Wire all keys sharing the same digit (`0–7`) to the corresponding row pin, and
 ┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐┌──┐
 │5H││5I││6A││6B││6C││6D││6E││6F││6G││6H││6I││7A││7B│
 └──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘└──┘
+</code></pre>
+<p><strong>3. Full Remapped <code>LAYOUT_ortho_5x13</code> Definition</strong>:</p>
+<blockquote>
+<p><strong>Expand Remapped 8×9 <code>info.json</code> Layout Definition</strong>
+</p>
+</blockquote>
+<pre><code>```json
+"LAYOUT_ortho_5x13": {
+    "layout": [
+        { "label": "⎋" , "matrix": [0, 0] , "w": 1, "x": 0 , "y": 0 },
+        { "label": "1" , "matrix": [0, 1] , "w": 1, "x": 1 , "y": 0 },
+        { "label": "2" , "matrix": [0, 2] , "w": 1, "x": 2 , "y": 0 },
+        { "label": "3" , "matrix": [0, 3] , "w": 1, "x": 3 , "y": 0 },
+        { "label": "4" , "matrix": [0, 4] , "w": 1, "x": 4 , "y": 0 },
+        { "label": "5" , "matrix": [0, 5] , "w": 1, "x": 5 , "y": 0 },
+        { "label": "6" , "matrix": [0, 6] , "w": 1, "x": 6 , "y": 0 },
+        { "label": "7" , "matrix": [0, 7] , "w": 1, "x": 7 , "y": 0 },
+        { "label": "8" , "matrix": [0, 8] , "w": 1, "x": 8 , "y": 0 },
+        { "label": "9" , "matrix": [1, 0] , "w": 1, "x": 9 , "y": 0 },
+        { "label": "0" , "matrix": [1, 1], "w": 1, "x": 10, "y": 0 },
+        { "label": "-" , "matrix": [1, 2], "w": 1, "x": 11, "y": 0 },
+        { "label": "⌫" , "matrix": [1, 3], "w": 1, "x": 12, "y": 0 },
+        { "label": "↹", "matrix": [1, 4] , "w": 1, "x": 0 , "y": 1 },
+        { "label": "q" , "matrix": [1, 5] , "w": 1, "x": 1 , "y": 1 },
+        { "label": "w" , "matrix": [1, 6] , "w": 1, "x": 2 , "y": 1 },
+        { "label": "e" , "matrix": [1, 7] , "w": 1, "x": 3 , "y": 1 },
+        { "label": "r" , "matrix": [1, 8] , "w": 1, "x": 4 , "y": 1 },
+        { "label": "t" , "matrix": [2, 0] , "w": 1, "x": 5 , "y": 1 },
+        { "label": "y" , "matrix": [2, 1] , "w": 1, "x": 6 , "y": 1 },
+        { "label": "u" , "matrix": [2, 2] , "w": 1, "x": 7 , "y": 1 },
+        { "label": "i" , "matrix": [2, 3] , "w": 1, "x": 8 , "y": 1 },
+        { "label": "o" , "matrix": [2, 4] , "w": 1, "x": 9 , "y": 1 },
+        { "label": "p" , "matrix": [2, 5], "w": 1, "x": 10, "y": 1 },
+        { "label": "[" , "matrix": [2, 6], "w": 1, "x": 11, "y": 1 },
+        { "label": "]" , "matrix": [2, 7], "w": 1, "x": 12, "y": 1 },
+        { "label": "#" , "matrix": [2, 8] , "w": 1, "x": 0 , "y": 2 },
+        { "label": "a" , "matrix": [3, 0] , "w": 1, "x": 1 , "y": 2 },
+        { "label": "s" , "matrix": [3, 1] , "w": 1, "x": 2 , "y": 2 },
+        { "label": "d" , "matrix": [3, 2] , "w": 1, "x": 3 , "y": 2 },
+        { "label": "f" , "matrix": [3, 3] , "w": 1, "x": 4 , "y": 2 },
+        { "label": "g" , "matrix": [3, 4] , "w": 1, "x": 5 , "y": 2 },
+        { "label": "h" , "matrix": [3, 5] , "w": 1, "x": 6 , "y": 2 },
+        { "label": "j" , "matrix": [3, 6] , "w": 1, "x": 7 , "y": 2 },
+        { "label": "k" , "matrix": [3, 7] , "w": 1, "x": 8 , "y": 2 },
+        { "label": "l" , "matrix": [3, 8] , "w": 1, "x": 9 , "y": 2 },
+        { "label": ";" , "matrix": [4, 0], "w": 1, "x": 10, "y": 2 },
+        { "label": "'" , "matrix": [4, 1], "w": 1, "x": 11, "y": 2 },
+        { "label": "⏎" , "matrix": [4, 2], "w": 1, "x": 12, "y": 2 },
+        { "label": "⇧" , "matrix": [4, 3] , "w": 1, "x": 0 , "y": 3 },
+        { "label": "\\", "matrix": [4, 4] , "w": 1, "x": 1 , "y": 3 },
+        { "label": "z" , "matrix": [4, 5] , "w": 1, "x": 2 , "y": 3 },
+        { "label": "x" , "matrix": [4, 6] , "w": 1, "x": 3 , "y": 3 },
+        { "label": "c" , "matrix": [4, 7] , "w": 1, "x": 4 , "y": 3 },
+        { "label": "v" , "matrix": [4, 8] , "w": 1, "x": 5 , "y": 3 },
+        { "label": "b" , "matrix": [5, 0] , "w": 1, "x": 6 , "y": 3 },
+        { "label": "n" , "matrix": [5, 1] , "w": 1, "x": 7 , "y": 3 },
+        { "label": "m" , "matrix": [5, 2] , "w": 1, "x": 8 , "y": 3 },
+        { "label": "," , "matrix": [5, 3] , "w": 1, "x": 9 , "y": 3 },
+        { "label": "." , "matrix": [5, 4], "w": 1, "x": 10, "y": 3 },
+        { "label": "↑" , "matrix": [5, 5], "w": 1, "x": 11, "y": 3 },
+        { "label": "/" , "matrix": [5, 6], "w": 1, "x": 12, "y": 3 },
+        { "label": "⎈" , "matrix": [5, 7] , "w": 1, "x": 0 , "y": 4 },
+        { "label": "" , "matrix": [5, 8] , "w": 1, "x": 1 , "y": 4 },
+        { "label": "⇓" , "matrix": [6, 0] , "w": 1, "x": 2 , "y": 4 },
+        { "label": "⎇" , "matrix": [6, 1] , "w": 1, "x": 3 , "y": 4 },
+        { "label": "⇑" , "matrix": [6, 2] , "w": 1, "x": 4 , "y": 4 },
+        { "label": " " , "matrix": [6, 3] , "w": 1, "x": 5 , "y": 4 },
+        { "label": " " , "matrix": [6, 4] , "w": 1, "x": 6 , "y": 4 },
+        { "label": " " , "matrix": [6, 5] , "w": 1, "x": 7 , "y": 4 },
+        { "label": "⎇" , "matrix": [6, 6] , "w": 1, "x": 8 , "y": 4 },
+        { "label": "⇧" , "matrix": [6, 7] , "w": 1, "x": 9 , "y": 4 },
+        { "label": "←", "matrix": [6, 8], "w": 1, "x": 10, "y": 4 },
+        { "label": "↓" , "matrix": [7, 0], "w": 1, "x": 11, "y": 4 },
+        { "label": "→" , "matrix": [7, 1], "w": 1, "x": 12, "y": 4 }
+    ]
+}
 ```
-
-**3. Full Remapped `LAYOUT_ortho_5x13` Definition**:
-
-??? code "Expand Remapped 8×9 `info.json` Layout Definition"
-
-    ```json
-    "LAYOUT_ortho_5x13": {
-        "layout": [
-            { "label": "⎋" , "matrix": [0, 0] , "w": 1, "x": 0 , "y": 0 },
-            { "label": "1" , "matrix": [0, 1] , "w": 1, "x": 1 , "y": 0 },
-            { "label": "2" , "matrix": [0, 2] , "w": 1, "x": 2 , "y": 0 },
-            { "label": "3" , "matrix": [0, 3] , "w": 1, "x": 3 , "y": 0 },
-            { "label": "4" , "matrix": [0, 4] , "w": 1, "x": 4 , "y": 0 },
-            { "label": "5" , "matrix": [0, 5] , "w": 1, "x": 5 , "y": 0 },
-            { "label": "6" , "matrix": [0, 6] , "w": 1, "x": 6 , "y": 0 },
-            { "label": "7" , "matrix": [0, 7] , "w": 1, "x": 7 , "y": 0 },
-            { "label": "8" , "matrix": [0, 8] , "w": 1, "x": 8 , "y": 0 },
-            { "label": "9" , "matrix": [1, 0] , "w": 1, "x": 9 , "y": 0 },
-            { "label": "0" , "matrix": [1, 1], "w": 1, "x": 10, "y": 0 },
-            { "label": "-" , "matrix": [1, 2], "w": 1, "x": 11, "y": 0 },
-            { "label": "⌫" , "matrix": [1, 3], "w": 1, "x": 12, "y": 0 },
-            { "label": "↹", "matrix": [1, 4] , "w": 1, "x": 0 , "y": 1 },
-            { "label": "q" , "matrix": [1, 5] , "w": 1, "x": 1 , "y": 1 },
-            { "label": "w" , "matrix": [1, 6] , "w": 1, "x": 2 , "y": 1 },
-            { "label": "e" , "matrix": [1, 7] , "w": 1, "x": 3 , "y": 1 },
-            { "label": "r" , "matrix": [1, 8] , "w": 1, "x": 4 , "y": 1 },
-            { "label": "t" , "matrix": [2, 0] , "w": 1, "x": 5 , "y": 1 },
-            { "label": "y" , "matrix": [2, 1] , "w": 1, "x": 6 , "y": 1 },
-            { "label": "u" , "matrix": [2, 2] , "w": 1, "x": 7 , "y": 1 },
-            { "label": "i" , "matrix": [2, 3] , "w": 1, "x": 8 , "y": 1 },
-            { "label": "o" , "matrix": [2, 4] , "w": 1, "x": 9 , "y": 1 },
-            { "label": "p" , "matrix": [2, 5], "w": 1, "x": 10, "y": 1 },
-            { "label": "[" , "matrix": [2, 6], "w": 1, "x": 11, "y": 1 },
-            { "label": "]" , "matrix": [2, 7], "w": 1, "x": 12, "y": 1 },
-            { "label": "#" , "matrix": [2, 8] , "w": 1, "x": 0 , "y": 2 },
-            { "label": "a" , "matrix": [3, 0] , "w": 1, "x": 1 , "y": 2 },
-            { "label": "s" , "matrix": [3, 1] , "w": 1, "x": 2 , "y": 2 },
-            { "label": "d" , "matrix": [3, 2] , "w": 1, "x": 3 , "y": 2 },
-            { "label": "f" , "matrix": [3, 3] , "w": 1, "x": 4 , "y": 2 },
-            { "label": "g" , "matrix": [3, 4] , "w": 1, "x": 5 , "y": 2 },
-            { "label": "h" , "matrix": [3, 5] , "w": 1, "x": 6 , "y": 2 },
-            { "label": "j" , "matrix": [3, 6] , "w": 1, "x": 7 , "y": 2 },
-            { "label": "k" , "matrix": [3, 7] , "w": 1, "x": 8 , "y": 2 },
-            { "label": "l" , "matrix": [3, 8] , "w": 1, "x": 9 , "y": 2 },
-            { "label": ";" , "matrix": [4, 0], "w": 1, "x": 10, "y": 2 },
-            { "label": "'" , "matrix": [4, 1], "w": 1, "x": 11, "y": 2 },
-            { "label": "⏎" , "matrix": [4, 2], "w": 1, "x": 12, "y": 2 },
-            { "label": "⇧" , "matrix": [4, 3] , "w": 1, "x": 0 , "y": 3 },
-            { "label": "\\", "matrix": [4, 4] , "w": 1, "x": 1 , "y": 3 },
-            { "label": "z" , "matrix": [4, 5] , "w": 1, "x": 2 , "y": 3 },
-            { "label": "x" , "matrix": [4, 6] , "w": 1, "x": 3 , "y": 3 },
-            { "label": "c" , "matrix": [4, 7] , "w": 1, "x": 4 , "y": 3 },
-            { "label": "v" , "matrix": [4, 8] , "w": 1, "x": 5 , "y": 3 },
-            { "label": "b" , "matrix": [5, 0] , "w": 1, "x": 6 , "y": 3 },
-            { "label": "n" , "matrix": [5, 1] , "w": 1, "x": 7 , "y": 3 },
-            { "label": "m" , "matrix": [5, 2] , "w": 1, "x": 8 , "y": 3 },
-            { "label": "," , "matrix": [5, 3] , "w": 1, "x": 9 , "y": 3 },
-            { "label": "." , "matrix": [5, 4], "w": 1, "x": 10, "y": 3 },
-            { "label": "↑" , "matrix": [5, 5], "w": 1, "x": 11, "y": 3 },
-            { "label": "/" , "matrix": [5, 6], "w": 1, "x": 12, "y": 3 },
-            { "label": "⎈" , "matrix": [5, 7] , "w": 1, "x": 0 , "y": 4 },
-            { "label": "" , "matrix": [5, 8] , "w": 1, "x": 1 , "y": 4 },
-            { "label": "⇓" , "matrix": [6, 0] , "w": 1, "x": 2 , "y": 4 },
-            { "label": "⎇" , "matrix": [6, 1] , "w": 1, "x": 3 , "y": 4 },
-            { "label": "⇑" , "matrix": [6, 2] , "w": 1, "x": 4 , "y": 4 },
-            { "label": " " , "matrix": [6, 3] , "w": 1, "x": 5 , "y": 4 },
-            { "label": " " , "matrix": [6, 4] , "w": 1, "x": 6 , "y": 4 },
-            { "label": " " , "matrix": [6, 5] , "w": 1, "x": 7 , "y": 4 },
-            { "label": "⎇" , "matrix": [6, 6] , "w": 1, "x": 8 , "y": 4 },
-            { "label": "⇧" , "matrix": [6, 7] , "w": 1, "x": 9 , "y": 4 },
-            { "label": "←", "matrix": [6, 8], "w": 1, "x": 10, "y": 4 },
-            { "label": "↓" , "matrix": [7, 0], "w": 1, "x": 11, "y": 4 },
-            { "label": "→" , "matrix": [7, 1], "w": 1, "x": 12, "y": 4 }
-        ]
-    }
-    ```
 </code></pre>
             </div>
           </div>
@@ -478,7 +468,6 @@ Wire all keys sharing the same digit (`0–7`) to the corresponding row pin, and
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> Hardware Guide</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f024013cac0></li>
               </ul>
               <p class="small text-secondary mb-3">Exhaustive engineering tutorial on driving large matrices from tiny MCUs via SPI shift registers and matrix folding.</p>
               <div class="d-grid gap-2">

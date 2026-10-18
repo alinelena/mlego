@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">Tipro 8×12 (96-Key)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">8×12 POS</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f024013c140> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">96 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F401 + 74HC595</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
           </div>
@@ -178,11 +178,11 @@
   <span class="spec-badge">QMK</span>
 </div>
 
-<p><img alt="Tipro 96 8x12 final build" loading="lazy" src="pics/tipro/m8x12-final.webp" /></p>
+<p><img alt="Tipro 96 8x12 final build" src="pics/tipro/m8x12-final.webp" /></p>
 <h2 id="introduction">Introduction</h2>
 <p>A compact <strong>96-key (8×12)</strong> Tipro mechanical point-of-sale terminal converted to run <strong>QMK Firmware</strong>.</p>
 <h2 id="pcb">Daughterboard PCB</h2>
-<p>Uses the same custom <code>STM32F401</code> + <code>74HC595</code> daughterboard PCB designed for the <a href="tipro8x16.md#pcb">Tipro 8×16 conversion</a>.</p>
+<p>Uses the same custom <code>STM32F401</code> + <code>74HC595</code> daughterboard PCB designed for the <a href="tipro8x16.html#pcb">Tipro 8×16 conversion</a>.</p>
 <h2 id="firmware">Firmware</h2>
 <ul>
 <li><strong>Prebuilt UF2</strong>: <a href="https://gitlab.com/m-lego/hand8x16/-/blob/develop/firmware/tipro_rev2_default_96.uf2"> <code>tipro_rev2_default_96.uf2</code></a></li>
@@ -207,8 +207,8 @@ qmk compile -kb tipro/rev2 -km default_96
 </ul>
 <h2 id="pictures">Before &amp; Inside Gallery</h2>
 <div class="image-grid">
-<p><img alt="Tipro 96 8x12 original" loading="lazy" src="pics/tipro/m8x12-orig.webp" />
-<img alt="Tipro 96 8x12 internal conversion wiring" loading="lazy" src="pics/tipro/m8x12-inside.webp" /></p>
+<p><img alt="Tipro 96 8x12 original" src="pics/tipro/m8x12-orig.webp" />
+<img alt="Tipro 96 8x12 internal conversion wiring" src="pics/tipro/m8x12-inside.webp" /></p>
 </div>
             </div>
           </div>
@@ -222,7 +222,7 @@ qmk compile -kb tipro/rev2 -km default_96
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 8×12 POS</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f024013c140></li>
+                <li><strong class="text-white">Keys:</strong> 96</li>
                 <li><strong class="text-white">MCU:</strong> STM32F401 + 74HC595</li>
                 <li><strong class="text-white">Firmware:</strong> QMK</li>
               </ul>

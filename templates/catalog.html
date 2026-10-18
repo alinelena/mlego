@@ -41,8 +41,8 @@
             <div class="hardware-card-body">
               <div class="d-flex align-items-center justify-content-between mb-2">
                 <span class="mlego-badge" style="color: {{ accent_color }}; border-color: {{ accent_color }}55;">{{ item.badge }}</span>
-                {% if item.keys %}
-                <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">{{ item.keys }} Keys</span>
+                {% if item.get('keys') %}
+                <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">{{ item.get('keys') }} Keys</span>
                 {% endif %}
               </div>
               <h2 class="h5 hardware-card-title mb-2">

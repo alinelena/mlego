@@ -149,7 +149,6 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">How Keyboard Matrices Work (3×3)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">Electronics Guide</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f024013cb40> Keys</span>
           </div>
         </div>
         <div>
@@ -196,8 +195,8 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><img alt="circuit schematic diode orientation columns to rows" loading="lazy" src="pics/col2row/circuit-col2row.webp" /></td>
-<td style="text-align: center;"><img alt="circuit schematic diode orientation rows to columns" loading="lazy" src="pics/row2col/circuit-row2col.webp" /></td>
+<td style="text-align: center;"><img alt="circuit schematic diode orientation columns to rows" src="pics/col2row/circuit-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="circuit schematic diode orientation rows to columns" src="pics/row2col/circuit-row2col.webp" /></td>
 </tr>
 <tr>
 <td style="text-align: center;">Diode cathode (black band) points toward the <strong>Row</strong> line</td>
@@ -207,27 +206,21 @@
 </table>
 <p>In both circuits above, <strong>Rows (<code>R0–R2</code>)</strong> connect to <code>B3</code>, <code>B4</code>, <code>B5</code> and <strong>Columns (<code>C0–C2</code>)</strong> connect to <code>B12</code>, <code>B13</code>, <code>B14</code>. The only hardware difference is the direction of the diode!</p>
 <p>In QMK's <code>config.h</code> (or <code>info.json</code>), this is configured via <code>DIODE_DIRECTION</code>:</p>
-<p>=== "Left Circuit (<code>COL2ROW</code>)"</p>
-<pre><code>```c
-// config.h
+<h5 class="mt-4 mb-2 text-info">Left Circuit (`COL2ROW`)</h5>
+
+<pre><code class="language-c">// config.h
 #define DIODE_DIRECTION COL2ROW
-```
-
-```json
-// info.json
-"diode_direction": "COL2ROW"
-```
 </code></pre>
-<p>=== "Right Circuit (<code>ROW2COL</code>)"</p>
-<pre><code>```c
-// config.h
-#define DIODE_DIRECTION ROW2COL
-```
+<pre><code class="language-json">// info.json
+&quot;diode_direction&quot;: &quot;COL2ROW&quot;
+</code></pre>
+<h5 class="mt-4 mb-2 text-info">Right Circuit (`ROW2COL`)</h5>
 
-```json
-// info.json
-"diode_direction": "ROW2COL"
-```
+<pre><code class="language-c">// config.h
+#define DIODE_DIRECTION ROW2COL
+</code></pre>
+<pre><code class="language-json">// info.json
+&quot;diode_direction&quot;: &quot;ROW2COL&quot;
 </code></pre>
 <p>At this stage, you already have everything needed to write and test the firmware on a breadboard using only the MCU and a few DuPont jumper wires!</p>
 <hr />
@@ -345,7 +338,7 @@ Size after:
 </code></pre>
 <hr />
 <h2 id="pcbs">Designing the PCB in KiCad</h2>
-<p>Once your firmware is tested, you can either <a href="#doc/hand5x5">handwire the switches</a> or design a custom PCB in <strong>KiCad</strong>:</p>
+<p>Once your firmware is tested, you can either <a href="hand5x5.html">handwire the switches</a> or design a custom PCB in <strong>KiCad</strong>:</p>
 <ul>
 <li><strong>PCB Design Tutorial</strong>: <a href="https://wiki.ai03.com/books/pcb-design">ai03's Keyboard PCB Design Guide</a></li>
 <li><strong>KiCad Footprints &amp; Symbols</strong>: <a href="https://github.com/ebastler/marbastlib">ebastler's <code>marbastlib</code></a> and <a href="https://mechkey.org/">mechkey.org resources</a></li>
@@ -362,18 +355,18 @@ Size after:
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>KiCad Routed Tracks</strong></td>
-<td style="text-align: center;"><img alt="PCB tracks COL2ROW" loading="lazy" src="pics/col2row/pcb-col2row.webp" /></td>
-<td style="text-align: center;"><img alt="PCB tracks ROW2COL" loading="lazy" src="pics/row2col/pcb-row2col.webp" /></td>
+<td style="text-align: center;"><img alt="PCB tracks COL2ROW" src="pics/col2row/pcb-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="PCB tracks ROW2COL" src="pics/row2col/pcb-row2col.webp" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>3D Render (Front)</strong></td>
-<td style="text-align: center;"><img alt="PCB 3D front COL2ROW" loading="lazy" src="pics/col2row/pcb-3df-col2row.webp" /></td>
-<td style="text-align: center;"><img alt="PCB 3D front ROW2COL" loading="lazy" src="pics/row2col/pcb-3df-row2col.webp" /></td>
+<td style="text-align: center;"><img alt="PCB 3D front COL2ROW" src="pics/col2row/pcb-3df-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="PCB 3D front ROW2COL" src="pics/row2col/pcb-3df-row2col.webp" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>3D Render (Bottom)</strong></td>
-<td style="text-align: center;"><img alt="PCB 3D bottom COL2ROW" loading="lazy" src="pics/col2row/pcb-3db-col2row.webp" /></td>
-<td style="text-align: center;"><img alt="PCB 3D bottom ROW2COL" loading="lazy" src="pics/row2col/pcb-3db-row2col.webp" /></td>
+<td style="text-align: center;"><img alt="PCB 3D bottom COL2ROW" src="pics/col2row/pcb-3db-col2row.webp" /></td>
+<td style="text-align: center;"><img alt="PCB 3D bottom ROW2COL" src="pics/row2col/pcb-3db-row2col.webp" /></td>
 </tr>
 </tbody>
 </table>
@@ -389,7 +382,6 @@ Size after:
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> Electronics Guide</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f024013cb40></li>
               </ul>
               <p class="small text-secondary mb-3">Beginner-friendly hardware primer on diode direction, ghosting prevention, KiCad PCB routing, and bootstrapping QMK.</p>
               <div class="d-grid gap-2">

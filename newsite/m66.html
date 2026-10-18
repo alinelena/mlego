@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m66 (5×14 Ortho)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">5×14 Ortho</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f024108d600> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">66 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>RP2040 / nice!nano / XIAO</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK & ZMK</span>
           </div>
@@ -180,9 +180,9 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="m66 rev 4 LCD" loading="lazy" src="pics/m66/mlego_m66_rev4-lcd.webp" />
-<img alt="m66 rev 4 Sharp Memory Display" loading="lazy" src="pics/m66/mlego_m66_rev4-sharp.webp" />
-<img alt="m66 rev 4 Sharp Display" loading="lazy" src="pics/m66/mlege-m66-rev4-sharp.webp" /></p>
+<p><img alt="m66 rev 4 LCD" src="pics/m66/mlego_m66_rev4-lcd.webp" />
+<img alt="m66 rev 4 Sharp Memory Display" src="pics/m66/mlego_m66_rev4-sharp.webp" />
+<img alt="m66 rev 4 Sharp Display" src="pics/m66/mlege-m66-rev4-sharp.webp" /></p>
 </div>
 <p>The <strong>m66</strong> is a 5-row, 13-column ortholinear keyboard plus a dedicated clickable rotary encoder column (technically a 5×14 matrix), designed to accommodate all standard keycaps from an ISO layout.</p>
 <p>The current iteration (<strong>Rev 4</strong>) uses an <strong>RP2040 Pro Micro–compatible footprint</strong> (tested with Splinky, Helios, and <code>nice!nano</code> BLE boards), chained per-key RGB LEDs and underglow backlight, a clickable rotary encoder, and multi-display support for I²C OLED, Sharp Memory display, WeAct SSD1680 e-ink, and ST7735 IPS LCD screens.</p>
@@ -240,7 +240,10 @@
 * **LEGO Enclosure**: 16×32 double-sided baseplate (or 2× 16×16 plates) + ~46× 1×2 or 1×4 LEGO plates/bricks
 </code></pre>
 <h3 id="rev-3">Rev 3</h3>
-<p>??? info "Revision 3 BOM (formerly m65 Rev 11)"</p>
+<blockquote>
+<p><strong>Revision 3 BOM (formerly m65 Rev 11)</strong>
+</p>
+</blockquote>
 <pre><code>* **LEGO**: ~46× 1×2 or 1×4 plates (or bricks if housing a LiPo battery), 1× 16×32 double-sided baseplate (or 2× 16×16 plates; gray plates minimize PCB bow), optional 4× 1×1 tiles/eyes and 4× 2×2 corner plates
 * **Diodes**: 66× `1N4148` signal diodes (DO-35 or SOD-123)
 * **Resistors**: 5× 10 kΩ (THT or SMD 1206) and 1× 5.1 kΩ (THT or SMD 1206)
@@ -253,11 +256,17 @@
 * **Display (optional)**: 128×32 I²C OLED (1×4 socket) or WeAct SSD1680 e-ink display (2×4 header/socket)
 </code></pre>
 <h3 id="rev-2">Rev 2</h3>
-<p>??? warning "Revision 2 BOM — Superseded by Rev 3 (formerly m65 Rev 10)"</p>
+<blockquote>
+<p><strong>Revision 2 BOM — Superseded by Rev 3 (formerly m65 Rev 10)</strong>
+</p>
+</blockquote>
 <pre><code>* Same component list as **Rev 3**, supporting I²C OLED (128×32) with 1×4 DIL socket (prior to the dedicated e-ink header addition in Rev 3).
 </code></pre>
 <h3 id="rev-1">Rev 1</h3>
-<p>??? info "Revision 1 BOM (formerly m65 Rev 9)"</p>
+<blockquote>
+<p><strong>Revision 1 BOM (formerly m65 Rev 9)</strong>
+</p>
+</blockquote>
 <pre><code>* **LEGO**: 16×32 double-sided plate (or 2× 16×16) + ~46× 1×2 or 1×4 plates
 * **Diodes**: 66× `1N4148` signal diodes (DO-35 or SOD-123)
 * **Resistors**: 5× 10 kΩ THT resistors
@@ -268,98 +277,98 @@
 </code></pre>
 <h2 id="case">Case &amp; Enclosure</h2>
 <div class="image-grid">
-<p><img alt="Case 3D render" loading="lazy" src="pics/m65-case.webp" />
-<img alt="LEGO parts for case" loading="lazy" src="pics/lego_1.webp" />
-<img alt="Case front view" loading="lazy" src="pics/lego_2.webp" />
-<img alt="Case back view" loading="lazy" src="pics/lego_3.webp" />
-<img alt="Case side profile" loading="lazy" src="pics/lego_4.webp" /></p>
+<p><img alt="Case 3D render" src="pics/m65-case.webp" />
+<img alt="LEGO parts for case" src="pics/lego_1.webp" />
+<img alt="Case front view" src="pics/lego_2.webp" />
+<img alt="Case back view" src="pics/lego_3.webp" />
+<img alt="Case side profile" src="pics/lego_4.webp" /></p>
 </div>
 <h2 id="assembly">Assembly</h2>
-<p>See the step-by-step <a href="#doc/assembly">Assembly Guide</a> for soldering diodes, socketing the MCU and display, and mounting the PCB onto the LEGO baseplate.</p>
+<p>See the step-by-step <a href="assembly.html">Assembly Guide</a> for soldering diodes, socketing the MCU and display, and mounting the PCB onto the LEGO baseplate.</p>
 <h2 id="thickness">Thickness Profiles</h2>
 <p>Depending on your LEGO plate stack, the enclosure can be built ultra-low-profile or tall enough to house underglow strips and batteries:</p>
 <div class="grid cards">
 <ul>
 <li>
-<p><img alt="8 mm thickness profile" loading="lazy" src="pics/thick-1.webp" /></p>
+<p><img alt="8 mm thickness profile" src="pics/thick-1.webp" /></p>
 <p><strong>8.0 mm — Ultra-Thin Profile</strong></p>
 <p>1× double-sided baseplate + 1× intermediate plate (3.2 mm) + PCB (1.6 mm). Leaves room for a thin sheet of acoustic dampening foam.</p>
 </li>
 <li>
-<p><img alt="11.2 mm thickness profile" loading="lazy" src="pics/thick-2.webp" /></p>
+<p><img alt="11.2 mm thickness profile" src="pics/thick-2.webp" /></p>
 <p><strong>11.2 mm — Mid Profile</strong></p>
 <p>1× double-sided baseplate + 2× intermediate plates + PCB. Fits thicker foam or a direct-wired LED strip without a JST connector.</p>
 </li>
 <li>
-<p><img alt="14.4 mm thickness profile" loading="lazy" src="pics/thick-3.webp" /></p>
+<p><img alt="14.4 mm thickness profile" src="pics/thick-3.webp" /></p>
 <p><strong>14.4 mm — Full Brick Profile</strong></p>
 <p>1× double-sided baseplate + 1× full LEGO brick + PCB. Accommodates a 3-pin JST header or LiPo battery.</p>
 </li>
 </ul>
 </div>
 <h2 id="3d-render">3D Renders</h2>
-<p>=== "Rev 4"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev4 splinky rp2040 front](pics/m66/m66-rev4-front.webp){ loading=lazy }
-![m66 rev4 splinky rp2040 back](pics/m66/m66-rev4-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev3 xiao rp2040 front](pics/m65-rev11-3d-front.webp){ loading=lazy }
-![m66 rev3 xiao rp2040 back](pics/m65-rev11-3d-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev2 xiao rp2040 front](pics/m65-rev10-3d-front.webp){ loading=lazy }
-![m66 rev2 xiao rp2040 back](pics/m65-rev10-3d-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev1 xiao rp2040 front](pics/m65-rev9-render-front.webp){ loading=lazy }
-![m66 rev1 xiao rp2040 back](pics/m65-rev9-render-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev4 splinky rp2040 front" src="pics/m66/m66-rev4-front.webp" />
+<img alt="m66 rev4 splinky rp2040 back" src="pics/m66/m66-rev4-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev3 xiao rp2040 front" src="pics/m65-rev11-3d-front.webp" />
+<img alt="m66 rev3 xiao rp2040 back" src="pics/m65-rev11-3d-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev2 xiao rp2040 front" src="pics/m65-rev10-3d-front.webp" />
+<img alt="m66 rev2 xiao rp2040 back" src="pics/m65-rev10-3d-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev1 xiao rp2040 front" src="pics/m65-rev9-render-front.webp" />
+<img alt="m66 rev1 xiao rp2040 back" src="pics/m65-rev9-render-back.webp" /></p>
+</div>
 <h2 id="schematic">Schematics</h2>
-<p>=== "Rev 4"</p>
-<pre><code>![m66 rev 4 schematic](pics/m66/m66-rev4-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>![m66 rev 3 schematic](pics/m65-rev11-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>![m66 rev 2 schematic](pics/m65-rev10-schematic.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>![m66 rev 1 schematic](pics/m65-rev9-schematic.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<p><img alt="m66 rev 4 schematic" src="pics/m66/m66-rev4-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<p><img alt="m66 rev 3 schematic" src="pics/m65-rev11-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<p><img alt="m66 rev 2 schematic" src="pics/m65-rev10-schematic.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<p><img alt="m66 rev 1 schematic" src="pics/m65-rev9-schematic.webp" /></p>
 <h2 id="pcb">PCBs</h2>
-<p>=== "Rev 4"</p>
-<pre><code>![m66 rev4 pcb](pics/m66/m66-rev4-pcb.webp){ loading=lazy }
-</code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev3 pcb layout](pics/m65-rev11-pcb.webp){ loading=lazy }
-![m66 rev3 pcb front](pics/mlego_m65_rev11_pcb_front.webp){ loading=lazy }
-![m66 rev3 pcb back](pics/mlego_m65_rev11_pcb_back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev2 pcb layout](pics/m65-rev10-pcb.webp){ loading=lazy }
-![m66 rev2 pcb front](pics/m65-rev10pcb-front.webp){ loading=lazy }
-![m66 rev2 pcb back](pics/m65-rev10pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev1 pcb layout](pics/m65-rev9-pcb.webp){ loading=lazy }
-![m66 rev1 pcb front](pics/m65-rev9-pcb-front.webp){ loading=lazy }
-![m66 rev1 pcb back](pics/m65-rev9-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<p><img alt="m66 rev4 pcb" src="pics/m66/m66-rev4-pcb.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev3 pcb layout" src="pics/m65-rev11-pcb.webp" />
+<img alt="m66 rev3 pcb front" src="pics/mlego_m65_rev11_pcb_front.webp" />
+<img alt="m66 rev3 pcb back" src="pics/mlego_m65_rev11_pcb_back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev2 pcb layout" src="pics/m65-rev10-pcb.webp" />
+<img alt="m66 rev2 pcb front" src="pics/m65-rev10pcb-front.webp" />
+<img alt="m66 rev2 pcb back" src="pics/m65-rev10pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev1 pcb layout" src="pics/m65-rev9-pcb.webp" />
+<img alt="m66 rev1 pcb front" src="pics/m65-rev9-pcb-front.webp" />
+<img alt="m66 rev1 pcb back" src="pics/m65-rev9-pcb-back.webp" /></p>
+</div>
 <h2 id="gerbers">Gerbers &amp; KiCad Source</h2>
 <p>Production-ready Gerbers for JLCPCB:</p>
 <ul>
@@ -370,33 +379,29 @@
 </ul>
 <p>Full KiCad project files are hosted on <a href="https://gitlab.com/m-lego/m65/">GitLab (<code>m-lego/m65</code>)</a>. Note that the default branch <code>HEAD</code> is always work-in-progress; check out the specific revision tag/branch below:</p>
 <h3 id="kicad">KiCad Checkout</h3>
-<p>=== "Rev 4"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout m66-rev4
-```
 </code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision11
-```
 </code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision10
-```
 </code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>```bash
-git clone https://gitlab.com/m-lego/m65.git
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<pre><code class="language-bash">git clone https://gitlab.com/m-lego/m65.git
 cd m65
 git checkout revision9
-```
 </code></pre>
 <h2 id="firmware">Firmware</h2>
 <p>Both <strong>QMK</strong> and <strong>ZMK</strong> are supported. You can download prebuilt <code>.uf2</code> binaries below or compile from source.</p>
@@ -418,17 +423,16 @@ git checkout revision9
 </ul>
 <p>Latest automated QMK builds can also be downloaded from <a href="https://github.com/alinelena/qmk_firmware/actions/workflows/build.yml">GitHub Actions</a>.</p>
 <h3 id="qmk-source">QMK Source Build</h3>
-<p>=== "Rev 4"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m66/rev4 -km uk
 qmk compile -kb mlego/m66/rev4 -km default
-```
 </code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>```bash
-# OLED version
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<pre><code class="language-bash"># OLED version
 git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m66/rev3 -km uk
@@ -439,105 +443,101 @@ git clone --recurse-submodules -b mlego_eink https://github.com/alinelena/qmk_fi
 cd qmk-alin
 qmk compile -kb mlego/m66/rev3 -km uk
 qmk compile -kb mlego/m66/rev3 -km default
-```
 </code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m66/rev2 -km uk
 qmk compile -kb mlego/m66/rev2 -km default
-```
 </code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>```bash
-git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego_dev https://github.com/alinelena/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m66/rev1 -km uk
 qmk compile -kb mlego/m66/rev1 -km default
-```
 </code></pre>
 <h2 id="pictures">Build Gallery</h2>
-<p>=== "Rev 4"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev 4 LCD](pics/m66/mlego_m66_rev4-lcd.webp){ loading=lazy }
-![m66 rev 4 Sharp](pics/m66/mlego_m66_rev4-sharp.webp){ loading=lazy }
-![m66 rev 4 Sharp](pics/m66/mlege-m66-rev4-sharp.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 3"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev 3 e-ink](pics/mlego_m65_rev11_eink.webp){ loading=lazy }
-![m66 rev 3 OLED](pics/mlego_m65_rev11_oled.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 2"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![m66 rev 2 LOTR](pics/m65-rev10-lotr-a.webp){ loading=lazy }
-![m66 rev 2 dev/tty](pics/m65-rev10-tty-a.webp){ loading=lazy }
-![m66 rev 2 dev/tty](pics/m65-rev10-tty-b.webp){ loading=lazy }
-![m66 rev 2 LOTR](pics/m65-rev10-lotr-b.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "Rev 1"</p>
-<pre><code>![m66 rev 1](pics/m65-rev9.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Rev 4</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev 4 LCD" src="pics/m66/mlego_m66_rev4-lcd.webp" />
+<img alt="m66 rev 4 Sharp" src="pics/m66/mlego_m66_rev4-sharp.webp" />
+<img alt="m66 rev 4 Sharp" src="pics/m66/mlege-m66-rev4-sharp.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 3</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev 3 e-ink" src="pics/mlego_m65_rev11_eink.webp" />
+<img alt="m66 rev 3 OLED" src="pics/mlego_m65_rev11_oled.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 2</h5>
+
+<div class="image-grid">
+<p><img alt="m66 rev 2 LOTR" src="pics/m65-rev10-lotr-a.webp" />
+<img alt="m66 rev 2 dev/tty" src="pics/m65-rev10-tty-a.webp" />
+<img alt="m66 rev 2 dev/tty" src="pics/m65-rev10-tty-b.webp" />
+<img alt="m66 rev 2 LOTR" src="pics/m65-rev10-lotr-b.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">Rev 1</h5>
+
+<p><img alt="m66 rev 1" src="pics/m65-rev9.webp" /></p>
 <h2 id="keymaps-layout">Keymaps &amp; Layout</h2>
 <p>All m66 revisions share the same 5×14 physical layout and keymaps (shown below for Rev 4).</p>
 <h3 id="layout">Physical Layout</h3>
-<p><img alt="m66 rev4 layout" loading="lazy" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14.svg" /></p>
+<p><img alt="m66 rev4 layout" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14.svg" /></p>
 <h3 id="summary-keymap">Combined UK Keymap Summary</h3>
 <p>Except for mouse keys, QMK and ZMK keymaps are identical:</p>
-<p><img alt="m66 keymaps" loading="lazy" src="pics/m66/mlego_m66_rev4_uk.svg" /></p>
+<p><img alt="m66 keymaps" src="pics/m66/mlego_m66_rev4_uk.svg" /></p>
 <ul>
 <li><strong>Center legend</strong>: Layer 0 (Base) · <strong>Left legend</strong>: Layer 1 (Lower) · <strong>Right legend</strong>: Layer 2 (Raise) · <strong>Bottom legend</strong>: Layer 3 (Adjust)</li>
 <li><strong>Legend codes</strong>: <code>l</code> Lighting · <code>u</code> Unicode · <code>d</code> Debug · <code>b</code> Bootloader · <code>e</code> Erase EEPROM · <code>r</code> Reset MCU</li>
 </ul>
 <h3 id="keymap-default">Default Keymap Layers</h3>
-<p>=== "Layer 0 — QWERTY"</p>
-<pre><code>![m66 rev4 default layer 0](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-0.svg){ loading=lazy }
-</code></pre>
-<p>=== "Layer 1 — Lower"</p>
-<pre><code>![m66 rev4 default layer 1](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-1.svg){ loading=lazy }
-</code></pre>
-<p>=== "Layer 2 — Raise"</p>
-<pre><code>![m66 rev4 default layer 2](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-2.svg){ loading=lazy }
-</code></pre>
-<p>=== "Layer 3 — Adjust"</p>
-<pre><code>![m66 rev4 default layer 3](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-3.svg){ loading=lazy }
-</code></pre>
-<h3 id="keymap-uk">UK ISO Keymap Layers (with RGB Indicators)</h3>
-<p>=== "Layer 0 — QWERTY"</p>
-<pre><code>![m66 rev4 UK layer 0](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-0.svg){ loading=lazy }
-![m66 rev4 UK layer 0 photo](pics/m66/mlego_m66_uk-0.webp){ loading=lazy }
-</code></pre>
-<p>=== "Layer 1 — Lower"</p>
-<pre><code>![m66 rev4 UK layer 1](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-1.svg){ loading=lazy }
-![m66 rev4 UK layer 1 photo](pics/m66/mlego_m66_uk-1.webp){ loading=lazy }
-</code></pre>
-<p>=== "Layer 2 — Raise"</p>
-<pre><code>![m66 rev4 UK layer 2](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-2.svg){ loading=lazy }
-![m66 rev4 UK layer 2 photo](pics/m66/mlego_m66_uk-2.webp){ loading=lazy }
-</code></pre>
-<p>=== "Layer 3 — Adjust"</p>
-<pre><code>![m66 rev4 UK layer 3](pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-3.svg){ loading=lazy }
-![m66 rev4 UK layer 3 photo](pics/m66/mlego_m66_uk-3.webp){ loading=lazy }
-</code></pre>
-<h2 id="matrix-pins">Matrix &amp; Pinout Reference</h2>
-<p>=== "Rev 4 (RP2040 Pro Micro)"</p>
-<pre><code>![m66 rev4 matrix](pics/m66/mlego-m66-rev4-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
-</code></pre>
-<p>=== "Rev 3 (XIAO RP2040)"</p>
-<pre><code>![m66 rev3 matrix](pics/m66/mlego-m66-rev3-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
-</code></pre>
-<p>=== "Rev 2 (XIAO RP2040)"</p>
-<pre><code>![m66 rev2 matrix](pics/m66/mlego-m66-rev2-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
-</code></pre>
-<p>=== "Rev 1 (XIAO RP2040)"</p>
-<pre><code>![m66 rev1 matrix](pics/m66/mlego-m66-rev1-matrix-LAYOUT_ortho_5x14.svg){ loading=lazy }
+<h5 class="mt-4 mb-2 text-info">Layer 0 — QWERTY</h5>
 
-```text
-ShiftRegister SN74HC595N (#1 &amp; #2)        ShiftRegister 74HC165N (#3)
+<p><img alt="m66 rev4 default layer 0" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-0.svg" /></p>
+<h5 class="mt-4 mb-2 text-info">Layer 1 — Lower</h5>
+
+<p><img alt="m66 rev4 default layer 1" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-1.svg" /></p>
+<h5 class="mt-4 mb-2 text-info">Layer 2 — Raise</h5>
+
+<p><img alt="m66 rev4 default layer 2" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-2.svg" /></p>
+<h5 class="mt-4 mb-2 text-info">Layer 3 — Adjust</h5>
+
+<p><img alt="m66 rev4 default layer 3" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-default-3.svg" /></p>
+<h3 id="keymap-uk">UK ISO Keymap Layers (with RGB Indicators)</h3>
+<h5 class="mt-4 mb-2 text-info">Layer 0 — QWERTY</h5>
+
+<p><img alt="m66 rev4 UK layer 0" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-0.svg" />
+<img alt="m66 rev4 UK layer 0 photo" src="pics/m66/mlego_m66_uk-0.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Layer 1 — Lower</h5>
+
+<p><img alt="m66 rev4 UK layer 1" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-1.svg" />
+<img alt="m66 rev4 UK layer 1 photo" src="pics/m66/mlego_m66_uk-1.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Layer 2 — Raise</h5>
+
+<p><img alt="m66 rev4 UK layer 2" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-2.svg" />
+<img alt="m66 rev4 UK layer 2 photo" src="pics/m66/mlego_m66_uk-2.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Layer 3 — Adjust</h5>
+
+<p><img alt="m66 rev4 UK layer 3" src="pics/m66/mlego-m66-rev4-LAYOUT_ortho_5x14-uk-3.svg" />
+<img alt="m66 rev4 UK layer 3 photo" src="pics/m66/mlego_m66_uk-3.webp" /></p>
+<h2 id="matrix-pins">Matrix &amp; Pinout Reference</h2>
+<h5 class="mt-4 mb-2 text-info">Rev 4 (RP2040 Pro Micro)</h5>
+
+<p><img alt="m66 rev4 matrix" src="pics/m66/mlego-m66-rev4-matrix-LAYOUT_ortho_5x14.svg" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 3 (XIAO RP2040)</h5>
+
+<p><img alt="m66 rev3 matrix" src="pics/m66/mlego-m66-rev3-matrix-LAYOUT_ortho_5x14.svg" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 2 (XIAO RP2040)</h5>
+
+<p><img alt="m66 rev2 matrix" src="pics/m66/mlego-m66-rev2-matrix-LAYOUT_ortho_5x14.svg" /></p>
+<h5 class="mt-4 mb-2 text-info">Rev 1 (XIAO RP2040)</h5>
+
+<p><img alt="m66 rev1 matrix" src="pics/m66/mlego-m66-rev1-matrix-LAYOUT_ortho_5x14.svg" /></p>
+<pre><code class="language-text">ShiftRegister SN74HC595N (#1 &amp; #2)        ShiftRegister 74HC165N (#3)
 QB |1    16| VCC                          nPL |1    16| VCC
 QC |2    15| QA                            CP |2    15| nCE
 QD |3    14| SER data                      D4 |3    14| D3
@@ -546,23 +546,146 @@ QF |5    12| RCLK latch                    D6 |5    12| D1
 QG |6    11| SRCLK clock                   D7 |6    11| D0
 QH |7    10| SRCLR                        nQ7 |7    10| DS
  G |8     9| QH*                            G |8     9| Q7
-```
-
-| Rows | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | C13 | Row Pin |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **R0** | Esc | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | Bksp | MUTE | `3D0` |
-| **R1** | Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | X* | `3D1` |
-| **R2** | # | a | s | d | f | g | h | j | k | l | ; | ' | Enter | X* | `3D2` |
-| **R3** | Shift | \ | z | x | c | v | b | n | m | , | . | Up | / | X* | `3D3` |
-| **R4** | Ctrl | Menu | Lower | Alt | Raise | Space | Space | Space | AltGr | Shift | Left | Down | Right | X* | `3D4` |
-| **Col Pin** | `2QB` | `2QC` | `2QD` | `2QE` | `2QF` | `2QG` | `2QH` | `2QA` | `1QH` | `1QG` | `1QF` | `1QE` | `1QA` | `1QD` | *(X* NC)* |
-
-* **Encoders**: `Pad_A = GP27`, `Pad_B = GP26`
-* **OLED (I²C)**: `SCL = GP7`, `SDA = GP6`
-* **`74HC595N` (Columns)**: `MOSI = GP3` (pin 11), `Latch = GP1` (pin 8), `Clock = GP2` (pin 9)
-* **`74HC165N` (Rows)**: `Latch = GP1` (pin 8), `Clock = GP2` (pin 9), `MISO = GP4` (pin 10)
-* **LEDs (RP2040)**: `CAPS_LOCK = GP25`, `Lower = GP16`, `Raise = GP17`, `RGB DI = GP12`, `RGB On = GP11`
 </code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">C0</th>
+<th style="text-align: center;">C1</th>
+<th style="text-align: center;">C2</th>
+<th style="text-align: center;">C3</th>
+<th style="text-align: center;">C4</th>
+<th style="text-align: center;">C5</th>
+<th style="text-align: center;">C6</th>
+<th style="text-align: center;">C7</th>
+<th style="text-align: center;">C8</th>
+<th style="text-align: center;">C9</th>
+<th style="text-align: center;">C10</th>
+<th style="text-align: center;">C11</th>
+<th style="text-align: center;">C12</th>
+<th style="text-align: center;">C13</th>
+<th style="text-align: center;">Row Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R0</strong></td>
+<td style="text-align: center;">Esc</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Bksp</td>
+<td style="text-align: center;">MUTE</td>
+<td style="text-align: center;"><code>3D0</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: center;">Tab</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">r</td>
+<td style="text-align: center;">t</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">o</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">[</td>
+<td style="text-align: center;">]</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D1</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: center;">#</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">f</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">j</td>
+<td style="text-align: center;">k</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">'</td>
+<td style="text-align: center;">Enter</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D2</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">\</td>
+<td style="text-align: center;">z</td>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">v</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">Up</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D3</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: center;">Ctrl</td>
+<td style="text-align: center;">Menu</td>
+<td style="text-align: center;">Lower</td>
+<td style="text-align: center;">Alt</td>
+<td style="text-align: center;">Raise</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">AltGr</td>
+<td style="text-align: center;">Shift</td>
+<td style="text-align: center;">Left</td>
+<td style="text-align: center;">Down</td>
+<td style="text-align: center;">Right</td>
+<td style="text-align: center;">X*</td>
+<td style="text-align: center;"><code>3D4</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Col Pin</strong></td>
+<td style="text-align: center;"><code>2QB</code></td>
+<td style="text-align: center;"><code>2QC</code></td>
+<td style="text-align: center;"><code>2QD</code></td>
+<td style="text-align: center;"><code>2QE</code></td>
+<td style="text-align: center;"><code>2QF</code></td>
+<td style="text-align: center;"><code>2QG</code></td>
+<td style="text-align: center;"><code>2QH</code></td>
+<td style="text-align: center;"><code>2QA</code></td>
+<td style="text-align: center;"><code>1QH</code></td>
+<td style="text-align: center;"><code>1QG</code></td>
+<td style="text-align: center;"><code>1QF</code></td>
+<td style="text-align: center;"><code>1QE</code></td>
+<td style="text-align: center;"><code>1QA</code></td>
+<td style="text-align: center;"><code>1QD</code></td>
+<td style="text-align: center;"><em>(X</em> NC)*</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Encoders</strong>: <code>Pad_A = GP27</code>, <code>Pad_B = GP26</code></li>
+<li><strong>OLED (I²C)</strong>: <code>SCL = GP7</code>, <code>SDA = GP6</code></li>
+<li><strong><code>74HC595N</code> (Columns)</strong>: <code>MOSI = GP3</code> (pin 11), <code>Latch = GP1</code> (pin 8), <code>Clock = GP2</code> (pin 9)</li>
+<li><strong><code>74HC165N</code> (Rows)</strong>: <code>Latch = GP1</code> (pin 8), <code>Clock = GP2</code> (pin 9), <code>MISO = GP4</code> (pin 10)</li>
+<li><strong>LEDs (RP2040)</strong>: <code>CAPS_LOCK = GP25</code>, <code>Lower = GP16</code>, <code>Raise = GP17</code>, <code>RGB DI = GP12</code>, <code>RGB On = GP11</code></li>
+</ul>
             </div>
           </div>
         </div>
@@ -575,7 +698,7 @@ QH |7    10| SRCLR                        nQ7 |7    10| DS
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 5×14 Ortho</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f024108d600></li>
+                <li><strong class="text-white">Keys:</strong> 66</li>
                 <li><strong class="text-white">MCU:</strong> RP2040 / nice!nano / XIAO</li>
                 <li><strong class="text-white">Firmware:</strong> QMK & ZMK</li>
               </ul>

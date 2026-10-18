@@ -149,7 +149,6 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">Step-by-Step Assembly Guide</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">Build Guide</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0241162780> Keys</span>
           </div>
         </div>
         <div>
@@ -186,8 +185,8 @@
 </code></pre>
 </blockquote>
 <div class="image-grid">
-<p><img alt="PCB front side" loading="lazy" src="pics/m65-rev4-pcb-front.webp" />
-<img alt="PCB back side" loading="lazy" src="pics/m65-rev4-pcb-back.webp" /></p>
+<p><img alt="PCB front side" src="pics/m65-rev4-pcb-front.webp" />
+<img alt="PCB back side" src="pics/m65-rev4-pcb-back.webp" /></p>
 </div>
 <h2 id="mcu">1. Preparing the MCU Socket &amp; Headers</h2>
 <blockquote>
@@ -199,8 +198,8 @@
 <li>For 40-pin boards, I use <strong>machined round pin headers</strong> paired with a <strong>40-way DIL socket</strong> (or two single-row 20-pin female headers, which are especially convenient for Raspberry Pi Pico boards).</li>
 </ol>
 <div class="image-grid">
-<p><img alt="Round headers and 40-way DIL socket" loading="lazy" src="pics/header_1.webp" />
-<img alt="Single-row female header sockets" loading="lazy" src="pics/sockets.webp" /></p>
+<p><img alt="Round headers and 40-way DIL socket" src="pics/header_1.webp" />
+<img alt="Single-row female header sockets" src="pics/sockets.webp" /></p>
 </div>
 <blockquote>
 <p><strong>Header Orientation</strong></p>
@@ -208,15 +207,15 @@
 </code></pre>
 </blockquote>
 <div class="image-grid">
-<p><img alt="Headers seated in socket jig" loading="lazy" src="pics/header_2.webp" />
-<img alt="MCU placed on top of headers ready to solder" loading="lazy" src="pics/header_3.webp" /></p>
+<p><img alt="Headers seated in socket jig" src="pics/header_2.webp" />
+<img alt="MCU placed on top of headers ready to solder" src="pics/header_3.webp" /></p>
 </div>
 <ol start="2">
 <li>Verify the headers are vertical and stable. Solder the two corner pins of each row first to tack the alignment, then solder the remaining pins.</li>
 </ol>
 <div class="image-grid">
-<p><img alt="Soldered MCU headers top view" loading="lazy" src="pics/header_4.webp" />
-<img alt="Soldered MCU headers side profile" loading="lazy" src="pics/header_5.webp" /></p>
+<p><img alt="Soldered MCU headers top view" src="pics/header_4.webp" />
+<img alt="Soldered MCU headers side profile" src="pics/header_5.webp" /></p>
 </div>
 <h2 id="oled">2. Preparing the OLED Display</h2>
 <p>If your build includes an I²C OLED screen, socket it as well using a 4-pin row of round machine pins and a low-profile 1×4 socket:</p>
@@ -225,16 +224,16 @@
 <li>Solder the 4 pins to the <strong>OLED module only</strong> (do not solder the header directly to the keyboard PCB!), then remove the OLED assembly.</li>
 </ol>
 <div class="image-grid">
-<p><img alt="OLED header and socket" loading="lazy" src="pics/header_6.webp" />
-<img alt="OLED aligned on PCB jig" loading="lazy" src="pics/header_7.webp" />
-<img alt="Completed removable OLED module" loading="lazy" src="pics/header_8.webp" /></p>
+<p><img alt="OLED header and socket" src="pics/header_6.webp" />
+<img alt="OLED aligned on PCB jig" src="pics/header_7.webp" />
+<img alt="Completed removable OLED module" src="pics/header_8.webp" /></p>
 </div>
 <h2 id="diodes">3. Soldering the Diodes</h2>
 <p>Prepare your <code>1N4148</code> (DO-35 through-hole) signal diodes (65 or 66 for <code>m65</code>/<code>m66</code>, 60 for <code>m60</code>, 48 for <code>m48</code>, 20 for <code>m20</code>).</p>
 <ol>
 <li>Bend the leads at 90° as shown below.</li>
 </ol>
-<p><img alt="1N4148 diode bent at 90 degrees" loading="lazy" src="pics/diodes_1.webp" /></p>
+<p><img alt="1N4148 diode bent at 90 degrees" src="pics/diodes_1.webp" /></p>
 <blockquote>
 <p><strong>Diode Polarity (Black Cathode Band)</strong></p>
 <pre><code>Note the **black ring/collar (cathode)** at one end of the glass body. Insert every diode from the front of the PCB with the **black collar oriented toward the bottom/lower pad** (matching the silkscreen diode triangle/bar symbol).
@@ -244,8 +243,8 @@
 <li>Splay the leads outward on the back of the PCB to hold each diode snug against the board while flipping it over. Working column by column is fastest.</li>
 </ol>
 <div class="image-grid">
-<p><img alt="Diodes inserted on front side" loading="lazy" src="pics/diodes_2.webp" />
-<img alt="Diode leads bent on back side" loading="lazy" src="pics/diodes_3.webp" /></p>
+<p><img alt="Diodes inserted on front side" src="pics/diodes_2.webp" />
+<img alt="Diode leads bent on back side" src="pics/diodes_3.webp" /></p>
 </div>
 <blockquote>
 <p><strong>Trimming Diode Leads</strong></p>
@@ -256,9 +255,9 @@
 <li>For the horizontal diodes along the top row, bend one lead straight down beside the glass body as shown below so you can populate the entire row in one pass:</li>
 </ol>
 <div class="image-grid">
-<p><img alt="Soldered diode joint" loading="lazy" src="pics/diodes_4.webp" />
-<img alt="Top row diode bending" loading="lazy" src="pics/diodes_5.webp" />
-<img alt="All diodes soldered" loading="lazy" src="pics/diodes_6.webp" /></p>
+<p><img alt="Soldered diode joint" src="pics/diodes_4.webp" />
+<img alt="Top row diode bending" src="pics/diodes_5.webp" />
+<img alt="All diodes soldered" src="pics/diodes_6.webp" /></p>
 </div>
 <h2 id="resistors">4. Soldering the Resistors</h2>
 <p>Resistors are non-polarized — bend, insert, and splay the leads just like the diodes, ensuring the right resistance value goes into each footprint:</p>
@@ -272,8 +271,8 @@
 </code></pre>
 </blockquote>
 <div class="image-grid">
-<p><img alt="Resistors inserted" loading="lazy" src="pics/resistor_1.webp" />
-<img alt="Resistors soldered" loading="lazy" src="pics/resistor_2.webp" /></p>
+<p><img alt="Resistors inserted" src="pics/resistor_1.webp" />
+<img alt="Resistors soldered" src="pics/resistor_2.webp" /></p>
 </div>
 <h2 id="sockets">5. Soldering the MCU &amp; OLED Sockets</h2>
 <ol>
@@ -282,9 +281,9 @@
 <li>Repeat for the 4-pin OLED socket.</li>
 </ol>
 <div class="image-grid">
-<p><img alt="MCU socket taped in place" loading="lazy" src="pics/socket_1.webp" />
-<img alt="OLED socket placed" loading="lazy" src="pics/socket_2.webp" />
-<img alt="Sockets soldered" loading="lazy" src="pics/socket_3.webp" /></p>
+<p><img alt="MCU socket taped in place" src="pics/socket_1.webp" />
+<img alt="OLED socket placed" src="pics/socket_2.webp" />
+<img alt="Sockets soldered" src="pics/socket_3.webp" /></p>
 </div>
 <h2 id="leds">6. Soldering Indicator LEDs</h2>
 <blockquote>
@@ -293,8 +292,8 @@
 </code></pre>
 </blockquote>
 <div class="image-grid">
-<p><img alt="Indicator LEDs inserted" loading="lazy" src="pics/led_1.webp" />
-<img alt="Indicator LEDs soldered" loading="lazy" src="pics/led_2.webp" /></p>
+<p><img alt="Indicator LEDs inserted" src="pics/led_1.webp" />
+<img alt="Indicator LEDs soldered" src="pics/led_2.webp" /></p>
 </div>
 <h2 id="switches">7. Mounting &amp; Soldering Switches</h2>
 <ol>
@@ -307,14 +306,14 @@
 </code></pre>
 </blockquote>
 <div class="image-grid">
-<p><img alt="Switches seated on front" loading="lazy" src="pics/switches_1.webp" />
-<img alt="Switch pins ready to solder on back" loading="lazy" src="pics/switches_2.webp" /></p>
+<p><img alt="Switches seated on front" src="pics/switches_1.webp" />
+<img alt="Switch pins ready to solder on back" src="pics/switches_2.webp" /></p>
 </div>
 <h2 id="encoder">8. Soldering the Rotary Encoder</h2>
 <p>Snap the EC11 rotary encoder into its footprint at the top-right corner. On earlier revisions (<code>Rev 1–8</code>), only the 3 rotational pins are routed; on <code>Rev 9+</code> and <code>m66</code>, all 5 signal pins (including the push-button switch) are active. Solder all signal pins as well as the two side mounting tabs for mechanical strength.</p>
 <div class="image-grid">
-<p><img alt="Rotary encoder seated" loading="lazy" src="pics/encoder_1.webp" />
-<img alt="Rotary encoder soldered" loading="lazy" src="pics/encoder_2.webp" /></p>
+<p><img alt="Rotary encoder seated" src="pics/encoder_1.webp" />
+<img alt="Rotary encoder soldered" src="pics/encoder_2.webp" /></p>
 </div>
 <blockquote>
 <p><strong>PCB Soldering Complete!</strong></p>
@@ -328,10 +327,10 @@
 <li>Seat the socketed MCU, OLED screen, and encoder knob, then plug in the USB cable.</li>
 </ol>
 <div class="image-grid">
-<p><img alt="LEGO baseplate parts" loading="lazy" src="pics/lego_1.webp" />
-<img alt="LEGO perimeter walls assembled" loading="lazy" src="pics/lego_2.webp" />
-<img alt="PCB mounted on LEGO case" loading="lazy" src="pics/final_1.webp" />
-<img alt="MCU and OLED seated" loading="lazy" src="pics/final_2.webp" /></p>
+<p><img alt="LEGO baseplate parts" src="pics/lego_1.webp" />
+<img alt="LEGO perimeter walls assembled" src="pics/lego_2.webp" />
+<img alt="PCB mounted on LEGO case" src="pics/final_1.webp" />
+<img alt="MCU and OLED seated" src="pics/final_2.webp" /></p>
 </div>
 <blockquote>
 <p><strong>First Power-On Checklist</strong></p>
@@ -343,7 +342,7 @@
 * **Key Matrix**: Test every switch in a keyboard tester — then install your keycaps and enjoy!
 </code></pre>
 </blockquote>
-<p><img alt="Finished mlego keyboard with keycaps" loading="lazy" src="pics/final_3.webp" /></p>
+<p><img alt="Finished mlego keyboard with keycaps" src="pics/final_3.webp" /></p>
             </div>
           </div>
         </div>
@@ -356,7 +355,6 @@
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> Build Guide</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0241162780></li>
               </ul>
               <p class="small text-secondary mb-3">Illustrated soldering and assembly walkthrough: sockets, diodes, LED resistor calculations, and LEGO case mounting.</p>
               <div class="d-grid gap-2">

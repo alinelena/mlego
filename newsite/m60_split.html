@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m60 Split (5×12 Split)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">5×12 Split</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240113700> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">60 (2×30) Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>Dual STM32F401 / F411</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
           </div>
@@ -179,8 +179,8 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="M60 split 5x12" loading="lazy" src="pics/5x12s/m60_split.webp" />
-<img alt="M60 split 5x12 with LEDs" loading="lazy" src="pics/5x12s/m60s-leds.webp" /></p>
+<p><img alt="M60 split 5x12" src="pics/5x12s/m60_split.webp" />
+<img alt="M60 split 5x12 with LEDs" src="pics/5x12s/m60s-leds.webp" /></p>
 </div>
 <p>An ergonomic <strong>5×12 split ortholinear keyboard</strong> mounted on two 16×16 LEGO baseplates, featuring dual rotary encoders (one per half) and addressable RGB underglow.</p>
 <blockquote>
@@ -202,18 +202,18 @@
 <li><strong>Firmware</strong>: QMK with TinyUF2 bootloader support</li>
 </ul>
 <h2 id="renders">Renders &amp; PCBs</h2>
-<p>=== "Left &amp; Right Printed PCBs"</p>
-<pre><code>![M60 split 5x12 left/right PCB](pics/5x12s/m60_split_pcb.webp){ loading=lazy }
-</code></pre>
-<p>=== "KiCad Left &amp; Right Layout"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![M60 split left PCB](pics/5x12s/m60-left.webp){ loading=lazy }
-![M60 split right PCB](pics/5x12s/m60-right.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "3D Render (Left Half)"</p>
-<pre><code>![M60 split 3D render](pics/5x12s/m60-split-3d.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">Left & Right Printed PCBs</h5>
+
+<p><img alt="M60 split 5x12 left/right PCB" src="pics/5x12s/m60_split_pcb.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">KiCad Left & Right Layout</h5>
+
+<div class="image-grid">
+<p><img alt="M60 split left PCB" src="pics/5x12s/m60-left.webp" />
+<img alt="M60 split right PCB" src="pics/5x12s/m60-right.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">3D Render (Left Half)</h5>
+
+<p><img alt="M60 split 3D render" src="pics/5x12s/m60-split-3d.webp" /></p>
 <h2 id="bom">BOM</h2>
 <ul>
 <li>2× WeAct <code>STM32F401</code> (or <code>STM32F411</code>) BlackPill boards with headers</li>
@@ -234,8 +234,8 @@
 </ul>
 <h2 id="case">Case &amp; Assembly</h2>
 <ul>
-<li><strong>LEGO Enclosure</strong>: See the <a href="m65.md#case">m65 Case &amp; Thickness section</a> for LEGO plate stacking details.</li>
-<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="#doc/assembly">Assembly Guide</a>.</li>
+<li><strong>LEGO Enclosure</strong>: See the <a href="m65.html#case">m65 Case &amp; Thickness section</a> for LEGO plate stacking details.</li>
+<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="assembly.html">Assembly Guide</a>.</li>
 </ul>
 <h2 id="gerbers">Gerbers &amp; KiCad</h2>
 <p>Production-ready Gerbers for JLCPCB:</p>
@@ -246,23 +246,19 @@
 <p>Full KiCad project files are available in <a href="https://gitlab.com/m-lego/m60_split/"><code>m-lego/m60_split</code> on GitLab</a> (shared footprints in <a href="https://gitlab.com/m-lego/m65/"><code>m-lego/m65</code></a>).</p>
 <h2 id="firmware">Firmware</h2>
 <p>Ensure both BlackPill boards are flashed with the <a href="https://github.com/adafruit/tinyuf2">TinyUF2 bootloader</a>.</p>
-<p>=== "Rev 1 (<code>STM32F401</code>)"</p>
-<pre><code>Download prebuilt UF2: [mlego_m60_split_rev1_default.uf2](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev1_default.uf2)
+<h5 class="mt-4 mb-2 text-info">Rev 1 (`STM32F401`)</h5>
 
-```bash
-git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
+<p>Download prebuilt UF2: <a href="https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev1_default.uf2">mlego_m60_split_rev1_default.uf2</a></p>
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m60_split/rev1 -km default
-```
 </code></pre>
-<p>=== "Rev 2 (<code>STM32F411</code>)"</p>
-<pre><code>Download prebuilt UF2: [mlego_m60_split_rev2_default.uf2](https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev2_default.uf2)
+<h5 class="mt-4 mb-2 text-info">Rev 2 (`STM32F411`)</h5>
 
-```bash
-git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
+<p>Download prebuilt UF2: <a href="https://gitlab.com/m-lego/m60_split/-/blob/main/firmware/mlego_m60_split_rev2_default.uf2">mlego_m60_split_rev2_default.uf2</a></p>
+<pre><code class="language-bash">git clone --recurse-submodules -b mlego https://github.com/qmk/qmk_firmware.git qmk-alin
 cd qmk-alin
 qmk compile -kb mlego/m60_split/rev2 -km default
-```
 </code></pre>
 <h2 id="pins">Pinout Reference</h2>
 <ul>
@@ -308,10 +304,10 @@ qmk compile -kb mlego/m60_split/rev2 -km default
 <h2 id="other-builds">Community Builds</h2>
 <p>Builds by <strong>Seth</strong> (<code>u/modularsynth123456</code>):</p>
 <div class="image-grid">
-<p><img alt="M60 split by Seth 4" loading="lazy" src="pics/5x12s/m60s_4.webp" />
-<img alt="M60 split by Seth 3" loading="lazy" src="pics/5x12s/m60s_3.webp" />
-<img alt="M60 split by Seth 1" loading="lazy" src="pics/5x12s/m60s_1.webp" />
-<img alt="M60 split by Seth 2" loading="lazy" src="pics/5x12s/m60s_2.webp" /></p>
+<p><img alt="M60 split by Seth 4" src="pics/5x12s/m60s_4.webp" />
+<img alt="M60 split by Seth 3" src="pics/5x12s/m60s_3.webp" />
+<img alt="M60 split by Seth 1" src="pics/5x12s/m60s_1.webp" />
+<img alt="M60 split by Seth 2" src="pics/5x12s/m60s_2.webp" /></p>
 </div>
             </div>
           </div>
@@ -325,7 +321,7 @@ qmk compile -kb mlego/m60_split/rev2 -km default
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 5×12 Split</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240113700></li>
+                <li><strong class="text-white">Keys:</strong> 60 (2×30)</li>
                 <li><strong class="text-white">MCU:</strong> Dual STM32F401 / F411</li>
                 <li><strong class="text-white">Firmware:</strong> QMK</li>
               </ul>

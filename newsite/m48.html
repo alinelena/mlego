@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">m48 (4×12 Ortho)</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">4×12 Ortho</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240113740> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">48 Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F401 / F411</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
           </div>
@@ -179,8 +179,8 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="M48 4x12 with MT3 /dev/tty keycaps" loading="lazy" src="pics/4x12/m48_tty.webp" />
-<img alt="M48 4x12 switches exposed" loading="lazy" src="pics/4x12/m48.webp" /></p>
+<p><img alt="M48 4x12 with MT3 /dev/tty keycaps" src="pics/4x12/m48_tty.webp" />
+<img alt="M48 4x12 switches exposed" src="pics/4x12/m48.webp" /></p>
 </div>
 <p>A compact, Planck-style <strong>4×12 ortholinear mechanical keyboard</strong> mounted in a modular LEGO enclosure with an optional rotary encoder and addressable LED strip.</p>
 <blockquote>
@@ -201,18 +201,18 @@
 <li><strong>Firmware</strong>: QMK</li>
 </ul>
 <h2 id="3d-render">3D Render &amp; PCBs</h2>
-<p>=== "3D Render"</p>
-<pre><code>![M48 4x12 3D render](pics/4x12/m48-3d-render.webp){ loading=lazy }
-</code></pre>
-<p>=== "Printed PCB (Front &amp; Back)"</p>
-<pre><code>&lt;div class="image-grid" markdown&gt;
-![M48 4x12 PCB front](pics/4x12/m48-pcb-front.webp){ loading=lazy }
-![M48 4x12 PCB back](pics/4x12/m48-pcb-back.webp){ loading=lazy }
-&lt;/div&gt;
-</code></pre>
-<p>=== "KiCad Layout"</p>
-<pre><code>![M48 4x12 KiCad PCB](pics/4x12/m48-pcb.webp){ loading=lazy }
-</code></pre>
+<h5 class="mt-4 mb-2 text-info">3D Render</h5>
+
+<p><img alt="M48 4x12 3D render" src="pics/4x12/m48-3d-render.webp" /></p>
+<h5 class="mt-4 mb-2 text-info">Printed PCB (Front & Back)</h5>
+
+<div class="image-grid">
+<p><img alt="M48 4x12 PCB front" src="pics/4x12/m48-pcb-front.webp" />
+<img alt="M48 4x12 PCB back" src="pics/4x12/m48-pcb-back.webp" /></p>
+</div>
+<h5 class="mt-4 mb-2 text-info">KiCad Layout</h5>
+
+<p><img alt="M48 4x12 KiCad PCB" src="pics/4x12/m48-pcb.webp" /></p>
 <h2 id="bom">BOM</h2>
 <ul>
 <li>1× WeAct <code>STM32F401</code> BlackPill with headers</li>
@@ -220,15 +220,15 @@
 <li>48× <code>1N4148</code> signal diodes (DO-35 through-hole)</li>
 <li>48× 5-pin Cherry MX–compatible switches</li>
 <li>1× EC11 rotary encoder</li>
-<li>2× 220 Ω or 350 Ω resistors (for status LEDs and boot pull-up; see <a href="m65.md#bom">m65 BOM notes</a>)</li>
+<li>2× 220 Ω or 350 Ω resistors (for status LEDs and boot pull-up; see <a href="m65.html#bom">m65 BOM notes</a>)</li>
 <li>1× status indicator LED</li>
 <li>Optional: 3-pin addressable LED strip</li>
 <li>LEGO 16×32 baseplate and perimeter plates/bricks</li>
 </ul>
 <h2 id="case">Case &amp; Assembly</h2>
 <ul>
-<li><strong>LEGO Enclosure</strong>: See the <a href="m65.md#case">m65 Case &amp; Thickness section</a>.</li>
-<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="#doc/assembly">Assembly Guide</a>.</li>
+<li><strong>LEGO Enclosure</strong>: See the <a href="m65.html#case">m65 Case &amp; Thickness section</a>.</li>
+<li><strong>Soldering &amp; Build</strong>: Follow the step-by-step <a href="assembly.html">Assembly Guide</a>.</li>
 </ul>
 <h2 id="gerbers">Gerbers &amp; KiCad</h2>
 <p>Production-ready Gerbers for JLCPCB:</p>
@@ -289,7 +289,7 @@ make m-lego/m48/rev1:default
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> 4×12 Ortho</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240113740></li>
+                <li><strong class="text-white">Keys:</strong> 48</li>
                 <li><strong class="text-white">MCU:</strong> STM32F401 / F411</li>
                 <li><strong class="text-white">Firmware:</strong> QMK</li>
               </ul>

@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">SteelSeries Prime Mouse</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">QMK Mouse</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f0240112980> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">5-Btn Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F103 + PMW3389</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK (UF2)</span>
           </div>
@@ -178,13 +178,13 @@
   <span class="spec-badge">UF2 Bootloader + QMK</span>
 </div>
 
-<p><img alt="SteelSeries Prime mouse" loading="lazy" src="pics/prime.webp" /></p>
+<p><img alt="SteelSeries Prime mouse" src="pics/prime.webp" /></p>
 <p>The wired <a href="https://steelseries.com/gaming-mice/prime">SteelSeries Prime</a> is an affordable, lightweight gaming mouse (picked up from a local discounter, B&amp;M, for £15) built around an <strong><code>STM32F103C8T6</code></strong> microcontroller, a <strong>TrueMove Pro</strong> optical sensor (compatible with QMK's PixArt <code>PMW3389</code> driver), 6 buttons, and an RGB scroll wheel LED.</p>
 <p>Because the fancier <strong>Prime+</strong> shares the same MCU and optical sensor and was already ported to QMK by <strong>Dasky</strong>, adapting the standard Prime was straightforward. Converting it requires opening the shell, soldering a 5-pin SWD header, unlocking flash protection via <code>openocd</code>, and flashing a UF2 bootloader.</p>
 <h2 id="pcbs">Internal PCBs</h2>
 <div class="image-grid">
-<p><img alt="SteelSeries Prime PCB front" loading="lazy" src="pics/prime_front.webp" />
-<img alt="SteelSeries Prime PCB back with lens removed" loading="lazy" src="pics/prime_back.webp" /></p>
+<p><img alt="SteelSeries Prime PCB front" src="pics/prime_front.webp" />
+<img alt="SteelSeries Prime PCB back with lens removed" src="pics/prime_back.webp" /></p>
 </div>
 <h2 id="tools">Required Tools</h2>
 <ul>
@@ -288,7 +288,7 @@ qmk flash -kb steelseries/prime -km default</code></p>
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> QMK Mouse</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f0240112980></li>
+                <li><strong class="text-white">Keys:</strong> 5-Btn</li>
                 <li><strong class="text-white">MCU:</strong> STM32F103 + PMW3389</li>
                 <li><strong class="text-white">Firmware:</strong> QMK (UF2)</li>
               </ul>

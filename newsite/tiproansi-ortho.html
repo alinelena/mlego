@@ -149,7 +149,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">Tipro ANSI-Ortho</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             <span class="mlego-badge">ANSI + Ortho</span>
-            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25"><built-in method keys of dict object at 0x7f024013c1c0> Keys</span>
+            <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">Hybrid Keys</span>
             <span class="badge bg-dark text-info border border-info border-opacity-25"><i class="bi bi-cpu me-1"></i>STM32F401</span>
             <span class="badge bg-dark text-success border border-success border-opacity-25"><i class="bi bi-code-slash me-1"></i>QMK</span>
           </div>
@@ -178,13 +178,13 @@
 </div>
 
 <div class="image-grid">
-<p><img alt="Tipro ANSI-Ortho completed" loading="lazy" src="pics/tipro/tiproansi-ortho.webp" />
-<img alt="Tipro ANSI-Ortho switches exposed" loading="lazy" src="pics/tipro/tipro-ansiortho-nokeys.webp" /></p>
+<p><img alt="Tipro ANSI-Ortho completed" src="pics/tipro/tiproansi-ortho.webp" />
+<img alt="Tipro ANSI-Ortho switches exposed" src="pics/tipro/tipro-ansiortho-nokeys.webp" /></p>
 </div>
 <h2 id="introduction">Introduction</h2>
-<p>A hybrid <strong>ANSI staggered + ortholinear</strong> Tipro terminal converted to run <strong>QMK Firmware</strong> using the same <code>STM32F401</code> + <code>74HC595</code> daughterboard technique described in the <a href="#doc/tipro8x16">Tipro 8×16 guide</a>.</p>
+<p>A hybrid <strong>ANSI staggered + ortholinear</strong> Tipro terminal converted to run <strong>QMK Firmware</strong> using the same <code>STM32F401</code> + <code>74HC595</code> daughterboard technique described in the <a href="tipro8x16.html">Tipro 8×16 guide</a>.</p>
 <h2 id="wiring">Internal Wiring &amp; KiCad</h2>
-<p><img alt="Tipro ANSI-Ortho internal wiring" loading="lazy" src="pics/tipro/tiproansi-ortho-back.webp" /></p>
+<p><img alt="Tipro ANSI-Ortho internal wiring" src="pics/tipro/tiproansi-ortho-back.webp" /></p>
 <ul>
 <li><strong>KiCad Daughterboard Project</strong>: <a href="https://gitlab.com/m-lego/hand8x16/"><code>m-lego/hand8x16</code> on GitLab</a></li>
 </ul>
@@ -198,9 +198,9 @@ cd qmk-alin
 qmk compile -kb tipro/rev1 -km default_ansiortho
 </code></pre>
 <h2 id="pins">Pinout Reference</h2>
-<p>Identical to the <a href="tipro8x16.md#pins">Tipro 8×16 pinout</a>.</p>
+<p>Identical to the <a href="tipro8x16.html#pins">Tipro 8×16 pinout</a>.</p>
 <h2 id="photos">Original Condition</h2>
-<p><img alt="Tipro ANSI-Ortho original condition" loading="lazy" src="pics/tipro/tipro-ansi-ortho-orig.webp" /></p>
+<p><img alt="Tipro ANSI-Ortho original condition" src="pics/tipro/tipro-ansi-ortho-orig.webp" /></p>
             </div>
           </div>
         </div>
@@ -213,7 +213,7 @@ qmk compile -kb tipro/rev1 -km default_ansiortho
               <h3 class="h5 text-white mb-3" style="font-family: 'Anaheim', sans-serif;">Quick Specs</h3>
               <ul class="list-unstyled small text-secondary mb-3" style="line-height: 2;">
                 <li><strong class="text-white">Layout:</strong> ANSI + Ortho</li>
-                <li><strong class="text-white">Keys:</strong> <built-in method keys of dict object at 0x7f024013c1c0></li>
+                <li><strong class="text-white">Keys:</strong> Hybrid</li>
                 <li><strong class="text-white">MCU:</strong> STM32F401</li>
                 <li><strong class="text-white">Firmware:</strong> QMK</li>
               </ul>
