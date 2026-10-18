@@ -201,15 +201,18 @@ def build_site(outdir: Path):
     # 7. Render Detail Pages (content sourced directly from notes/<item.file>)
     detail_tpl = env.get_template("detail.html")
     detail_configs = [
-        (keyboards_data["items"], "Keyboards", "keyboards.html", "keyboards"),
-        (converted_data["items"], "POS Conversions", "converted.html", "converted"),
-        (mice_data["items"], "QMK Mice", "mice.html", "mice"),
-        (guides_data["items"], "Build Guides", "guides.html", "guides"),
+        (keyboards_data["items"], "Keyboards", "keyboards.html", "keyboards", "#6cb670"),
+        (converted_data["items"], "POS Conversions", "converted.html", "converted", "#fbbf24"),
+        (mice_data["items"], "QMK Mice", "mice.html", "mice", "#818cf8"),
+        (guides_data["items"], "Build Guides", "guides.html", "guides", "#f472b6"),
     ]
 
     count = 0
-    for items, parent_title, parent_url, group_id in detail_configs:
-        for item in items:
+    for items, parent_title, parent_url, group_id, accent_color in detail_configs:
+        num_items = len(items)
+        for idx, item in enumerate(items):
+            prev_item = items[idx - 1] if idx > 0 else None
+            next_item = items[idx + 1] if idx < num_items - 1 else None
             note_filename = item.get("file", f"{item['id']}.md")
             rendered_content = read_note(note_filename)
             det_html = detail_tpl.render(
@@ -217,10 +220,14 @@ def build_site(outdir: Path):
                 description=item.get("summary", ""),
                 active_page=item["id"],
                 active_group=group_id,
+                accent_color=accent_color,
                 site=site_data,
                 item=item,
                 parent_title=parent_title,
                 parent_url=parent_url,
+                siblings=items,
+                prev_item=prev_item,
+                next_item=next_item,
                 html_content=rendered_content,
             )
             (outdir / f"{item['id']}.html").write_text(det_html, encoding="utf-8")

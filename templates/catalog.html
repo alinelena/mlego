@@ -21,6 +21,21 @@
 
   <main class="py-5">
     <div class="container">
+      <!-- Quick Jump Sibling Switcher -->
+      <div class="catalog-quicknav mb-4">
+        <span class="text-secondary small text-uppercase fw-semibold me-2 d-none d-sm-inline">Quick Jump:</span>
+        <div class="catalog-quicknav-pills">
+          {% for item in items %}
+          <a href="{{ item.id }}.html" class="filter-pill text-decoration-none">
+            {{ item.title.split('(')[0].strip() }}
+            {% if item.badge %}
+            <span class="badge bg-secondary bg-opacity-25 ms-1" style="font-size: 0.72rem;">{{ item.badge }}</span>
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
       <!-- Search Filter Box -->
       <div class="search-filter-box mb-4">
         <div class="search-input-group">

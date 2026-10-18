@@ -36,10 +36,6 @@ menu:
     url: '#guides'
     icon: bi-journal-code
     color: '#f472b6'
-  - name: Specs
-    url: '#specs'
-    icon: bi-table
-    color: '#fb923c'
   - name: Classic Site
     url: classic/
     icon: bi-journal-text

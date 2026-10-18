@@ -34,68 +34,152 @@
         </a>
       </li>
 
-      <!-- Keyboards Submenu -->
-      <li>
-        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'keyboards' %}true{% else %}false{% endif %}" style="--nav-item-color: #6cb670;">
-          <i class="bi bi-keyboard"></i> Keyboards <i class="bi bi-chevron-down chevron-icon"></i>
-        </button>
-        <ul class="corner-subnav-list{% if active_group == 'keyboards' %} show{% endif %}">
-          <li><a href="keyboards.html" class="corner-nav-link{% if active_page == 'keyboards' %} active{% endif %}">All Keyboards</a></li>
-          <li><a href="m66.html" class="corner-nav-link{% if active_page == 'm66' %} active{% endif %}">m66 (5×14)</a></li>
-          <li><a href="m65.html" class="corner-nav-link{% if active_page == 'm65' %} active{% endif %}">m65 (5×13)</a></li>
-          <li><a href="m60.html" class="corner-nav-link{% if active_page == 'm60' %} active{% endif %}">m60 (5×12)</a></li>
-          <li><a href="m60_split.html" class="corner-nav-link{% if active_page == 'm60_split' %} active{% endif %}">m60 Split</a></li>
-          <li><a href="m48.html" class="corner-nav-link{% if active_page == 'm48' %} active{% endif %}">m48 (4×12)</a></li>
-          <li><a href="m20.html" class="corner-nav-link{% if active_page == 'm20' %} active{% endif %}">m20 (5×4)</a></li>
-          <li><a href="m8.html" class="corner-nav-link{% if active_page == 'm8' %} active{% endif %}">m8 (2×4)</a></li>
-          <li><a href="m4.html" class="corner-nav-link{% if active_page == 'm4' %} active{% endif %}">m4 (2×2)</a></li>
-        </ul>
+      <!-- Keyboards Category & Second-Level Chips -->
+      <li class="corner-nav-group{% if active_group == 'keyboards' %} group-active{% endif %}">
+        <div class="corner-nav-group-header" style="--nav-item-color: #6cb670;">
+          <a href="keyboards.html" class="corner-nav-link corner-nav-group-title{% if active_page == 'keyboards' %} active{% endif %}">
+            <i class="bi bi-keyboard"></i> Keyboards
+          </a>
+          <button type="button" class="corner-nav-group-toggle-btn" aria-expanded="{% if active_group == 'keyboards' %}true{% else %}false{% endif %}" aria-label="Toggle Keyboards Submenu">
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+        <div class="corner-subnav-panel{% if active_group == 'keyboards' %} show{% endif %}">
+          <div class="corner-subnav-grid">
+            <a href="m66.html" class="corner-subnav-chip{% if active_page == 'm66' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m66</span>
+              <span class="chip-badge">5×14</span>
+            </a>
+            <a href="m65.html" class="corner-subnav-chip{% if active_page == 'm65' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m65</span>
+              <span class="chip-badge">5×13</span>
+            </a>
+            <a href="m60.html" class="corner-subnav-chip{% if active_page == 'm60' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m60</span>
+              <span class="chip-badge">5×12</span>
+            </a>
+            <a href="m60_split.html" class="corner-subnav-chip{% if active_page == 'm60_split' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m60 Split</span>
+              <span class="chip-badge">Dual</span>
+            </a>
+            <a href="m48.html" class="corner-subnav-chip{% if active_page == 'm48' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m48</span>
+              <span class="chip-badge">4×12</span>
+            </a>
+            <a href="m20.html" class="corner-subnav-chip{% if active_page == 'm20' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m20</span>
+              <span class="chip-badge">5×4</span>
+            </a>
+            <a href="m8.html" class="corner-subnav-chip{% if active_page == 'm8' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m8</span>
+              <span class="chip-badge">2×4</span>
+            </a>
+            <a href="m4.html" class="corner-subnav-chip{% if active_page == 'm4' %} active{% endif %}" style="--chip-accent: #6cb670;">
+              <span class="chip-name">m4</span>
+              <span class="chip-badge">2×2</span>
+            </a>
+          </div>
+          <div class="text-end pt-2">
+            <a href="keyboards.html" class="corner-subnav-all-link">Browse All 8 Keyboards <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
       </li>
 
-      <!-- POS Conversions Submenu -->
-      <li>
-        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'converted' %}true{% else %}false{% endif %}" style="--nav-item-color: #fbbf24;">
-          <i class="bi bi-cpu"></i> POS Conversions <i class="bi bi-chevron-down chevron-icon"></i>
-        </button>
-        <ul class="corner-subnav-list{% if active_group == 'converted' %} show{% endif %}">
-          <li><a href="converted.html" class="corner-nav-link{% if active_page == 'converted' %} active{% endif %}">All Conversions</a></li>
-          <li><a href="tipro8x16.html" class="corner-nav-link{% if active_page == 'tipro8x16' %} active{% endif %}">Tipro 8×16</a></li>
-          <li><a href="tipro8x12.html" class="corner-nav-link{% if active_page == 'tipro8x12' %} active{% endif %}">Tipro 8×12</a></li>
-          <li><a href="tipro8x4.html" class="corner-nav-link{% if active_page == 'tipro8x4' %} active{% endif %}">Tipro 8×4</a></li>
-          <li><a href="tiproansi-ortho.html" class="corner-nav-link{% if active_page == 'tiproansi-ortho' %} active{% endif %}">Tipro ANSI-Ortho</a></li>
-          <li><a href="tiproortho-ansi.html" class="corner-nav-link{% if active_page == 'tiproortho-ansi' %} active{% endif %}">Tipro Ortho-ANSI</a></li>
-        </ul>
+      <!-- POS Conversions Category & Second-Level Chips -->
+      <li class="corner-nav-group{% if active_group == 'converted' %} group-active{% endif %}">
+        <div class="corner-nav-group-header" style="--nav-item-color: #fbbf24;">
+          <a href="converted.html" class="corner-nav-link corner-nav-group-title{% if active_page == 'converted' %} active{% endif %}">
+            <i class="bi bi-cpu"></i> POS Conversions
+          </a>
+          <button type="button" class="corner-nav-group-toggle-btn" aria-expanded="{% if active_group == 'converted' %}true{% else %}false{% endif %}" aria-label="Toggle POS Conversions Submenu">
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+        <div class="corner-subnav-panel{% if active_group == 'converted' %} show{% endif %}">
+          <div class="corner-subnav-grid">
+            <a href="tipro8x16.html" class="corner-subnav-chip{% if active_page == 'tipro8x16' %} active{% endif %}" style="--chip-accent: #fbbf24;">
+              <span class="chip-name">Tipro 8×16</span>
+              <span class="chip-badge">128 Keys</span>
+            </a>
+            <a href="tipro8x12.html" class="corner-subnav-chip{% if active_page == 'tipro8x12' %} active{% endif %}" style="--chip-accent: #fbbf24;">
+              <span class="chip-name">Tipro 8×12</span>
+              <span class="chip-badge">96 Keys</span>
+            </a>
+            <a href="tipro8x4.html" class="corner-subnav-chip{% if active_page == 'tipro8x4' %} active{% endif %}" style="--chip-accent: #fbbf24;">
+              <span class="chip-name">Tipro 8×4</span>
+              <span class="chip-badge">32 Keys</span>
+            </a>
+            <a href="tiproansi-ortho.html" class="corner-subnav-chip{% if active_page == 'tiproansi-ortho' %} active{% endif %}" style="--chip-accent: #fbbf24;">
+              <span class="chip-name">ANSI-Ortho</span>
+              <span class="chip-badge">60%+</span>
+            </a>
+            <a href="tiproortho-ansi.html" class="corner-subnav-chip{% if active_page == 'tiproortho-ansi' %} active{% endif %}" style="--chip-accent: #fbbf24;">
+              <span class="chip-name">Ortho-ANSI</span>
+              <span class="chip-badge">+60%</span>
+            </a>
+          </div>
+          <div class="text-end pt-2">
+            <a href="converted.html" class="corner-subnav-all-link">Browse All 5 Conversions <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
       </li>
 
-      <!-- Mice Submenu -->
-      <li>
-        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'mice' %}true{% else %}false{% endif %}" style="--nav-item-color: #818cf8;">
-          <i class="bi bi-mouse"></i> QMK Mice <i class="bi bi-chevron-down chevron-icon"></i>
-        </button>
-        <ul class="corner-subnav-list{% if active_group == 'mice' %} show{% endif %}">
-          <li><a href="mice.html" class="corner-nav-link{% if active_page == 'mice' %} active{% endif %}">All Mice</a></li>
-          <li><a href="prime.html" class="corner-nav-link{% if active_page == 'prime' %} active{% endif %}">SteelSeries Prime</a></li>
-        </ul>
+      <!-- Mice Category & Second-Level Chips -->
+      <li class="corner-nav-group{% if active_group == 'mice' %} group-active{% endif %}">
+        <div class="corner-nav-group-header" style="--nav-item-color: #818cf8;">
+          <a href="mice.html" class="corner-nav-link corner-nav-group-title{% if active_page == 'mice' %} active{% endif %}">
+            <i class="bi bi-mouse"></i> QMK Mice
+          </a>
+          <button type="button" class="corner-nav-group-toggle-btn" aria-expanded="{% if active_group == 'mice' %}true{% else %}false{% endif %}" aria-label="Toggle Mice Submenu">
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+        <div class="corner-subnav-panel{% if active_group == 'mice' %} show{% endif %}">
+          <div class="corner-subnav-grid">
+            <a href="prime.html" class="corner-subnav-chip{% if active_page == 'prime' %} active{% endif %}" style="--chip-accent: #818cf8;">
+              <span class="chip-name">Prime Mouse</span>
+              <span class="chip-badge">QMK</span>
+            </a>
+          </div>
+          <div class="text-end pt-2">
+            <a href="mice.html" class="corner-subnav-all-link">Browse All Mice <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
       </li>
 
-      <!-- Guides Submenu -->
-      <li>
-        <button type="button" class="corner-nav-link corner-nav-group-toggle" aria-expanded="{% if active_group == 'guides' %}true{% else %}false{% endif %}" style="--nav-item-color: #f472b6;">
-          <i class="bi bi-journal-code"></i> Build Guides <i class="bi bi-chevron-down chevron-icon"></i>
-        </button>
-        <ul class="corner-subnav-list{% if active_group == 'guides' %} show{% endif %}">
-          <li><a href="guides.html" class="corner-nav-link{% if active_page == 'guides' %} active{% endif %}">All Guides</a></li>
-          <li><a href="assembly.html" class="corner-nav-link{% if active_page == 'assembly' %} active{% endif %}">Assembly Guide</a></li>
-          <li><a href="notenoughpins.html" class="corner-nav-link{% if active_page == 'notenoughpins' %} active{% endif %}">Not Enough Pins</a></li>
-          <li><a href="how_matrix_works_extra.html" class="corner-nav-link{% if active_page == 'how_matrix_works_extra' %} active{% endif %}">How Matrix Works</a></li>
-          <li><a href="hand5x5.html" class="corner-nav-link{% if active_page == 'hand5x5' %} active{% endif %}">Handwire Helpers</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="specs.html" class="corner-nav-link{% if active_page == 'specs' %} active{% endif %}" style="--nav-item-color: #fb923c;">
-          <i class="bi bi-table"></i> Lineup Specs
-        </a>
+      <!-- Guides Category & Second-Level Chips -->
+      <li class="corner-nav-group{% if active_group == 'guides' %} group-active{% endif %}">
+        <div class="corner-nav-group-header" style="--nav-item-color: #f472b6;">
+          <a href="guides.html" class="corner-nav-link corner-nav-group-title{% if active_page == 'guides' %} active{% endif %}">
+            <i class="bi bi-journal-code"></i> Build Guides
+          </a>
+          <button type="button" class="corner-nav-group-toggle-btn" aria-expanded="{% if active_group == 'guides' %}true{% else %}false{% endif %}" aria-label="Toggle Guides Submenu">
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+        <div class="corner-subnav-panel{% if active_group == 'guides' %} show{% endif %}">
+          <div class="corner-subnav-grid">
+            <a href="assembly.html" class="corner-subnav-chip{% if active_page == 'assembly' %} active{% endif %}" style="--chip-accent: #f472b6;">
+              <span class="chip-name">Assembly</span>
+              <span class="chip-badge">Build</span>
+            </a>
+            <a href="notenoughpins.html" class="corner-subnav-chip{% if active_page == 'notenoughpins' %} active{% endif %}" style="--chip-accent: #f472b6;">
+              <span class="chip-name">Not Enough Pins</span>
+              <span class="chip-badge">Shift Reg</span>
+            </a>
+            <a href="how_matrix_works_extra.html" class="corner-subnav-chip{% if active_page == 'how_matrix_works_extra' %} active{% endif %}" style="--chip-accent: #f472b6;">
+              <span class="chip-name">Matrix Theory</span>
+              <span class="chip-badge">3×3</span>
+            </a>
+            <a href="hand5x5.html" class="corner-subnav-chip{% if active_page == 'hand5x5' %} active{% endif %}" style="--chip-accent: #f472b6;">
+              <span class="chip-name">Handwire 5×5</span>
+              <span class="chip-badge">PCB</span>
+            </a>
+          </div>
+          <div class="text-end pt-2">
+            <a href="guides.html" class="corner-subnav-all-link">Browse All 4 Guides <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
       </li>
 
       <li class="border-top border-secondary border-opacity-25 pt-2 mt-1">
@@ -106,4 +190,3 @@
     </ul>
   </div>
 </nav>
-

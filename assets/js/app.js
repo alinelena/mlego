@@ -36,15 +36,18 @@
     });
 
     // Submenu toggles (Keyboards, POS Conversions, Mice, Guides)
-    panel.querySelectorAll(".corner-nav-group-toggle").forEach((btn) => {
+    panel.querySelectorAll(".corner-nav-group-toggle-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
         const expanded = btn.getAttribute("aria-expanded") === "true";
         btn.setAttribute("aria-expanded", !expanded);
-        const subnav = btn.nextElementSibling;
-        if (subnav && subnav.classList.contains("corner-subnav-list")) {
-          subnav.classList.toggle("show", !expanded);
+        const group = btn.closest(".corner-nav-group");
+        if (group) {
+          const subpanel = group.querySelector(".corner-subnav-panel");
+          if (subpanel) {
+            subpanel.classList.toggle("show", !expanded);
+          }
         }
       });
     });

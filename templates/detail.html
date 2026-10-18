@@ -16,7 +16,7 @@
           <h1 class="h2 text-white fw-bold mb-2" style="font-family: 'Anaheim', sans-serif;">{{ item.title }}</h1>
           <div class="d-flex flex-wrap gap-2 align-items-center">
             {% if item.badge %}
-            <span class="mlego-badge">{{ item.badge }}</span>
+            <span class="mlego-badge" style="color: {{ accent_color }}; border-color: {{ accent_color }}55;">{{ item.badge }}</span>
             {% endif %}
             {% if item.get('keys') %}
             <span class="badge bg-dark text-secondary border border-secondary border-opacity-25">{{ item.get('keys') }} Keys</span>
@@ -38,6 +38,27 @@
     </div>
   </header>
 
+  <!-- Sticky Sibling Navigation Bar -->
+  {% if siblings and siblings|length > 1 %}
+  <nav class="subpage-nav-bar" aria-label="Sibling models navigation">
+    <div class="container">
+      <div class="subpage-nav-scroller">
+        <a href="{{ parent_url }}" class="subnav-pill subnav-pill-parent">
+          <i class="bi bi-grid-fill me-1"></i> All {{ parent_title }}
+        </a>
+        {% for sib in siblings %}
+        <a href="{{ sib.id }}.html" class="subnav-pill{% if sib.id == item.id %} active{% endif %}">
+          <span class="subnav-pill-title">{{ sib.title.split('(')[0].strip() }}</span>
+          {% if sib.badge %}
+          <span class="subnav-pill-badge">{{ sib.badge }}</span>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+
   <main class="py-5">
     <div class="container">
       <div class="row g-4">
@@ -45,11 +66,35 @@
           <div class="surface-card p-4 p-md-5">
             <div class="modal-article-body">
               {{ html_content|safe }}
+
+              <!-- Previous / Next Sibling Navigation Pager -->
+              {% if prev_item or next_item %}
+              <div class="detail-pager-wrap pt-4 border-top border-secondary border-opacity-25">
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    {% if prev_item %}
+                    <a href="{{ prev_item.id }}.html" class="detail-pager-card detail-pager-prev">
+                      <span class="pager-direction"><i class="bi bi-arrow-left"></i> Previous</span>
+                      <span class="pager-title">{{ prev_item.title }}</span>
+                    </a>
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-6 text-sm-end">
+                    {% if next_item %}
+                    <a href="{{ next_item.id }}.html" class="detail-pager-card detail-pager-next">
+                      <span class="pager-direction">Next <i class="bi bi-arrow-right"></i></span>
+                      <span class="pager-title">{{ next_item.title }}</span>
+                    </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
             </div>
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="sticky-top" style="top: 2rem;">
+          <div class="sticky-top" style="top: 5rem;">
             <div class="surface-card p-4 mb-4">
               <div class="hardware-card-thumb-wrap mb-3 rounded" style="height: 200px;">
                 <img src="{{ item.image or 'pics/mlego.webp' }}" alt="{{ item.title }}" class="hardware-card-thumb" style="cursor: zoom-in;" onclick="openLightbox('{{ item.image or 'pics/mlego.webp' }}')">
@@ -87,4 +132,3 @@
     </div>
   </main>
 {% endblock %}
-
